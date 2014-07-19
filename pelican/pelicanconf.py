@@ -30,3 +30,8 @@ DEFAULT_PAGINATION = 10
 
 ARTICLE_URL = 'posts/{date:%Y}/{date:%m}/{slug}.html'
 ARTICLE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/{slug}.html'
+
+USE_FOLDER_AS_CATEGORY = False
+DEFAULT_CATEGORY = 'misc'
+
+DEFAULT_DATE_FORMAT = '%Y/%m/%d %a'
