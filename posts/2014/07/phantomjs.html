@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
         <meta charset="utf-8" />
-        <title>blog.gorugle.org</title>
+        <title>PhantomJSを使ってみた</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -14,13 +14,18 @@
         <header id="banner" class="body">
                 <h1><a href="/">blog.gorugle.org </a></h1>
                 <nav><ul>
-                    <li><a href="/category/misc.html">misc</a></li>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/posts/2014/07/phantomjs.html" rel="bookmark"
+           title="Permalink to PhantomJSを使ってみた">PhantomJSを使ってみた</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/phantomjs.html">PhantomJSを使ってみた</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-07-20T03:30:00">
                 Published: 2014/07/20 日
@@ -31,7 +36,7 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>. </p>
 <p>tags: <a href="/tag/javascript.html">JavaScript</a> <a href="/tag/phantomjs.html">PhantomJS</a> </p>
-</footer><!-- /.post-info --><p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
+</footer><!-- /.post-info -->      <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
 仕事で間接的に使ったことはありましたが、<br />
 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
 <p>なにに使ったかというと<br />
@@ -78,40 +83,11 @@ inputタグのボタンをクリックするには以下のようします</p>
     <span class="nx">elem</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</pre></div>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/posts/2014/07/pelican.html" rel="bookmark"
-                           title="Permalink to Pelicanはじめました">Pelicanはじめました</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-07-20T00:10:00">
-                Published: 2014/07/20 日
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>. </p>
-<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/pelican.html">pelican</a> </p>
-</footer><!-- /.post-info -->                <p>Bloggerでブログを書いていましたが順次こちらへ移行する予定<br />
-このページは<a href="https://pages.github.com/">Github Pages</a>に<a href="http://blog.getpelican.com/">Pelican</a>で生成したコンテンツを置いています</p>
-                <a class="readmore" href="/posts/2014/07/pelican.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
 

@@ -1,6 +1,5 @@
 Title: Pelicanはじめました
 Date: 2014-07-20 00:10
-Modified: 2014-07-20 00:10
 Tags: python, pelican
 Slug: pelican
 

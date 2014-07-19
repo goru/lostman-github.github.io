@@ -1,3 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-07-20T00:10:00+09:00</updated><entry><title>Pelicanはじめました</title><link href="/posts/2014/07/pelican.html" rel="alternate"></link><updated>2014-07-20T00:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-20:posts/2014/07/pelican.html</id><summary type="html">&lt;p&gt;Bloggerでブログを書いていましたが順次こちらへ移行する予定&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-07-20T03:30:00+09:00</updated><entry><title>PhantomJSを使ってみた</title><link href="/posts/2014/07/phantomjs.html" rel="alternate"></link><updated>2014-07-20T03:30:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-20:posts/2014/07/phantomjs.html</id><summary type="html">&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br /&gt;
+仕事で間接的に使ったことはありましたが、&lt;br /&gt;
+プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます&lt;/p&gt;
+&lt;p&gt;なにに使ったかというと&lt;br /&gt;
+ドメインの管理ページのDNSの設定の書き換えの自動化です&lt;br /&gt;
+このサイトのドメインは&lt;a href="http://www.star-domain.jp/"&gt;スタードメイン&lt;/a&gt;で管理しているのですが、&lt;br /&gt;
+ここはDDNSの機能は提供していないんですね&lt;br /&gt;
+このサイトはCNAMEを固定で設定できればいいので特に必要はないんですが、&lt;br /&gt;
+サブドメインを使って固定IPアドレスでない自宅のマシンにもアクセスできるようにしたかったのです&lt;br /&gt;
+ただ手動では面倒なのでできれば何らかの方法で自動的に更新しようと考えました&lt;/p&gt;
+&lt;p&gt;一般的には&lt;a href="http://www.mydns.jp/"&gt;MyDNS&lt;/a&gt;等の外部のDDNSの機能を提供しているサービスを使用して&lt;br /&gt;
+このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです&lt;br /&gt;
+一応この方法も試して動作することも確認しましたが、&lt;br /&gt;
+PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました&lt;/p&gt;
+&lt;p&gt;ソースは&lt;a href="https://github.com/lostman-github/stardomain-ddns"&gt;ここ&lt;/a&gt;に置いておきます&lt;br /&gt;
+READMEにも書いてありますが実行方法は以下です&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;phantomjs stardomain-ddns.js &lt;span class="s2"&gt;&amp;quot;&amp;lt;email address&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;password&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;file name of DNS records&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;メールアドレスとパスワードはログインするために必要なもの&lt;br /&gt;
+あとはDNSの設定が書いてあるファイルのファイル名を指定します&lt;br /&gt;
+このファイルの中身はスタードメインの管理ページの&lt;br /&gt;
+「レコード一括編集(テキストエリア)」のページに表示される形式にしておきます&lt;br /&gt;
+なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です&lt;br /&gt;
+スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します&lt;/p&gt;
+&lt;p&gt;このスクリプトを書くにあたってはまった部分がクリックの操作です&lt;br /&gt;
+inputタグのボタンをクリックするには以下のようします&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;funcs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;evaluate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementsByName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;action_user_dns_index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;click&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;しかし、aタグのリンクをクリックしたい場合はうまくいきません (Firefoxでは上の書き方でも動作するんですよね&lt;br /&gt;
+色々調べたら安心と信頼の&lt;a href="http://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript/2706236#2706236"&gt;Stack Overflow&lt;/a&gt;に書いてあったのでそれを参考にしました&lt;br /&gt;
+以下のようにするとクリックイベントを発生させることができました&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;funcs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;evaluate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;elem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementsByClassName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;submenu_04&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;firstElementChild&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Events&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;initEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dispatchEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="JavaScript"></category><category term="PhantomJS"></category></entry><entry><title>Pelicanはじめました</title><link href="/posts/2014/07/pelican.html" rel="alternate"></link><updated>2014-07-20T00:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-20:posts/2014/07/pelican.html</id><summary type="html">&lt;p&gt;Bloggerでブログを書いていましたが順次こちらへ移行する予定&lt;br /&gt;
 このページは&lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt;に&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;で生成したコンテンツを置いています&lt;/p&gt;</summary><category term="python"></category><category term="pelican"></category></entry></feed>
