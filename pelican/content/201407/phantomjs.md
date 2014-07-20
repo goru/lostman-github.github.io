@@ -1,5 +1,6 @@
 Title: PhantomJSを使ってみた
 Date: 2014-07-20 03:30
+Category: Programming
 Tags: JavaScript, PhantomJS
 Slug: phantomjs
 
@@ -20,7 +21,7 @@ Slug: phantomjs
 一応この方法も試して動作することも確認しましたが、  
 PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました
 
-ソースは[ここ](https://github.com/lostman-github/stardomain-ddns)に置いておきます  
+ソースは[ここ](https://github.com/lostman-github/stardomain-ddns)に置いてあります  
 READMEにも書いてありますが実行方法は以下です
 
     :::bash
