@@ -1,5 +1,5 @@
 html:
-	pelican pelican/content/ -o . -s pelican/pelicanconf.py
+	LC_ALL=en_US.UTF-8 pelican pelican/content/ -o . -s pelican/pelicanconf.py
 
 server:
 	python3 -m pelican.server
