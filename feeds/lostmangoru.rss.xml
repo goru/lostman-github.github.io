@@ -13,7 +13,7 @@
 このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです&lt;br /&gt;
 一応この方法も試して動作することも確認しましたが、&lt;br /&gt;
 PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました&lt;/p&gt;
-&lt;p&gt;ソースは&lt;a href="https://github.com/lostman-github/stardomain-ddns"&gt;ここ&lt;/a&gt;に置いておきます&lt;br /&gt;
+&lt;p&gt;ソースは&lt;a href="https://github.com/lostman-github/stardomain-ddns"&gt;ここ&lt;/a&gt;に置いてあります&lt;br /&gt;
 READMEにも書いてありますが実行方法は以下です&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;phantomjs stardomain-ddns.js &lt;span class="s2"&gt;&amp;quot;&amp;lt;email address&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;password&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;file name of DNS records&amp;gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -47,4 +47,4 @@ inputタグのボタンをクリックするには以下のようします&lt;/p
   &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 20 Jul 2014 03:30:00 +0900</pubDate><guid>tag:,2014-07-20:posts/2014/07/phantomjs.html</guid><category>JavaScript</category><category>PhantomJS</category></item><item><title>Pelicanはじめました</title><link>/posts/2014/07/pelican.html</link><description>&lt;p&gt;Bloggerでブログを書いていましたが順次こちらへ移行する予定&lt;br /&gt;
-このページは&lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt;に&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;で生成したコンテンツを置いています&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 20 Jul 2014 00:10:00 +0900</pubDate><guid>tag:,2014-07-20:posts/2014/07/pelican.html</guid><category>python</category><category>pelican</category></item></channel></rss>
+このページは&lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt;に&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;で生成したコンテンツを置いています&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 20 Jul 2014 00:10:00 +0900</pubDate><guid>tag:,2014-07-20:posts/2014/07/pelican.html</guid><category>Pelican</category></item></channel></rss>
