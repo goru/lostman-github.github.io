@@ -14,6 +14,7 @@
         <header id="banner" class="body">
                 <h1><a href="/">blog.gorugle.org </a></h1>
                 <nav><ul>
+                    <li><a href="/category/embedded.html">Embedded</a></li>
                     <li><a href="/category/misc.html">misc</a></li>
                     <li><a href="/category/programming.html">Programming</a></li>
                 </ul></nav>
@@ -21,7 +22,61 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/phantomjs.html">PhantomJSを使ってみた</a></h1>
+                    <h1 class="entry-title"><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-07-21T17:49:00">
+                Published: 2014/07/21 Mon
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
+        </address>
+<p>In <a href="/category/embedded.html">Embedded</a>. </p>
+<p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
+</footer><!-- /.post-info --><p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
+紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
+PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
+(技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br />
+通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
+I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
+<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
+せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
+といっても個別にパーツを揃えたわけでなく</p>
+<ul>
+<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
+<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
+<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
+<li>100均で売っているスピーカ</li>
+</ul>
+<p>これらを接続しただけです<br />
+今回試した手順を以下にまとめておきます<br />
+後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
+<ol>
+<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
+<li>Arduinoのデジタル6番をアンプのIN+に接続</li>
+<li>ArduinoのGNDをアンプのIN-に接続</li>
+<li>アンプの+VとGNDをそれぞれ電池に接続</li>
+<li>アンプのSPK+とSPK-をジャックのRとGに接続</li>
+<li>ジャックにスピーカを接続</li>
+<li>ArduinoをPCに接続、Arduino IDEを起動</li>
+<li>メニューのTools -&gt; Serial Monitorを開く</li>
+<li>右下のコンボボックスでCarriage returnと9600bpsを選択</li>
+<li>上のインプットボックスに <code>?</code> を入力してEnter</li>
+<li><code>konnichiwa</code> 等を入力してEnterを押すと発声する</li>
+</ol>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/posts/2014/07/phantomjs.html" rel="bookmark"
+                           title="Permalink to PhantomJSを使ってみた">PhantomJSを使ってみた</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-07-20T03:30:00">
                 Published: 2014/07/20 Sun
@@ -32,7 +87,7 @@
         </address>
 <p>In <a href="/category/programming.html">Programming</a>. </p>
 <p>tags: <a href="/tag/javascript.html">JavaScript</a> <a href="/tag/phantomjs.html">PhantomJS</a> </p>
-</footer><!-- /.post-info --><p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
+</footer><!-- /.post-info -->                <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
 仕事で間接的に使ったことはありましたが、<br />
 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
 <p>なにに使ったかというと<br />
@@ -61,30 +116,10 @@ READMEにも書いてありますが実行方法は以下です</p>
 <p>このスクリプトを書くにあたってはまった部分がクリックの操作です<br />
 inputタグのボタンをクリックするには以下のようします</p>
 <div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;action_user_dns_index&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">click</span><span class="p">();</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>しかし、aタグのリンクをクリックしたい場合はうまくいきません (Firefoxでは上の書き方でも動作するんですよね<br />
-色々調べたら安心と信頼の<a href="http://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript/2706236#2706236">Stack Overflow</a>に書いてあったのでそれを参考にしました<br />
-以下のようにするとクリックイベントを発生させることができました</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;submenu_04&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">firstElementChild</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">);</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="nx">elem</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+  <span class="nx">page ...</span></pre></div>
+                <a class="readmore" href="/posts/2014/07/phantomjs.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
