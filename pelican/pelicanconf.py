@@ -35,3 +35,10 @@ USE_FOLDER_AS_CATEGORY = False
 DEFAULT_CATEGORY = 'misc'
 
 DEFAULT_DATE_FORMAT = '%Y/%m/%d %a'
+
+PLUGIN_PATHS = ['plugins']
+PLUGINS = ['better_figures_and_images']
+
+# for better_figures_and_images
+RESPONSIVE_IMAGES = True
+STATIC_IMAGES_PATH = '.'
