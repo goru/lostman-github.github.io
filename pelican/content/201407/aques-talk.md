@@ -4,7 +4,7 @@ Category: Embedded
 Tags: Arduino, AquesTalk pico LSI
 Slug: aquestalk
 
-以前購入していた[ATP3011F1-PU](http://www.a-quest.com/products/aquestalkpicolsi.html)([秋月](http://akizukidenshi.com/catalog/g/gI-06220/))の動作確認をしてみました  
+以前購入していた[ATP3011F1-PU](http://www.a-quest.com/products/aquestalkpicolsi.html)([秋月](http://akizukidenshi.com/catalog/g/gI-06220/)で850円)の動作確認をしてみました  
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、  
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます  
 (技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)  
