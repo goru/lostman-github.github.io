@@ -29,7 +29,9 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 &lt;li&gt;右下のコンボボックスでCarriage returnと9600bpsを選択&lt;/li&gt;
 &lt;li&gt;上のインプットボックスに &lt;code&gt;?&lt;/code&gt; を入力してEnter&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;konnichiwa&lt;/code&gt; 等を入力してEnterを押すと発声する&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="Arduino"></category><category term="AquesTalk pico LSI"></category></entry><entry><title>PhantomJSを使ってみた</title><link href="/posts/2014/07/phantomjs.html" rel="alternate"></link><updated>2014-07-20T03:30:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-20:posts/2014/07/phantomjs.html</id><summary type="html">&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br /&gt;
+&lt;/ol&gt;
+&lt;p&gt;発声させるためのテキストはデータシートを参照するか、&lt;br /&gt;
+&lt;a href="http://www.a-quest.com/demo/pico_kanji2roman.html"&gt;音声記号列生成 Webサービス&lt;/a&gt;を使用して作成します&lt;/p&gt;</summary><category term="Arduino"></category><category term="AquesTalk pico LSI"></category></entry><entry><title>PhantomJSを使ってみた</title><link href="/posts/2014/07/phantomjs.html" rel="alternate"></link><updated>2014-07-20T03:30:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-20:posts/2014/07/phantomjs.html</id><summary type="html">&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br /&gt;
 仕事で間接的に使ったことはありましたが、&lt;br /&gt;
 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます&lt;/p&gt;
 &lt;p&gt;なにに使ったかというと&lt;br /&gt;

@@ -35,3 +35,6 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 1. 右下のコンボボックスでCarriage returnと9600bpsを選択
 1. 上のインプットボックスに `?` を入力してEnter
 1. `konnichiwa` 等を入力してEnterを押すと発声する
+
+発声させるためのテキストはデータシートを参照するか、  
+[音声記号列生成 Webサービス](http://www.a-quest.com/demo/pico_kanji2roman.html)を使用して作成します
