@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-07-21T17:49:00+09:00</updated><entry><title>AquesTalk pico LSIの動作確認</title><link href="/posts/2014/07/aquestalk.html" rel="alternate"></link><updated>2014-07-21T17:49:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-21:posts/2014/07/aquestalk.html</id><summary type="html">&lt;p&gt;以前購入していた&lt;a href="http://www.a-quest.com/products/aquestalkpicolsi.html"&gt;ATP3011F1-PU&lt;/a&gt;(&lt;a href="http://akizukidenshi.com/catalog/g/gI-06220/"&gt;秋月&lt;/a&gt;で850円)の動作確認をしてみました&lt;br/&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-07-24T00:16:00+09:00</updated><entry><title>GitHub Pages関連で調べたこと</title><link href="/posts/2014/07/github-pages.html" rel="alternate"></link><updated>2014-07-24T00:16:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-24:posts/2014/07/github-pages.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository"&gt;Adding a CNAME file to your repository&lt;/a&gt;&lt;br/&gt;
+  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた &lt;code&gt;CNAME&lt;/code&gt; ファイルを追加するのと、&lt;br/&gt;
+  使用しているDNSの設定でサブドメインと &lt;code&gt;hoge.github.io&lt;/code&gt; をCNAMEで関連付ける&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/using-submodules-with-pages"&gt;Using submodules with Pages&lt;/a&gt;&lt;br/&gt;
+  gitのsubmoduleを使用する場合、リポジトリのURLは &lt;code&gt;git://&lt;/code&gt; でなく &lt;code&gt;https://&lt;/code&gt; を使用しなければいけない&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off"&gt;Turning Jekyll off&lt;/a&gt;&lt;br/&gt;
+  デフォルトでJekyllが有効になっているので &lt;code&gt;*.rst&lt;/code&gt; なファイルをアップロードすると変換しようとする&lt;br/&gt;
+  これを無効にするために &lt;code&gt;.nojekyll&lt;/code&gt; をリポジトリのルートに作成する&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="GitHub"></category></entry><entry><title>AquesTalk pico LSIの動作確認</title><link href="/posts/2014/07/aquestalk.html" rel="alternate"></link><updated>2014-07-21T17:49:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-21:posts/2014/07/aquestalk.html</id><summary type="html">&lt;p&gt;以前購入していた&lt;a href="http://www.a-quest.com/products/aquestalkpicolsi.html"&gt;ATP3011F1-PU&lt;/a&gt;(&lt;a href="http://akizukidenshi.com/catalog/g/gI-06220/"&gt;秋月&lt;/a&gt;で850円)の動作確認をしてみました&lt;br/&gt;
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、&lt;br/&gt;
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます&lt;br/&gt;
 (技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)&lt;br/&gt;

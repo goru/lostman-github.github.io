@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>blog.gorugle.org - misc</title>
+        <title>blog.gorugle.org - GitHub</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -16,26 +16,34 @@
                 <nav><ul>
                     <li><a href="/category/embedded.html">Embedded</a></li>
                     <li><a href="/category/internet.html">Internet</a></li>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                    <li><a href="/category/misc.html">misc</a></li>
                     <li><a href="/category/programming.html">Programming</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/pelican.html">Pelicanはじめました</a></h1>
+                    <h1 class="entry-title"><a href="/posts/2014/07/github-pages.html">GitHub Pages関連で調べたこと</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2014-07-20T00:10:00">
-                Published: 2014/07/20 Sun
+        <abbr class="published" title="2014-07-24T00:16:00">
+                Published: 2014/07/24 Thu
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
         </address>
-<p>In <a href="/category/misc.html">misc</a>. </p>
-<p>tags: <a href="/tag/pelican.html">Pelican</a> </p>
-</footer><!-- /.post-info --><p>Bloggerでブログを書いていましたが順次こちらへ移行する予定<br/>
-このページは<a href="https://pages.github.com/">Github Pages</a>に<a href="http://blog.getpelican.com/">Pelican</a>で生成したコンテンツを置いています</p>                </article>
+<p>In <a href="/category/internet.html">Internet</a>. </p>
+<p>tags: <a href="/tag/github.html">GitHub</a> </p>
+</footer><!-- /.post-info --><ul>
+<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br/>
+  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br/>
+  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
+<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br/>
+  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
+<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br/>
+  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br/>
+  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
+</ul>                </article>
 <p class="paginator">
     Page 1 / 1
 </p>

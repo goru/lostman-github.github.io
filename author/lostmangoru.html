@@ -15,6 +15,7 @@
                 <h1><a href="/">blog.gorugle.org </a></h1>
                 <nav><ul>
                     <li><a href="/category/embedded.html">Embedded</a></li>
+                    <li><a href="/category/internet.html">Internet</a></li>
                     <li><a href="/category/misc.html">misc</a></li>
                     <li><a href="/category/programming.html">Programming</a></li>
                 </ul></nav>
@@ -22,7 +23,40 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h1>
+                    <h1 class="entry-title"><a href="/posts/2014/07/github-pages.html">GitHub Pages関連で調べたこと</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-07-24T00:16:00">
+                Published: 2014/07/24 Thu
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
+        </address>
+<p>In <a href="/category/internet.html">Internet</a>. </p>
+<p>tags: <a href="/tag/github.html">GitHub</a> </p>
+</footer><!-- /.post-info --><ul>
+<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br/>
+  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br/>
+  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
+<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br/>
+  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
+<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br/>
+  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br/>
+  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
+</ul>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/posts/2014/07/aquestalk.html" rel="bookmark"
+                           title="Permalink to AquesTalk pico LSIの動作確認">AquesTalk pico LSIの動作確認</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-07-21T17:49:00">
                 Published: 2014/07/21 Mon
@@ -33,7 +67,7 @@
         </address>
 <p>In <a href="/category/embedded.html">Embedded</a>. </p>
 <p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
-</footer><!-- /.post-info --><p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
+</footer><!-- /.post-info -->                <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br/>
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br/>
 (技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br/>
@@ -61,17 +95,10 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 <li>ArduinoをPCに接続、Arduino IDEを起動</li>
 <li>メニューのTools -&gt; Serial Monitorを開く</li>
 <li>右下のコンボボックスでCarriage returnと9600bpsを選択</li>
-<li>上のインプットボックスに <code>?</code> を入力してEnter</li>
-<li><code>konnichiwa</code> 等を入力してEnterを押すと発声する</li>
-</ol>
-<p>発声させるためのテキストはデータシートを参照するか、<br/>
-<a href="http://www.a-quest.com/demo/pico_kanji2roman.html">音声記号列生成 Webサービス</a>を使用して作成します</p>
-<p><img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027.jpg" style="width: 3264px; height: auto; max-width: 100%;"/></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<li>上のインプットボックスに ...</li></ol>
+                <a class="readmore" href="/posts/2014/07/aquestalk.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
