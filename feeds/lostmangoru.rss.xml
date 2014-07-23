@@ -32,7 +32,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 &lt;/ol&gt;
 &lt;p&gt;発声させるためのテキストはデータシートを参照するか、&lt;br/&gt;
 &lt;a href="http://www.a-quest.com/demo/pico_kanji2roman.html"&gt;音声記号列生成 Webサービス&lt;/a&gt;を使用して作成します&lt;/p&gt;
-&lt;p&gt;&lt;img alt="AquesTalk pico LSI" src="/static/images/201407/IMAG1027.jpg" style="width: 3264px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 21 Jul 2014 17:49:00 +0900</pubDate><guid>tag:,2014-07-21:posts/2014/07/aquestalk.html</guid><category>Arduino</category><category>AquesTalk pico LSI</category></item><item><title>PhantomJSを使ってみた</title><link>/posts/2014/07/phantomjs.html</link><description>&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br/&gt;
+&lt;p&gt;&lt;img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027.jpg" style="width: 3264px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 21 Jul 2014 17:49:00 +0900</pubDate><guid>tag:,2014-07-21:posts/2014/07/aquestalk.html</guid><category>Arduino</category><category>AquesTalk pico LSI</category></item><item><title>PhantomJSを使ってみた</title><link>/posts/2014/07/phantomjs.html</link><description>&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br/&gt;
 仕事で間接的に使ったことはありましたが、&lt;br/&gt;
 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます&lt;/p&gt;
 &lt;p&gt;なにに使ったかというと&lt;br/&gt;

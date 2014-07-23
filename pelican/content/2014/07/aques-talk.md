@@ -39,4 +39,4 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 発声させるためのテキストはデータシートを参照するか、  
 [音声記号列生成 Webサービス](http://www.a-quest.com/demo/pico_kanji2roman.html)を使用して作成します
 
-![AquesTalk pico LSI](/static/images/201407/IMAG1027.jpg)
+![AquesTalk pico LSI](/static/images/2014/07/IMAG1027.jpg)
