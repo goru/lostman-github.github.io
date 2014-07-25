@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-07-24T00:16:00+09:00</updated><entry><title>GitHub Pages関連で調べたこと</title><link href="/posts/2014/07/github-pages.html" rel="alternate"></link><updated>2014-07-24T00:16:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-24:posts/2014/07/github-pages.html</id><summary type="html">&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-07-25T23:49:00+09:00</updated><entry><title>AquesTalk pico LSIをI2Cで接続する</title><link href="/posts/2014/07/aquestalk-i2c.html" rel="alternate"></link><updated>2014-07-25T23:49:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-25:posts/2014/07/aquestalk-i2c.html</id><summary type="html">&lt;p&gt;ArduinoとAquesTalkをI2Cで接続してみました&lt;br/&gt;
+配線は以下の通り&lt;br/&gt;
+(表にしたらテーマの関係上すごく見づらかったので変更する予定)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;PIN | AquesTalk | -&amp;gt; | Arduino
+----|-----------|----|--------
+1   | /RESET    |    | RESET
+4   | SMOD0     |    | GND
+5   | SMOD1     |    | 5V
+7   | VCC       |    | 5V
+8   | GND       |    | GND
+20  | VCC       |    | 5V
+22  | GND       |    | GND
+27  | SDA       |    | A4
+28  | SCL       |    | A5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照&lt;br/&gt;
+I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります&lt;br/&gt;
+あとは12番のAOUTをアンプのIN+、GNDをIN-に接続します&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" style="width: 3264px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;データシートの 5. 基本回路 にある回路図を見ると、これ以外にVCCとAOUTにコンデンサが追加されています&lt;br/&gt;
+これはバイパスコンデンサというものらしく電源の安定化やノイズの発生を抑えたりする役割があるそうです &lt;a href="http://www.geocities.jp/zattouka/GarageHouse/micon/circuit/VoltREG.htm#pascon"&gt;*1&lt;/a&gt;&lt;br/&gt;
+とりあえず、無しでも動きました(ぇ&lt;/p&gt;
+&lt;p&gt;他に 9.2. I2C通信 の部分を見るとSDA、SCL共に5KΩ程度のプルアップ抵抗が必要とあります&lt;br/&gt;
+プルアップ抵抗なんですが調べたところ標準のWire.hを使う場合Arduino内蔵の抵抗で問題なさそうなので &lt;a href="http://www.senio.co.jp/bbs/viewtopic.php?f=7&amp;amp;t=260"&gt;*2&lt;/a&gt; &lt;a href="http://myboom.mkch.net/modules/pukiwiki/180.html"&gt;*3&lt;/a&gt;&lt;br/&gt;
+これも無しで試したところ、動きました&lt;/p&gt;
+&lt;p&gt;というわけでAquesTalk以外に特に部品を追加することなく準備ができました&lt;br/&gt;
+動作確認に使用したスケッチは&lt;a href="https://github.com/lostman-github/arduino/blob/master/Uno/AquesTalk/sample/sample.ino"&gt;GitHub&lt;/a&gt;にありますがここに貼り付けておきます &lt;a href="http://enajet.air-nifty.com/blog/2012/01/aquestalk-pico-.html"&gt;*4&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;Wire.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#define PICO_I2C_ADDRESS 0x2E&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;isReady&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;beginTransmission&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PICO_I2C_ADDRESS&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"yukkurisiteittene&lt;/span&gt;&lt;span class="se"&gt;\r&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endTransmission&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// send once&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;isReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;requestFrom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PICO_I2C_ADDRESS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;'&amp;gt;'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+
+      &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Arduino"></category><category term="AquesTalk pico LSI"></category></entry><entry><title>GitHub Pages関連で調べたこと</title><link href="/posts/2014/07/github-pages.html" rel="alternate"></link><updated>2014-07-24T00:16:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-07-24:posts/2014/07/github-pages.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository"&gt;Adding a CNAME file to your repository&lt;/a&gt;&lt;br/&gt;
   サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた &lt;code&gt;CNAME&lt;/code&gt; ファイルを追加するのと、&lt;br/&gt;
   使用しているDNSの設定でサブドメインと &lt;code&gt;hoge.github.io&lt;/code&gt; をCNAMEで関連付ける&lt;/li&gt;

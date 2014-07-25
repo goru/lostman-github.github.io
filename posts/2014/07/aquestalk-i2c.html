@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>blog.gorugle.org - AquesTalk pico LSI</title>
+        <title>AquesTalk pico LSIをI2Cで接続する</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -14,16 +14,21 @@
         <header id="banner" class="body">
                 <h1><a href="/">blog.gorugle.org </a></h1>
                 <nav><ul>
-                    <li><a href="/category/embedded.html">Embedded</a></li>
+                    <li class="active"><a href="/category/embedded.html">Embedded</a></li>
                     <li><a href="/category/internet.html">Internet</a></li>
                     <li><a href="/category/misc.html">misc</a></li>
                     <li><a href="/category/programming.html">Programming</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/posts/2014/07/aquestalk-i2c.html" rel="bookmark"
+           title="Permalink to AquesTalk pico LSIをI2Cで接続する">AquesTalk pico LSIをI2Cで接続する</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-07-25T23:49:00">
                 Published: 2014/07/25 Fri
@@ -34,7 +39,7 @@
         </address>
 <p>In <a href="/category/embedded.html">Embedded</a>. </p>
 <p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
-</footer><!-- /.post-info --><p>ArduinoとAquesTalkをI2Cで接続してみました<br/>
+</footer><!-- /.post-info -->      <p>ArduinoとAquesTalkをI2Cで接続してみました<br/>
 配線は以下の通り<br/>
 (表にしたらテーマの関係上すごく見づらかったので変更する予定)</p>
 <div class="highlight"><pre>PIN | AquesTalk | -&gt; | Arduino
@@ -93,67 +98,11 @@ I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br/
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</pre></div>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/posts/2014/07/aquestalk.html" rel="bookmark"
-                           title="Permalink to AquesTalk pico LSIの動作確認">AquesTalk pico LSIの動作確認</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-07-21T17:49:00">
-                Published: 2014/07/21 Mon
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
-        </address>
-<p>In <a href="/category/embedded.html">Embedded</a>. </p>
-<p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
-</footer><!-- /.post-info -->                <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br/>
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br/>
-(技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br/>
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br/>
-I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br/>
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br/>
-といっても個別にパーツを揃えたわけでなく</p>
-<ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
-<li>100均で売っているスピーカ</li>
-</ul>
-<p>これらを接続しただけです<br/>
-今回試した手順を以下にまとめておきます<br/>
-後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
-<ol>
-<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoのデジタル6番をアンプのIN+に接続</li>
-<li>ArduinoのGNDをアンプのIN-に接続</li>
-<li>アンプの+VとGNDをそれぞれ電池に接続</li>
-<li>アンプのSPK+とSPK-をジャックのRとGに接続</li>
-<li>ジャックにスピーカを接続</li>
-<li>ArduinoをPCに接続、Arduino IDEを起動</li>
-<li>メニューのTools -&gt; Serial Monitorを開く</li>
-<li>右下のコンボボックスでCarriage returnと9600bpsを選択</li>
-<li>上のインプットボックスに ...</li></ol>
-                <a class="readmore" href="/posts/2014/07/aquestalk.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
 

@@ -23,7 +23,90 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h1>
+                    <h1 class="entry-title"><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-07-25T23:49:00">
+                Published: 2014/07/25 Fri
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
+        </address>
+<p>In <a href="/category/embedded.html">Embedded</a>. </p>
+<p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
+</footer><!-- /.post-info --><p>ArduinoとAquesTalkをI2Cで接続してみました<br/>
+配線は以下の通り<br/>
+(表にしたらテーマの関係上すごく見づらかったので変更する予定)</p>
+<div class="highlight"><pre>PIN | AquesTalk | -&gt; | Arduino
+----|-----------|----|--------
+1   | /RESET    |    | RESET
+4   | SMOD0     |    | GND
+5   | SMOD1     |    | 5V
+7   | VCC       |    | 5V
+8   | GND       |    | GND
+20  | VCC       |    | 5V
+22  | GND       |    | GND
+27  | SDA       |    | A4
+28  | SCL       |    | A5
+</pre></div>
+<p>SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照<br/>
+I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br/>
+あとは12番のAOUTをアンプのIN+、GNDをIN-に接続します</p>
+<p><img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" style="width: 3264px; height: auto; max-width: 100%;"/></p>
+<p>データシートの 5. 基本回路 にある回路図を見ると、これ以外にVCCとAOUTにコンデンサが追加されています<br/>
+これはバイパスコンデンサというものらしく電源の安定化やノイズの発生を抑えたりする役割があるそうです <a href="http://www.geocities.jp/zattouka/GarageHouse/micon/circuit/VoltREG.htm#pascon">*1</a><br/>
+とりあえず、無しでも動きました(ぇ</p>
+<p>他に 9.2. I2C通信 の部分を見るとSDA、SCL共に5KΩ程度のプルアップ抵抗が必要とあります<br/>
+プルアップ抵抗なんですが調べたところ標準のWire.hを使う場合Arduino内蔵の抵抗で問題なさそうなので <a href="http://www.senio.co.jp/bbs/viewtopic.php?f=7&amp;t=260">*2</a> <a href="http://myboom.mkch.net/modules/pukiwiki/180.html">*3</a><br/>
+これも無しで試したところ、動きました</p>
+<p>というわけでAquesTalk以外に特に部品を追加することなく準備ができました<br/>
+動作確認に使用したスケッチは<a href="https://github.com/lostman-github/arduino/blob/master/Uno/AquesTalk/sample/sample.ino">GitHub</a>にありますがここに貼り付けておきます <a href="http://enajet.air-nifty.com/blog/2012/01/aquestalk-pico-.html">*4</a></p>
+<div class="highlight"><pre><span class="cp">#include &lt;Wire.h&gt;</span>
+
+<span class="cp">#define PICO_I2C_ADDRESS 0x2E</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">isReady</span><span class="p">();</span>
+
+  <span class="n">Wire</span><span class="p">.</span><span class="n">beginTransmission</span><span class="p">(</span><span class="n">PICO_I2C_ADDRESS</span><span class="p">);</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"yukkurisiteittene</span><span class="se">\r</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">endTransmission</span><span class="p">();</span>
+
+  <span class="c1">// send once</span>
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">isReady</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Wire</span><span class="p">.</span><span class="n">requestFrom</span><span class="p">(</span><span class="n">PICO_I2C_ADDRESS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="sc">'&gt;'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/posts/2014/07/aquestalk.html" rel="bookmark"
+                           title="Permalink to AquesTalk pico LSIの動作確認">AquesTalk pico LSIの動作確認</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-07-21T17:49:00">
                 Published: 2014/07/21 Mon
@@ -34,7 +117,7 @@
         </address>
 <p>In <a href="/category/embedded.html">Embedded</a>. </p>
 <p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
-</footer><!-- /.post-info --><p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
+</footer><!-- /.post-info -->                <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br/>
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br/>
 (技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br/>
@@ -62,16 +145,15 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 <li>ArduinoをPCに接続、Arduino IDEを起動</li>
 <li>メニューのTools -&gt; Serial Monitorを開く</li>
 <li>右下のコンボボックスでCarriage returnと9600bpsを選択</li>
-<li>上のインプットボックスに <code>?</code> を入力してEnter</li>
-<li><code>konnichiwa</code> 等を入力してEnterを押すと発声する</li>
-</ol>
-<p>発声させるためのテキストはデータシートを参照するか、<br/>
-<a href="http://www.a-quest.com/demo/pico_kanji2roman.html">音声記号列生成 Webサービス</a>を使用して作成します</p>
-<p><img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027.jpg" style="width: 3264px; height: auto; max-width: 100%;"/></p>                </article>
+<li>上のインプットボックスに ...</li></ol>
+                <a class="readmore" href="/posts/2014/07/aquestalk.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 1
 </p>
-            </aside><!-- /#featured -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
         </section><!-- /#extras -->
 

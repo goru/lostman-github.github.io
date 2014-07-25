@@ -23,7 +23,90 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/posts/2014/07/github-pages.html">GitHub Pages関連で調べたこと</a></h1>
+                    <h1 class="entry-title"><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-07-25T23:49:00">
+                Published: 2014/07/25 Fri
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
+        </address>
+<p>In <a href="/category/embedded.html">Embedded</a>. </p>
+<p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
+</footer><!-- /.post-info --><p>ArduinoとAquesTalkをI2Cで接続してみました<br/>
+配線は以下の通り<br/>
+(表にしたらテーマの関係上すごく見づらかったので変更する予定)</p>
+<div class="highlight"><pre>PIN | AquesTalk | -&gt; | Arduino
+----|-----------|----|--------
+1   | /RESET    |    | RESET
+4   | SMOD0     |    | GND
+5   | SMOD1     |    | 5V
+7   | VCC       |    | 5V
+8   | GND       |    | GND
+20  | VCC       |    | 5V
+22  | GND       |    | GND
+27  | SDA       |    | A4
+28  | SCL       |    | A5
+</pre></div>
+<p>SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照<br/>
+I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br/>
+あとは12番のAOUTをアンプのIN+、GNDをIN-に接続します</p>
+<p><img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" style="width: 3264px; height: auto; max-width: 100%;"/></p>
+<p>データシートの 5. 基本回路 にある回路図を見ると、これ以外にVCCとAOUTにコンデンサが追加されています<br/>
+これはバイパスコンデンサというものらしく電源の安定化やノイズの発生を抑えたりする役割があるそうです <a href="http://www.geocities.jp/zattouka/GarageHouse/micon/circuit/VoltREG.htm#pascon">*1</a><br/>
+とりあえず、無しでも動きました(ぇ</p>
+<p>他に 9.2. I2C通信 の部分を見るとSDA、SCL共に5KΩ程度のプルアップ抵抗が必要とあります<br/>
+プルアップ抵抗なんですが調べたところ標準のWire.hを使う場合Arduino内蔵の抵抗で問題なさそうなので <a href="http://www.senio.co.jp/bbs/viewtopic.php?f=7&amp;t=260">*2</a> <a href="http://myboom.mkch.net/modules/pukiwiki/180.html">*3</a><br/>
+これも無しで試したところ、動きました</p>
+<p>というわけでAquesTalk以外に特に部品を追加することなく準備ができました<br/>
+動作確認に使用したスケッチは<a href="https://github.com/lostman-github/arduino/blob/master/Uno/AquesTalk/sample/sample.ino">GitHub</a>にありますがここに貼り付けておきます <a href="http://enajet.air-nifty.com/blog/2012/01/aquestalk-pico-.html">*4</a></p>
+<div class="highlight"><pre><span class="cp">#include &lt;Wire.h&gt;</span>
+
+<span class="cp">#define PICO_I2C_ADDRESS 0x2E</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">isReady</span><span class="p">();</span>
+
+  <span class="n">Wire</span><span class="p">.</span><span class="n">beginTransmission</span><span class="p">(</span><span class="n">PICO_I2C_ADDRESS</span><span class="p">);</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"yukkurisiteittene</span><span class="se">\r</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">endTransmission</span><span class="p">();</span>
+
+  <span class="c1">// send once</span>
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">isReady</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Wire</span><span class="p">.</span><span class="n">requestFrom</span><span class="p">(</span><span class="n">PICO_I2C_ADDRESS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="sc">'&gt;'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/posts/2014/07/github-pages.html" rel="bookmark"
+                           title="Permalink to GitHub Pages関連で調べたこと">GitHub Pages関連で調べたこと</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-07-24T00:16:00">
                 Published: 2014/07/24 Thu
@@ -34,7 +117,7 @@
         </address>
 <p>In <a href="/category/internet.html">Internet</a>. </p>
 <p>tags: <a href="/tag/github.html">GitHub</a> </p>
-</footer><!-- /.post-info --><ul>
+</footer><!-- /.post-info -->                <ul>
 <li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br/>
   サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br/>
   使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
@@ -43,12 +126,10 @@
 <li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br/>
   デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br/>
   これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
-</ul>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</ul>
+                <a class="readmore" href="/posts/2014/07/github-pages.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
