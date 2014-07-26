@@ -65,7 +65,7 @@ blog.gorugle.org            </a>
                 <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br/>
+                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
 配線は以下の通り  </p>
 <table>
 <thead>
@@ -133,10 +133,10 @@ blog.gorugle.org            </a>
 </tr>
 </tbody>
 </table>
-<p>SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照<br/>
-I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br/>
+<p>SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照<br />
+I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br />
 あとは12番のAOUTをアンプのIN+、GNDをIN-に接続します</p>
-<p><img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" style="width: 3264px; height: auto; max-width: 100%;"/></p>
+<p><img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" /></p>
 <p>データシートの 5. 基本回路 にある回路図を見ると ...</p>
                     </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
@@ -147,14 +147,14 @@ I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br/
                 <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br/>
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br/>
-(技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br/>
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br/>
+                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
+紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
+PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
+(技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br />
+通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
 I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br/>
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br/>
+<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
+せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
 といっても個別にパーツを揃えたわけでなく</p>
 <ul>
 <li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
@@ -162,8 +162,8 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 <li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
 <li>100均で売っているスピーカ</li>
 </ul>
-<p>これらを接続しただけです<br/>
-今回試した手順を以下にまとめておきます<br/>
+<p>これらを接続しただけです<br />
+今回試した手順を以下にまとめておきます<br />
 後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
 <ol>
 <li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
@@ -194,13 +194,18 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                 <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group" id="tags">
                         <li class="list-group-item tag-1">
+                            <a href="/tag/aquestalk-pico-lsi.html">
+                                AquesTalk pico LSI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/aquestalk-pico-lsi.html">
-                                AquesTalk pico LSI
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/github.html">
+                                GitHub
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -209,18 +214,13 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/phantomjs.html">
-                                PhantomJS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
                             <a href="/tag/pelican.html">
                                 Pelican
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/github.html">
-                                GitHub
+                            <a href="/tag/phantomjs.html">
+                                PhantomJS
                             </a>
                         </li>
                     </ul>

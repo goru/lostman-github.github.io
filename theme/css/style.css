@@ -87,6 +87,10 @@ a, a:hover {
     margin-bottom: 2px;
 }
 
+.entry-content table {
+    margin-bottom: 10px;
+}
+
 .floatright, .align-right {
     float: right;
 }
