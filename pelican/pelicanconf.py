@@ -42,3 +42,5 @@ PLUGINS = ['better_figures_and_images']
 # for better_figures_and_images
 RESPONSIVE_IMAGES = True
 STATIC_IMAGES_PATH = '.'
+
+THEME = 'themes/pelican-bootstrap3'
