@@ -44,3 +44,5 @@ RESPONSIVE_IMAGES = True
 STATIC_IMAGES_PATH = '.'
 
 THEME = 'themes/pelican-bootstrap3'
+
+USE_OPEN_GRAPH = False
