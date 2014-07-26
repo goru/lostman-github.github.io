@@ -6,20 +6,18 @@ Slug: aquestalk-i2c
 
 ArduinoとAquesTalkをI2Cで接続してみました  
 配線は以下の通り  
-(表にしたらテーマの関係上すごく見づらかったので変更する予定)
 
-    :::
-    PIN | AquesTalk | -> | Arduino
-    ----|-----------|----|--------
-    1   | /RESET    |    | RESET
-    4   | SMOD0     |    | GND
-    5   | SMOD1     |    | 5V
-    7   | VCC       |    | 5V
-    8   | GND       |    | GND
-    20  | VCC       |    | 5V
-    22  | GND       |    | GND
-    27  | SDA       |    | A4
-    28  | SCL       |    | A5
+Pin | AquesTalk | -> | Arduino
+----|-----------|----|--------
+1   | /RESET    |    | RESET
+4   | SMOD0     |    | GND
+5   | SMOD1     |    | 5V
+7   | VCC       |    | 5V
+8   | GND       |    | GND
+20  | VCC       |    | 5V
+22  | GND       |    | GND
+27  | SDA       |    | A4
+28  | SCL       |    | A5
 
 SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照  
 I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります  
