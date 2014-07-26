@@ -1,45 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-        <meta charset="utf-8" />
-        <title>PhantomJSを使ってみた</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+    <title>PhantomJSを使ってみた - blog.gorugle.org</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!-- Open Graph tags -->
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="PhantomJSを使ってみた"/>
+            <meta property="og:url" content="/posts/2014/07/phantomjs.html"/>
+            <meta property="og:description" content="はじめてPhantomJS使ってみました 仕事で間接的に使ったことはありましたが、 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます なにに使ったかというと ドメインの管理ページのDNSの設定の書き換えの自動化です このサイトのドメインはスタードメインで管理しているのですが、 ここはDDNSの機能は提供していないんですね このサイトはCNAMEを固定で設定できればいいので特に必要はないんですが、 サブドメインを使って固定IPアドレスでない自宅のマシンにもアクセスできるようにしたかったのです ただ手動では面倒なのでできれば何らかの方法で自動的に更新しようと考えました 一般的にはMyDNS等の外部のDDNSの機能を提供しているサービスを使用して このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです 一応この方法も試して動作することも確認しましたが、 PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました ソースはここに置いてあります READMEにも書いてありますが実行方法は以下です phantomjs stardomain-ddns.js "<email address>" "<password>" "<file name of DNS records>" メールアドレスとパスワードはログインするために必要なもの あとはDNSの設定が書いてあるファイルのファイル名を指定します このファイルの中身はスタードメインの管理ページの 「レコード一括編集(テキストエリア)」のページに表示される形式にしておきます なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します このスクリプトを書くにあたってはまった部分がクリックの操作です inputタグのボタンをクリックするには以下のようします funcs.push(function () { page ..."/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
 </head>
+<body>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">blog.gorugle.org </a></h1>
-                <nav><ul>
-                    <li><a href="/category/embedded.html">Embedded</a></li>
-                    <li><a href="/category/internet.html">Internet</a></li>
-                    <li><a href="/category/misc.html">misc</a></li>
-                    <li class="active"><a href="/category/programming.html">Programming</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/posts/2014/07/phantomjs.html" rel="bookmark"
-           title="Permalink to PhantomJSを使ってみた">PhantomJSを使ってみた</a></h1>
-    </header>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+blog.gorugle.org            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="/category/embedded.html">Embedded</a>
+                        </li>
+                        <li >
+                            <a href="/category/internet.html">Internet</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li class="active">
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
 
-    <div class="entry-content">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2014/07/phantomjs.html"
+                       rel="bookmark"
+                       title="Permalink to PhantomJSを使ってみた">
+                        PhantomJSを使ってみた
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
-        <abbr class="published" title="2014-07-20T03:30:00">
-                Published: 2014/07/20 Sun
-        </abbr>
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-07-20T03:30:00"> 2014/07/20 Sun</time>
+    </span>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
-        </address>
-<p>In <a href="/category/programming.html">Programming</a>. </p>
-<p>tags: <a href="/tag/javascript.html">JavaScript</a> <a href="/tag/phantomjs.html">PhantomJS</a> </p>
-</footer><!-- /.post-info -->      <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br/>
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/javascript.html">JavaScript</a>
+        /
+	<a href="/tag/phantomjs.html">PhantomJS</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br/>
 仕事で間接的に使ったことはありましたが、<br/>
 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
 <p>なにに使ったかというと<br/>
@@ -83,20 +139,80 @@ inputタグのボタンをクリックするには以下のようします</p>
   <span class="p">});</span>
 <span class="p">});</span>
 </pre></div>
-    </div><!-- /.entry-content -->
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-        </section><!-- /#extras -->
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+
+
+                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group" id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/arduino.html">
+                                Arduino
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/aquestalk-pico-lsi.html">
+                                AquesTalk pico LSI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/javascript.html">
+                                JavaScript
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/phantomjs.html">
+                                PhantomJS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/github.html">
+                                GitHub
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/pelican.html">
+                                Pelican
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 lostman/ごる
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
 
 </body>
 </html>

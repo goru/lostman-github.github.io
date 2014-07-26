@@ -1,45 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-        <meta charset="utf-8" />
-        <title>AquesTalk pico LSIの動作確認</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+    <title>AquesTalk pico LSIの動作確認 - blog.gorugle.org</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!-- Open Graph tags -->
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="AquesTalk pico LSIの動作確認"/>
+            <meta property="og:url" content="/posts/2014/07/aquestalk.html"/>
+            <meta property="og:description" content="以前購入していたATP3011F1-PU(秋月で850円)の動作確認をしてみました 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、 PCからシリアルモニタで文字を送信するだけで音声を出すことができます (技術資料 13.4. Arduinoボードを利用した簡易動作 を参照) 通常Arduinoから使う場合はI2C接続で使うことになると思いますが、 I2C接続は後日試すとして今回はこの方法で動作確認をしてみました まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから せっかくなのでこれも秋月で買ってきて組み立ててみました といっても個別にパーツを揃えたわけでなく ＰＡＭ８０１２使用２ワットＤ級アンプモジュール ３．５ｍｍステレオミニジャックＤＩＰ化キット 電池ボックス 単３×２本（リード線・耳付） 100均で売っているスピーカ これらを接続しただけです 今回試した手順を以下にまとめておきます 後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした ArduinoのLSIを取り外し、AquesTalkを取り付け Arduinoのデジタル6番をアンプのIN+に接続 ArduinoのGNDをアンプのIN-に接続 アンプの+VとGNDをそれぞれ電池に接続 アンプのSPK+とSPK-をジャックのRとGに接続 ジャックにスピーカを接続 ArduinoをPCに接続、Arduino IDEを起動 メニューのTools -> Serial Monitorを開く 右下のコンボボックスでCarriage returnと9600bpsを選択 上のインプットボックスに ..."/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
 </head>
+<body>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">blog.gorugle.org </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/embedded.html">Embedded</a></li>
-                    <li><a href="/category/internet.html">Internet</a></li>
-                    <li><a href="/category/misc.html">misc</a></li>
-                    <li><a href="/category/programming.html">Programming</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/posts/2014/07/aquestalk.html" rel="bookmark"
-           title="Permalink to AquesTalk pico LSIの動作確認">AquesTalk pico LSIの動作確認</a></h1>
-    </header>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+blog.gorugle.org            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/embedded.html">Embedded</a>
+                        </li>
+                        <li >
+                            <a href="/category/internet.html">Internet</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
 
-    <div class="entry-content">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2014/07/aquestalk.html"
+                       rel="bookmark"
+                       title="Permalink to AquesTalk pico LSIの動作確認">
+                        AquesTalk pico LSIの動作確認
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
-        <abbr class="published" title="2014-07-21T17:49:00">
-                Published: 2014/07/21 Mon
-        </abbr>
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-07-21T17:49:00"> 2014/07/21 Mon</time>
+    </span>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/lostmangoru.html">lostman/ごる</a>
-        </address>
-<p>In <a href="/category/embedded.html">Embedded</a>. </p>
-<p>tags: <a href="/tag/arduino.html">Arduino</a> <a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a> </p>
-</footer><!-- /.post-info -->      <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/arduino.html">Arduino</a>
+        /
+	<a href="/tag/aquestalk-pico-lsi.html">AquesTalk pico LSI</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br/>
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br/>
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br/>
 (技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br/>
@@ -73,20 +129,80 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 <p>発声させるためのテキストはデータシートを参照するか、<br/>
 <a href="http://www.a-quest.com/demo/pico_kanji2roman.html">音声記号列生成 Webサービス</a>を使用して作成します</p>
 <p><img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027.jpg" style="width: 3264px; height: auto; max-width: 100%;"/></p>
-    </div><!-- /.entry-content -->
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-        </section><!-- /#extras -->
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+
+
+                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group" id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/arduino.html">
+                                Arduino
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/aquestalk-pico-lsi.html">
+                                AquesTalk pico LSI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/javascript.html">
+                                JavaScript
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/phantomjs.html">
+                                PhantomJS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/github.html">
+                                GitHub
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/pelican.html">
+                                Pelican
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 lostman/ごる
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
 
 </body>
 </html>
