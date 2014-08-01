@@ -19,18 +19,18 @@ Pin | AquesTalk | -> | Arduino
 27  | SDA       |    | A4
 28  | SCL       |    | A5
 
-SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照  
-I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります  
-あとは12番のAOUTをアンプのIN+、GNDをIN-に接続します
+`SMOD0` と `SMOD1` については技術資料の `表9.1 通信モード` を参照  
+I2Cで接続するには `SMOD0 = 0` 、 `SMOD1 = 1` にする必要があります  
+あとは12番の `AOUT` をアンプの `IN+` 、 `GND` を `IN-` に接続します
 
 ![AquesTalk pico LSI I2C](/static/images/2014/07/IMAG1036.jpg)
 
-データシートの 5. 基本回路 にある回路図を見ると、これ以外にVCCとAOUTにコンデンサが追加されています  
+技術資料の `5. 基本回路` にある回路図を見ると、これ以外に `VCC` と `AOUT` にコンデンサが追加されています  
 これはバイパスコンデンサというものらしく電源の安定化やノイズの発生を抑えたりする役割があるそうです [*1](http://www.geocities.jp/zattouka/GarageHouse/micon/circuit/VoltREG.htm#pascon)  
 とりあえず、無しでも動きました(ぇ
 
-他に 9.2. I2C通信 の部分を見るとSDA、SCL共に5KΩ程度のプルアップ抵抗が必要とあります  
-プルアップ抵抗なんですが調べたところ標準のWire.hを使う場合Arduino内蔵の抵抗で問題なさそうなので [*2](http://www.senio.co.jp/bbs/viewtopic.php?f=7&t=260) [*3](http://myboom.mkch.net/modules/pukiwiki/180.html)  
+他に `9.2. I2C通信` の部分を見ると `SDA` 、 `SCL` 共に `5KΩ` 程度のプルアップ抵抗が必要とあります  
+プルアップ抵抗なんですが調べたところ標準の `Wire.h` を使う場合Arduino内蔵の抵抗で問題なさそうなので [*2](http://www.senio.co.jp/bbs/viewtopic.php?f=7&t=260) [*3](http://myboom.mkch.net/modules/pukiwiki/180.html)  
 これも無しで試したところ、動きました
 
 というわけでAquesTalk以外に特に部品を追加することなく準備ができました  
