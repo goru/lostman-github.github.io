@@ -133,11 +133,9 @@ blog.gorugle.org            </a>
 </tr>
 </tbody>
 </table>
-<p>SMOD0/SMOD1についてはデータシートの 表9.1 通信モード を参照<br />
-I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br />
-あとは12番のAOUTをアンプのIN+、GNDをIN-に接続します</p>
-<p><img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" /></p>
-<p>データシートの 5. 基本回路 にある回路図を見ると ...</p>
+<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
+I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
+あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
                     </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
                 </div>
@@ -169,7 +167,7 @@ I2Cで接続するには SMOD0 = 0, SMOD1 = 1 にする必要があります<br 
                         <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br />
+(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
 通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
 I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
 <p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
@@ -186,15 +184,10 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
 <ol>
 <li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoのデジタル6番をアンプのIN+に接続</li>
-<li>ArduinoのGNDをアンプのIN-に接続</li>
-<li>アンプの+VとGNDをそれぞれ電池に接続</li>
-<li>アンプのSPK+とSPK-をジャックのRとGに接続</li>
-<li>ジャックにスピーカを接続</li>
-<li>ArduinoをPCに接続、Arduino IDEを起動</li>
-<li>メニューのTools -&gt; Serial Monitorを開く</li>
-<li>右下のコンボボックスでCarriage returnと9600bpsを選択</li>
-<li>上のインプットボックスに ...</li></ol>
+<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
+<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
+<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
+<li>アンプの <code>SPK ...</code></li></ol>
                     </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
                 </div>
@@ -227,7 +220,7 @@ READMEにも書いてありますが実行方法は以下です</p>
 <p>メールアドレスとパスワードはログインするために必要なもの<br />
 あとはDNSの設定が書いてあるファイルのファイル名を指定します<br />
 このファイルの中身はスタードメインの管理ページの<br />
-「レコード一括編集(テキストエリア)」のページに表示される形式にしておきます<br />
+<code>レコード一括編集(テキストエリア)</code> のページに表示される形式にしておきます<br />
 なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です<br />
 スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します</p>
 <p>このスクリプトを書くにあたってはまった部分がクリックの操作です<br />

@@ -93,7 +93,7 @@ blog.gorugle.org            </a>
                 <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 13.4. Arduinoボードを利用した簡易動作 を参照)<br />
+(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
 通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
 I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
 <p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
@@ -110,18 +110,18 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
 <ol>
 <li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoのデジタル6番をアンプのIN+に接続</li>
-<li>ArduinoのGNDをアンプのIN-に接続</li>
-<li>アンプの+VとGNDをそれぞれ電池に接続</li>
-<li>アンプのSPK+とSPK-をジャックのRとGに接続</li>
+<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
+<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
+<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
+<li>アンプの <code>SPK+</code> と <code>SPK-</code> をジャックの <code>R</code> と <code>G</code> に接続</li>
 <li>ジャックにスピーカを接続</li>
 <li>ArduinoをPCに接続、Arduino IDEを起動</li>
-<li>メニューのTools -&gt; Serial Monitorを開く</li>
-<li>右下のコンボボックスでCarriage returnと9600bpsを選択</li>
+<li>メニューの <code>Tools -&gt; Serial Monitor</code> を開く</li>
+<li>右下のコンボボックスで <code>Carriage return</code> と <code>9600bps</code> を選択</li>
 <li>上のインプットボックスに <code>?</code> を入力してEnter</li>
 <li><code>konnichiwa</code> 等を入力してEnterを押すと発声する</li>
 </ol>
-<p>発声させるためのテキストはデータシートを参照するか、<br />
+<p>発声させるためのテキストは技術資料を参照するか、<br />
 <a href="http://www.a-quest.com/demo/pico_kanji2roman.html">音声記号列生成 Webサービス</a>を使用して作成します</p>
 <p><img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027.jpg" /></p>
             </div>
