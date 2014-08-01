@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>GitHub Pages関連で調べたこと - blog.gorugle.org</title>
+    <title>Computer - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,13 +36,13 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/internet.html">Internet</a>
                         </li>
                         <li >
@@ -64,47 +64,27 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="/posts/2014/07/github-pages.html"
-                       rel="bookmark"
-                       title="Permalink to GitHub Pages関連で調べたこと">
-                        GitHub Pages関連で調べたこと
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-07-24T00:16:00"> 2014/07/24 Thu</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/github.html">GitHub</a>
-    
-</footer><!-- /.post-info -->                    </div>
+            <article>
+                <h2><a href="/posts/2014/08/macuim-mozc.html">MacUIM/Mozcを使う</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>ターミナルは<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a>をビルドして使用しています<br />
+これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません<br />
+今までほとんど困ることはなくて、必要なときはコピペで対応していました<br />
+ただ最近ここをvimで書いていることもあり、<a href="https://code.google.com/p/macuim/">MacUIM</a>をインストールして入力できるようにしました</p>
+<ol>
+<li>まず上記サイトからダウンロードしてきたアーカイブをインストールします</li>
+<li>次に <code>System Preferences -&gt; Language &amp; Text -&gt; Input Sources</code> で <code>MacUIM (Japanese)</code> のチェックを入れる</li>
+<li><code>System Preferences -&gt; MacUIM</code> を開いて<ol>
+<li><code>General -&gt; Input Method</code> で <code>Mozc</code> を選択</li>
+<li><code>Helper -&gt; Use Helper-Applet</code> をチェック (メニューバーに状態が表示される)</li>
+<li><code>Uim -&gt; Global settings -&gt; Specify default IM</code> をチェック</li>
+<li><code>Uim -&gt; Global settings -&gt; Default input method</code> で ...</li></ol></li></ol>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/macuim-mozc.html">more ...</a>
                 </div>
-                <ul>
-<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br />
-  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br />
-  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
-<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br />
-  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
-<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br />
-  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br />
-  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
-</ul>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">

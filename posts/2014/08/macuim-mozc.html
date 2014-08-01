@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>GitHub Pages関連で調べたこと - blog.gorugle.org</title>
+    <title>MacUIM/Mozcを使う - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,13 +36,13 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/internet.html">Internet</a>
                         </li>
                         <li >
@@ -68,10 +68,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2014/07/github-pages.html"
+                    <a href="/posts/2014/08/macuim-mozc.html"
                        rel="bookmark"
-                       title="Permalink to GitHub Pages関連で調べたこと">
-                        GitHub Pages関連で調べたこと
+                       title="Permalink to MacUIM/Mozcを使う">
+                        MacUIM/Mozcを使う
                     </a>
                 </h1>
             </header>
@@ -81,26 +81,87 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-07-24T00:16:00"> 2014/07/24 Thu</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-02T02:04:00"> 2014/08/02 Sat</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/github.html">GitHub</a>
+	<a href="/tag/mac.html">Mac</a>
+        /
+	<a href="/tag/macuim.html">MacUIM</a>
+        /
+	<a href="/tag/mozc.html">Mozc</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <ul>
-<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br />
-  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br />
-  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
-<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br />
-  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
-<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br />
-  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br />
-  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
-</ul>
+                <p>ターミナルは<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a>をビルドして使用しています<br />
+これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません<br />
+今までほとんど困ることはなくて、必要なときはコピペで対応していました<br />
+ただ最近ここをvimで書いていることもあり、<a href="https://code.google.com/p/macuim/">MacUIM</a>をインストールして入力できるようにしました</p>
+<ol>
+<li>まず上記サイトからダウンロードしてきたアーカイブをインストールします</li>
+<li>次に <code>System Preferences -&gt; Language &amp; Text -&gt; Input Sources</code> で <code>MacUIM (Japanese)</code> のチェックを入れる</li>
+<li><code>System Preferences -&gt; MacUIM</code> を開いて<ol>
+<li><code>General -&gt; Input Method</code> で <code>Mozc</code> を選択</li>
+<li><code>Helper -&gt; Use Helper-Applet</code> をチェック (メニューバーに状態が表示される)</li>
+<li><code>Uim -&gt; Global settings -&gt; Specify default IM</code> をチェック</li>
+<li><code>Uim -&gt; Global settings -&gt; Default input method</code> で <code>Mozc</code> を選択</li>
+<li>右下の <code>Apply</code> ボタンを押す</li>
+</ol>
+</li>
+<li>
+<p><code>~/.xinitrc.d/uim-xim.sh</code> に以下の内容で起動スクリプトを配置する<br />
+このファイルを追加することでX11の起動時にUIMが起動する</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+/Library/Frameworks/UIM.framework/Versions/Current/bin/uim-xim &amp;
+</pre></div>
+
+
+</li>
+<li>
+<p><code>~/.bashrc</code> にでも以下の環境変数を追加する<br />
+X11でurxvtしか使わないのであればこれでOK<br />
+他のアプリでも使用する場合は他からも見える位置で環境変数を定義する</p>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">XMODIFIERS</span><span class="o">=</span><span class="s2">&quot;@im=uim&quot;</span>
+<span class="nb">export </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span><span class="s2">&quot;uim&quot;</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>urxvtの起動時に <code>-pt OffTheSpot</code> を追加する</p>
+</li>
+</ol>
+<p>とりあえずここまででデフォルトの <code>Shift+Space</code> を使用すれば日本語入力ができるようになっているはず<br />
+ここからはおまけ<br />
+Input sourceはMacUIM固定で <code>Cmd+Space</code> を日英の切り替えに使用したければ以下の設定をする</p>
+<ol>
+<li><code>System Preferences -&gt; Language &amp; Text -&gt; Input Sources</code> を開いて<ol>
+<li><code>Input source shortcuts</code> にあるショートカットを無効にする</li>
+<li><code>Input source options</code> は <code>Use the same one in all documents</code> を選択</li>
+</ol>
+</li>
+<li>
+<p><code>~/.uim.d/customs/custom-mozc-keys.scm</code> をエディタで開いて以下の部分を編集する</p>
+<div class="highlight"><pre><span class="p">(</span><span class="kd">define</span> <span class="nf">mozc</span><span class="na">-on-key</span> <span class="s1">&#39;(&quot;&lt;Meta&gt; &quot;))</span>
+<span class="s1">(define mozc-on-key? (make-key-predicate &#39;</span><span class="p">(</span><span class="s2">&quot;&lt;Meta&gt; &quot;</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">define</span> <span class="nf">mozc</span><span class="na">-off-key</span> <span class="s1">&#39;(&quot;&lt;Meta&gt; &quot;))</span>
+<span class="s1">(define mozc-off-key? (make-key-predicate &#39;</span><span class="p">(</span><span class="s2">&quot;&lt;Meta&gt; &quot;</span><span class="p">)))</span>
+</pre></div>
+
+
+</li>
+<li>
+<p><code>System Preferences -&gt; MacUIM</code> を開いて</p>
+<ol>
+<li><code>Uim -&gt; Global settings -&gt; Enable input method toggle by hot key</code> のチェックを外す</li>
+<li><code>Uim -&gt; Mozc key bindings</code> の <code>on</code> と <code>off</code> が <code>&lt;Meta&gt;space</code> になっていることを確認</li>
+<li>右下の <code>Apply</code> ボタンを押す</li>
+</ol>
+</li>
+</ol>
+<p>以上で <code>Cmd+Space</code> の入力でネイティブでもX11でも日本語入力の切り替えをすることができるようになりました</p>
             </div>
             <!-- /.entry-content -->
         </article>

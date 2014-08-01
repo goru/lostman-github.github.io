@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 25 Jul 2014 23:49:00 +0900</lastBuildDate><item><title>AquesTalk pico LSIをI2Cで接続する</title><link>/posts/2014/07/aquestalk-i2c.html</link><description>&lt;p&gt;ArduinoとAquesTalkをI2Cで接続してみました&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 02 Aug 2014 02:04:00 +0900</lastBuildDate><item><title>MacUIM/Mozcを使う</title><link>/posts/2014/08/macuim-mozc.html</link><description>&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
+これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません&lt;br /&gt;
+今までほとんど困ることはなくて、必要なときはコピペで対応していました&lt;br /&gt;
+ただ最近ここをvimで書いていることもあり、&lt;a href="https://code.google.com/p/macuim/"&gt;MacUIM&lt;/a&gt;をインストールして入力できるようにしました&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;まず上記サイトからダウンロードしてきたアーカイブをインストールします&lt;/li&gt;
+&lt;li&gt;次に &lt;code&gt;System Preferences -&amp;gt; Language &amp;amp; Text -&amp;gt; Input Sources&lt;/code&gt; で &lt;code&gt;MacUIM (Japanese)&lt;/code&gt; のチェックを入れる&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;System Preferences -&amp;gt; MacUIM&lt;/code&gt; を開いて&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;General -&amp;gt; Input Method&lt;/code&gt; で &lt;code&gt;Mozc&lt;/code&gt; を選択&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Helper -&amp;gt; Use Helper-Applet&lt;/code&gt; をチェック (メニューバーに状態が表示される)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Uim -&amp;gt; Global settings -&amp;gt; Specify default IM&lt;/code&gt; をチェック&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Uim -&amp;gt; Global settings -&amp;gt; Default input method&lt;/code&gt; で &lt;code&gt;Mozc&lt;/code&gt; を選択&lt;/li&gt;
+&lt;li&gt;右下の &lt;code&gt;Apply&lt;/code&gt; ボタンを押す&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;~/.xinitrc.d/uim-xim.sh&lt;/code&gt; に以下の内容で起動スクリプトを配置する&lt;br /&gt;
+このファイルを追加することでX11の起動時にUIMが起動する&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+/Library/Frameworks/UIM.framework/Versions/Current/bin/uim-xim &amp;amp;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;~/.bashrc&lt;/code&gt; にでも以下の環境変数を追加する&lt;br /&gt;
+X11でurxvtしか使わないのであればこれでOK&lt;br /&gt;
+他のアプリでも使用する場合は他からも見える位置で環境変数を定義する&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;XMODIFIERS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@im=uim&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;uim&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;urxvtの起動時に &lt;code&gt;-pt OffTheSpot&lt;/code&gt; を追加する&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;とりあえずここまででデフォルトの &lt;code&gt;Shift+Space&lt;/code&gt; を使用すれば日本語入力ができるようになっているはず&lt;br /&gt;
+ここからはおまけ&lt;br /&gt;
+Input sourceはMacUIM固定で &lt;code&gt;Cmd+Space&lt;/code&gt; を日英の切り替えに使用したければ以下の設定をする&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;System Preferences -&amp;gt; Language &amp;amp; Text -&amp;gt; Input Sources&lt;/code&gt; を開いて&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Input source shortcuts&lt;/code&gt; にあるショートカットを無効にする&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Input source options&lt;/code&gt; は &lt;code&gt;Use the same one in all documents&lt;/code&gt; を選択&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;~/.uim.d/customs/custom-mozc-keys.scm&lt;/code&gt; をエディタで開いて以下の部分を編集する&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;define&lt;/span&gt; &lt;span class="nf"&gt;mozc&lt;/span&gt;&lt;span class="na"&gt;-on-key&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;))&lt;/span&gt;
+&lt;span class="s1"&gt;(define mozc-on-key? (make-key-predicate &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;define&lt;/span&gt; &lt;span class="nf"&gt;mozc&lt;/span&gt;&lt;span class="na"&gt;-off-key&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;))&lt;/span&gt;
+&lt;span class="s1"&gt;(define mozc-off-key? (make-key-predicate &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;System Preferences -&amp;gt; MacUIM&lt;/code&gt; を開いて&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Uim -&amp;gt; Global settings -&amp;gt; Enable input method toggle by hot key&lt;/code&gt; のチェックを外す&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Uim -&amp;gt; Mozc key bindings&lt;/code&gt; の &lt;code&gt;on&lt;/code&gt; と &lt;code&gt;off&lt;/code&gt; が &lt;code&gt;&amp;lt;Meta&amp;gt;space&lt;/code&gt; になっていることを確認&lt;/li&gt;
+&lt;li&gt;右下の &lt;code&gt;Apply&lt;/code&gt; ボタンを押す&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以上で &lt;code&gt;Cmd+Space&lt;/code&gt; の入力でネイティブでもX11でも日本語入力の切り替えをすることができるようになりました&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 02 Aug 2014 02:04:00 +0900</pubDate><guid>tag:,2014-08-02:posts/2014/08/macuim-mozc.html</guid><category>Mac</category><category>MacUIM</category><category>Mozc</category></item><item><title>AquesTalk pico LSIをI2Cで接続する</title><link>/posts/2014/07/aquestalk-i2c.html</link><description>&lt;p&gt;ArduinoとAquesTalkをI2Cで接続してみました&lt;br /&gt;
 配線は以下の通り  &lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
