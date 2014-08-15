@@ -65,6 +65,38 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/08/self-signed-certificate.html">Nginxで自己署名証明書を使う</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが<br />
+とりあえずしばらくはオレオレ証明書で運用しようと思っています<br />
+ということで作成の仕方をメモ</p>
+<ol>
+<li>
+<p>パスフレーズなしの秘密鍵を作成<br />
+色々なサイトを見ていると一度パスフレーズありで作成してから<br />
+パスフレーズを削除したファイルを作りなおすような手順を踏んでいたりしますがこれでよさそう</p>
+<div class="highlight"><pre><span class="c"># openssl genrsa -out server.key 2048</span>
+Generating RSA private key, 2048 bit long modulus
+................................................+++
+........................................+++
+e is 65537 <span class="o">(</span>0x10001<span class="o">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>公開鍵の作成<br />
+HTTPSで暗号化されていればいいだけなので <code>Common Name</code> 以外は適当でいいです<br />
+<code>.</code> を入力した場合そのフィールドは空になるみたいなので全て空にしました</p>
+<div class="highlight"><pre><span class="c"># openssl req -new -key server.key -out server.csr</span>
+You are about to be asked to enter information that will ...</pre></div></li></ol>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/self-signed-certificate.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/08/macuim-mozc.html">MacUIM/Mozcを使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -312,6 +344,11 @@ inputタグのボタンをクリックするには以下のようします</p>
                         <li class="list-group-item tag-4">
                             <a href="/tag/mozc.html">
                                 Mozc
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/nginx.html">
+                                Nginx
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

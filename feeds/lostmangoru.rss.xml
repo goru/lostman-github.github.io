@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 02 Aug 2014 02:04:00 +0900</lastBuildDate><item><title>MacUIM/Mozcを使う</title><link>/posts/2014/08/macuim-mozc.html</link><description>&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 Aug 2014 02:42:00 +0900</lastBuildDate><item><title>Nginxで自己署名証明書を使う</title><link>/posts/2014/08/self-signed-certificate.html</link><description>&lt;p&gt;ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが&lt;br /&gt;
+とりあえずしばらくはオレオレ証明書で運用しようと思っています&lt;br /&gt;
+ということで作成の仕方をメモ&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;パスフレーズなしの秘密鍵を作成&lt;br /&gt;
+色々なサイトを見ていると一度パスフレーズありで作成してから&lt;br /&gt;
+パスフレーズを削除したファイルを作りなおすような手順を踏んでいたりしますがこれでよさそう&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# openssl genrsa -out server.key 2048&lt;/span&gt;
+Generating RSA private key, 2048 bit long modulus
+................................................+++
+........................................+++
+e is 65537 &lt;span class="o"&gt;(&lt;/span&gt;0x10001&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;公開鍵の作成&lt;br /&gt;
+HTTPSで暗号化されていればいいだけなので &lt;code&gt;Common Name&lt;/code&gt; 以外は適当でいいです&lt;br /&gt;
+&lt;code&gt;.&lt;/code&gt; を入力した場合そのフィールドは空になるみたいなので全て空にしました&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# openssl req -new -key server.key -out server.csr&lt;/span&gt;
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter &lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;, the field will be left blank.
+-----
+Country Name &lt;span class="o"&gt;(&lt;/span&gt;2 letter code&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;AU&lt;span class="o"&gt;]&lt;/span&gt;:.
+State or Province Name &lt;span class="o"&gt;(&lt;/span&gt;full name&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;Some-State&lt;span class="o"&gt;]&lt;/span&gt;:.
+Locality Name &lt;span class="o"&gt;(&lt;/span&gt;eg, city&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[]&lt;/span&gt;:
+Organization Name &lt;span class="o"&gt;(&lt;/span&gt;eg, company&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;Internet Widgits Pty Ltd&lt;span class="o"&gt;]&lt;/span&gt;:.
+Organizational Unit Name &lt;span class="o"&gt;(&lt;/span&gt;eg, section&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[]&lt;/span&gt;:
+Common Name &lt;span class="o"&gt;(&lt;/span&gt;e.g. server FQDN or YOUR name&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[]&lt;/span&gt;:&amp;lt;your domain name&amp;gt;
+Email Address &lt;span class="o"&gt;[]&lt;/span&gt;:
+
+Please enter the following &lt;span class="s1"&gt;&amp;#39;extra&amp;#39;&lt;/span&gt; attributes
+to be sent with your certificate request
+A challenge password &lt;span class="o"&gt;[]&lt;/span&gt;:
+An optional company name &lt;span class="o"&gt;[]&lt;/span&gt;:
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;証明書の作成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt&lt;/span&gt;
+Signature ok
+&lt;span class="nv"&gt;subject&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/CN&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;your domain name&amp;gt;
+Getting Private key
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以上で証明書の準備はできたので &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt; を編集して再起動すれば完了です&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;server &lt;span class="o"&gt;{&lt;/span&gt;
+        listen 443 ssl;
+        ssl_certificate     /path/to/certificate/server.crt;
+        ssl_certificate_key /path/to/certificate/server.key;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 16 Aug 2014 02:42:00 +0900</pubDate><guid>tag:,2014-08-16:posts/2014/08/self-signed-certificate.html</guid><category>Nginx</category></item><item><title>MacUIM/Mozcを使う</title><link>/posts/2014/08/macuim-mozc.html</link><description>&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
 これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません&lt;br /&gt;
 今までほとんど困ることはなくて、必要なときはコピペで対応していました&lt;br /&gt;
 ただ最近ここをvimで書いていることもあり、&lt;a href="https://code.google.com/p/macuim/"&gt;MacUIM&lt;/a&gt;をインストールして入力できるようにしました&lt;/p&gt;

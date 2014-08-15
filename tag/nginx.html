@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Internet - blog.gorugle.org</title>
+    <title>Nginx - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -42,7 +42,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/internet.html">Internet</a>
                         </li>
                         <li >
@@ -65,21 +65,34 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2014/07/github-pages.html">GitHub Pages関連で調べたこと</a></h2>
+                <h2><a href="/posts/2014/08/self-signed-certificate.html">Nginxで自己署名証明書を使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <ul>
-<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br />
-  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br />
-  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
-<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br />
-  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
-<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br />
-  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br />
-  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
-</ul>
+                        <p>ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが<br />
+とりあえずしばらくはオレオレ証明書で運用しようと思っています<br />
+ということで作成の仕方をメモ</p>
+<ol>
+<li>
+<p>パスフレーズなしの秘密鍵を作成<br />
+色々なサイトを見ていると一度パスフレーズありで作成してから<br />
+パスフレーズを削除したファイルを作りなおすような手順を踏んでいたりしますがこれでよさそう</p>
+<div class="highlight"><pre><span class="c"># openssl genrsa -out server.key 2048</span>
+Generating RSA private key, 2048 bit long modulus
+................................................+++
+........................................+++
+e is 65537 <span class="o">(</span>0x10001<span class="o">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>公開鍵の作成<br />
+HTTPSで暗号化されていればいいだけなので <code>Common Name</code> 以外は適当でいいです<br />
+<code>.</code> を入力した場合そのフィールドは空になるみたいなので全て空にしました</p>
+<div class="highlight"><pre><span class="c"># openssl req -new -key server.key -out server.csr</span>
+You are about to be asked to enter information that will ...</pre></div></li></ol>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/github-pages.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/self-signed-certificate.html">more ...</a>
                 </div>
             </article>
             <hr/>
