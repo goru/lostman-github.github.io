@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 Aug 2014 02:42:00 +0900</lastBuildDate><item><title>Nginxで自己署名証明書を使う</title><link>/posts/2014/08/self-signed-certificate.html</link><description>&lt;p&gt;ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 31 Aug 2014 03:32:00 +0900</lastBuildDate><item><title>MySQL5.1から5.5へアップデート</title><link>/posts/2014/08/mysql5.5.html</link><description>&lt;p&gt;GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました&lt;br /&gt;
+epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mysql_5_5_upgrade_procedures&lt;/span&gt;
+  &lt;span class="n"&gt;Title&lt;/span&gt;                     &lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="mf"&gt;5.5&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;procedures&lt;/span&gt;
+  &lt;span class="n"&gt;Author&lt;/span&gt;                    &lt;span class="n"&gt;Brian&lt;/span&gt; &lt;span class="n"&gt;Evans&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;grknight&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;gentoo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="n"&gt;Posted&lt;/span&gt;                    &lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;
+  &lt;span class="n"&gt;Revision&lt;/span&gt;                  &lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="mf"&gt;5.5&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="n"&gt;stable&lt;/span&gt; &lt;span class="n"&gt;across&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;arches&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;
+&lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;require&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;rebuild&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;linked&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;
+&lt;span class="n"&gt;libmysqlclient&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;&lt;span class="mf"&gt;.16&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;libmysqlclient_r&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;&lt;span class="mf"&gt;.16&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;portage&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;emerge&lt;/span&gt; &lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;preserved&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rebuild&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;small&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;libraries&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;automatically&lt;/span&gt; &lt;span class="n"&gt;rebuilt&lt;/span&gt; &lt;span class="n"&gt;against&lt;/span&gt;
+&lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="n"&gt;libraries&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;preserved&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rebuild&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;have&lt;/span&gt;
+&lt;span class="n"&gt;difficulties&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;packages&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;finding&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;libraries&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;portage&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gentoolkit&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="cp"&gt;# revdep-rebuild --library libmysqlclient.so.16&lt;/span&gt;
+&lt;span class="cp"&gt;# revdep-rebuild --library libmysqlclient_r.so.16&lt;/span&gt;
+
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;official&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;documentation&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nl"&gt;http:&lt;/span&gt;&lt;span class="c1"&gt;//dev.mysql.com/doc/refman/5.5/en/upgrading.html&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="n"&gt;possible&lt;/span&gt; &lt;span class="n"&gt;actions&lt;/span&gt;
+&lt;span class="n"&gt;necessary&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;includes&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;
+&lt;span class="n"&gt;mysql_upgrade&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;completion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Due&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;security&lt;/span&gt; &lt;span class="n"&gt;flaws&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="mf"&gt;5.1&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;hard&lt;/span&gt; &lt;span class="n"&gt;masked&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="n"&gt;days&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;
+&lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;news&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;posted&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;It&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;remain&lt;/span&gt; &lt;span class="n"&gt;masked&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;tree&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;months&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="n"&gt;removal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;MySQLの停止&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# /etc/init.d/mysql stop&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;emergeを使用してアップデート&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# emerge -uav mysql&lt;/span&gt;
+&lt;span class="c"&gt;# etc-update&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する &lt;a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221"&gt;*&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;/etc/mysql/my.cnf&lt;/code&gt; に以下の二行を追加&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;skip&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;innodb&lt;/span&gt;
+&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;storage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;MyISAM&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;関連パッケージの更新&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# emerge @preserved-rebuild -a&lt;/span&gt;
+&lt;span class="c"&gt;# revdep-rebuild --library libmysqlclient.so.16&lt;/span&gt;
+&lt;span class="c"&gt;# revdep-rebuild --library libmysqlclient_r.so.16&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MySQLを再起動&lt;br /&gt;
+再起動すると &lt;code&gt;/var/log/mysql/mysqld.err&lt;/code&gt; に以下のようなエラーが出力されて&lt;br /&gt;
+&lt;code&gt;mysql_upgrade&lt;/code&gt; を実行するように指示されます &lt;a href="http://server-setting.info/centos/mysql5-1_mysql5-5_upgrade.html"&gt;*&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# /etc/init.d/mysql start&lt;/span&gt;
+&lt;span class="c"&gt;# tail /var/log/mysql/mysqld.err&lt;/span&gt;
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Missing system table mysql.proxies_priv; please run mysql_upgrade to create it
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_current&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_history&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_history_long&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_consumers&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_instruments&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_timers&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;performance_timers&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;threads&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_by_thread_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_by_instance&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_global_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_summary_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_summary_by_instance&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;mutex_instances&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;rwlock_instances&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;cond_instances&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_instances&amp;#39;&lt;/span&gt; has the wrong structure
+140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;Note&lt;span class="o"&gt;]&lt;/span&gt; Event Scheduler: Loaded 0 events
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DBの更新と再度MySQLを再起動&lt;br /&gt;
+再起動後にログを確認してエラーがでていなければ完了&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# mysql_upgrade -u root -p&lt;/span&gt;
+&lt;span class="c"&gt;# /etc/init.d/mysql restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 31 Aug 2014 03:32:00 +0900</pubDate><guid>tag:,2014-08-31:posts/2014/08/mysql5.5.html</guid><category>MySQL</category><category>Linux</category><category>Gentoo</category></item><item><title>Nginxで自己署名証明書を使う</title><link>/posts/2014/08/self-signed-certificate.html</link><description>&lt;p&gt;ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが&lt;br /&gt;
 とりあえずしばらくはオレオレ証明書で運用しようと思っています&lt;br /&gt;
 ということで作成の仕方をメモ&lt;/p&gt;
 &lt;ol&gt;

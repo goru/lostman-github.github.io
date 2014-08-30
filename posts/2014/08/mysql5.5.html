@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>MySQL5.1から5.5へアップデート - blog.gorugle.org</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+blog.gorugle.org            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/computer.html">Computer</a>
+                        </li>
+                        <li >
+                            <a href="/category/embedded.html">Embedded</a>
+                        </li>
+                        <li >
+                            <a href="/category/internet.html">Internet</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2014/08/mysql5.5.html"
+                       rel="bookmark"
+                       title="Permalink to MySQL5.1から5.5へアップデート">
+                        MySQL5.1から5.5へアップデート
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2014-08-31T03:32:00"> 2014/08/31 Sun</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/mysql.html">MySQL</a>
+        /
+	<a href="/tag/linux.html">Linux</a>
+        /
+	<a href="/tag/gentoo.html">Gentoo</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
+epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
+<div class="highlight"><pre><span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">mysql_5_5_upgrade_procedures</span>
+  <span class="n">Title</span>                     <span class="n">MySQL</span> <span class="mf">5.5</span> <span class="n">upgrade</span> <span class="n">procedures</span>
+  <span class="n">Author</span>                    <span class="n">Brian</span> <span class="n">Evans</span> <span class="o">&lt;</span><span class="n">grknight</span><span class="err">@</span><span class="n">gentoo</span><span class="p">.</span><span class="n">org</span><span class="o">&gt;</span>
+  <span class="n">Posted</span>                    <span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span>
+  <span class="n">Revision</span>                  <span class="mi">1</span>
+
+<span class="n">MySQL</span> <span class="mf">5.5</span> <span class="n">is</span> <span class="n">now</span> <span class="n">stable</span> <span class="n">across</span> <span class="n">all</span> <span class="n">arches</span><span class="p">.</span> <span class="n">The</span> <span class="n">upgrade</span> <span class="n">process</span>
+<span class="n">will</span> <span class="n">require</span> <span class="n">you</span> <span class="n">to</span> <span class="n">rebuild</span> <span class="n">everything</span> <span class="n">linked</span> <span class="n">to</span>
+<span class="n">libmysqlclient</span><span class="p">.</span><span class="n">so</span><span class="mf">.16</span> <span class="n">and</span> <span class="n">libmysqlclient_r</span><span class="p">.</span><span class="n">so</span><span class="mf">.16</span><span class="p">.</span>
+
+<span class="n">This</span> <span class="n">may</span> <span class="n">be</span> <span class="n">done</span> <span class="k">for</span> <span class="n">you</span> <span class="n">by</span> <span class="n">portage</span> <span class="n">with</span> <span class="err">&#39;</span><span class="n">emerge</span> <span class="err">@</span><span class="n">preserved</span><span class="o">-</span><span class="n">rebuild</span><span class="err">&#39;</span><span class="p">.</span>
+
+<span class="n">A</span> <span class="n">small</span> <span class="n">number</span> <span class="n">of</span> <span class="n">libraries</span> <span class="n">may</span> <span class="n">not</span> <span class="n">be</span> <span class="n">automatically</span> <span class="n">rebuilt</span> <span class="n">against</span>
+<span class="n">the</span> <span class="n">new</span> <span class="n">MySQL</span> <span class="n">libraries</span> <span class="n">using</span> <span class="n">preserved</span><span class="o">-</span><span class="n">rebuild</span><span class="p">.</span>  <span class="n">If</span> <span class="n">you</span> <span class="n">have</span>
+<span class="n">difficulties</span> <span class="n">with</span> <span class="n">packages</span> <span class="n">not</span> <span class="n">finding</span> <span class="n">the</span> <span class="n">new</span> <span class="n">libraries</span><span class="p">,</span> <span class="n">install</span>
+<span class="n">app</span><span class="o">-</span><span class="n">portage</span><span class="o">/</span><span class="n">gentoolkit</span> <span class="n">and</span> <span class="n">run</span><span class="o">:</span>
+<span class="cp"># revdep-rebuild --library libmysqlclient.so.16</span>
+<span class="cp"># revdep-rebuild --library libmysqlclient_r.so.16</span>
+
+<span class="n">The</span> <span class="n">official</span> <span class="n">upgrade</span> <span class="n">documentation</span> <span class="n">is</span> <span class="n">available</span> <span class="n">here</span><span class="o">:</span>
+<span class="nl">http:</span><span class="c1">//dev.mysql.com/doc/refman/5.5/en/upgrading.html</span>
+
+<span class="n">Please</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">review</span> <span class="n">the</span> <span class="n">upgrade</span> <span class="n">document</span> <span class="k">for</span> <span class="n">any</span> <span class="n">possible</span> <span class="n">actions</span>
+<span class="n">necessary</span> <span class="n">before</span> <span class="n">and</span> <span class="n">after</span> <span class="n">the</span> <span class="n">upgrade</span><span class="p">.</span> <span class="n">This</span> <span class="n">includes</span> <span class="n">running</span>
+<span class="n">mysql_upgrade</span> <span class="n">after</span> <span class="n">the</span> <span class="n">upgrade</span> <span class="n">completion</span><span class="p">.</span>
+
+<span class="n">Due</span> <span class="n">to</span> <span class="n">security</span> <span class="n">flaws</span><span class="p">,</span> <span class="n">MySQL</span> <span class="mf">5.1</span> <span class="n">will</span> <span class="n">be</span> <span class="n">hard</span> <span class="n">masked</span> <span class="n">in</span> <span class="mi">30</span> <span class="n">days</span> <span class="n">after</span>
+<span class="n">this</span> <span class="n">news</span> <span class="n">item</span> <span class="n">is</span> <span class="n">posted</span><span class="p">.</span>  <span class="n">It</span> <span class="n">will</span> <span class="n">remain</span> <span class="n">masked</span> <span class="n">in</span> <span class="n">the</span> <span class="n">tree</span> <span class="k">for</span>
+<span class="mi">3</span> <span class="n">months</span> <span class="n">before</span> <span class="n">removal</span><span class="p">.</span>
+</pre></div>
+
+
+<ol>
+<li>
+<p>MySQLの停止</p>
+<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>emergeを使用してアップデート</p>
+<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
+<span class="c"># etc-update</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
+<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
+<div class="highlight"><pre><span class="n">skip</span><span class="o">-</span><span class="n">innodb</span>
+<span class="k">default</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">MyISAM</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>関連パッケージの更新</p>
+<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
+<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
+<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>MySQLを再起動<br />
+再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
+<code>mysql_upgrade</code> を実行するように指示されます <a href="http://server-setting.info/centos/mysql5-1_mysql5-5_upgrade.html">*</a></p>
+<div class="highlight"><pre><span class="c"># /etc/init.d/mysql start</span>
+<span class="c"># tail /var/log/mysql/mysqld.err</span>
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Missing system table mysql.proxies_priv; please run mysql_upgrade to create it
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_current&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_history&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_history_long&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_consumers&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_instruments&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_timers&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;performance_timers&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;threads&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_by_thread_by_event_name&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_by_instance&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_global_by_event_name&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_summary_by_event_name&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_summary_by_instance&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;mutex_instances&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;rwlock_instances&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;cond_instances&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_instances&#39;</span> has the wrong structure
+140830 20:53:41 <span class="o">[</span>Note<span class="o">]</span> Event Scheduler: Loaded 0 events
+</pre></div>
+
+
+</li>
+<li>
+<p>DBの更新と再度MySQLを再起動<br />
+再起動後にログを確認してエラーがでていなければ完了</p>
+<div class="highlight"><pre><span class="c"># mysql_upgrade -u root -p</span>
+<span class="c"># /etc/init.d/mysql restart</span>
+</pre></div>
+
+
+</li>
+</ol>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+
+
+
+                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group" id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/aquestalk-pico-lsi.html">
+                                AquesTalk pico LSI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/arduino.html">
+                                Arduino
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/gentoo.html">
+                                Gentoo
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/github.html">
+                                GitHub
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/javascript.html">
+                                JavaScript
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/linux.html">
+                                Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/mac.html">
+                                Mac
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/macuim.html">
+                                MacUIM
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/mozc.html">
+                                Mozc
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/mysql.html">
+                                MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/nginx.html">
+                                Nginx
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/pelican.html">
+                                Pelican
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/phantomjs.html">
+                                PhantomJS
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/lostman-github">@lostman-github</a> on GitHub
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 lostman/ごる
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = '/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'lostman-github',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="/theme/js/github.js" type="text/javascript"></script>
+</body>
+</html>
