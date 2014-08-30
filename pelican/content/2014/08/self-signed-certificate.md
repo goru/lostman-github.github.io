@@ -1,7 +1,7 @@
 Title: Nginxで自己署名証明書を使う
 Date: 2014-08-16 02:42
 Category: Computer
-Tags: Nginx
+Tags: Nginx, Linux
 Slug: self-signed-certificate
 
 ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが  

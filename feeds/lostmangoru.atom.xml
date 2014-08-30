@@ -170,7 +170,7 @@ Getting Private key
 
 
 &lt;/li&gt;
-&lt;/ol&gt;</summary><category term="Nginx"></category></entry><entry><title>MacUIM/Mozcを使う</title><link href="/posts/2014/08/macuim-mozc.html" rel="alternate"></link><updated>2014-08-02T02:04:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-08-02:posts/2014/08/macuim-mozc.html</id><summary type="html">&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
+&lt;/ol&gt;</summary><category term="Nginx"></category><category term="Linux"></category></entry><entry><title>MacUIM/Mozcを使う</title><link href="/posts/2014/08/macuim-mozc.html" rel="alternate"></link><updated>2014-08-02T02:04:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-08-02:posts/2014/08/macuim-mozc.html</id><summary type="html">&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
 これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません&lt;br /&gt;
 今までほとんど困ることはなくて、必要なときはコピペで対応していました&lt;br /&gt;
 ただ最近ここをvimで書いていることもあり、&lt;a href="https://code.google.com/p/macuim/"&gt;MacUIM&lt;/a&gt;をインストールして入力できるようにしました&lt;/p&gt;

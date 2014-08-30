@@ -170,7 +170,7 @@ Getting Private key
 
 
 &lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 16 Aug 2014 02:42:00 +0900</pubDate><guid>tag:,2014-08-16:posts/2014/08/self-signed-certificate.html</guid><category>Nginx</category></item><item><title>MacUIM/Mozcを使う</title><link>/posts/2014/08/macuim-mozc.html</link><description>&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 16 Aug 2014 02:42:00 +0900</pubDate><guid>tag:,2014-08-16:posts/2014/08/self-signed-certificate.html</guid><category>Nginx</category><category>Linux</category></item><item><title>MacUIM/Mozcを使う</title><link>/posts/2014/08/macuim-mozc.html</link><description>&lt;p&gt;ターミナルは&lt;a href="http://software.schmorp.de/pkg/rxvt-unicode.html"&gt;rxvt-unicode&lt;/a&gt;をビルドして使用しています&lt;br /&gt;
 これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません&lt;br /&gt;
 今までほとんど困ることはなくて、必要なときはコピペで対応していました&lt;br /&gt;
 ただ最近ここをvimで書いていることもあり、&lt;a href="https://code.google.com/p/macuim/"&gt;MacUIM&lt;/a&gt;をインストールして入力できるようにしました&lt;/p&gt;
