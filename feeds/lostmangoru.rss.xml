@@ -1,5 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 31 Aug 2014 03:32:00 +0900</lastBuildDate><item><title>MySQL5.1から5.5へアップデート</title><link>/posts/2014/08/mysql5.5.html</link><description>&lt;p&gt;GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 01 Sep 2014 13:42:00 +0900</lastBuildDate><item><title>今更Sambaをインストールした</title><link>/posts/2014/09/samba.html</link><description>&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
+Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました&lt;br /&gt;
+今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね&lt;/p&gt;
+&lt;p&gt;Gentooでのインストールは特に気にすることなくいつも通り&lt;br /&gt;
+自分はクライアントの機能は不要だったので &lt;code&gt;-client&lt;/code&gt; と &lt;code&gt;-smbclient&lt;/code&gt; を指定した&lt;br /&gt;
+デフォルトの設定ファイルをコピーして自分の設定を作っていく&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# emerge -av samba&lt;/span&gt;
+&lt;span class="c"&gt;# cp /etc/samba/smb.conf.default /etc/samba/smb.conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以下に変更した設定をメモしておく&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;workgroup = WORKGROUP&lt;br /&gt;
+Windowsのデフォルトに合わせる&lt;/li&gt;
+&lt;li&gt;hosts allow = 10.0.0.&lt;br /&gt;
+hosts deny = all&lt;br /&gt;
+LAN内のマシン以外からのアクセスを拒否する&lt;/li&gt;
+&lt;li&gt;load printers = no&lt;br /&gt;
+プリンタはいらない&lt;/li&gt;
+&lt;li&gt;interfaces = br0&lt;br /&gt;
+bind interfaces only = yes&lt;br /&gt;
+LAN側のNICでのみ待ち受ける&lt;/li&gt;
+&lt;li&gt;max protocol = smb2&lt;br /&gt;
+全てWindows8.1なので新しいプロトコルが使える&lt;/li&gt;
+&lt;li&gt;map to guest = Bad User&lt;br /&gt;
+ログインに失敗した場合はGuestユーザとして扱う&lt;br /&gt;
+共有ディレクトリの設定の部分で &lt;code&gt;public = yes&lt;/code&gt; と設定するとアクセス可能になる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;共有ディレクトリの設定はこのようにした&lt;br /&gt;
+元々あった &lt;code&gt;homes&lt;/code&gt; と &lt;code&gt;printers&lt;/code&gt; は不要なのでコメントアウトして&lt;br /&gt;
+新たにSamba用のディレクトリ以下を公開することにした&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[Home]&lt;/span&gt;
+   &lt;span class="na"&gt;comment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;Home Directories&lt;/span&gt;
+&lt;span class="s"&gt;   path = /mnt/lvm/samba/%u&lt;/span&gt;
+&lt;span class="s"&gt;   writable = yes&lt;/span&gt;
+&lt;span class="s"&gt;   printable = no&lt;/span&gt;
+
+&lt;span class="k"&gt;[Public]&lt;/span&gt;
+   &lt;span class="na"&gt;comment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;Public&lt;/span&gt;
+&lt;span class="s"&gt;   path = /mnt/lvm/samba/Public&lt;/span&gt;
+&lt;span class="s"&gt;   public = yes&lt;/span&gt;
+&lt;span class="s"&gt;   writable = yes&lt;/span&gt;
+&lt;span class="s"&gt;   printable = no&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;共有ディレクトリにアクセスできるユーザを作るにはまずLinuxのユーザを作成しなければいけない&lt;br /&gt;
+その後、既存のLinuxのユーザをSambaへ登録する操作が必要になる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# useradd sambauser&lt;/span&gt;
+&lt;span class="c"&gt;# pdbedit -a -u sambauser&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;なおSamba側に登録されているユーザの一覧は &lt;code&gt;pdbedit -L -v&lt;/code&gt; で確認できる&lt;/p&gt;
+&lt;p&gt;以上で設定は終了&lt;br /&gt;
+&lt;code&gt;testparm&lt;/code&gt; コマンドを実行すると設定の確認ができる&lt;br /&gt;
+最後にサービスへの登録と起動をする&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# rc-update add samba default&lt;/span&gt;
+&lt;span class="c"&gt;# /etc/init.d/samba start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これでクライアント側から見れるようになるはず&lt;br /&gt;
+ただWindows、Macどちらの場合もワークグループ名を明示的に指定しないとログインできなかった&lt;br /&gt;
+ユーザ名の欄に &lt;code&gt;WORKGROUP\sambauser&lt;/code&gt; のようにワークグループ名を指定した形式で入力しなければならない&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windowsは &lt;code&gt;エクスプローラ&lt;/code&gt; の &lt;code&gt;ネットワーク&lt;/code&gt; にサーバが表示されるのでダブルクリックして接続&lt;/li&gt;
+&lt;li&gt;Macは &lt;code&gt;Finder&lt;/code&gt; -&amp;gt; &lt;code&gt;Go&lt;/code&gt; -&amp;gt; &lt;code&gt;Connect to Server&lt;/code&gt; で表示されるダイアログに &lt;code&gt;smb://hostname&lt;/code&gt; と入力し接続&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;これらの設定で今のところ問題なく使用できている&lt;br /&gt;
+しかし &lt;code&gt;/var/log/samba/log.smbd&lt;/code&gt; にこのようなログが出ているのでそのうち修正したい &lt;a href="http://inaz2.hatenablog.com/entry/2013/07/07/054616"&gt;*1&lt;/a&gt; &lt;a href="http://consultancy.edvoncken.net/index.php/HOWTO_Disable_printing_in_Samba"&gt;*2&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Unable&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="n"&gt;printcap&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;printcap&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 01 Sep 2014 13:42:00 +0900</pubDate><guid>tag:,2014-09-01:posts/2014/09/samba.html</guid><category>Samba</category><category>Linux</category><category>Gentoo</category><category>Windows</category><category>Mac</category></item><item><title>MySQL5.1から5.5へアップデート</title><link>/posts/2014/08/mysql5.5.html</link><description>&lt;p&gt;GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました&lt;br /&gt;
 epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mysql_5_5_upgrade_procedures&lt;/span&gt;
   &lt;span class="n"&gt;Title&lt;/span&gt;                     &lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="mf"&gt;5.5&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;procedures&lt;/span&gt;
