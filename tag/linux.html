@@ -98,15 +98,43 @@ LAN内のマシン以外からのアクセスを拒否する</li>
                     <div class="entry-content">
                         <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
 epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
-<div class="highlight"><pre><span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">mysql_5_5_upgrade_procedures</span>
-  <span class="n">Title</span>                     <span class="n">MySQL</span> <span class="mf">5.5</span> <span class="n">upgrade</span> <span class="n">procedures</span>
-  <span class="n">Author</span>                    <span class="n">Brian</span> <span class="n">Evans</span> <span class="o">&lt;</span><span class="n">grknight</span><span class="err">@</span><span class="n">gentoo</span><span class="p">.</span><span class="n">org</span><span class="o">&gt;</span>
-  <span class="n">Posted</span>                    <span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span>
-  <span class="n">Revision</span>                  <span class="mi">1</span>
+<ol>
+<li>
+<p>MySQLの停止</p>
+<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
+</pre></div>
 
-<span class="n">MySQL</span> <span class="mf">5.5</span> <span class="n">is</span> <span class="n">now</span> <span class="n">stable</span> <span class="n">across</span> <span class="n">all</span> <span class="n">arches</span><span class="p">.</span> <span class="n">The</span> <span class="n">upgrade</span> <span class="n">process</span>
-<span class="n">will</span> <span class="n">require</span> <span class="n">you</span> <span class="n">to</span> <span class="n">rebuild</span> <span class="n">everything</span> <span class="n">linked</span> <span class="n">to</span>
-<span class="n">libmysqlclient</span><span class="p">.</span><span class="n">so ...</span></pre></div>
+
+</li>
+<li>
+<p>emergeを使用してアップデート</p>
+<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
+<span class="c"># etc-update</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
+<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
+<div class="highlight"><pre><span class="n">skip</span><span class="o">-</span><span class="n">innodb</span>
+<span class="k">default</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">MyISAM</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>関連パッケージの更新</p>
+<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
+<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
+<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>MySQLを再起動<br />
+再起動すると <code>/var/log/mysql/mysqld.err ...</code></p></li></ol>
                     </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
                 </div>

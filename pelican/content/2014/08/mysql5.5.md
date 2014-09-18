@@ -7,37 +7,6 @@ Slug: mysql5.5
 GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました  
 epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました
 
-    ::
-    2014-08-20-mysql_5_5_upgrade_procedures
-      Title                     MySQL 5.5 upgrade procedures
-      Author                    Brian Evans <grknight@gentoo.org>
-      Posted                    2014-08-20
-      Revision                  1
-    
-    MySQL 5.5 is now stable across all arches. The upgrade process
-    will require you to rebuild everything linked to
-    libmysqlclient.so.16 and libmysqlclient_r.so.16.
-    
-    This may be done for you by portage with 'emerge @preserved-rebuild'.
-    
-    A small number of libraries may not be automatically rebuilt against
-    the new MySQL libraries using preserved-rebuild.  If you have
-    difficulties with packages not finding the new libraries, install
-    app-portage/gentoolkit and run:
-    # revdep-rebuild --library libmysqlclient.so.16
-    # revdep-rebuild --library libmysqlclient_r.so.16
-    
-    The official upgrade documentation is available here:
-    http://dev.mysql.com/doc/refman/5.5/en/upgrading.html
-    
-    Please be sure to review the upgrade document for any possible actions
-    necessary before and after the upgrade. This includes running
-    mysql_upgrade after the upgrade completion.
-    
-    Due to security flaws, MySQL 5.1 will be hard masked in 30 days after
-    this news item is posted.  It will remain masked in the tree for
-    3 months before removal.
-
 1. MySQLの停止
 
         ::bash

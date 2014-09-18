@@ -97,38 +97,6 @@ blog.gorugle.org            </a>
                 </div>
                 <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
 epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
-<div class="highlight"><pre><span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">mysql_5_5_upgrade_procedures</span>
-  <span class="n">Title</span>                     <span class="n">MySQL</span> <span class="mf">5.5</span> <span class="n">upgrade</span> <span class="n">procedures</span>
-  <span class="n">Author</span>                    <span class="n">Brian</span> <span class="n">Evans</span> <span class="o">&lt;</span><span class="n">grknight</span><span class="err">@</span><span class="n">gentoo</span><span class="p">.</span><span class="n">org</span><span class="o">&gt;</span>
-  <span class="n">Posted</span>                    <span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span>
-  <span class="n">Revision</span>                  <span class="mi">1</span>
-
-<span class="n">MySQL</span> <span class="mf">5.5</span> <span class="n">is</span> <span class="n">now</span> <span class="n">stable</span> <span class="n">across</span> <span class="n">all</span> <span class="n">arches</span><span class="p">.</span> <span class="n">The</span> <span class="n">upgrade</span> <span class="n">process</span>
-<span class="n">will</span> <span class="n">require</span> <span class="n">you</span> <span class="n">to</span> <span class="n">rebuild</span> <span class="n">everything</span> <span class="n">linked</span> <span class="n">to</span>
-<span class="n">libmysqlclient</span><span class="p">.</span><span class="n">so</span><span class="mf">.16</span> <span class="n">and</span> <span class="n">libmysqlclient_r</span><span class="p">.</span><span class="n">so</span><span class="mf">.16</span><span class="p">.</span>
-
-<span class="n">This</span> <span class="n">may</span> <span class="n">be</span> <span class="n">done</span> <span class="k">for</span> <span class="n">you</span> <span class="n">by</span> <span class="n">portage</span> <span class="n">with</span> <span class="err">&#39;</span><span class="n">emerge</span> <span class="err">@</span><span class="n">preserved</span><span class="o">-</span><span class="n">rebuild</span><span class="err">&#39;</span><span class="p">.</span>
-
-<span class="n">A</span> <span class="n">small</span> <span class="n">number</span> <span class="n">of</span> <span class="n">libraries</span> <span class="n">may</span> <span class="n">not</span> <span class="n">be</span> <span class="n">automatically</span> <span class="n">rebuilt</span> <span class="n">against</span>
-<span class="n">the</span> <span class="n">new</span> <span class="n">MySQL</span> <span class="n">libraries</span> <span class="n">using</span> <span class="n">preserved</span><span class="o">-</span><span class="n">rebuild</span><span class="p">.</span>  <span class="n">If</span> <span class="n">you</span> <span class="n">have</span>
-<span class="n">difficulties</span> <span class="n">with</span> <span class="n">packages</span> <span class="n">not</span> <span class="n">finding</span> <span class="n">the</span> <span class="n">new</span> <span class="n">libraries</span><span class="p">,</span> <span class="n">install</span>
-<span class="n">app</span><span class="o">-</span><span class="n">portage</span><span class="o">/</span><span class="n">gentoolkit</span> <span class="n">and</span> <span class="n">run</span><span class="o">:</span>
-<span class="cp"># revdep-rebuild --library libmysqlclient.so.16</span>
-<span class="cp"># revdep-rebuild --library libmysqlclient_r.so.16</span>
-
-<span class="n">The</span> <span class="n">official</span> <span class="n">upgrade</span> <span class="n">documentation</span> <span class="n">is</span> <span class="n">available</span> <span class="n">here</span><span class="o">:</span>
-<span class="nl">http:</span><span class="c1">//dev.mysql.com/doc/refman/5.5/en/upgrading.html</span>
-
-<span class="n">Please</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">review</span> <span class="n">the</span> <span class="n">upgrade</span> <span class="n">document</span> <span class="k">for</span> <span class="n">any</span> <span class="n">possible</span> <span class="n">actions</span>
-<span class="n">necessary</span> <span class="n">before</span> <span class="n">and</span> <span class="n">after</span> <span class="n">the</span> <span class="n">upgrade</span><span class="p">.</span> <span class="n">This</span> <span class="n">includes</span> <span class="n">running</span>
-<span class="n">mysql_upgrade</span> <span class="n">after</span> <span class="n">the</span> <span class="n">upgrade</span> <span class="n">completion</span><span class="p">.</span>
-
-<span class="n">Due</span> <span class="n">to</span> <span class="n">security</span> <span class="n">flaws</span><span class="p">,</span> <span class="n">MySQL</span> <span class="mf">5.1</span> <span class="n">will</span> <span class="n">be</span> <span class="n">hard</span> <span class="n">masked</span> <span class="n">in</span> <span class="mi">30</span> <span class="n">days</span> <span class="n">after</span>
-<span class="n">this</span> <span class="n">news</span> <span class="n">item</span> <span class="n">is</span> <span class="n">posted</span><span class="p">.</span>  <span class="n">It</span> <span class="n">will</span> <span class="n">remain</span> <span class="n">masked</span> <span class="n">in</span> <span class="n">the</span> <span class="n">tree</span> <span class="k">for</span>
-<span class="mi">3</span> <span class="n">months</span> <span class="n">before</span> <span class="n">removal</span><span class="p">.</span>
-</pre></div>
-
-
 <ol>
 <li>
 <p>MySQLの停止</p>
