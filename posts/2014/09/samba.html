@@ -173,6 +173,13 @@ LAN側のNICでのみ待ち受ける</li>
 しかし <code>/var/log/samba/log.smbd</code> にこのようなログが出ているのでそのうち修正したい <a href="http://inaz2.hatenablog.com/entry/2013/07/07/054616">*1</a> <a href="http://consultancy.edvoncken.net/index.php/HOWTO_Disable_printing_in_Samba">*2</a></p>
 <div class="highlight"><pre><span class="n">Unable</span> <span class="n">to</span> <span class="n">open</span> <span class="n">printcap</span> <span class="n">file</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">printcap</span> <span class="k">for</span> <span class="n">read</span><span class="o">!</span>
 </pre></div>
+
+
+<p>この設定の追加で上記のエラーが出なくなった</p>
+<ul>
+<li>printing = bsd</li>
+<li>printcap name = /dev/null</li>
+</ul>
             </div>
             <!-- /.entry-content -->
         </article>

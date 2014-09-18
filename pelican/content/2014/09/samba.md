@@ -81,3 +81,8 @@ LAN側のNICでのみ待ち受ける
 
     :::
     Unable to open printcap file /etc/printcap for read!
+
+この設定の追加で上記のエラーが出なくなった
+
+* printing = bsd
+* printcap name = /dev/null

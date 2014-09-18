@@ -72,7 +72,14 @@ LAN側のNICでのみ待ち受ける&lt;/li&gt;
 &lt;p&gt;これらの設定で今のところ問題なく使用できている&lt;br /&gt;
 しかし &lt;code&gt;/var/log/samba/log.smbd&lt;/code&gt; にこのようなログが出ているのでそのうち修正したい &lt;a href="http://inaz2.hatenablog.com/entry/2013/07/07/054616"&gt;*1&lt;/a&gt; &lt;a href="http://consultancy.edvoncken.net/index.php/HOWTO_Disable_printing_in_Samba"&gt;*2&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Unable&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="n"&gt;printcap&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;printcap&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 01 Sep 2014 13:42:00 +0900</pubDate><guid>tag:,2014-09-01:posts/2014/09/samba.html</guid><category>Samba</category><category>Linux</category><category>Gentoo</category><category>Windows</category><category>Mac</category></item><item><title>MySQL5.1から5.5へアップデート</title><link>/posts/2014/08/mysql5.5.html</link><description>&lt;p&gt;GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました&lt;br /&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;この設定の追加で上記のエラーが出なくなった&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;printing = bsd&lt;/li&gt;
+&lt;li&gt;printcap name = /dev/null&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 01 Sep 2014 13:42:00 +0900</pubDate><guid>tag:,2014-09-01:posts/2014/09/samba.html</guid><category>Samba</category><category>Linux</category><category>Gentoo</category><category>Windows</category><category>Mac</category></item><item><title>MySQL5.1から5.5へアップデート</title><link>/posts/2014/08/mysql5.5.html</link><description>&lt;p&gt;GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました&lt;br /&gt;
 epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mysql_5_5_upgrade_procedures&lt;/span&gt;
   &lt;span class="n"&gt;Title&lt;/span&gt;                     &lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="mf"&gt;5.5&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="n"&gt;procedures&lt;/span&gt;
