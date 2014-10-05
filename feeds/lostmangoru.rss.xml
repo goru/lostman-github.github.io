@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 01 Sep 2014 13:42:00 +0900</lastBuildDate><item><title>今更Sambaをインストールした</title><link>/posts/2014/09/samba.html</link><description>&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 06 Oct 2014 01:45:00 +0900</lastBuildDate><item><title>Windows10を試してみた</title><link>/posts/2014/10/windows10.html</link><description>&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
+このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
+表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
+&lt;p&gt;ひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;qemu-img create -f qcow2 windows10.img 32G
+&lt;span class="nv"&gt;$ &lt;/span&gt;qemu-system-x86_64 -enable-kvm -cpu host -hda windows10.img -cdrom Windows10-en-x64.iso -boot d -m 4G
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ただ電源の切り方がWindows8.1から更に変更されているので少し戸惑った&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Windows10 with KVM" src="/static/images/2014/10/windows10.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 06 Oct 2014 01:45:00 +0900</pubDate><guid>tag:,2014-10-06:posts/2014/10/windows10.html</guid><category>Linux</category><category>Gentoo</category><category>KVM</category><category>Windows</category></item><item><title>今更Sambaをインストールした</title><link>/posts/2014/09/samba.html</link><description>&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
 Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました&lt;br /&gt;
 今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね&lt;/p&gt;
 &lt;p&gt;Gentooでのインストールは特に気にすることなくいつも通り&lt;br /&gt;

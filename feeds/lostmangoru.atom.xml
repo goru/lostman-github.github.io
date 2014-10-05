@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-09-01T13:42:00+09:00</updated><entry><title>今更Sambaをインストールした</title><link href="/posts/2014/09/samba.html" rel="alternate"></link><updated>2014-09-01T13:42:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-09-01:posts/2014/09/samba.html</id><summary type="html">&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-10-06T01:45:00+09:00</updated><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
+このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
+表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
+&lt;p&gt;ひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;qemu-img create -f qcow2 windows10.img 32G
+&lt;span class="nv"&gt;$ &lt;/span&gt;qemu-system-x86_64 -enable-kvm -cpu host -hda windows10.img -cdrom Windows10-en-x64.iso -boot d -m 4G
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ただ電源の切り方がWindows8.1から更に変更されているので少し戸惑った&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Windows10 with KVM" src="/static/images/2014/10/windows10.jpg" /&gt;&lt;/p&gt;</summary><category term="Linux"></category><category term="Gentoo"></category><category term="KVM"></category><category term="Windows"></category></entry><entry><title>今更Sambaをインストールした</title><link href="/posts/2014/09/samba.html" rel="alternate"></link><updated>2014-09-01T13:42:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-09-01:posts/2014/09/samba.html</id><summary type="html">&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
 Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました&lt;br /&gt;
 今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね&lt;/p&gt;
 &lt;p&gt;Gentooでのインストールは特に気にすることなくいつも通り&lt;br /&gt;
