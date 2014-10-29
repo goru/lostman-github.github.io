@@ -3,10 +3,15 @@
 色々検討したんですが大型の裁断機ではなく、それより簡易的な &lt;a href="http://www.carl.co.jp/item/DC-210N.html"&gt;DC-210N&lt;/a&gt; を選択&lt;br /&gt;
 一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど&lt;br /&gt;
 まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました&lt;/p&gt;
-&lt;p&gt;&lt;img alt="外箱" src="/static/images/2014/10/DC-210N_1.jpg" /&gt;
-&lt;img alt="外観" src="/static/images/2014/10/DC-210N_2.jpg" /&gt;
-&lt;img alt="裁断対象" src="/static/images/2014/10/DC-210N_3.jpg" /&gt;
-&lt;img alt="裁断前" src="/static/images/2014/10/DC-210N_4.jpg" /&gt;
+&lt;p&gt;外箱
+&lt;img alt="外箱" src="/static/images/2014/10/DC-210N_1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;外観
+&lt;img alt="外観" src="/static/images/2014/10/DC-210N_2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;今回はお試しでこの冊子を裁断してみます
+&lt;img alt="裁断対象" src="/static/images/2014/10/DC-210N_3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;薄いので分割しなくても裁断できそうです
+&lt;img alt="裁断前" src="/static/images/2014/10/DC-210N_4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;綺麗に背表紙をカット出来ました
 &lt;img alt="裁断後" src="/static/images/2014/10/DC-210N_5.jpg" /&gt;&lt;/p&gt;</summary><category term="e-book"></category></entry><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
 表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
