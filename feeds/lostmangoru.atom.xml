@@ -7,7 +7,7 @@
 &lt;img alt="外観" src="/static/images/2014/10/DC-210N_2.jpg" /&gt;
 &lt;img alt="裁断対象" src="/static/images/2014/10/DC-210N_3.jpg" /&gt;
 &lt;img alt="裁断前" src="/static/images/2014/10/DC-210N_4.jpg" /&gt;
-&lt;img alt="裁断後" src="/static/images/2014/10/DC-210N_5.jpg" /&gt;&lt;/p&gt;</summary><category term="自炊"></category></entry><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
+&lt;img alt="裁断後" src="/static/images/2014/10/DC-210N_5.jpg" /&gt;&lt;/p&gt;</summary><category term="e-book"></category></entry><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
 表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
 &lt;p&gt;QEMUはひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
