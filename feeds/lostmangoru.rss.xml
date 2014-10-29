@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 06 Oct 2014 01:45:00 +0900</lastBuildDate><item><title>Windows10を試してみた</title><link>/posts/2014/10/windows10.html</link><description>&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Oct 2014 00:48:00 +0900</lastBuildDate><item><title>裁断機(DC-210N)を購入してみた</title><link>/posts/2014/10/dc-210n.html</link><description>&lt;p&gt;もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました&lt;br /&gt;
+色々検討したんですが大型の裁断機ではなく、それより簡易的な &lt;a href="http://www.carl.co.jp/item/DC-210N.html"&gt;DC-210N&lt;/a&gt; を選択&lt;br /&gt;
+一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど&lt;br /&gt;
+まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました&lt;/p&gt;
+&lt;p&gt;&lt;img alt="外箱" src="/static/images/2014/10/DC-210N_1.jpg" /&gt;
+&lt;img alt="外観" src="/static/images/2014/10/DC-210N_2.jpg" /&gt;
+&lt;img alt="裁断対象" src="/static/images/2014/10/DC-210N_3.jpg" /&gt;
+&lt;img alt="裁断前" src="/static/images/2014/10/DC-210N_4.jpg" /&gt;
+&lt;img alt="裁断後" src="/static/images/2014/10/DC-210N_5.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Tue, 28 Oct 2014 00:48:00 +0900</pubDate><guid>tag:,2014-10-28:posts/2014/10/dc-210n.html</guid><category>自炊</category></item><item><title>Windows10を試してみた</title><link>/posts/2014/10/windows10.html</link><description>&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
 表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
 &lt;p&gt;QEMUはひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;

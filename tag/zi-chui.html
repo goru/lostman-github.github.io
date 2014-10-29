@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>AquesTalk pico LSI - blog.gorugle.org</title>
+    <title>自炊 - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -65,115 +65,20 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
+                <h2><a href="/posts/2014/10/dc-210n.html">裁断機(DC-210N)を購入してみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
-配線は以下の通り  </p>
-<table>
-<thead>
-<tr>
-<th>Pin</th>
-<th>AquesTalk</th>
-<th>-&gt;</th>
-<th>Arduino</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>/RESET</td>
-<td></td>
-<td>RESET</td>
-</tr>
-<tr>
-<td>4</td>
-<td>SMOD0</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SMOD1</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>7</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>8</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>20</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>22</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>27</td>
-<td>SDA</td>
-<td></td>
-<td>A4</td>
-</tr>
-<tr>
-<td>28</td>
-<td>SCL</td>
-<td></td>
-<td>A5</td>
-</tr>
-</tbody>
-</table>
-<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
-I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
-あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
+                        <p>もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました<br />
+色々検討したんですが大型の裁断機ではなく、それより簡易的な <a href="http://www.carl.co.jp/item/DC-210N.html">DC-210N</a> を選択<br />
+一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど<br />
+まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました</p>
+<p><img alt="外箱" src="/static/images/2014/10/DC-210N_1.jpg" />
+<img alt="外観" src="/static/images/2014/10/DC-210N_2.jpg" />
+<img alt="裁断対象" src="/static/images/2014/10/DC-210N_3.jpg" />
+<img alt="裁断前" src="/static/images/2014/10/DC-210N_4.jpg" />
+<img alt="裁断後" src="/static/images/2014/10/DC-210N_5.jpg" /></p>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
-I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
-といっても個別にパーツを揃えたわけでなく</p>
-<ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
-<li>100均で売っているスピーカ</li>
-</ul>
-<p>これらを接続しただけです<br />
-今回試した手順を以下にまとめておきます<br />
-後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
-<ol>
-<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
-<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
-<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
-<li>アンプの <code>SPK ...</code></li></ol>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/10/dc-210n.html">more ...</a>
                 </div>
             </article>
             <hr/>
