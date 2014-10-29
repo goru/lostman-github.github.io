@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-10-06T01:45:00+09:00</updated><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
 表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
-&lt;p&gt;ひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
+&lt;p&gt;QEMUはひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;qemu-img create -f qcow2 windows10.img 32G
 &lt;span class="nv"&gt;$ &lt;/span&gt;qemu-system-x86_64 -enable-kvm -cpu host -hda windows10.img -cdrom Windows10-en-x64.iso -boot d -m 4G
 &lt;/pre&gt;&lt;/div&gt;
