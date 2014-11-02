@@ -4,15 +4,30 @@
 一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど&lt;br /&gt;
 まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました&lt;/p&gt;
 &lt;p&gt;外箱
-&lt;img alt="外箱" src="/static/images/2014/10/DC-210N_1.jpg" /&gt;&lt;/p&gt;
+&lt;p class="center-text"&gt;
+&lt;a class="image-box" href="/static/images/2014/10/DC-210N_1.jpg"&gt;
+&lt;img src="/static/images/2014/10/DC-210N_1.jpg" width="30%" height="30%"&gt;
+&lt;/a&gt;
+&lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;外観
-&lt;img alt="外観" src="/static/images/2014/10/DC-210N_2.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;今回はお試しでこの冊子を裁断してみます
-&lt;img alt="裁断対象" src="/static/images/2014/10/DC-210N_3.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;薄いので分割しなくても裁断できそうです
-&lt;img alt="裁断前" src="/static/images/2014/10/DC-210N_4.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;綺麗に背表紙をカット出来ました
-&lt;img alt="裁断後" src="/static/images/2014/10/DC-210N_5.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Tue, 28 Oct 2014 00:48:00 +0900</pubDate><guid>tag:,2014-10-28:posts/2014/10/dc-210n.html</guid><category>e-book</category></item><item><title>Windows10を試してみた</title><link>/posts/2014/10/windows10.html</link><description>&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
+&lt;p class="center-text"&gt;
+&lt;a class="image-box" href="/static/images/2014/10/DC-210N_2.jpg"&gt;
+&lt;img src="/static/images/2014/10/DC-210N_2.jpg" width="30%" height="30%"&gt;
+&lt;/a&gt;
+&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;今回はお試しでこの冊子を裁断してみます&lt;br /&gt;
+薄いので分割しなくても裁断できました
+&lt;p class="center-text"&gt;
+&lt;a class="image-box" href="/static/images/2014/10/DC-210N_3.jpg"&gt;
+&lt;img src="/static/images/2014/10/DC-210N_3.jpg" width="30%" height="30%"&gt;
+&lt;/a&gt;
+&lt;a class="image-box" href="/static/images/2014/10/DC-210N_4.jpg"&gt;
+&lt;img src="/static/images/2014/10/DC-210N_4.jpg" width="30%" height="30%"&gt;
+&lt;/a&gt;
+&lt;a class="image-box" href="/static/images/2014/10/DC-210N_5.jpg"&gt;
+&lt;img src="/static/images/2014/10/DC-210N_5.jpg" width="30%" height="30%"&gt;
+&lt;/a&gt;
+&lt;/p&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Tue, 28 Oct 2014 00:48:00 +0900</pubDate><guid>tag:,2014-10-28:posts/2014/10/dc-210n.html</guid><category>e-book</category></item><item><title>Windows10を試してみた</title><link>/posts/2014/10/windows10.html</link><description>&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
 表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
 &lt;p&gt;QEMUはひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
