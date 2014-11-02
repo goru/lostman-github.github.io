@@ -1,3 +1,6 @@
 [submodule "pelican/themes"]
 	path = pelican/themes
 	url = https://github.com/lostman-github/pelican-themes.git
+[submodule "pelican/plugins"]
+	path = pelican/plugins
+	url = https://github.com/lostman-github/pelican-plugins.git
