@@ -1,7 +1,7 @@
 html:
 	LC_ALL=en_US.UTF-8 pelican pelican/content/ -o . -s pelican/pelicanconf.py
 
-server:
+serve:
 	python3 -m pelican.server
 
 clean:
