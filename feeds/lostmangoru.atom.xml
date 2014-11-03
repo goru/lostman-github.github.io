@@ -1,5 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-10-28T00:48:00+09:00</updated><entry><title>裁断機(DC-210N)を購入してみた</title><link href="/posts/2014/10/dc-210n.html" rel="alternate"></link><updated>2014-10-28T00:48:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-28:posts/2014/10/dc-210n.html</id><summary type="html">&lt;p&gt;もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-11-03T21:31:00+09:00</updated><entry><title>使えなくなったHDDのS.M.A.R.T.の結果</title><link href="/posts/2014/11/smart.html" rel="alternate"></link><updated>2014-11-03T21:31:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-11-03:posts/2014/11/smart.html</id><summary type="html">&lt;p&gt;ずいぶん前の出来事だけれど、 &lt;a href="http://www.hgst.com/tech/techlib.nsf/techdocs/C2AF1DCDF0FBD887882578FE0082527B/$file/DS7K1000.D_ds.pdf"&gt;Hitachi Deskstar 7K1000.D&lt;/a&gt; がエラーを吐いて使えなくなったので&lt;br /&gt;
+その時のS.M.A.R.T.の結果を記録しておく&lt;/p&gt;
+&lt;p&gt;こんなメールでRAIDのアレイから外したことを通知されました&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;This&lt;/span&gt; &lt;span class="nx"&gt;is&lt;/span&gt; &lt;span class="nx"&gt;an&lt;/span&gt; &lt;span class="nx"&gt;automatically&lt;/span&gt; &lt;span class="nx"&gt;generated&lt;/span&gt; &lt;span class="nx"&gt;mail&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="nb"&gt;from&lt;/span&gt; &lt;span class="nx"&gt;mdadm&lt;/span&gt;
+
+&lt;span class="nx"&gt;A&lt;/span&gt; &lt;span class="nb"&gt;Fail&lt;/span&gt; &lt;span class="nx"&gt;event&lt;/span&gt; &lt;span class="nx"&gt;had&lt;/span&gt; &lt;span class="nx"&gt;been&lt;/span&gt; &lt;span class="nx"&gt;detected&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="nx"&gt;md&lt;/span&gt; &lt;span class="nx"&gt;device&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;md1.&lt;/span&gt;
+
+&lt;span class="nx"&gt;It&lt;/span&gt; &lt;span class="nx"&gt;could&lt;/span&gt; &lt;span class="nx"&gt;be&lt;/span&gt; &lt;span class="nx"&gt;related&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nb"&gt;component&lt;/span&gt; &lt;span class="nx"&gt;device&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sdc.&lt;/span&gt;
+
+&lt;span class="nx"&gt;Faithfully&lt;/span&gt; &lt;span class="nx"&gt;yours&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;etc.&lt;/span&gt;
+
+&lt;span class="nx"&gt;P.S.&lt;/span&gt; &lt;span class="nx"&gt;The&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;proc&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;mdstat&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="nx"&gt;currently&lt;/span&gt; &lt;span class="nb"&gt;contains&lt;/span&gt; &lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;following&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="nx"&gt;Personalities&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;raid1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+md1 : active raid1 sdd&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; sdc&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;(F)
+      976762448 blocks super 1.0 &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_U&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+
+md0 : active raid1 sdb&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; sda&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+      2930266448 blocks super 1.0 &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;UU&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+
+unused devices: &lt;span class="nt"&gt;&amp;lt;none&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;とりあえずRAIDは手元にあった古いディスクに差し替えて&lt;br /&gt;
+問題のHDDのS.M.A.R.T.を確認してみたらこんな感じでした&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# smartctl -a /dev/sdf&lt;/span&gt;
+smartctl 6.1 2013-03-16 r3800 &lt;span class="o"&gt;[&lt;/span&gt;x86_64-linux-3.10.7-gentoo-r1&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;local &lt;/span&gt;build&lt;span class="o"&gt;)&lt;/span&gt;
+Copyright &lt;span class="o"&gt;(&lt;/span&gt;C&lt;span class="o"&gt;)&lt;/span&gt; 2002-13, Bruce Allen, Christian Franke, www.smartmontools.org
+
+&lt;span class="o"&gt;===&lt;/span&gt; START OF INFORMATION &lt;span class="nv"&gt;SECTION&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt;
+Model Family:     Hitachi Deskstar 7K1000.D
+Device Model:     Hitachi HDS721010DLE630
+Serial Number:    XXXXXXXXXXXXXX
+LU WWN Device Id: 5 000cca 37cc0c0f2
+Firmware Version: MS2OA5N0
+User Capacity:    1,000,204,886,016 bytes &lt;span class="o"&gt;[&lt;/span&gt;1.00 TB&lt;span class="o"&gt;]&lt;/span&gt;
+Sector Sizes:     512 bytes logical, 4096 bytes physical
+Rotation Rate:    7200 rpm
+Device is:        In smartctl database &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;details use: -P show&lt;span class="o"&gt;]&lt;/span&gt;
+ATA Version is:   ATA8-ACS T13/1699-D revision 4
+SATA Version is:  SATA 2.6, 6.0 Gb/s &lt;span class="o"&gt;(&lt;/span&gt;current: 1.5 Gb/s&lt;span class="o"&gt;)&lt;/span&gt;
+Local Time is:    Wed Aug 13 11:23:08 2014 JST
+SMART support is: Available - device has SMART capability.
+SMART support is: &lt;span class="nv"&gt;Enabled&lt;/span&gt;
+
+&lt;span class="o"&gt;===&lt;/span&gt; START OF READ SMART DATA &lt;span class="nv"&gt;SECTION&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt;
+SMART overall-health self-assessment &lt;span class="nb"&gt;test &lt;/span&gt;result: PASSED
+
+General SMART Values:
+Offline data collection status:  &lt;span class="o"&gt;(&lt;/span&gt;0x80&lt;span class="o"&gt;)&lt;/span&gt; Offline data collection activity
+                                        was never started.
+                                        Auto Offline Data Collection: Enabled.
+Self-test execution status:      &lt;span class="o"&gt;(&lt;/span&gt;   0&lt;span class="o"&gt;)&lt;/span&gt; The previous self-test routine completed
+                                        without error or no self-test has ever
+                                        been run.
+Total &lt;span class="nb"&gt;time &lt;/span&gt;to &lt;span class="nb"&gt;complete &lt;/span&gt;Offline
+data collection:                &lt;span class="o"&gt;(&lt;/span&gt; 7410&lt;span class="o"&gt;)&lt;/span&gt; seconds.
+Offline data collection
+capabilities:                    &lt;span class="o"&gt;(&lt;/span&gt;0x5b&lt;span class="o"&gt;)&lt;/span&gt; SMART execute Offline immediate.
+                                        Auto Offline data collection on/off support.
+                                        Suspend Offline collection upon new
+                                        command.
+                                        Offline surface scan supported.
+                                        Self-test supported.
+                                        No Conveyance Self-test supported.
+                                        Selective Self-test supported.
+SMART capabilities:            &lt;span class="o"&gt;(&lt;/span&gt;0x0003&lt;span class="o"&gt;)&lt;/span&gt; Saves SMART data before entering
+                                        power-saving mode.
+                                        Supports SMART auto save timer.
+Error logging capability:        &lt;span class="o"&gt;(&lt;/span&gt;0x01&lt;span class="o"&gt;)&lt;/span&gt; Error logging supported.
+                                        General Purpose Logging supported.
+Short self-test routine
+recommended polling &lt;span class="nb"&gt;time&lt;/span&gt;:        &lt;span class="o"&gt;(&lt;/span&gt;   1&lt;span class="o"&gt;)&lt;/span&gt; minutes.
+Extended self-test routine
+recommended polling &lt;span class="nb"&gt;time&lt;/span&gt;:        &lt;span class="o"&gt;(&lt;/span&gt; 124&lt;span class="o"&gt;)&lt;/span&gt; minutes.
+SCT capabilities:              &lt;span class="o"&gt;(&lt;/span&gt;0x003d&lt;span class="o"&gt;)&lt;/span&gt; SCT Status supported.
+                                        SCT Error Recovery Control supported.
+                                        SCT Feature Control supported.
+                                        SCT Data Table supported.
+
+SMART Attributes Data Structure revision number: 16
+Vendor Specific SMART Attributes with Thresholds:
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  1 Raw_Read_Error_Rate     0x000b   079   079   016    Pre-fail  Always       -       824
+  2 Throughput_Performance  0x0005   141   141   054    Pre-fail  Offline      -       74
+  3 Spin_Up_Time            0x0007   124   124   024    Pre-fail  Always       -       185 &lt;span class="o"&gt;(&lt;/span&gt;Average 185&lt;span class="o"&gt;)&lt;/span&gt;
+  4 Start_Stop_Count        0x0012   100   100   000    Old_age   Always       -       966
+  5 Reallocated_Sector_Ct   0x0033   100   100   005    Pre-fail  Always       -       62
+  7 Seek_Error_Rate         0x000b   100   100   067    Pre-fail  Always       -       0
+  8 Seek_Time_Performance   0x0005   130   130   020    Pre-fail  Offline      -       28
+  9 Power_On_Hours          0x0012   099   099   000    Old_age   Always       -       11362
+ 10 Spin_Retry_Count        0x0013   100   100   060    Pre-fail  Always       -       0
+ 12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       71
+192 Power-Off_Retract_Count 0x0032   099   099   000    Old_age   Always       -       1247
+193 Load_Cycle_Count        0x0012   099   099   000    Old_age   Always       -       1247
+194 Temperature_Celsius     0x0002   171   171   000    Old_age   Always       -       35 &lt;span class="o"&gt;(&lt;/span&gt;Min/Max 17/45&lt;span class="o"&gt;)&lt;/span&gt;
+196 Reallocated_Event_Count 0x0032   100   100   000    Old_age   Always       -       110
+197 Current_Pending_Sector  0x0022   100   100   000    Old_age   Always       -       0
+198 Offline_Uncorrectable   0x0008   100   100   000    Old_age   Offline      -       0
+199 UDMA_CRC_Error_Count    0x000a   200   200   000    Old_age   Always       -       0
+
+SMART Error Log Version: 1
+No Errors Logged
+
+SMART Self-test log structure revision number 1
+Num  Test_Description    Status                  Remaining  LifeTime&lt;span class="o"&gt;(&lt;/span&gt;hours&lt;span class="o"&gt;)&lt;/span&gt;  LBA_of_first_error
+&lt;span class="c"&gt;# 1  Short offline       Completed without error       00%     11361         -&lt;/span&gt;
+&lt;span class="c"&gt;# 2  Short offline       Completed without error       00%     11319         -&lt;/span&gt;
+&lt;span class="c"&gt;# 3  Short offline       Completed without error       00%     11228         -&lt;/span&gt;
+&lt;span class="c"&gt;# 4  Short offline       Completed without error       00%     10769         -&lt;/span&gt;
+&lt;span class="c"&gt;# 5  Short offline       Completed without error       00%     10702         -&lt;/span&gt;
+&lt;span class="c"&gt;# 6  Short offline       Completed without error       00%     10702         -&lt;/span&gt;
+&lt;span class="c"&gt;# 7  Short offline       Completed without error       00%     10446         -&lt;/span&gt;
+&lt;span class="c"&gt;# 8  Short offline       Completed without error       00%      9861         -&lt;/span&gt;
+&lt;span class="c"&gt;# 9  Short offline       Completed without error       00%      9817         -&lt;/span&gt;
+&lt;span class="c"&gt;#10  Short offline       Completed without error       00%      9492         -&lt;/span&gt;
+&lt;span class="c"&gt;#11  Short offline       Completed without error       00%      9431         -&lt;/span&gt;
+&lt;span class="c"&gt;#12  Short offline       Completed without error       00%      8981         -&lt;/span&gt;
+&lt;span class="c"&gt;#13  Short offline       Completed without error       00%         1         -&lt;/span&gt;
+
+SMART Selective self-test log data structure revision number 1
+ SPAN  MIN_LBA  MAX_LBA  CURRENT_TEST_STATUS
+    1        0        0  Not_testing
+    2        0        0  Not_testing
+    3        0        0  Not_testing
+    4        0        0  Not_testing
+    5        0        0  Not_testing
+Selective self-test flags &lt;span class="o"&gt;(&lt;/span&gt;0x0&lt;span class="o"&gt;)&lt;/span&gt;:
+  After scanning selected spans, &lt;span class="k"&gt;do &lt;/span&gt;NOT &lt;span class="nb"&gt;read&lt;/span&gt;-scan remainder of disk.
+If Selective self-test is pending on power-up, resume after 0 minute delay.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;OS側からエラーだからといって外されるのにS.M.A.R.T.では検出されないのね…&lt;/p&gt;</summary><category term="HDD"></category></entry><entry><title>裁断機(DC-210N)を購入してみた</title><link href="/posts/2014/10/dc-210n.html" rel="alternate"></link><updated>2014-10-28T00:48:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-28:posts/2014/10/dc-210n.html</id><summary type="html">&lt;p&gt;もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました&lt;br /&gt;
 色々検討したんですが大型の裁断機ではなく、それより簡易的な &lt;a href="http://www.carl.co.jp/item/DC-210N.html"&gt;DC-210N&lt;/a&gt; を選択&lt;br /&gt;
 一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど&lt;br /&gt;
 まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました&lt;/p&gt;
