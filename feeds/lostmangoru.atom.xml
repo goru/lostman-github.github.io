@@ -27,7 +27,54 @@
 &lt;a class="image-box" href="/static/images/2014/10/DC-210N_5.jpg"&gt;
 &lt;img src="/static/images/2014/10/DC-210N_5.jpg" width="30%" height="30%"&gt;
 &lt;/a&gt;
-&lt;/p&gt;&lt;/p&gt;</summary><category term="e-book"></category></entry><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
+&lt;/p&gt;&lt;/p&gt;</summary><category term="e-book"></category></entry><entry><title>操作ミスでファイルを消してしまった時の復活方法</title><link href="/posts/2014/10/extundelete.html" rel="alternate"></link><updated>2014-10-23T01:00:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-23:posts/2014/10/extundelete.html</id><summary type="html">&lt;p&gt;ファイルサーバのデータを整理中に &lt;code&gt;rm *hoge*&lt;/code&gt; と入力しようとして &lt;code&gt;rm *&lt;/code&gt; まで入力した状態で&lt;br /&gt;
+hogeをコピペで貼り付けようとしました&lt;br /&gt;
+この時hogeの先頭に改行が含まれていたため、 &lt;code&gt;rm *&lt;/code&gt; が実行されてしまい&lt;br /&gt;
+カレントディレクトリ内のファイルを全て削除してしまいました、事故です&lt;br /&gt;
+このような場合、 &lt;a href="http://extundelete.sourceforge.net/"&gt;extundelete&lt;/a&gt; というソフトを使うと復活できるみたいなので、試してみました&lt;/p&gt;
+&lt;p&gt;まず削除してしまったファイルがあるボリュームをroでマウントしなおします&lt;br /&gt;
+この作業はできるだけ早く行う必要があります&lt;br /&gt;
+自分の場合、別のプロセスがこのボリュームに書き込みをしていたので&lt;br /&gt;
+削除したファイルのinodeが再利用されてしまいかなりのファイルを失いました&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# mount -o remount,ro /mnt/lvm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;次にdateコマンドで操作ミスが発生した時刻の確認をします&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;date +%s
+1413993600
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;extundeleteで復活させます&lt;br /&gt;
+復活できなかったファイルが以下のようにログに出力されて&lt;br /&gt;
+復活できたファイルはカレントディレクトリの &lt;code&gt;RECOVERED_FILES&lt;/code&gt; 以下に出力されます&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0&lt;/span&gt;
+Only show and process deleted entries &lt;span class="k"&gt;if &lt;/span&gt;they are deleted on or after 1413993600 and before 9223372036854775807.
+NOTICE: Extended attributes are not restored.
+Loading filesystem metadata ... 52164 groups loaded.
+Loading journal descriptors ... 26255 descriptors loaded.
+Searching &lt;span class="k"&gt;for &lt;/span&gt;recoverable inodes in directory / ...
+160 recoverable inodes found.
+Looking through the directory structure &lt;span class="k"&gt;for &lt;/span&gt;deleted files ...
+Unable to restore inode 224265493 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
+Unable to restore inode 224265494 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
+Unable to restore inode 224265503 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
+...
+Unable to restore inode 91544629 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode 91544798 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode 91544633 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+...
+30 recoverable inodes still lost.
+Unable to restore inode 99378493 &lt;span class="o"&gt;(&lt;/span&gt;file.99378493&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode 99379721 &lt;span class="o"&gt;(&lt;/span&gt;file.99379721&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode 99379967 &lt;span class="o"&gt;(&lt;/span&gt;file.99379967&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;オペミス怖いですね…&lt;br /&gt;
+とりあえず &lt;code&gt;rm&lt;/code&gt; は &lt;code&gt;rm -i&lt;/code&gt; のエイリアスにしておこうかと思います&lt;/p&gt;</summary><category term="Linux"></category></entry><entry><title>Windows10を試してみた</title><link href="/posts/2014/10/windows10.html" rel="alternate"></link><updated>2014-10-06T01:45:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-10-06:posts/2014/10/windows10.html</id><summary type="html">&lt;p&gt;&lt;a href="http://windows.microsoft.com/ja-jp/windows/preview"&gt;Windows10 Technical Preview&lt;/a&gt;がでたのでKVMにインストールしてみた&lt;br /&gt;
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と&lt;br /&gt;
 表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた&lt;/p&gt;
 &lt;p&gt;QEMUはひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた&lt;/p&gt;
