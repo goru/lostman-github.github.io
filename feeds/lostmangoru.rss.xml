@@ -5,7 +5,7 @@ HostName: not &lt;span class="nb"&gt;set&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;この結果になる場合DNSから逆引きしたホスト名になる場合があるみたい&lt;br /&gt;
+&lt;p&gt;この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい&lt;br /&gt;
 オフィスの環境だとならないけれど、自宅の環境だと &lt;code&gt;System Preferences -&amp;gt; Sharing&lt;/code&gt; で&lt;br /&gt;
 元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう&lt;br /&gt;
 ここの &lt;code&gt;Edit&lt;/code&gt; を押すと &lt;code&gt;Use dynamic global hostname&lt;/code&gt; といういかにもそれっぽい設定があるけれどこれは特に効果はなし&lt;br /&gt;
