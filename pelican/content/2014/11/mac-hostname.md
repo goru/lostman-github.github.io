@@ -10,7 +10,7 @@ Slug: mac-hostname
     $ scutil --get HostName
     HostName: not set
 
-この結果になる場合DNSから逆引きしたホスト名になる場合があるみたい  
+この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい  
 オフィスの環境だとならないけれど、自宅の環境だと `System Preferences -> Sharing` で  
 元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう  
 ここの `Edit` を押すと `Use dynamic global hostname` といういかにもそれっぽい設定があるけれどこれは特に効果はなし  
