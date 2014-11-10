@@ -65,6 +65,33 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/11/mac-hostname.html">Macのホスト名を固定する</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ</p>
+<div class="highlight"><pre><span class="nv">$ </span>scutil --get HostName
+HostName: not <span class="nb">set</span>
+</pre></div>
+
+
+<p>この結果になる場合DHCPから逆引きしたホスト名になる場合があるみたい<br />
+オフィスの環境だとならないけれど、自宅の環境だと <code>System Preferences -&gt; Sharing</code> で<br />
+元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう<br />
+ここの <code>Edit</code> を押すと <code>Use dynamic global hostname</code> といういかにもそれっぽい設定があるけれどこれは特に効果はなし<br />
+そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる</p>
+<div class="highlight"><pre><span class="c"># scutil --set HostName YourHostName</span>
+</pre></div>
+
+
+<p>ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない<br />
+そのためここで元々の設定とは全く別の値を指定することができるが<br />
+混乱の元なのでそういったことが起きないように気をつける必要がある</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/11/mac-hostname.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/11/smart.html">使えなくなったHDDのS.M.A.R.T.の結果</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -362,7 +389,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 Linux
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-1">
                             <a href="/tag/mac.html">
                                 Mac
                             </a>

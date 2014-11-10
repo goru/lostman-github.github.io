@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-11-03T21:31:00+09:00</updated><entry><title>使えなくなったHDDのS.M.A.R.T.の結果</title><link href="/posts/2014/11/smart.html" rel="alternate"></link><updated>2014-11-03T21:31:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-11-03:posts/2014/11/smart.html</id><summary type="html">&lt;p&gt;ずいぶん前の出来事だけれど、 &lt;a href="http://www.hgst.com/tech/techlib.nsf/techdocs/C2AF1DCDF0FBD887882578FE0082527B/$file/DS7K1000.D_ds.pdf"&gt;Hitachi Deskstar 7K1000.D&lt;/a&gt; がエラーを吐いて使えなくなったので&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2014-11-10T09:51:00+09:00</updated><entry><title>Macのホスト名を固定する</title><link href="/posts/2014/11/mac-hostname.html" rel="alternate"></link><updated>2014-11-10T09:51:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-11-10:posts/2014/11/mac-hostname.html</id><summary type="html">&lt;p&gt;自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;scutil --get HostName
+HostName: not &lt;span class="nb"&gt;set&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;この結果になる場合DHCPから逆引きしたホスト名になる場合があるみたい&lt;br /&gt;
+オフィスの環境だとならないけれど、自宅の環境だと &lt;code&gt;System Preferences -&amp;gt; Sharing&lt;/code&gt; で&lt;br /&gt;
+元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう&lt;br /&gt;
+ここの &lt;code&gt;Edit&lt;/code&gt; を押すと &lt;code&gt;Use dynamic global hostname&lt;/code&gt; といういかにもそれっぽい設定があるけれどこれは特に効果はなし&lt;br /&gt;
+そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# scutil --set HostName YourHostName&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない&lt;br /&gt;
+そのためここで元々の設定とは全く別の値を指定することができるが&lt;br /&gt;
+混乱の元なのでそういったことが起きないように気をつける必要がある&lt;/p&gt;</summary><category term="Mac"></category></entry><entry><title>使えなくなったHDDのS.M.A.R.T.の結果</title><link href="/posts/2014/11/smart.html" rel="alternate"></link><updated>2014-11-03T21:31:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2014-11-03:posts/2014/11/smart.html</id><summary type="html">&lt;p&gt;ずいぶん前の出来事だけれど、 &lt;a href="http://www.hgst.com/tech/techlib.nsf/techdocs/C2AF1DCDF0FBD887882578FE0082527B/$file/DS7K1000.D_ds.pdf"&gt;Hitachi Deskstar 7K1000.D&lt;/a&gt; がエラーを吐いて使えなくなったので&lt;br /&gt;
 その時のS.M.A.R.T.の結果を記録しておく&lt;/p&gt;
 &lt;p&gt;こんなメールでRAIDのアレイから外したことを通知されました&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;This&lt;/span&gt; &lt;span class="nx"&gt;is&lt;/span&gt; &lt;span class="nx"&gt;an&lt;/span&gt; &lt;span class="nx"&gt;automatically&lt;/span&gt; &lt;span class="nx"&gt;generated&lt;/span&gt; &lt;span class="nx"&gt;mail&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="nb"&gt;from&lt;/span&gt; &lt;span class="nx"&gt;mdadm&lt;/span&gt;
