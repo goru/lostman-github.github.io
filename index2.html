@@ -65,6 +65,86 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
+配線は以下の通り  </p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>AquesTalk</th>
+<th>-&gt;</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>/RESET</td>
+<td></td>
+<td>RESET</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SMOD0</td>
+<td></td>
+<td>GND</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SMOD1</td>
+<td></td>
+<td>5V</td>
+</tr>
+<tr>
+<td>7</td>
+<td>VCC</td>
+<td></td>
+<td>5V</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GND</td>
+<td></td>
+<td>GND</td>
+</tr>
+<tr>
+<td>20</td>
+<td>VCC</td>
+<td></td>
+<td>5V</td>
+</tr>
+<tr>
+<td>22</td>
+<td>GND</td>
+<td></td>
+<td>GND</td>
+</tr>
+<tr>
+<td>27</td>
+<td>SDA</td>
+<td></td>
+<td>A4</td>
+</tr>
+<tr>
+<td>28</td>
+<td>SCL</td>
+<td></td>
+<td>A5</td>
+</tr>
+</tbody>
+</table>
+<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
+I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
+あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/07/github-pages.html">GitHub Pages関連で調べたこと</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -192,7 +272,7 @@ inputタグのボタンをクリックするには以下のようします</p>
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-1">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -215,6 +295,11 @@ inputタグのボタンをクリックするには以下のようします</p>
                         <li class="list-group-item tag-4">
                             <a href="/tag/hdd.html">
                                 HDD
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/ir.html">
+                                IR
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

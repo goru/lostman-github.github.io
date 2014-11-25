@@ -65,6 +65,75 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
+今回使用したものは以下の通り</p>
+<ul>
+<li>Arduino Uno</li>
+<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> を1個、1個50円</li>
+<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> を3個、10個100円</li>
+<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> を1個、1個10円</li>
+<li>プルダウン用の抵抗1KΩを1個</li>
+</ul>
+<p>それぞれの部品を以下のように接続</p>
+<table>
+<thead>
+<tr>
+<th>Arduino</th>
+<th>部品</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>GP1UXC41QSのVout</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GP1UXC41QSのGND</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>GP1UXC41QSのVcc</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>タクトスイッチの2番</td>
+</tr>
+<tr>
+<td>3</td>
+<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>OSI5LA5113Aの+</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>OSI5LA5113Aの-</td>
+</tr>
+</tbody>
+</table>
+<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とある<br />
+手元の環境では省略していても特に問題は起きていないが今回の回路は誤動作する可能性があるので注意</p>
+<p>実際に接続するとこのようになる</p>
+<p class="center-text">
+<a class="image-box" href="/static/images/2014/11/IMAG1268.jpg">
+<img src="/static/images/2014/11/IMAG1268.jpg" width="30%" height="30%">
+</a>
+</p>
+
+<p>Arduinoのソースコードは <a href="https://github.com/lostman-github/arduino/blob/master/Uno/IR/sample/sample.ino">Github</a> に置いてある</p>
+<p>書き込んでシリアルモニタを表示すると <code>.</code> が1秒毎に表示される、これは受信状態を表している<br />
+この状態で本物のリモコンのボタンをを押すと読み込んで結果を出力する ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -194,7 +263,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-1">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -217,6 +286,11 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         <li class="list-group-item tag-4">
                             <a href="/tag/hdd.html">
                                 HDD
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/ir.html">
+                                IR
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

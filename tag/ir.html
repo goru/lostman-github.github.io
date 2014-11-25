@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>PhantomJSを使ってみた - blog.gorugle.org</title>
+    <title>IR - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -48,7 +48,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/misc.html">Misc</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/programming.html">Programming</a>
                         </li>
             </ul>
@@ -64,87 +64,75 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="/posts/2014/07/phantomjs.html"
-                       rel="bookmark"
-                       title="Permalink to PhantomJSを使ってみた">
-                        PhantomJSを使ってみた
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <time datetime="2014-07-20T03:30:00"> 2014/07/20 Sun</time>
-    </span>
+            <article>
+                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
+今回使用したものは以下の通り</p>
+<ul>
+<li>Arduino Uno</li>
+<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> を1個、1個50円</li>
+<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> を3個、10個100円</li>
+<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> を1個、1個10円</li>
+<li>プルダウン用の抵抗1KΩを1個</li>
+</ul>
+<p>それぞれの部品を以下のように接続</p>
+<table>
+<thead>
+<tr>
+<th>Arduino</th>
+<th>部品</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>GP1UXC41QSのVout</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GP1UXC41QSのGND</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>GP1UXC41QSのVcc</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>タクトスイッチの2番</td>
+</tr>
+<tr>
+<td>3</td>
+<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>OSI5LA5113Aの+</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>OSI5LA5113Aの-</td>
+</tr>
+</tbody>
+</table>
+<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とある<br />
+手元の環境では省略していても特に問題は起きていないが今回の回路は誤動作する可能性があるので注意</p>
+<p>実際に接続するとこのようになる</p>
+<p class="center-text">
+<a class="image-box" href="/static/images/2014/11/IMAG1268.jpg">
+<img src="/static/images/2014/11/IMAG1268.jpg" width="30%" height="30%">
+</a>
+</p>
 
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/javascript.html">JavaScript</a>
-        /
-	<a href="/tag/phantomjs.html">PhantomJS</a>
-    
-</footer><!-- /.post-info -->                    </div>
+<p>Arduinoのソースコードは <a href="https://github.com/lostman-github/arduino/blob/master/Uno/IR/sample/sample.ino">Github</a> に置いてある</p>
+<p>書き込んでシリアルモニタを表示すると <code>.</code> が1秒毎に表示される、これは受信状態を表している<br />
+この状態で本物のリモコンのボタンをを押すと読み込んで結果を出力する ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
                 </div>
-                <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
-仕事で間接的に使ったことはありましたが、<br />
-プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
-<p>なにに使ったかというと<br />
-ドメインの管理ページのDNSの設定の書き換えの自動化です<br />
-このサイトのドメインは<a href="http://www.star-domain.jp/">スタードメイン</a>で管理しているのですが、<br />
-ここはDDNSの機能は提供していないんですね<br />
-このサイトはCNAMEを固定で設定できればいいので特に必要はないんですが、<br />
-サブドメインを使って固定IPアドレスでない自宅のマシンにもアクセスできるようにしたかったのです<br />
-ただ手動では面倒なのでできれば何らかの方法で自動的に更新しようと考えました</p>
-<p>一般的には<a href="http://www.mydns.jp/">MyDNS</a>等の外部のDDNSの機能を提供しているサービスを使用して<br />
-このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです<br />
-一応この方法も試して動作することも確認しましたが、<br />
-PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました</p>
-<p>ソースは<a href="https://github.com/lostman-github/stardomain-ddns">ここ</a>に置いてあります<br />
-READMEにも書いてありますが実行方法は以下です</p>
-<div class="highlight"><pre>phantomjs stardomain-ddns.js <span class="s2">&quot;&lt;email address&gt;&quot;</span> <span class="s2">&quot;&lt;password&gt;&quot;</span> <span class="s2">&quot;&lt;file name of DNS records&gt;&quot;</span>
-</pre></div>
-
-
-<p>メールアドレスとパスワードはログインするために必要なもの<br />
-あとはDNSの設定が書いてあるファイルのファイル名を指定します<br />
-このファイルの中身はスタードメインの管理ページの<br />
-<code>レコード一括編集(テキストエリア)</code> のページに表示される形式にしておきます<br />
-なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です<br />
-スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します</p>
-<p>このスクリプトを書くにあたってはまった部分がクリックの操作です<br />
-inputタグのボタンをクリックするには以下のようします</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;action_user_dns_index&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">click</span><span class="p">();</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>しかし、aタグのリンクをクリックしたい場合はうまくいきません (Firefoxでは上の書き方でも動作するんですよね<br />
-色々調べたら安心と信頼の<a href="http://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript/2706236#2706236">Stack Overflow</a>に書いてあったのでそれを参考にしました<br />
-以下のようにするとクリックイベントを発生させることができました</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;submenu_04&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">firstElementChild</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">);</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="nx">elem</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
