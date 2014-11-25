@@ -1,7 +1,7 @@
 Title: Arduinoをリモコンにしてみる
 Date: 2014-11-25 23:02
 Category: Embedded
-Tags: Arduino
+Tags: Arduino, IR
 Slug: ir
 
 秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた  
