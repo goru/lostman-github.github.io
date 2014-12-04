@@ -1,3 +1,4 @@
+*.pyc
+.DS_Store
 pelican/__pycache__
 pelican/cache
-.DS_Store
