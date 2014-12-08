@@ -25,10 +25,10 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ&lt;/li&gt;
 &lt;p&gt;届いた箱たち&lt;br /&gt;
 &lt;a href="/static/images/2014/12/IMAG1204.jpg"&gt;&lt;img alt="box" src="/static/images/2014/12/IMAG1204_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;仮組みしてMemtest中&lt;br /&gt;
-&lt;a href="/static/images/2014/12/IMAG1205.jpg"&gt;&lt;img alt="box" src="/static/images/2014/12/IMAG1205_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a href="/static/images/2014/12/IMAG1205.jpg"&gt;&lt;img alt="memtest" src="/static/images/2014/12/IMAG1205_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;最終的にはこんな感じ&lt;br /&gt;
 見えないけれど裏側に余ってたSSDが装着されている
-&lt;a href="/static/images/2014/12/IMAG1211.jpg"&gt;&lt;img alt="box" src="/static/images/2014/12/IMAG1211_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a href="/static/images/2014/12/IMAG1211.jpg"&gt;&lt;img alt="assembled" src="/static/images/2014/12/IMAG1211_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;今はテレビ台の中に設置されている、それなりに発熱するしテレビ台は扉が閉まるタイプで&lt;br /&gt;
 熱がこもりやすいのでもしかしたら夏場はファンレスで運用するのは辛いかもしれない&lt;br /&gt;
 ただ4スレッドだからかメモリを多く積んでいるからかMicroServerより随分快適な印象&lt;br /&gt;
@@ -85,12 +85,7 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ&lt;/li&gt;
 お試しなので今回は省略して回路を組んだ&lt;br /&gt;
 手元の環境では特に問題は起きていないけれど誤動作する可能性があるので注意&lt;/p&gt;
 &lt;p&gt;実際に接続するとこのようになる&lt;/p&gt;
-&lt;p class="center-text"&gt;
-&lt;a class="image-box" href="/static/images/2014/11/IMAG1268.jpg"&gt;
-&lt;img src="/static/images/2014/11/IMAG1268.jpg" width="30%" height="30%"&gt;
-&lt;/a&gt;
-&lt;/p&gt;
-
+&lt;p&gt;&lt;a href="/static/images/2014/11/IMAG1268.jpg"&gt;&lt;img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;ソースコードは &lt;a href="https://github.com/lostman-github/arduino/blob/master/Uno/IR/sample/sample.ino"&gt;Github&lt;/a&gt; に置いてある&lt;/p&gt;
 &lt;p&gt;書き込んでシリアルモニタを表示すると &lt;code&gt;.&lt;/code&gt; が1秒毎に表示される、これは受信状態であることを表している&lt;br /&gt;
 この状態で本物のリモコンをセンサに向けてボタンを押すと読み込んだ結果を出力する&lt;/p&gt;
@@ -296,31 +291,15 @@ If Selective self-test is pending on power-up, resume after 0 minute delay.
 色々検討したんですが大型の裁断機ではなく、それより簡易的な &lt;a href="http://www.carl.co.jp/item/DC-210N.html"&gt;DC-210N&lt;/a&gt; を選択&lt;br /&gt;
 一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど&lt;br /&gt;
 まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました&lt;/p&gt;
-&lt;p&gt;外箱
-&lt;p class="center-text"&gt;
-&lt;a class="image-box" href="/static/images/2014/10/DC-210N_1.jpg"&gt;
-&lt;img src="/static/images/2014/10/DC-210N_1.jpg" width="30%" height="30%"&gt;
-&lt;/a&gt;
-&lt;/p&gt;&lt;/p&gt;
-&lt;p&gt;外観
-&lt;p class="center-text"&gt;
-&lt;a class="image-box" href="/static/images/2014/10/DC-210N_2.jpg"&gt;
-&lt;img src="/static/images/2014/10/DC-210N_2.jpg" width="30%" height="30%"&gt;
-&lt;/a&gt;
-&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;外箱&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/10/DC-210N_1.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_1_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;外観&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/10/DC-210N_2.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_2_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;今回はお試しでこの冊子を裁断してみます&lt;br /&gt;
-薄いので分割しなくても裁断できました
-&lt;p class="center-text"&gt;
-&lt;a class="image-box" href="/static/images/2014/10/DC-210N_3.jpg"&gt;
-&lt;img src="/static/images/2014/10/DC-210N_3.jpg" width="30%" height="30%"&gt;
-&lt;/a&gt;
-&lt;a class="image-box" href="/static/images/2014/10/DC-210N_4.jpg"&gt;
-&lt;img src="/static/images/2014/10/DC-210N_4.jpg" width="30%" height="30%"&gt;
-&lt;/a&gt;
-&lt;a class="image-box" href="/static/images/2014/10/DC-210N_5.jpg"&gt;
-&lt;img src="/static/images/2014/10/DC-210N_5.jpg" width="30%" height="30%"&gt;
-&lt;/a&gt;
-&lt;/p&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Tue, 28 Oct 2014 00:48:00 +0900</pubDate><guid>tag:,2014-10-28:posts/2014/10/dc-210n.html</guid><category>e-book</category></item><item><title>操作ミスでファイルを消してしまった時の復活方法</title><link>/posts/2014/10/extundelete.html</link><description>&lt;p&gt;ファイルサーバのデータを整理中に &lt;code&gt;rm *hoge*&lt;/code&gt; と入力しようとして &lt;code&gt;rm *&lt;/code&gt; まで入力した状態で&lt;br /&gt;
+薄いので分割しなくても裁断できました&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/10/DC-210N_3.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2014/10/DC-210N_4.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_4_s.jpg" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2014/10/DC-210N_5.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_5_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Tue, 28 Oct 2014 00:48:00 +0900</pubDate><guid>tag:,2014-10-28:posts/2014/10/dc-210n.html</guid><category>e-book</category></item><item><title>操作ミスでファイルを消してしまった時の復活方法</title><link>/posts/2014/10/extundelete.html</link><description>&lt;p&gt;ファイルサーバのデータを整理中に &lt;code&gt;rm *hoge*&lt;/code&gt; と入力しようとして &lt;code&gt;rm *&lt;/code&gt; まで入力した状態で&lt;br /&gt;
 hogeをコピペで貼り付けようとしました&lt;br /&gt;
 この時hogeの先頭に改行が含まれていたため、 &lt;code&gt;rm *&lt;/code&gt; が実行されてしまい&lt;br /&gt;
 カレントディレクトリ内のファイルを全て削除してしまいました、事故です&lt;br /&gt;
@@ -377,7 +356,7 @@ Unable to restore inode 99379967 &lt;span class="o"&gt;(&lt;/span&gt;file.993799
 
 
 &lt;p&gt;ただ電源の切り方がWindows8.1から更に変更されているので少し戸惑った&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Windows10 with KVM" src="/static/images/2014/10/windows10.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 06 Oct 2014 01:45:00 +0900</pubDate><guid>tag:,2014-10-06:posts/2014/10/windows10.html</guid><category>Linux</category><category>Gentoo</category><category>KVM</category><category>Windows</category></item><item><title>今更Sambaをインストールした</title><link>/posts/2014/09/samba.html</link><description>&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/10/windows10.jpg"&gt;&lt;img alt="Windows10 with KVM" src="/static/images/2014/10/windows10_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 06 Oct 2014 01:45:00 +0900</pubDate><guid>tag:,2014-10-06:posts/2014/10/windows10.html</guid><category>Linux</category><category>Gentoo</category><category>KVM</category><category>Windows</category></item><item><title>今更Sambaをインストールした</title><link>/posts/2014/09/samba.html</link><description>&lt;p&gt;しばらく前に&lt;a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/"&gt;ASUS VivoTab Note 8&lt;/a&gt;を買ったり、&lt;a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/"&gt;HP Pavilion 15-n200 (AMD)&lt;/a&gt;が29800円だったので妻に買ったりMacBook Airもあるし&lt;br /&gt;
 Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました&lt;br /&gt;
 今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね&lt;/p&gt;
 &lt;p&gt;Gentooでのインストールは特に気にすることなくいつも通り&lt;br /&gt;
@@ -733,7 +712,7 @@ Input sourceはMacUIM固定で &lt;code&gt;Cmd+Space&lt;/code&gt; を日英の�
 &lt;p&gt;&lt;code&gt;SMOD0&lt;/code&gt; と &lt;code&gt;SMOD1&lt;/code&gt; については技術資料の &lt;code&gt;表9.1 通信モード&lt;/code&gt; を参照&lt;br /&gt;
 I2Cで接続するには &lt;code&gt;SMOD0 = 0&lt;/code&gt; 、 &lt;code&gt;SMOD1 = 1&lt;/code&gt; にする必要があります&lt;br /&gt;
 あとは12番の &lt;code&gt;AOUT&lt;/code&gt; をアンプの &lt;code&gt;IN+&lt;/code&gt; 、 &lt;code&gt;GND&lt;/code&gt; を &lt;code&gt;IN-&lt;/code&gt; に接続します&lt;/p&gt;
-&lt;p&gt;&lt;img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/07/IMAG1036.jpg"&gt;&lt;img alt="AquesTalk pico LSI I2C" src="/static/images/2014/07/IMAG1036_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;技術資料の &lt;code&gt;5. 基本回路&lt;/code&gt; にある回路図を見ると、これ以外に &lt;code&gt;VCC&lt;/code&gt; と &lt;code&gt;AOUT&lt;/code&gt; にコンデンサが追加されています&lt;br /&gt;
 これはバイパスコンデンサというものらしく電源の安定化やノイズの発生を抑えたりする役割があるそうです &lt;a href="http://www.geocities.jp/zattouka/GarageHouse/micon/circuit/VoltREG.htm#pascon"&gt;*1&lt;/a&gt;&lt;br /&gt;
 とりあえず、無しでも動きました(ぇ&lt;/p&gt;
@@ -816,7 +795,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 &lt;/ol&gt;
 &lt;p&gt;発声させるためのテキストは技術資料を参照するか、&lt;br /&gt;
 &lt;a href="http://www.a-quest.com/demo/pico_kanji2roman.html"&gt;音声記号列生成 Webサービス&lt;/a&gt;を使用して作成します&lt;/p&gt;
-&lt;p&gt;&lt;img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 21 Jul 2014 17:49:00 +0900</pubDate><guid>tag:,2014-07-21:posts/2014/07/aquestalk.html</guid><category>Arduino</category><category>AquesTalk pico LSI</category></item><item><title>PhantomJSを使ってみた</title><link>/posts/2014/07/phantomjs.html</link><description>&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br /&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/07/IMAG1027.jpg"&gt;&lt;img alt="AquesTalk pico LSI" src="/static/images/2014/07/IMAG1027_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 21 Jul 2014 17:49:00 +0900</pubDate><guid>tag:,2014-07-21:posts/2014/07/aquestalk.html</guid><category>Arduino</category><category>AquesTalk pico LSI</category></item><item><title>PhantomJSを使ってみた</title><link>/posts/2014/07/phantomjs.html</link><description>&lt;p&gt;はじめて&lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt;使ってみました&lt;br /&gt;
 仕事で間接的に使ったことはありましたが、&lt;br /&gt;
 プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます&lt;/p&gt;
 &lt;p&gt;なにに使ったかというと&lt;br /&gt;
