@@ -23,7 +23,7 @@ Pin | AquesTalk | -> | Arduino
 I2Cで接続するには `SMOD0 = 0` 、 `SMOD1 = 1` にする必要があります  
 あとは12番の `AOUT` をアンプの `IN+` 、 `GND` を `IN-` に接続します
 
-![AquesTalk pico LSI I2C](/static/images/2014/07/IMAG1036.jpg)
+[![AquesTalk pico LSI I2C](/static/images/2014/07/IMAG1036_s.jpg)](/static/images/2014/07/IMAG1036.jpg)
 
 技術資料の `5. 基本回路` にある回路図を見ると、これ以外に `VCC` と `AOUT` にコンデンサが追加されています  
 これはバイパスコンデンサというものらしく電源の安定化やノイズの発生を抑えたりする役割があるそうです [*1](http://www.geocities.jp/zattouka/GarageHouse/micon/circuit/VoltREG.htm#pascon)  

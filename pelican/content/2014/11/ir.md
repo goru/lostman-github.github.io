@@ -31,11 +31,7 @@ GP1UXC41QSのデータシートの `6. 製品の実装について` の項に `C
 
 実際に接続するとこのようになる
 
-<p class="center-text">
-<a class="image-box" href="/static/images/2014/11/IMAG1268.jpg">
-<img src="/static/images/2014/11/IMAG1268.jpg" width="30%" height="30%">
-</a>
-</p>
+[![image](/static/images/2014/11/IMAG1268_s.jpg)](/static/images/2014/11/IMAG1268.jpg)
 
 ソースコードは [Github](https://github.com/lostman-github/arduino/blob/master/Uno/IR/sample/sample.ino) に置いてある
 
