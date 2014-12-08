@@ -16,4 +16,4 @@ QEMUはひさしぶりなので使い方を忘れていたんだけれど以下�
 
 ただ電源の切り方がWindows8.1から更に変更されているので少し戸惑った
 
-![Windows10 with KVM](/static/images/2014/10/windows10.jpg)
+[![Windows10 with KVM](/static/images/2014/10/windows10_s.jpg)](/static/images/2014/10/windows10.jpg)
