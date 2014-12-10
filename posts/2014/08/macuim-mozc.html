@@ -81,7 +81,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-08-02T02:04:00"> 2014/08/02 Sat</time>
+        <time datetime="2014-08-02T02:04:00+09:00"> 2014/08/02 Sat</time>
     </span>
 
 
@@ -114,7 +114,7 @@ blog.gorugle.org            </a>
 <p><code>~/.xinitrc.d/uim-xim.sh</code> に以下の内容で起動スクリプトを配置する<br />
 このファイルを追加することでX11の起動時にUIMが起動する</p>
 <div class="highlight"><pre><span class="c">#!/bin/sh</span>
-/Library/Frameworks/UIM.framework/Versions/Current/bin/uim-xim &amp;
+/Library/Frameworks/UIM.framework/Versions/Current/bin/uim-xim <span class="p">&amp;</span>
 </pre></div>
 
 
@@ -144,10 +144,10 @@ Input sourceはMacUIM固定で <code>Cmd+Space</code> を日英の切り替え�
 </li>
 <li>
 <p><code>~/.uim.d/customs/custom-mozc-keys.scm</code> をエディタで開いて以下の部分を編集する</p>
-<div class="highlight"><pre><span class="p">(</span><span class="kd">define</span> <span class="nf">mozc</span><span class="na">-on-key</span> <span class="s1">&#39;(&quot;&lt;Meta&gt; &quot;))</span>
-<span class="s1">(define mozc-on-key? (make-key-predicate &#39;</span><span class="p">(</span><span class="s2">&quot;&lt;Meta&gt; &quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="kd">define</span> <span class="nf">mozc</span><span class="na">-off-key</span> <span class="s1">&#39;(&quot;&lt;Meta&gt; &quot;))</span>
-<span class="s1">(define mozc-off-key? (make-key-predicate &#39;</span><span class="p">(</span><span class="s2">&quot;&lt;Meta&gt; &quot;</span><span class="p">)))</span>
+<div class="highlight"><pre>(define mozc-on-key &#39;(&quot;&lt;Meta&gt; &quot;))
+(define mozc-on-key? (make-key-predicate &#39;(&quot;&lt;Meta&gt; &quot;)))
+(define mozc-off-key &#39;(&quot;&lt;Meta&gt; &quot;))
+(define mozc-off-key? (make-key-predicate &#39;(&quot;&lt;Meta&gt; &quot;)))
 </pre></div>
 
 

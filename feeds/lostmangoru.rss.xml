@@ -95,18 +95,18 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ&lt;/li&gt;
 先頭のOFFは無通信時間で不要な情報なので、これを除外してソースに埋め込めばこのデータを使ってLEDを発光させることができる&lt;/p&gt;
 &lt;p&gt;タクトスイッチを押すと &lt;code&gt;Send&lt;/code&gt; が表示されソースコードに埋め込まれている情報を元にLEDを発光させる&lt;/p&gt;
 &lt;p&gt;実行例&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="mf"&gt;.4384&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1032&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;510&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;188&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;188&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;188&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;188&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;188&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;187&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Send&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;.
+.
+.4384,1032,510,67,62,67,62,66,187,67,61,70,62,66,61,67,62,67,187,69,188,66,62,66,61,67,62,69,187,67,61,66,187,67,61,70,61,66,187,67,62,66,188,70,187,66,62,66,62,66,187,69,188,66,61,66,188,66,61,70,62,66,188,66,187,66,62,66,
+.
+.
+.
+.
+.
+Send
+.
+.
+.
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -156,24 +156,24 @@ HostName: not &lt;span class="nb"&gt;set&lt;/span&gt;
 混乱の元なのでそういったことが起きないように気をつける必要がある&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 10 Nov 2014 09:51:00 +0900</pubDate><guid>tag:,2014-11-10:posts/2014/11/mac-hostname.html</guid><category>Mac</category></item><item><title>使えなくなったHDDのS.M.A.R.T.の結果</title><link>/posts/2014/11/smart.html</link><description>&lt;p&gt;ずいぶん前の出来事だけれど、 &lt;a href="http://www.hgst.com/tech/techlib.nsf/techdocs/C2AF1DCDF0FBD887882578FE0082527B/$file/DS7K1000.D_ds.pdf"&gt;Hitachi Deskstar 7K1000.D&lt;/a&gt; がエラーを吐いて使えなくなったので&lt;br /&gt;
 その時のS.M.A.R.T.の結果を記録しておく&lt;/p&gt;
 &lt;p&gt;こんなメールでRAIDのアレイから外したことを通知されました&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;This&lt;/span&gt; &lt;span class="nx"&gt;is&lt;/span&gt; &lt;span class="nx"&gt;an&lt;/span&gt; &lt;span class="nx"&gt;automatically&lt;/span&gt; &lt;span class="nx"&gt;generated&lt;/span&gt; &lt;span class="nx"&gt;mail&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="nb"&gt;from&lt;/span&gt; &lt;span class="nx"&gt;mdadm&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;This is an automatically generated mail message from mdadm
 
-&lt;span class="nx"&gt;A&lt;/span&gt; &lt;span class="nb"&gt;Fail&lt;/span&gt; &lt;span class="nx"&gt;event&lt;/span&gt; &lt;span class="nx"&gt;had&lt;/span&gt; &lt;span class="nx"&gt;been&lt;/span&gt; &lt;span class="nx"&gt;detected&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="nx"&gt;md&lt;/span&gt; &lt;span class="nx"&gt;device&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;md1.&lt;/span&gt;
+A Fail event had been detected on md device /dev/md1.
 
-&lt;span class="nx"&gt;It&lt;/span&gt; &lt;span class="nx"&gt;could&lt;/span&gt; &lt;span class="nx"&gt;be&lt;/span&gt; &lt;span class="nx"&gt;related&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nb"&gt;component&lt;/span&gt; &lt;span class="nx"&gt;device&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sdc.&lt;/span&gt;
+It could be related to component device /dev/sdc.
 
-&lt;span class="nx"&gt;Faithfully&lt;/span&gt; &lt;span class="nx"&gt;yours&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;etc.&lt;/span&gt;
+Faithfully yours, etc.
 
-&lt;span class="nx"&gt;P.S.&lt;/span&gt; &lt;span class="nx"&gt;The&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;proc&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;mdstat&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="nx"&gt;currently&lt;/span&gt; &lt;span class="nb"&gt;contains&lt;/span&gt; &lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;following&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+P.S. The /proc/mdstat file currently contains the following:
 
-&lt;span class="nx"&gt;Personalities&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;raid1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
-md1 : active raid1 sdd&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; sdc&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;(F)
-      976762448 blocks super 1.0 &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_U&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+Personalities : [raid1]
+md1 : active raid1 sdd[1] sdc[0](F)
+      976762448 blocks super 1.0 [2/1] [_U]
 
-md0 : active raid1 sdb&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; sda&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
-      2930266448 blocks super 1.0 &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;UU&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+md0 : active raid1 sdb[2] sda[0]
+      2930266448 blocks super 1.0 [2/2] [UU]
 
-unused devices: &lt;span class="nt"&gt;&amp;lt;none&amp;gt;&lt;/span&gt;
+unused devices: &amp;lt;none&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -187,15 +187,15 @@ Copyright &lt;span class="o"&gt;(&lt;/span&gt;C&lt;span class="o"&gt;)&lt;/span&
 Model Family:     Hitachi Deskstar 7K1000.D
 Device Model:     Hitachi HDS721010DLE630
 Serial Number:    XXXXXXXXXXXXXX
-LU WWN Device Id: 5 000cca 37cc0c0f2
+LU WWN Device Id: &lt;span class="m"&gt;5&lt;/span&gt; 000cca 37cc0c0f2
 Firmware Version: MS2OA5N0
 User Capacity:    1,000,204,886,016 bytes &lt;span class="o"&gt;[&lt;/span&gt;1.00 TB&lt;span class="o"&gt;]&lt;/span&gt;
-Sector Sizes:     512 bytes logical, 4096 bytes physical
-Rotation Rate:    7200 rpm
-Device is:        In smartctl database &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;details use: -P show&lt;span class="o"&gt;]&lt;/span&gt;
+Sector Sizes:     &lt;span class="m"&gt;512&lt;/span&gt; bytes logical, &lt;span class="m"&gt;4096&lt;/span&gt; bytes physical
+Rotation Rate:    &lt;span class="m"&gt;7200&lt;/span&gt; rpm
+Device is:        In smartctl database &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; details use: -P show&lt;span class="o"&gt;]&lt;/span&gt;
 ATA Version is:   ATA8-ACS T13/1699-D revision 4
 SATA Version is:  SATA 2.6, 6.0 Gb/s &lt;span class="o"&gt;(&lt;/span&gt;current: 1.5 Gb/s&lt;span class="o"&gt;)&lt;/span&gt;
-Local Time is:    Wed Aug 13 11:23:08 2014 JST
+Local Time is:    Wed Aug &lt;span class="m"&gt;13&lt;/span&gt; 11:23:08 &lt;span class="m"&gt;2014&lt;/span&gt; JST
 SMART support is: Available - device has SMART capability.
 SMART support is: &lt;span class="nv"&gt;Enabled&lt;/span&gt;
 
@@ -237,23 +237,23 @@ SCT capabilities:              &lt;span class="o"&gt;(&lt;/span&gt;0x003d&lt;spa
 SMART Attributes Data Structure revision number: 16
 Vendor Specific SMART Attributes with Thresholds:
 ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
-  1 Raw_Read_Error_Rate     0x000b   079   079   016    Pre-fail  Always       -       824
-  2 Throughput_Performance  0x0005   141   141   054    Pre-fail  Offline      -       74
-  3 Spin_Up_Time            0x0007   124   124   024    Pre-fail  Always       -       185 &lt;span class="o"&gt;(&lt;/span&gt;Average 185&lt;span class="o"&gt;)&lt;/span&gt;
-  4 Start_Stop_Count        0x0012   100   100   000    Old_age   Always       -       966
-  5 Reallocated_Sector_Ct   0x0033   100   100   005    Pre-fail  Always       -       62
-  7 Seek_Error_Rate         0x000b   100   100   067    Pre-fail  Always       -       0
-  8 Seek_Time_Performance   0x0005   130   130   020    Pre-fail  Offline      -       28
-  9 Power_On_Hours          0x0012   099   099   000    Old_age   Always       -       11362
- 10 Spin_Retry_Count        0x0013   100   100   060    Pre-fail  Always       -       0
- 12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       71
-192 Power-Off_Retract_Count 0x0032   099   099   000    Old_age   Always       -       1247
-193 Load_Cycle_Count        0x0012   099   099   000    Old_age   Always       -       1247
-194 Temperature_Celsius     0x0002   171   171   000    Old_age   Always       -       35 &lt;span class="o"&gt;(&lt;/span&gt;Min/Max 17/45&lt;span class="o"&gt;)&lt;/span&gt;
-196 Reallocated_Event_Count 0x0032   100   100   000    Old_age   Always       -       110
-197 Current_Pending_Sector  0x0022   100   100   000    Old_age   Always       -       0
-198 Offline_Uncorrectable   0x0008   100   100   000    Old_age   Offline      -       0
-199 UDMA_CRC_Error_Count    0x000a   200   200   000    Old_age   Always       -       0
+  &lt;span class="m"&gt;1&lt;/span&gt; Raw_Read_Error_Rate     0x000b   &lt;span class="m"&gt;079&lt;/span&gt;   &lt;span class="m"&gt;079&lt;/span&gt;   &lt;span class="m"&gt;016&lt;/span&gt;    Pre-fail  Always       -       824
+  &lt;span class="m"&gt;2&lt;/span&gt; Throughput_Performance  0x0005   &lt;span class="m"&gt;141&lt;/span&gt;   &lt;span class="m"&gt;141&lt;/span&gt;   &lt;span class="m"&gt;054&lt;/span&gt;    Pre-fail  Offline      -       74
+  &lt;span class="m"&gt;3&lt;/span&gt; Spin_Up_Time            0x0007   &lt;span class="m"&gt;124&lt;/span&gt;   &lt;span class="m"&gt;124&lt;/span&gt;   &lt;span class="m"&gt;024&lt;/span&gt;    Pre-fail  Always       -       &lt;span class="m"&gt;185&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;Average 185&lt;span class="o"&gt;)&lt;/span&gt;
+  &lt;span class="m"&gt;4&lt;/span&gt; Start_Stop_Count        0x0012   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       966
+  &lt;span class="m"&gt;5&lt;/span&gt; Reallocated_Sector_Ct   0x0033   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;005&lt;/span&gt;    Pre-fail  Always       -       62
+  &lt;span class="m"&gt;7&lt;/span&gt; Seek_Error_Rate         0x000b   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;067&lt;/span&gt;    Pre-fail  Always       -       0
+  &lt;span class="m"&gt;8&lt;/span&gt; Seek_Time_Performance   0x0005   &lt;span class="m"&gt;130&lt;/span&gt;   &lt;span class="m"&gt;130&lt;/span&gt;   &lt;span class="m"&gt;020&lt;/span&gt;    Pre-fail  Offline      -       28
+  &lt;span class="m"&gt;9&lt;/span&gt; Power_On_Hours          0x0012   &lt;span class="m"&gt;099&lt;/span&gt;   &lt;span class="m"&gt;099&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       11362
+ &lt;span class="m"&gt;10&lt;/span&gt; Spin_Retry_Count        0x0013   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;060&lt;/span&gt;    Pre-fail  Always       -       0
+ &lt;span class="m"&gt;12&lt;/span&gt; Power_Cycle_Count       0x0032   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       71
+&lt;span class="m"&gt;192&lt;/span&gt; Power-Off_Retract_Count 0x0032   &lt;span class="m"&gt;099&lt;/span&gt;   &lt;span class="m"&gt;099&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       1247
+&lt;span class="m"&gt;193&lt;/span&gt; Load_Cycle_Count        0x0012   &lt;span class="m"&gt;099&lt;/span&gt;   &lt;span class="m"&gt;099&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       1247
+&lt;span class="m"&gt;194&lt;/span&gt; Temperature_Celsius     0x0002   &lt;span class="m"&gt;171&lt;/span&gt;   &lt;span class="m"&gt;171&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       &lt;span class="m"&gt;35&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;Min/Max 17/45&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;196&lt;/span&gt; Reallocated_Event_Count 0x0032   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       110
+&lt;span class="m"&gt;197&lt;/span&gt; Current_Pending_Sector  0x0022   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       0
+&lt;span class="m"&gt;198&lt;/span&gt; Offline_Uncorrectable   0x0008   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;100&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Offline      -       0
+&lt;span class="m"&gt;199&lt;/span&gt; UDMA_CRC_Error_Count    0x000a   &lt;span class="m"&gt;200&lt;/span&gt;   &lt;span class="m"&gt;200&lt;/span&gt;   &lt;span class="m"&gt;000&lt;/span&gt;    Old_age   Always       -       0
 
 SMART Error Log Version: 1
 No Errors Logged
@@ -276,14 +276,14 @@ Num  Test_Description    Status                  Remaining  LifeTime&lt;span cla
 
 SMART Selective self-test log data structure revision number 1
  SPAN  MIN_LBA  MAX_LBA  CURRENT_TEST_STATUS
-    1        0        0  Not_testing
-    2        0        0  Not_testing
-    3        0        0  Not_testing
-    4        0        0  Not_testing
-    5        0        0  Not_testing
+    &lt;span class="m"&gt;1&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;  Not_testing
+    &lt;span class="m"&gt;2&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;  Not_testing
+    &lt;span class="m"&gt;3&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;  Not_testing
+    &lt;span class="m"&gt;4&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;  Not_testing
+    &lt;span class="m"&gt;5&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;        &lt;span class="m"&gt;0&lt;/span&gt;  Not_testing
 Selective self-test flags &lt;span class="o"&gt;(&lt;/span&gt;0x0&lt;span class="o"&gt;)&lt;/span&gt;:
-  After scanning selected spans, &lt;span class="k"&gt;do &lt;/span&gt;NOT &lt;span class="nb"&gt;read&lt;/span&gt;-scan remainder of disk.
-If Selective self-test is pending on power-up, resume after 0 minute delay.
+  After scanning selected spans, &lt;span class="k"&gt;do&lt;/span&gt; NOT &lt;span class="nb"&gt;read&lt;/span&gt;-scan remainder of disk.
+If Selective self-test is pending on power-up, resume after &lt;span class="m"&gt;0&lt;/span&gt; minute delay.
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -322,25 +322,25 @@ hogeをコピペで貼り付けようとしました&lt;br /&gt;
 復活できなかったファイルが以下のようにログに出力されて&lt;br /&gt;
 復活できたファイルはカレントディレクトリの &lt;code&gt;RECOVERED_FILES&lt;/code&gt; 以下に出力されます&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0&lt;/span&gt;
-Only show and process deleted entries &lt;span class="k"&gt;if &lt;/span&gt;they are deleted on or after 1413993600 and before 9223372036854775807.
+Only show and process deleted entries &lt;span class="k"&gt;if&lt;/span&gt; they are deleted on or after &lt;span class="m"&gt;1413993600&lt;/span&gt; and before 9223372036854775807.
 NOTICE: Extended attributes are not restored.
-Loading filesystem metadata ... 52164 groups loaded.
-Loading journal descriptors ... 26255 descriptors loaded.
-Searching &lt;span class="k"&gt;for &lt;/span&gt;recoverable inodes in directory / ...
-160 recoverable inodes found.
-Looking through the directory structure &lt;span class="k"&gt;for &lt;/span&gt;deleted files ...
-Unable to restore inode 224265493 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
-Unable to restore inode 224265494 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
-Unable to restore inode 224265503 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
+Loading filesystem metadata ... &lt;span class="m"&gt;52164&lt;/span&gt; groups loaded.
+Loading journal descriptors ... &lt;span class="m"&gt;26255&lt;/span&gt; descriptors loaded.
+Searching &lt;span class="k"&gt;for&lt;/span&gt; recoverable inodes in directory / ...
+&lt;span class="m"&gt;160&lt;/span&gt; recoverable inodes found.
+Looking through the directory structure &lt;span class="k"&gt;for&lt;/span&gt; deleted files ...
+Unable to restore inode &lt;span class="m"&gt;224265493&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
+Unable to restore inode &lt;span class="m"&gt;224265494&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
+Unable to restore inode &lt;span class="m"&gt;224265503&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: Space has been reallocated.
 ...
-Unable to restore inode 91544629 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
-Unable to restore inode 91544798 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
-Unable to restore inode 91544633 &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode &lt;span class="m"&gt;91544629&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode &lt;span class="m"&gt;91544798&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode &lt;span class="m"&gt;91544633&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;/path/to/deleted/file&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
 ...
-30 recoverable inodes still lost.
-Unable to restore inode 99378493 &lt;span class="o"&gt;(&lt;/span&gt;file.99378493&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
-Unable to restore inode 99379721 &lt;span class="o"&gt;(&lt;/span&gt;file.99379721&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
-Unable to restore inode 99379967 &lt;span class="o"&gt;(&lt;/span&gt;file.99379967&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+&lt;span class="m"&gt;30&lt;/span&gt; recoverable inodes still lost.
+Unable to restore inode &lt;span class="m"&gt;99378493&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;file.99378493&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode &lt;span class="m"&gt;99379721&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;file.99379721&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
+Unable to restore inode &lt;span class="m"&gt;99379967&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;file.99379967&lt;span class="o"&gt;)&lt;/span&gt;: No undeleted copies found in the journal.
 ...
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -428,7 +428,7 @@ LAN側のNICでのみ待ち受ける&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;これらの設定で今のところ問題なく使用できている&lt;br /&gt;
 しかし &lt;code&gt;/var/log/samba/log.smbd&lt;/code&gt; にこのようなログが出ているのでそのうち修正したい &lt;a href="http://inaz2.hatenablog.com/entry/2013/07/07/054616"&gt;*1&lt;/a&gt; &lt;a href="http://consultancy.edvoncken.net/index.php/HOWTO_Disable_printing_in_Samba"&gt;*2&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Unable&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="n"&gt;printcap&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;printcap&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Unable to open printcap file /etc/printcap for read!
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -457,8 +457,8 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 &lt;li&gt;
 &lt;p&gt;InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する &lt;a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221"&gt;*&lt;/a&gt;&lt;br /&gt;
 &lt;code&gt;/etc/mysql/my.cnf&lt;/code&gt; に以下の二行を追加&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;skip&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;innodb&lt;/span&gt;
-&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;storage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;MyISAM&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;skip-innodb
+default-storage-engine=MyISAM
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -478,25 +478,25 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 &lt;code&gt;mysql_upgrade&lt;/code&gt; を実行するように指示されます &lt;a href="http://server-setting.info/centos/mysql5-1_mysql5-5_upgrade.html"&gt;*&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# /etc/init.d/mysql start&lt;/span&gt;
 &lt;span class="c"&gt;# tail /var/log/mysql/mysqld.err&lt;/span&gt;
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Missing system table mysql.proxies_priv; please run mysql_upgrade to create it
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_current&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_history&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_history_long&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_consumers&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_instruments&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_timers&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;performance_timers&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;threads&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_by_thread_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_by_instance&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_global_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_summary_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_summary_by_instance&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;mutex_instances&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;rwlock_instances&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;cond_instances&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_instances&amp;#39;&lt;/span&gt; has the wrong structure
-140830 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;Note&lt;span class="o"&gt;]&lt;/span&gt; Event Scheduler: Loaded 0 events
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Missing system table mysql.proxies_priv&lt;span class="p"&gt;;&lt;/span&gt; please run mysql_upgrade to create it
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_current&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_history&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_history_long&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_consumers&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_instruments&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;setup_timers&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;performance_timers&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;threads&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_by_thread_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_by_instance&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;events_waits_summary_global_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_summary_by_event_name&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_summary_by_instance&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;mutex_instances&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;rwlock_instances&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;cond_instances&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;ERROR&lt;span class="o"&gt;]&lt;/span&gt; Native table &lt;span class="s1"&gt;&amp;#39;performance_schema&amp;#39;&lt;/span&gt;.&lt;span class="s1"&gt;&amp;#39;file_instances&amp;#39;&lt;/span&gt; has the wrong structure
+&lt;span class="m"&gt;140830&lt;/span&gt; 20:53:41 &lt;span class="o"&gt;[&lt;/span&gt;Note&lt;span class="o"&gt;]&lt;/span&gt; Event Scheduler: Loaded &lt;span class="m"&gt;0&lt;/span&gt; events
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -519,10 +519,10 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 色々なサイトを見ていると一度パスフレーズありで作成してから&lt;br /&gt;
 パスフレーズを削除したファイルを作りなおすような手順を踏んでいたりしますがこれでよさそう&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# openssl genrsa -out server.key 2048&lt;/span&gt;
-Generating RSA private key, 2048 bit long modulus
+Generating RSA private key, &lt;span class="m"&gt;2048&lt;/span&gt; bit long modulus
 ................................................+++
 ........................................+++
-e is 65537 &lt;span class="o"&gt;(&lt;/span&gt;0x10001&lt;span class="o"&gt;)&lt;/span&gt;
+e is &lt;span class="m"&gt;65537&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;0x10001&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -539,7 +539,7 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter &lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;, the field will be left blank.
 -----
-Country Name &lt;span class="o"&gt;(&lt;/span&gt;2 letter code&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;AU&lt;span class="o"&gt;]&lt;/span&gt;:.
+Country Name &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; letter code&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;AU&lt;span class="o"&gt;]&lt;/span&gt;:.
 State or Province Name &lt;span class="o"&gt;(&lt;/span&gt;full name&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;Some-State&lt;span class="o"&gt;]&lt;/span&gt;:.
 Locality Name &lt;span class="o"&gt;(&lt;/span&gt;eg, city&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[]&lt;/span&gt;:
 Organization Name &lt;span class="o"&gt;(&lt;/span&gt;eg, company&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;Internet Widgits Pty Ltd&lt;span class="o"&gt;]&lt;/span&gt;:.
@@ -568,9 +568,9 @@ Getting Private key
 &lt;li&gt;
 &lt;p&gt;以上で証明書の準備はできたので &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt; を編集して再起動すれば完了です&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;server &lt;span class="o"&gt;{&lt;/span&gt;
-        listen 443 ssl;
-        ssl_certificate     /path/to/certificate/server.crt;
-        ssl_certificate_key /path/to/certificate/server.key;
+        listen &lt;span class="m"&gt;443&lt;/span&gt; ssl&lt;span class="p"&gt;;&lt;/span&gt;
+        ssl_certificate     /path/to/certificate/server.crt&lt;span class="p"&gt;;&lt;/span&gt;
+        ssl_certificate_key /path/to/certificate/server.key&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -594,7 +594,7 @@ Getting Private key
 &lt;p&gt;&lt;code&gt;~/.xinitrc.d/uim-xim.sh&lt;/code&gt; に以下の内容で起動スクリプトを配置する&lt;br /&gt;
 このファイルを追加することでX11の起動時にUIMが起動する&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
-/Library/Frameworks/UIM.framework/Versions/Current/bin/uim-xim &amp;amp;
+/Library/Frameworks/UIM.framework/Versions/Current/bin/uim-xim &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -624,10 +624,10 @@ Input sourceはMacUIM固定で &lt;code&gt;Cmd+Space&lt;/code&gt; を日英の�
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;~/.uim.d/customs/custom-mozc-keys.scm&lt;/code&gt; をエディタで開いて以下の部分を編集する&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;define&lt;/span&gt; &lt;span class="nf"&gt;mozc&lt;/span&gt;&lt;span class="na"&gt;-on-key&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;))&lt;/span&gt;
-&lt;span class="s1"&gt;(define mozc-on-key? (make-key-predicate &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;define&lt;/span&gt; &lt;span class="nf"&gt;mozc&lt;/span&gt;&lt;span class="na"&gt;-off-key&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;))&lt;/span&gt;
-&lt;span class="s1"&gt;(define mozc-off-key? (make-key-predicate &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;(define mozc-on-key &amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;))
+(define mozc-on-key? (make-key-predicate &amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;)))
+(define mozc-off-key &amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;))
+(define mozc-off-key? (make-key-predicate &amp;#39;(&amp;quot;&amp;lt;Meta&amp;gt; &amp;quot;)))
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -843,4 +843,5 @@ inputタグのボタンをクリックするには以下のようします&lt;/p
   &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 20 Jul 2014 03:30:00 +0900</pubDate><guid>tag:,2014-07-20:posts/2014/07/phantomjs.html</guid><category>JavaScript</category><category>PhantomJS</category></item><item><title>Pelicanはじめました</title><link>/posts/2014/07/pelican.html</link><description>&lt;p&gt;Bloggerでブログを書いていましたが順次こちらへ移行する予定&lt;br /&gt;
-このページは&lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt;に&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;で生成したコンテンツを置いています&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 20 Jul 2014 00:10:00 +0900</pubDate><guid>tag:,2014-07-20:posts/2014/07/pelican.html</guid><category>Pelican</category></item></channel></rss>
+このページは&lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt;に&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;で生成したコンテンツを置いています&lt;br /&gt;
+pipでpelicanとMarkdownをインストールするだけなので準備は簡単ですね&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 20 Jul 2014 00:10:00 +0900</pubDate><guid>tag:,2014-07-20:posts/2014/07/pelican.html</guid><category>Pelican</category></item></channel></rss>

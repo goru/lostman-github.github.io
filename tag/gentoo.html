@@ -137,8 +137,8 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 <li>
 <p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
 <code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
-<div class="highlight"><pre><span class="n">skip</span><span class="o">-</span><span class="n">innodb</span>
-<span class="k">default</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">MyISAM</span>
+<div class="highlight"><pre>skip-innodb
+default-storage-engine=MyISAM
 </pre></div>
 
 
@@ -154,7 +154,8 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 </li>
 <li>
 <p>MySQLを再起動<br />
-再起動すると <code>/var/log/mysql/mysqld.err ...</code></p></li></ol>
+再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
+<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
                     </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
                 </div>

@@ -81,7 +81,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-08-31T03:32:00"> 2014/08/31 Sun</time>
+        <time datetime="2014-08-31T03:32:00+09:00"> 2014/08/31 Sun</time>
     </span>
 
 
@@ -116,8 +116,8 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 <li>
 <p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
 <code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
-<div class="highlight"><pre><span class="n">skip</span><span class="o">-</span><span class="n">innodb</span>
-<span class="k">default</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">MyISAM</span>
+<div class="highlight"><pre>skip-innodb
+default-storage-engine=MyISAM
 </pre></div>
 
 
@@ -137,25 +137,25 @@ epgrecとMediatombで使っているのですが5.5でも問題なさそうな�
 <code>mysql_upgrade</code> を実行するように指示されます <a href="http://server-setting.info/centos/mysql5-1_mysql5-5_upgrade.html">*</a></p>
 <div class="highlight"><pre><span class="c"># /etc/init.d/mysql start</span>
 <span class="c"># tail /var/log/mysql/mysqld.err</span>
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Missing system table mysql.proxies_priv; please run mysql_upgrade to create it
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_current&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_history&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_history_long&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_consumers&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_instruments&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_timers&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;performance_timers&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;threads&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_by_thread_by_event_name&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_by_instance&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_global_by_event_name&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_summary_by_event_name&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_summary_by_instance&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;mutex_instances&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;rwlock_instances&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;cond_instances&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_instances&#39;</span> has the wrong structure
-140830 20:53:41 <span class="o">[</span>Note<span class="o">]</span> Event Scheduler: Loaded 0 events
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Missing system table mysql.proxies_priv<span class="p">;</span> please run mysql_upgrade to create it
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_current&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_history&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_history_long&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_consumers&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_instruments&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;setup_timers&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;performance_timers&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;threads&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_by_thread_by_event_name&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_by_instance&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;events_waits_summary_global_by_event_name&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_summary_by_event_name&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_summary_by_instance&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;mutex_instances&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;rwlock_instances&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;cond_instances&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>ERROR<span class="o">]</span> Native table <span class="s1">&#39;performance_schema&#39;</span>.<span class="s1">&#39;file_instances&#39;</span> has the wrong structure
+<span class="m">140830</span> 20:53:41 <span class="o">[</span>Note<span class="o">]</span> Event Scheduler: Loaded <span class="m">0</span> events
 </pre></div>
 
 

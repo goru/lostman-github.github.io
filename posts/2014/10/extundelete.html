@@ -81,7 +81,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-10-23T01:00:00"> 2014/10/23 Thu</time>
+        <time datetime="2014-10-23T01:00:00+09:00"> 2014/10/23 Thu</time>
     </span>
 
 
@@ -114,25 +114,25 @@ hogeをコピペで貼り付けようとしました<br />
 復活できなかったファイルが以下のようにログに出力されて<br />
 復活できたファイルはカレントディレクトリの <code>RECOVERED_FILES</code> 以下に出力されます</p>
 <div class="highlight"><pre><span class="c"># extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0</span>
-Only show and process deleted entries <span class="k">if </span>they are deleted on or after 1413993600 and before 9223372036854775807.
+Only show and process deleted entries <span class="k">if</span> they are deleted on or after <span class="m">1413993600</span> and before 9223372036854775807.
 NOTICE: Extended attributes are not restored.
-Loading filesystem metadata ... 52164 groups loaded.
-Loading journal descriptors ... 26255 descriptors loaded.
-Searching <span class="k">for </span>recoverable inodes in directory / ...
-160 recoverable inodes found.
-Looking through the directory structure <span class="k">for </span>deleted files ...
-Unable to restore inode 224265493 <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-Unable to restore inode 224265494 <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-Unable to restore inode 224265503 <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
+Loading filesystem metadata ... <span class="m">52164</span> groups loaded.
+Loading journal descriptors ... <span class="m">26255</span> descriptors loaded.
+Searching <span class="k">for</span> recoverable inodes in directory / ...
+<span class="m">160</span> recoverable inodes found.
+Looking through the directory structure <span class="k">for</span> deleted files ...
+Unable to restore inode <span class="m">224265493</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
+Unable to restore inode <span class="m">224265494</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
+Unable to restore inode <span class="m">224265503</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
 ...
-Unable to restore inode 91544629 <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode 91544798 <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode 91544633 <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
+Unable to restore inode <span class="m">91544629</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
+Unable to restore inode <span class="m">91544798</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
+Unable to restore inode <span class="m">91544633</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
 ...
-30 recoverable inodes still lost.
-Unable to restore inode 99378493 <span class="o">(</span>file.99378493<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode 99379721 <span class="o">(</span>file.99379721<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode 99379967 <span class="o">(</span>file.99379967<span class="o">)</span>: No undeleted copies found in the journal.
+<span class="m">30</span> recoverable inodes still lost.
+Unable to restore inode <span class="m">99378493</span> <span class="o">(</span>file.99378493<span class="o">)</span>: No undeleted copies found in the journal.
+Unable to restore inode <span class="m">99379721</span> <span class="o">(</span>file.99379721<span class="o">)</span>: No undeleted copies found in the journal.
+Unable to restore inode <span class="m">99379967</span> <span class="o">(</span>file.99379967<span class="o">)</span>: No undeleted copies found in the journal.
 ...
 </pre></div>
 
