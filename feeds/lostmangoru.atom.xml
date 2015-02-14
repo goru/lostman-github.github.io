@@ -38,6 +38,16 @@
 &lt;/li&gt;
 &lt;li&gt;Arduinoとしてでなく直接AVRを扱ってみたい&lt;/li&gt;
 &lt;li&gt;PICも&lt;/li&gt;
+&lt;li&gt;家全体の電力を計測したい&lt;ul&gt;
+&lt;li&gt;このあたりを参考に&lt;br /&gt;
+&lt;a href="http://www.tumori.nu/mono/clamp/"&gt;http://www.tumori.nu/mono/clamp/&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://toolmaster.blog.fc2.com/blog-entry-9.html"&gt;http://toolmaster.blog.fc2.com/blog-entry-9.html&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://homepage3.nifty.com/sudamiyako/zk/PwrChk/pwrchk.html"&gt;http://homepage3.nifty.com/sudamiyako/zk/PwrChk/pwrchk.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;あとこのあたりを参考に &lt;a href="http://tocos-wireless.com/jp/products/TWE-Lite-DIP/"&gt;TWE-Lite&lt;/a&gt; を使って無線化をしてみたい&lt;br /&gt;
+&lt;a href="http://qiita.com/ksasao/items/1a221843894fdb57677b"&gt;http://qiita.com/ksasao/items/1a221843894fdb57677b&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://qiita.com/lutecia16v/items/efff1c6482e6ce713771"&gt;http://qiita.com/lutecia16v/items/efff1c6482e6ce713771&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;木工関係&lt;ul&gt;
