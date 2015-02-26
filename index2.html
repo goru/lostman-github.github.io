@@ -43,6 +43,9 @@ blog.gorugle.org            </a>
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
                         <li >
+                            <a href="/category/gadget.html">Gadget</a>
+                        </li>
+                        <li >
                             <a href="/category/internet.html">Internet</a>
                         </li>
                         <li >
@@ -64,6 +67,55 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
+            <article>
+                <h2><a href="/posts/2014/08/mysql5.5.html">MySQL5.1から5.5へアップデート</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
+epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
+<ol>
+<li>
+<p>MySQLの停止</p>
+<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>emergeを使用してアップデート</p>
+<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
+<span class="c"># etc-update</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
+<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
+<div class="highlight"><pre>skip-innodb
+default-storage-engine=MyISAM
+</pre></div>
+
+
+</li>
+<li>
+<p>関連パッケージの更新</p>
+<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
+<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
+<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>MySQLを再起動<br />
+再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
+<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="/posts/2014/08/self-signed-certificate.html">Nginxで自己署名証明書を使う</a></h2>
                 <div class="summary">
@@ -429,6 +481,11 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         <li class="list-group-item tag-2">
                             <a href="/tag/windows.html">
                                 Windows
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/ws-50.html">
+                                WS-50
                             </a>
                         </li>
                     </ul>

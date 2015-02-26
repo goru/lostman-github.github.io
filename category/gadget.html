@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Embedded - blog.gorugle.org</title>
+    <title>Gadget - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -39,10 +39,10 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
                         <li >
@@ -68,178 +68,45 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
+                <h2><a href="/posts/2015/02/withings.html">WiFi機能付き体重計を買ってみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
-今回使用したのは以下の部品</p>
+                        <p>体重計は元々持っていたのですが最近多少体重が気になってきているのと<br />
+あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;記録をつけるのが面倒<br />
+と言うことで <a href="http://www.amazon.co.jp/dp/B00GRP609C">Withings Smart Body Analyzer WS-50</a> を購入してみました<br />
+とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います</p>
+<p><a href="/static/images/2015/02/IMAG1576.jpg"><img alt="box" src="/static/images/2015/02/IMAG1576_s.jpg" /></a>
+<a href="/static/images/2015/02/IMAG1578.jpg"><img alt="unbox" src="/static/images/2015/02/IMAG1578_s.jpg" /></a></p>
+<p>まず無線を使用してデータを外部に記録してくれる体重計には主にBluetoothとWiFiの2種類があるみたいです<br />
+それ以外にFelicaを使用するものもあるようでした<br />
+Bluetooth対応のものは一度スマホのアプリへデータを送信し、アプリがサーバへデータを送信する仕組みになっているみたいです<br />
+WiFi対応のものはアクセスポイントを介し直接サーバへデータを送信するようです<br />
+あまり詳しくは調べていないのですが、おそらくBluetooth対応の機種ではデータを送信する際に<br />
+必ずアプリ側の操作が必要なのではないかということが気になりました<br />
+それでは何かしらの操作が必要という点では手作業で記録するのと変わらないわけで<br />
+あまりメリットがないかなと感じたためWiFi対応の機種を購入することに決めました</p>
+<p>とかそんなことをいろいろ考えてWS-50を購入してみて良かったと思った点は</p>
 <ul>
-<li>Arduino Uno</li>
-<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> x1 1個50円</li>
-<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> x3 10個100円</li>
-<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> x1 1個10円</li>
-<li>プルダウン用の抵抗1KΩ x1</li>
+<li>体重計に乗るだけで電源がONになり計測開始</li>
+<li>前回体重を元に乗っている人を自動判別</li>
+<li>計測が終わると自動でデータをアップロード</li>
+<li>勝手に電源OFF</li>
 </ul>
-<p>それぞれを以下のように接続した</p>
-<table>
-<thead>
-<tr>
-<th>Arduino</th>
-<th>部品</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>GP1UXC41QSのVout</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>GP1UXC41QSのGND</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>GP1UXC41QSのVcc</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>タクトスイッチの2番</td>
-</tr>
-<tr>
-<td>3</td>
-<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>OSI5LA5113A x3 の+</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>OSI5LA5113A x3 の-</td>
-</tr>
-</tbody>
-</table>
-<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とあるけれど<br />
-お試しなので今回は省略して回路を組んだ<br />
-手元の環境では特に問題は起きていないけれど誤動作する可能性があるので注意</p>
-<p>実際に接続するとこのようになる</p>
-<p><a href="/static/images/2014/11/IMAG1268.jpg"><img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /></a></p>
-<p>ソースコードは ...</p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
-配線は以下の通り  </p>
-<table>
-<thead>
-<tr>
-<th>Pin</th>
-<th>AquesTalk</th>
-<th>-&gt;</th>
-<th>Arduino</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>/RESET</td>
-<td></td>
-<td>RESET</td>
-</tr>
-<tr>
-<td>4</td>
-<td>SMOD0</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SMOD1</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>7</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>8</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>20</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>22</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>27</td>
-<td>SDA</td>
-<td></td>
-<td>A4</td>
-</tr>
-<tr>
-<td>28</td>
-<td>SCL</td>
-<td></td>
-<td>A5</td>
-</tr>
-</tbody>
-</table>
-<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
-I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
-あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
-I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
-といっても個別にパーツを揃えたわけでなく</p>
+<p>といったところです<br />
+個別に見るとそれほどすごい機能でもないし、おそらく他の体重計でも実現できていると思うのですが<br />
+なにがいいかというと、とりあえずなにも考えずに乗って画面が消えたら降りればいい、というところ<br />
+僕が体重を計るのは朝か夜の風呂から出たあとなのですが、風呂から出た時は眼鏡を掛けていません<br />
+結構目が悪いので立った状態で体重計に乗ると表示が見えないんです<br />
+なので今まではなんとなくタイミングを見計らって体重計から降りて確認していました<br />
+今では画面が消えたら降りて、あとでスマホで確認すればOKです、非常にスマートだと思います</p>
+<p>他社も似たようなWiFi機能付き体重計を出しているのですがその中でなぜこの機種を選んだかというと<br />
+計測したデータの預りが無料だった点、あとCSVでのエクスポートもできるみたいです<br />
+正直、半年以上は有料とか、機能制限があって全ての機能を使うには課金とか、ちょっとそれは嫌だなと思いました…</p>
+<p>そんな感じでこの体重計には概ね満足だったのですが、いくつか気になる点もあったのであげておきます</p>
 <ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
-<li>100均で売っているスピーカ</li>
-</ul>
-<p>これらを接続しただけです<br />
-今回試した手順を以下にまとめておきます<br />
-後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
-<ol>
-<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
-<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
-<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
-<li>アンプの <code>SPK ...</code></li></ol>
+<li>付属の説明書が役に立たない ...</li></ul>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/02/withings.html">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -390,7 +257,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 lostman/ごる
+         <div class="col-xs-10">&copy; 2015 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
