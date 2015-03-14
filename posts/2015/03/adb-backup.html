@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>操作ミスでファイルを消してしまった時の復活方法 - blog.gorugle.org</title>
+    <title>adb backupのデータを展開する - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,13 +36,13 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
                         <li >
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2014/10/extundelete.html"
+                    <a href="/posts/2015/03/adb-backup.html"
                        rel="bookmark"
-                       title="Permalink to 操作ミスでファイルを消してしまった時の復活方法">
-                        操作ミスでファイルを消してしまった時の復活方法
+                       title="Permalink to adb backupのデータを展開する">
+                        adb backupのデータを展開する
                     </a>
                 </h1>
             </header>
@@ -84,64 +84,86 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-10-23T01:00:00+09:00"> 2014/10/23 Thu</time>
+        <time datetime="2015-03-14T16:53:00+09:00"> 2015/03/14 Sat</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/linux.html">Linux</a>
+	<a href="/tag/android.html">Android</a>
+        /
+	<a href="/tag/htl21.html">HTL21</a>
+        /
+	<a href="/tag/so-02g.html">SO-02G</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>ファイルサーバのデータを整理中に <code>rm *hoge*</code> と入力しようとして <code>rm *</code> まで入力した状態で<br />
-hogeをコピペで貼り付けようとしました<br />
-この時hogeの先頭に改行が含まれていたため、 <code>rm *</code> が実行されてしまい<br />
-カレントディレクトリ内のファイルを全て削除してしまいました、事故です<br />
-このような場合、 <a href="http://extundelete.sourceforge.net/">extundelete</a> というソフトを使うと復活できるみたいなので、試してみました</p>
-<p>まず削除してしまったファイルがあるボリュームをroでマウントしなおします<br />
-この作業はできるだけ早く行う必要があります<br />
-自分の場合、別のプロセスがこのボリュームに書き込みをしていたので<br />
-削除したファイルのinodeが再利用されてしまいかなりのファイルを失いました</p>
-<div class="highlight"><pre><span class="c"># mount -o remount,ro /mnt/lvm</span>
+                <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
+Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
+アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
+本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
+Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
+<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
+<ul>
+<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
+</ul>
+<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
+SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
+<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
+                             - write an archive of the device&#39;s data to &lt;file&gt;.
+                               If no -f option is supplied then the data is written
+                               to &quot;backup.ab&quot; in the current directory.
+                               (-apk|-noapk enable/disable backup of the .apks themselves
+                                  in the archive; the default is noapk.)
+                               (-obb|-noobb enable/disable backup of any installed apk expansion
+                                  (aka .obb) files associated with each application; the default
+                                  is noobb.)
+                               (-shared|-noshared enable/disable backup of the device&#39;s
+                                  shared storage / SD card contents; the default is noshared.)
+                               (-all means to back up all installed applications)
+                               (-system|-nosystem toggles whether -all automatically includes
+                                  system applications; the default is to include system apps)
+                               (&lt;packages...&gt; is the list of applications to be backed up.  If
+                                  the -all or -shared flags are passed, then the package
+                                  list is optional.  Applications explicitly given on the
+                                  command line will be included even if -nosystem would
+                                  ordinarily cause them to be omitted.)
 </pre></div>
 
 
-<p>次にdateコマンドで操作ミスが発生した時刻の確認をします</p>
-<div class="highlight"><pre><span class="nv">$ </span>date +%s
-1413993600
+<p><code>adb backup</code> の説明はこんな感じなので、アプリのバックアップが必要なければ <code>-shared</code> だけ指定すればよさそう<br />
+<code>-shared</code> を付けて実行すると SD カードの中身までバックアップしようとするので実行前に外しておくこと<br />
+実行するとコンソールにこのようなメッセージが出力されるので端末の画面を確認する</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb backup -f backup.ab -shared
+Now unlock your device and confirm the backup operation.
 </pre></div>
 
 
-<p>extundeleteで復活させます<br />
-復活できなかったファイルが以下のようにログに出力されて<br />
-復活できたファイルはカレントディレクトリの <code>RECOVERED_FILES</code> 以下に出力されます</p>
-<div class="highlight"><pre><span class="c"># extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0</span>
-Only show and process deleted entries <span class="k">if</span> they are deleted on or after <span class="m">1413993600</span> and before 9223372036854775807.
-NOTICE: Extended attributes are not restored.
-Loading filesystem metadata ... <span class="m">52164</span> groups loaded.
-Loading journal descriptors ... <span class="m">26255</span> descriptors loaded.
-Searching <span class="k">for</span> recoverable inodes in directory / ...
-<span class="m">160</span> recoverable inodes found.
-Looking through the directory structure <span class="k">for</span> deleted files ...
-Unable to restore inode <span class="m">224265493</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-Unable to restore inode <span class="m">224265494</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-Unable to restore inode <span class="m">224265503</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-...
-Unable to restore inode <span class="m">91544629</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">91544798</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">91544633</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-...
-<span class="m">30</span> recoverable inodes still lost.
-Unable to restore inode <span class="m">99378493</span> <span class="o">(</span>file.99378493<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">99379721</span> <span class="o">(</span>file.99379721<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">99379967</span> <span class="o">(</span>file.99379967<span class="o">)</span>: No undeleted copies found in the journal.
-...
+<p><a href="/static/images/2015/03/Screenshot_2015-03-15-02-27-34.png"><img alt="dialog" src="/static/images/2015/03/Screenshot_2015-03-15-02-27-34_s.png" /></a></p>
+<p>端末側にこのようなダイアログが表示されるので、パスワードの入力をせずに <code>データのバックアップ</code> をタップする<br />
+バックアップの処理中は特にプログレスが表示されるわけではないのでそのまま放置する<br />
+処理が終了するとしれっとプロンプトが戻ってきているはず</p>
+<p>これでデータの吸い出しは終わったので変換して展開すれば取り出すことができる<br />
+<a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a> のサイトから <code>abe.jar</code> をダウンロードする</p>
+<div class="highlight"><pre><span class="n">unpack</span><span class="o">:</span> <span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">abe</span><span class="o">.</span><span class="na">jar</span> <span class="n">unpack</span> <span class="o">&lt;</span><span class="n">backup</span><span class="o">.</span><span class="na">ab</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">backup</span><span class="o">.</span><span class="na">tar</span><span class="o">&gt;</span> <span class="o">[</span><span class="n">password</span><span class="o">]</span>
 </pre></div>
 
 
-<p>オペミス怖いですね…<br />
-とりあえず <code>rm</code> は <code>rm -i</code> のエイリアスにしておこうかと思います</p>
+<p>README を読むと展開をするにはこのようなコマンドを実行すればいいみたいなのでそのとおりに実行する</p>
+<div class="highlight"><pre><span class="nv">$ </span>java -jar abe.jar unpack backup.ab backup.tar
+Strong AES encryption not allowed
+Magic: ANDROID BACKUP
+Version: 1
+Compressed: 1
+Algorithm: none
+<span class="m">1710935552</span> bytes written to backup.tar.
+</pre></div>
+
+
+<p>これで一般的な tar 形式に変換されたので展開して中身を取り出すことができた<br />
+今回は取り出した中身を SD カードにコピーして新しい端末で使用することにした</p>
+<p>参考
+* <a href="http://port139.hatenablog.com/entry/2014/07/17/065152">adb backup で Android 端末のバックアップを作成する(3)</a></p>
             </div>
             <!-- /.entry-content -->
         </article>

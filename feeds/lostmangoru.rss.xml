@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 27 Feb 2015 01:49:00 +0900</lastBuildDate><item><title>WiFi機能付き体重計を買ってみた</title><link>/posts/2015/02/withings.html</link><description>&lt;p&gt;体重計は元々持っていたのですが最近多少体重が気になってきているのと&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 14 Mar 2015 16:53:00 +0900</lastBuildDate><item><title>adb backupのデータを展開する</title><link>/posts/2015/03/adb-backup.html</link><description>&lt;p&gt;会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので&lt;br /&gt;
+Xperia Z3 Compact (SO-02G) に変えてもらいました&lt;br /&gt;
+アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど&lt;br /&gt;
+本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした&lt;br /&gt;
+Android 4.0 以降からは &lt;code&gt;adb backup&lt;/code&gt; が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ&lt;br /&gt;
+&lt;code&gt;adb backup&lt;/code&gt; でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://sourceforge.jp/projects/sfnet_adbextractor/"&gt;Android Backup Extractor&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう&lt;br /&gt;
+SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;adb backup [-f &amp;lt;file&amp;gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&amp;lt;packages...&amp;gt;]
+                             - write an archive of the device&amp;#39;s data to &amp;lt;file&amp;gt;.
+                               If no -f option is supplied then the data is written
+                               to &amp;quot;backup.ab&amp;quot; in the current directory.
+                               (-apk|-noapk enable/disable backup of the .apks themselves
+                                  in the archive; the default is noapk.)
+                               (-obb|-noobb enable/disable backup of any installed apk expansion
+                                  (aka .obb) files associated with each application; the default
+                                  is noobb.)
+                               (-shared|-noshared enable/disable backup of the device&amp;#39;s
+                                  shared storage / SD card contents; the default is noshared.)
+                               (-all means to back up all installed applications)
+                               (-system|-nosystem toggles whether -all automatically includes
+                                  system applications; the default is to include system apps)
+                               (&amp;lt;packages...&amp;gt; is the list of applications to be backed up.  If
+                                  the -all or -shared flags are passed, then the package
+                                  list is optional.  Applications explicitly given on the
+                                  command line will be included even if -nosystem would
+                                  ordinarily cause them to be omitted.)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;adb backup&lt;/code&gt; の説明はこんな感じなので、アプリのバックアップが必要なければ &lt;code&gt;-shared&lt;/code&gt; だけ指定すればよさそう&lt;br /&gt;
+&lt;code&gt;-shared&lt;/code&gt; を付けて実行すると SD カードの中身までバックアップしようとするので実行前に外しておくこと&lt;br /&gt;
+実行するとコンソールにこのようなメッセージが出力されるので端末の画面を確認する&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb backup -f backup.ab -shared
+Now unlock your device and confirm the backup operation.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="/static/images/2015/03/Screenshot_2015-03-15-02-27-34.png"&gt;&lt;img alt="dialog" src="/static/images/2015/03/Screenshot_2015-03-15-02-27-34_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;端末側にこのようなダイアログが表示されるので、パスワードの入力をせずに &lt;code&gt;データのバックアップ&lt;/code&gt; をタップする&lt;br /&gt;
+バックアップの処理中は特にプログレスが表示されるわけではないのでそのまま放置する&lt;br /&gt;
+処理が終了するとしれっとプロンプトが戻ってきているはず&lt;/p&gt;
+&lt;p&gt;これでデータの吸い出しは終わったので変換して展開すれば取り出すことができる&lt;br /&gt;
+&lt;a href="http://sourceforge.jp/projects/sfnet_adbextractor/"&gt;Android Backup Extractor&lt;/a&gt; のサイトから &lt;code&gt;abe.jar&lt;/code&gt; をダウンロードする&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;java&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;jar&lt;/span&gt; &lt;span class="n"&gt;abe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;jar&lt;/span&gt; &lt;span class="n"&gt;unpack&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ab&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;README を読むと展開をするにはこのようなコマンドを実行すればいいみたいなのでそのとおりに実行する&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;java -jar abe.jar unpack backup.ab backup.tar
+Strong AES encryption not allowed
+Magic: ANDROID BACKUP
+Version: 1
+Compressed: 1
+Algorithm: none
+&lt;span class="m"&gt;1710935552&lt;/span&gt; bytes written to backup.tar.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これで一般的な tar 形式に変換されたので展開して中身を取り出すことができた&lt;br /&gt;
+今回は取り出した中身を SD カードにコピーして新しい端末で使用することにした&lt;/p&gt;
+&lt;p&gt;参考
+* &lt;a href="http://port139.hatenablog.com/entry/2014/07/17/065152"&gt;adb backup で Android 端末のバックアップを作成する(3)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 14 Mar 2015 16:53:00 +0900</pubDate><guid>tag:,2015-03-14:posts/2015/03/adb-backup.html</guid><category>Android</category><category>HTL21</category><category>SO-02G</category></item><item><title>WiFi機能付き体重計を買ってみた</title><link>/posts/2015/02/withings.html</link><description>&lt;p&gt;体重計は元々持っていたのですが最近多少体重が気になってきているのと&lt;br /&gt;
 あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;amp;記録をつけるのが面倒&lt;br /&gt;
 と言うことで &lt;a href="http://www.amazon.co.jp/dp/B00GRP609C"&gt;Withings Smart Body Analyzer WS-50&lt;/a&gt; を購入してみました&lt;br /&gt;
 とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います&lt;/p&gt;

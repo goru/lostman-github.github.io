@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>操作ミスでファイルを消してしまった時の復活方法 - blog.gorugle.org</title>
+    <title>Android - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,7 +36,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -67,85 +67,28 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="/posts/2014/10/extundelete.html"
-                       rel="bookmark"
-                       title="Permalink to 操作ミスでファイルを消してしまった時の復活方法">
-                        操作ミスでファイルを消してしまった時の復活方法
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <time datetime="2014-10-23T01:00:00+09:00"> 2014/10/23 Thu</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/linux.html">Linux</a>
-    
-</footer><!-- /.post-info -->                    </div>
+            <article>
+                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
+Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
+アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
+本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
+Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
+<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
+<ul>
+<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
+</ul>
+<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
+SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
+<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
+                             - write an archive of the device&#39;s ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
                 </div>
-                <p>ファイルサーバのデータを整理中に <code>rm *hoge*</code> と入力しようとして <code>rm *</code> まで入力した状態で<br />
-hogeをコピペで貼り付けようとしました<br />
-この時hogeの先頭に改行が含まれていたため、 <code>rm *</code> が実行されてしまい<br />
-カレントディレクトリ内のファイルを全て削除してしまいました、事故です<br />
-このような場合、 <a href="http://extundelete.sourceforge.net/">extundelete</a> というソフトを使うと復活できるみたいなので、試してみました</p>
-<p>まず削除してしまったファイルがあるボリュームをroでマウントしなおします<br />
-この作業はできるだけ早く行う必要があります<br />
-自分の場合、別のプロセスがこのボリュームに書き込みをしていたので<br />
-削除したファイルのinodeが再利用されてしまいかなりのファイルを失いました</p>
-<div class="highlight"><pre><span class="c"># mount -o remount,ro /mnt/lvm</span>
-</pre></div>
-
-
-<p>次にdateコマンドで操作ミスが発生した時刻の確認をします</p>
-<div class="highlight"><pre><span class="nv">$ </span>date +%s
-1413993600
-</pre></div>
-
-
-<p>extundeleteで復活させます<br />
-復活できなかったファイルが以下のようにログに出力されて<br />
-復活できたファイルはカレントディレクトリの <code>RECOVERED_FILES</code> 以下に出力されます</p>
-<div class="highlight"><pre><span class="c"># extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0</span>
-Only show and process deleted entries <span class="k">if</span> they are deleted on or after <span class="m">1413993600</span> and before 9223372036854775807.
-NOTICE: Extended attributes are not restored.
-Loading filesystem metadata ... <span class="m">52164</span> groups loaded.
-Loading journal descriptors ... <span class="m">26255</span> descriptors loaded.
-Searching <span class="k">for</span> recoverable inodes in directory / ...
-<span class="m">160</span> recoverable inodes found.
-Looking through the directory structure <span class="k">for</span> deleted files ...
-Unable to restore inode <span class="m">224265493</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-Unable to restore inode <span class="m">224265494</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-Unable to restore inode <span class="m">224265503</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: Space has been reallocated.
-...
-Unable to restore inode <span class="m">91544629</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">91544798</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">91544633</span> <span class="o">(</span>/path/to/deleted/file<span class="o">)</span>: No undeleted copies found in the journal.
-...
-<span class="m">30</span> recoverable inodes still lost.
-Unable to restore inode <span class="m">99378493</span> <span class="o">(</span>file.99378493<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">99379721</span> <span class="o">(</span>file.99379721<span class="o">)</span>: No undeleted copies found in the journal.
-Unable to restore inode <span class="m">99379967</span> <span class="o">(</span>file.99379967<span class="o">)</span>: No undeleted copies found in the journal.
-...
-</pre></div>
-
-
-<p>オペミス怖いですね…<br />
-とりあえず <code>rm</code> は <code>rm -i</code> のエイリアスにしておこうかと思います</p>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
