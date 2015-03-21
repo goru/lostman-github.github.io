@@ -20,7 +20,7 @@ Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気�
 
 なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした  
 ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする  
-あとスマホでのタスクの確認はRedmineではできなくて、RedminePMというアプリから行うことにしました
+あとスマホでのタスクの確認はRedmineではできなくて、 [RedminePM](https://play.google.com/store/apps/details?id=jp.co.projectmode.redminepm) というアプリから行うことにしました
 
 今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して  
 ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール  
