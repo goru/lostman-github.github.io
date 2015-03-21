@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 14 Mar 2015 16:53:00 +0900</lastBuildDate><item><title>adb backupのデータを展開する</title><link>/posts/2015/03/adb-backup.html</link><description>&lt;p&gt;会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 21 Mar 2015 15:53:00 +0900</lastBuildDate><item><title>Redmineをインストールしてみた</title><link>/posts/2015/03/redmine.html</link><description>&lt;p&gt;Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて&lt;br /&gt;
+日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした&lt;br /&gt;
+Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気がしていたんだけれどRedmineは以前仕事でも使っていたし&lt;br /&gt;
+自分のサーバにインストールして使うとなると思いの外選択肢が少ない感じだったのでRedmineを入れてみました&lt;/p&gt;
+&lt;p&gt;もやっとした要件は&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;サービスでなく、自分のサーバにインストールできること&lt;/li&gt;
+&lt;li&gt;依存するものが少なく、導入が楽&lt;/li&gt;
+&lt;li&gt;日付を入れずにタスクを登録できる&lt;/li&gt;
+&lt;li&gt;優先度を設定できる&lt;/li&gt;
+&lt;li&gt;日付が入っているものはカレンダーで確認できる&lt;/li&gt;
+&lt;li&gt;スマホからタスクを確認、編集できる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした&lt;br /&gt;
+ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする&lt;br /&gt;
+あとスマホでのタスクの確認はRedmineではできなくて、RedminePMというアプリから行うことにしました&lt;/p&gt;
+&lt;p&gt;今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して&lt;br /&gt;
+ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール&lt;br /&gt;
+と、全て専用ユーザのホームディレクトリ以下で済ますことにしました&lt;br /&gt;
+また、追加でインストールするものも抑えたかったのでRedmineはWEBRick、SQLite、ImageMagickなし、で動かすことにしました&lt;/p&gt;
+&lt;p&gt;まずユーザを作って、ログイン&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# useradd -m redmine&lt;/span&gt;
+&lt;span class="c"&gt;# su - redmine&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://github.com/sstephenson/rbenv"&gt;rbenv&lt;/a&gt; と &lt;a href="https://github.com/sstephenson/ruby-build"&gt;ruby-build&lt;/a&gt; をインストールする&lt;br /&gt;
+ここからは全てこのユーザのホームディレクトリ以下で作業&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.qoosky.net/references/128/"&gt;rbenvおよびbundlerの基本的な使用方法&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://qiita.com/emadurandal/items/a60886152a4c99ce1017"&gt;Rails開発環境の構築（rbenvでRuby導入からBundler、Rails導入まで）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;rbenvとruby-buildをclone&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/sstephenson/rbenv.git .rbenv
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;rbenvの設定を.bashrcに追加&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;export PATH=&amp;quot;$HOME/.rbenv/bin:$PATH&amp;quot;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt;.bashrc
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(rbenv init -)&amp;quot;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt;.bashrc
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;rbenvでrubyとbundlerをインストールする&lt;br /&gt;
+&lt;code&gt;rbenv install -l&lt;/code&gt; でインストール可能なRubyのバージョン、 &lt;code&gt;rbenv versions&lt;/code&gt; でインストール済みを確認できる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rbenv install -l
+...
+  2.2.0-rc1
+  2.2.0
+  2.2.1
+  2.3.0-dev
+...
+&lt;span class="nv"&gt;$ &lt;/span&gt;rbenv install 2.2.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;rbenv versions
+  2.2.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;rbenv global 2.2.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;rbenv &lt;span class="nb"&gt;exec &lt;/span&gt;gem install bundler --no-rdoc --no-ri
+&lt;span class="nv"&gt;$ &lt;/span&gt;rbenv rehash
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Redmineをインストールする&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.redmine.jp/articles/3_0/installation_centos/"&gt;Redmine 3.0をCentOS 7.0にインストールする手順&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://redmine.jp/guide/RedmineInstall/"&gt;Redmineのインストール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.redmine.org/projects/redmine/wiki/redmineinstall"&gt;Installing Redmine&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Redmineをclone (最新のバージョンは3.0なので、ブランチを切り替え)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/redmine/redmine.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;redmine
+&lt;span class="nv"&gt;$ &lt;/span&gt;git checkout 3.0-stable
+&lt;span class="nv"&gt;$ &lt;/span&gt;cp config/database.yml.example config/database.yml
+&lt;span class="nv"&gt;$ &lt;/span&gt;cp config/configuration.yml.example config/configuration.yml
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;config/database.yml&lt;/code&gt; は以下のSQLiteの部分以外すべてコメントアウト&lt;br /&gt;
+&lt;code&gt;config/configuration.yml&lt;/code&gt; には本来メールサーバ等の設定が必要だけれど今回は必要ないので特に編集はしない&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# SQLite3 configuration example
+production:
+  adapter: sqlite3
+  database: db/redmine.sqlite3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;RedmineがURLのサブディレクトリ以下に見えるようにインストールしたかったのでこれらを参考にした&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.redmine.org/boards/2/topics/30676?r=30881#message-30881"&gt;Redmine 2.0 "No route matches"&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.redmine.org/issues/11058"&gt;Run Redmine in a sub directory results in "No route matches"&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.redmine.org/issues/11881#note-14"&gt;FCGI mode does not support sub-URI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;config/environment.rb&lt;/code&gt; の末尾の部分がこのようになるように &lt;code&gt;default_scope&lt;/code&gt; と &lt;code&gt;relative_url_root&lt;/code&gt; を追加&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;RedmineApp&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Application&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;routes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_scope&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:path&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/redmine&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:shallow_path&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/redmine&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# Initialize the Rails application&lt;/span&gt;
+&lt;span class="no"&gt;Rails&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;initialize!&lt;/span&gt;
+&lt;span class="no"&gt;Redmine&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Utils&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;relative_url_root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/redmine&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;サブディレクトリにアクセスしてもpublicの中身が見えるようにリンクを作成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ln -s . public/redmine
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Redmineが依存するGemをインストール、各種初期データの生成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;bundle install --without development &lt;span class="nb"&gt;test &lt;/span&gt;rmagick --path vendor/bundle
+&lt;span class="nv"&gt;$ &lt;/span&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake generate_secret_token
+&lt;span class="nv"&gt;$ RAILS_ENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;production bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake db:migrate
+&lt;span class="nv"&gt;$ RAILS_ENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;production &lt;span class="nv"&gt;REDMINE_LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ja bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake redmine:load_default_data
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ひと通りインストールが終わったので起動して &lt;a href="http://localhost:3000/redmine"&gt;http://localhost:3000/redmine&lt;/a&gt; にアクセスしてみる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ruby bin/rails server webrick -e production
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bin/rails&lt;/code&gt; を使う (2.x系と変わっているらしい&lt;/li&gt;
+&lt;li&gt;デフォルトでは127.0.0.1にbindされるので別のマシンからアクセスしたい場合は &lt;code&gt;-b 192.168.1.1&lt;/code&gt; オプションを使う&lt;/li&gt;
+&lt;li&gt;デーモンとして起動させたい場合は &lt;code&gt;-d&lt;/code&gt; オプションを使う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;起動しなかったり、うまく動作していなさそうだったら &lt;code&gt;log/production.log&lt;/code&gt; を確認する&lt;br /&gt;
+問題なさそうであれば &lt;code&gt;config/environments/production.rb&lt;/code&gt; を編集してログレベルを下げる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log_level&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="ss"&gt;:warn&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;前段のNginxに設定を追加して外からアクセスできるようにしておわり&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;redmine&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;auth_basic&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;restricted - redmine&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;auth_basic_user_file&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;htpasswd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;redmine&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;3000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 21 Mar 2015 15:53:00 +0900</pubDate><guid>tag:,2015-03-21:posts/2015/03/redmine.html</guid><category>Ruby</category><category>Redmine</category><category>Nginx</category></item><item><title>adb backupのデータを展開する</title><link>/posts/2015/03/adb-backup.html</link><description>&lt;p&gt;会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので&lt;br /&gt;
 Xperia Z3 Compact (SO-02G) に変えてもらいました&lt;br /&gt;
 アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど&lt;br /&gt;
 本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした&lt;br /&gt;

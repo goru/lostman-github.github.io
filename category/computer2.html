@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Android - blog.gorugle.org</title>
+    <title>Computer - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,7 +36,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -68,28 +68,36 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
+                <h2><a href="/posts/2014/08/macuim-mozc.html">MacUIM/Mozcを使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
-Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
-アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
-本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
-Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
-<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
-<ul>
-<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
-</ul>
-<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
-SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
-<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
-                             - write an archive of the device&#39;s ...</pre></div>
+                        <p>ターミナルは<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a>をビルドして使用しています<br />
+これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません<br />
+今までほとんど困ることはなくて、必要なときはコピペで対応していました<br />
+ただ最近ここをvimで書いていることもあり、<a href="https://code.google.com/p/macuim/">MacUIM</a>をインストールして入力できるようにしました</p>
+<ol>
+<li>まず上記サイトからダウンロードしてきたアーカイブをインストールします</li>
+<li>次に <code>System Preferences -&gt; Language &amp; Text -&gt; Input Sources</code> で <code>MacUIM (Japanese)</code> のチェックを入れる</li>
+<li><code>System Preferences -&gt; MacUIM</code> を開いて<ol>
+<li><code>General -&gt; Input Method</code> で <code>Mozc</code> を選択</li>
+<li><code>Helper -&gt; Use Helper-Applet</code> をチェック (メニューバーに状態が表示される)</li>
+<li><code>Uim -&gt; Global settings -&gt; Specify default IM</code> をチェック</li>
+<li><code>Uim -&gt; Global settings -&gt; Default input method</code> で ...</li></ol></li></ol>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/macuim-mozc.html">more ...</a>
                 </div>
             </article>
             <hr/>
 
+    <ul class="pagination">
+            <li class="prev"><a href="/category/computer.html">&laquo;</a>
+            </li>
+                <li class=""><a
+                        href="/category/computer.html">1</a></li>
+                <li class="active"><a
+                        href="/category/computer2.html">2</a></li>
+            <li class="next disabled"><a href="#">&raquo;</a></li>
+    </ul>
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
 

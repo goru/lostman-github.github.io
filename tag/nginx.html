@@ -68,6 +68,46 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/03/redmine.html">Redmineをインストールしてみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて<br />
+日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした<br />
+Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気がしていたんだけれどRedmineは以前仕事でも使っていたし<br />
+自分のサーバにインストールして使うとなると思いの外選択肢が少ない感じだったのでRedmineを入れてみました</p>
+<p>もやっとした要件は</p>
+<ul>
+<li>サービスでなく、自分のサーバにインストールできること</li>
+<li>依存するものが少なく、導入が楽</li>
+<li>日付を入れずにタスクを登録できる</li>
+<li>優先度を設定できる</li>
+<li>日付が入っているものはカレンダーで確認できる</li>
+<li>スマホからタスクを確認、編集できる</li>
+</ul>
+<p>なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした<br />
+ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする<br />
+あとスマホでのタスクの確認はRedmineではできなくて、RedminePMというアプリから行うことにしました</p>
+<p>今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して<br />
+ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール<br />
+と、全て専用ユーザのホームディレクトリ以下で済ますことにしました<br />
+また、追加でインストールするものも抑えたかったのでRedmineはWEBRick、SQLite、ImageMagickなし、で動かすことにしました</p>
+<p>まずユーザを作って、ログイン</p>
+<div class="highlight"><pre><span class="c"># useradd -m redmine</span>
+<span class="c"># su - redmine</span>
+</pre></div>
+
+
+<p><a href="https://github.com/sstephenson/rbenv">rbenv</a> と <a href="https://github.com/sstephenson/ruby-build">ruby-build</a> をインストールする<br />
+ここからは全てこのユーザのホームディレクトリ以下で作業</p>
+<ul>
+<li><a href="https://www.qoosky.net/references/128/">rbenvおよびbundlerの基本的な使用方法</a>  </li>
+<li><a href="http://qiita.com/emadurandal/items/a60886152a4c99ce1017">Rails開発環境の構築 ...</a></li></ul>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/redmine.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/08/self-signed-certificate.html">Nginxで自己署名証明書を使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -201,7 +241,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
@@ -214,6 +254,16 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         <li class="list-group-item tag-4">
                             <a href="/tag/phantomjs.html">
                                 PhantomJS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/redmine.html">
+                                Redmine
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/ruby.html">
+                                Ruby
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -261,7 +311,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 lostman/ごる
+         <div class="col-xs-10">&copy; 2015 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

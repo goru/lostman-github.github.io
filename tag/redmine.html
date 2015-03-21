@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Android - blog.gorugle.org</title>
+    <title>Redmine - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -68,24 +68,42 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
+                <h2><a href="/posts/2015/03/redmine.html">Redmineをインストールしてみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
-Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
-アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
-本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
-Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
-<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
+                        <p>Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて<br />
+日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした<br />
+Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気がしていたんだけれどRedmineは以前仕事でも使っていたし<br />
+自分のサーバにインストールして使うとなると思いの外選択肢が少ない感じだったのでRedmineを入れてみました</p>
+<p>もやっとした要件は</p>
 <ul>
-<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
+<li>サービスでなく、自分のサーバにインストールできること</li>
+<li>依存するものが少なく、導入が楽</li>
+<li>日付を入れずにタスクを登録できる</li>
+<li>優先度を設定できる</li>
+<li>日付が入っているものはカレンダーで確認できる</li>
+<li>スマホからタスクを確認、編集できる</li>
 </ul>
-<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
-SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
-<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
-                             - write an archive of the device&#39;s ...</pre></div>
+<p>なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした<br />
+ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする<br />
+あとスマホでのタスクの確認はRedmineではできなくて、RedminePMというアプリから行うことにしました</p>
+<p>今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して<br />
+ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール<br />
+と、全て専用ユーザのホームディレクトリ以下で済ますことにしました<br />
+また、追加でインストールするものも抑えたかったのでRedmineはWEBRick、SQLite、ImageMagickなし、で動かすことにしました</p>
+<p>まずユーザを作って、ログイン</p>
+<div class="highlight"><pre><span class="c"># useradd -m redmine</span>
+<span class="c"># su - redmine</span>
+</pre></div>
+
+
+<p><a href="https://github.com/sstephenson/rbenv">rbenv</a> と <a href="https://github.com/sstephenson/ruby-build">ruby-build</a> をインストールする<br />
+ここからは全てこのユーザのホームディレクトリ以下で作業</p>
+<ul>
+<li><a href="https://www.qoosky.net/references/128/">rbenvおよびbundlerの基本的な使用方法</a>  </li>
+<li><a href="http://qiita.com/emadurandal/items/a60886152a4c99ce1017">Rails開発環境の構築 ...</a></li></ul>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/redmine.html">more ...</a>
                 </div>
             </article>
             <hr/>
