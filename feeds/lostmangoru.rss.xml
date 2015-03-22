@@ -7,6 +7,10 @@
 しかし気持ち悪いですね&lt;/li&gt;
 &lt;li&gt;ドコモアプリのアップデート通知を切る (&lt;a href="http://xperiaz.kurosuke.biz/archives/625"&gt;ドコモアプリのアップデート通知をオフにする方法&lt;/a&gt;)&lt;br /&gt;
 設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認&lt;/li&gt;
+&lt;li&gt;OSの自動更新の無効化 (夜中に自動で実行されるみたいです)&lt;br /&gt;
+設定→端末情報→ソフトウェア更新→ソフトウェア更新設定の変更&lt;/li&gt;
+&lt;li&gt;Sonyアプリの自動更新の無効化&lt;br /&gt;
+設定→端末情報→アプリケーション更新→右上のメニュー→設定&lt;/li&gt;
 &lt;li&gt;プリインアプリの無効化 (&lt;a href="http://xperia-freaks.org/2014/12/14/so02g-disable/"&gt;【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)&lt;/a&gt;)&lt;br /&gt;
 サイトを参考に適当に、今のところ無効化しているのは以下&lt;ul&gt;
 &lt;li&gt;エリアメール&lt;/li&gt;
