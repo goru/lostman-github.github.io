@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>AquesTalk pico LSI - blog.gorugle.org</title>
+    <title>SO-02Gの設定色々 - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -42,7 +42,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
                         <li >
@@ -67,119 +67,69 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
-配線は以下の通り  </p>
-<table>
-<thead>
-<tr>
-<th>Pin</th>
-<th>AquesTalk</th>
-<th>-&gt;</th>
-<th>Arduino</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>/RESET</td>
-<td></td>
-<td>RESET</td>
-</tr>
-<tr>
-<td>4</td>
-<td>SMOD0</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SMOD1</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>7</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>8</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>20</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>22</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>27</td>
-<td>SDA</td>
-<td></td>
-<td>A4</td>
-</tr>
-<tr>
-<td>28</td>
-<td>SCL</td>
-<td></td>
-<td>A5</td>
-</tr>
-</tbody>
-</table>
-<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
-I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
-あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2015/03/so-02g_settings.html"
+                       rel="bookmark"
+                       title="Permalink to SO-02Gの設定色々">
+                        SO-02Gの設定色々
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2015-03-23T01:08:00+09:00"> 2015/03/23 Mon</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/android.html">Android</a>
+        /
+	<a href="/tag/so-02g.html">SO-02G</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
-I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
-といっても個別にパーツを揃えたわけでなく</p>
+                <p>SO-02Gを使い始めてから変更した設定まとめ</p>
 <ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
-<li>100均で売っているスピーカ</li>
+<li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
+このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />
+接続された状態でWiFiの設定を開いて0001docomoを長押しして切断すれば次回からは自動で接続されなくなるみたいです<br />
+しかし気持ち悪いですね</li>
+<li>ドコモアプリのアップデート通知を切る (<a href="http://xperiaz.kurosuke.biz/archives/625">ドコモアプリのアップデート通知をオフにする方法</a>)<br />
+設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認</li>
+<li>プリインアプリの無効化 (<a href="http://xperia-freaks.org/2014/12/14/so02g-disable/">【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)</a>)<br />
+サイトを参考に適当に、今のところ無効化しているのは以下<ul>
+<li>エリアメール</li>
+<li>オートGPS</li>
+<li>しゃべって検索</li>
+<li>スケジュール/メモ・トルカの同期</li>
+<li>スケジュール&amp;メモ</li>
+<li>ドコモクラウド設定</li>
+<li>ドコモバックアップ</li>
+<li>ドコモ音声入力</li>
+<li>ドコモ文字編集</li>
+<li>災害用キット</li>
+<li>電話帳サービス</li>
+<li>dメニュー</li>
+<li>DOCOMO Initialization</li>
+<li>Gガイド 番組表DL</li>
+<li>Google+ (フォトも同時に無効化される)</li>
+<li>iコンシェルコンテンツ</li>
+<li>TalkBack</li>
 </ul>
-<p>これらを接続しただけです<br />
-今回試した手順を以下にまとめておきます<br />
-後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
-<ol>
-<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
-<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
-<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
-<li>アンプの <code>SPK ...</code></li></ol>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
@@ -352,7 +302,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 lostman/ごる
+         <div class="col-xs-10">&copy; 2015 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
