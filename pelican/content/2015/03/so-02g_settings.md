@@ -1,0 +1,33 @@
+Title: SO-02Gの設定色々
+Date: 2015-03-23 01:08
+Category: Gadget
+Tags: Android, SO-02G
+Slug: so-02g_settings
+
+SO-02Gを使い始めてから変更した設定まとめ
+
+* 0001docomoに勝手に接続してしまう ([ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ](http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html))  
+このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました  
+接続された状態でWiFiの設定を開いて0001docomoを長押しして切断すれば次回からは自動で接続されなくなるみたいです  
+しかし気持ち悪いですね
+* ドコモアプリのアップデート通知を切る ([ドコモアプリのアップデート通知をオフにする方法](http://xperiaz.kurosuke.biz/archives/625))  
+設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認
+* プリインアプリの無効化 ([【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)](http://xperia-freaks.org/2014/12/14/so02g-disable/))  
+サイトを参考に適当に、今のところ無効化しているのは以下
+    * エリアメール
+    * オートGPS
+    * しゃべって検索
+    * スケジュール/メモ・トルカの同期
+    * スケジュール&メモ
+    * ドコモクラウド設定
+    * ドコモバックアップ
+    * ドコモ音声入力
+    * ドコモ文字編集
+    * 災害用キット
+    * 電話帳サービス
+    * dメニュー
+    * DOCOMO Initialization
+    * Gガイド 番組表DL
+    * Google+ (フォトも同時に無効化される)
+    * iコンシェルコンテンツ
+    * TalkBack
