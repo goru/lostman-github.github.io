@@ -68,6 +68,25 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>一時期 ibus が色々話題になりましたね <a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html">*1</a> <a href="http://www.kaoriya.net/blog/2013/10/18/">*2</a><br />
+僕の環境では ibus-mozc を使っていたのですが、 1.5 系へは移行せず 1.4 系にとどまっていました<br />
+このまま放置していてもよかったんだけれど、 Gentoo のリポジトリから 1.4 が<br />
+なくなっていることに気がついたので別のインプットメソッドへ移行することにしました</p>
+<p>Linux でのインプットメソッドで代表的なものは ibus 、 uim 、 fcitx といくつかあるけれど<br />
+Mac で MacUIM を使っているので Linux のマシンでも uim を使うことにしました<br />
+ただ Gentoo の公式リポジトリのパッケージでは mozc を uim と組み合わせることができないみたいだったので<br />
+自分で ebuild を書くか、他の人が書いたものを使わせてもらうかのどちらかがあるみたいです<br />
+今回は <a href="https://bitbucket.org/wjn/wjn-overlay">wjn-overlay</a> を使わせてもらうことにしました</p>
+<p>ここ ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/04/uin-mozc.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/08/macuim-mozc.html">MacUIM/Mozcを使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -180,7 +199,7 @@ blog.gorugle.org            </a>
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -230,6 +249,11 @@ blog.gorugle.org            </a>
                                 ToDo
                             </a>
                         </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/uim.html">
+                                uim
+                            </a>
+                        </li>
                         <li class="list-group-item tag-2">
                             <a href="/tag/windows.html">
                                 Windows
@@ -260,7 +284,7 @@ blog.gorugle.org            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 lostman/ごる
+         <div class="col-xs-10">&copy; 2015 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

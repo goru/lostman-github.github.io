@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-03-23T01:08:00+09:00</updated><entry><title>SO-02Gの設定色々</title><link href="/posts/2015/03/so-02g_settings.html" rel="alternate"></link><updated>2015-03-23T01:08:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-03-23:posts/2015/03/so-02g_settings.html</id><summary type="html">&lt;p&gt;SO-02Gを使い始めてから変更した設定まとめ&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-04-23T02:08:00+09:00</updated><entry><title>ibusからuim-mozcへ移行</title><link href="/posts/2015/04/uin-mozc.html" rel="alternate"></link><updated>2015-04-23T02:08:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-04-23:posts/2015/04/uin-mozc.html</id><summary type="html">&lt;p&gt;一時期 ibus が色々話題になりましたね &lt;a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html"&gt;*1&lt;/a&gt; &lt;a href="http://www.kaoriya.net/blog/2013/10/18/"&gt;*2&lt;/a&gt;&lt;br /&gt;
+僕の環境では ibus-mozc を使っていたのですが、 1.5 系へは移行せず 1.4 系にとどまっていました&lt;br /&gt;
+このまま放置していてもよかったんだけれど、 Gentoo のリポジトリから 1.4 が&lt;br /&gt;
+なくなっていることに気がついたので別のインプットメソッドへ移行することにしました&lt;/p&gt;
+&lt;p&gt;Linux でのインプットメソッドで代表的なものは ibus 、 uim 、 fcitx といくつかあるけれど&lt;br /&gt;
+Mac で MacUIM を使っているので Linux のマシンでも uim を使うことにしました&lt;br /&gt;
+ただ Gentoo の公式リポジトリのパッケージでは mozc を uim と組み合わせることができないみたいだったので&lt;br /&gt;
+自分で ebuild を書くか、他の人が書いたものを使わせてもらうかのどちらかがあるみたいです&lt;br /&gt;
+今回は &lt;a href="https://bitbucket.org/wjn/wjn-overlay"&gt;wjn-overlay&lt;/a&gt; を使わせてもらうことにしました&lt;/p&gt;
+&lt;p&gt;ここ &lt;a href="https://wiki.gentoo.org/wiki/Overlay/ja"&gt;https://wiki.gentoo.org/wiki/Overlay/ja&lt;/a&gt; に書いてあるのですが crossdev を使っている場合は&lt;br /&gt;
+既に /usr/local/portage が存在するので移動しておくか別の場所を使う必要があるみたいです&lt;br /&gt;
+自分の場合は crossdev を使っているので既にディレクトリが存在しました&lt;br /&gt;
+なので別の場所へ移動しておきます&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# mv /usr/local/portage /usr/local/portage-crossdev&lt;/span&gt;
+&lt;span class="c"&gt;# echo local-crossdev &amp;gt; /usr/local/portage-crossdev/profiles/repo_name&lt;/span&gt;
+&lt;span class="c"&gt;# mkdir /usr/local/portage&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;wjn-overlay を /usr/local/portage/wjn-overlay に clone します&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# git clone https://bitbucket.org/wjn/wjn-overlay.git /usr/local/portage/wjn-overlay&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最後に make.conf に登録すれば使えるようになります&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;PORTDIR_OVERLAY=&amp;quot;/usr/local/portage-crossdev /usr/local/portage/wjn-overlay&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;equery で確認すると uim のフラグが使えるようになっているはずです&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;equery u mozc
+&lt;span class="o"&gt;[&lt;/span&gt; Legend : U - final flag setting &lt;span class="k"&gt;for&lt;/span&gt; installation&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;        : I - package is installed with flag     &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt; Colors : &lt;span class="nb"&gt;set&lt;/span&gt;, &lt;span class="nb"&gt;unset&lt;/span&gt;                             &lt;span class="o"&gt;]&lt;/span&gt;
+ * Found these USE flags &lt;span class="k"&gt;for&lt;/span&gt; app-i18n/mozc-2.16.2068.102:
+ U I
+ - - emacs                    : Enable support &lt;span class="k"&gt;for&lt;/span&gt; virtual/emacs
+ - - fcitx                    : Enable support &lt;span class="k"&gt;for&lt;/span&gt; app-i18n/fcitx
+ - - ibus                     : Enable support &lt;span class="k"&gt;for&lt;/span&gt; app-i18n/ibus
+ + + python_targets_python2_7 : Build with Python 2.7
+ + + qt4                      : Add support &lt;span class="k"&gt;for&lt;/span&gt; the Qt GUI/Application Toolkit version 4.x
+ - - renderer                 : Enable native candidate window
+ - - &lt;span class="nb"&gt;test&lt;/span&gt;                     : Enable src_test phase &lt;span class="k"&gt;for&lt;/span&gt; runtests
+ + + uim                      : Enable support &lt;span class="k"&gt;for&lt;/span&gt; app-i18n/uim
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;いつも通り emerge してインストール&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# emerge -av mozc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;インストール後は &lt;a href="https://bitbucket.org/wjn/wjn-overlay/wiki/Mozc-ebuild-%E3%83%98%E3%83%AB%E3%83%97-%28JA%29"&gt;ここ&lt;/a&gt; に書いてあるように&lt;br /&gt;
+ibus を終了してから XMODIFIERS 等をエクスポートして uim を起動すれば使えるようになるはず&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;XMODIFIERS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@im=uim&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;uim
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;uim
+&lt;span class="nv"&gt;$ &lt;/span&gt;uim-xim &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;uim-toolbar-gtk-systray &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;その他にウインドウマネージャによってはシステムトレイのアイコンがおかしくなったりするので &lt;a href="https://archlinuxjp.kusakata.com/wiki/uim_%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B#uim-toolbar-gtk-systray:_.E3.83.88.E3.83.AC.E3.82.A4.E3.82.A2.E3.82.A4.E3.82.B3.E3.83.B3.E3.81.8C.E3.81.A4.E3.81.B6.E3.82.8C.E3.81.A6.E3.81.BE.E3.81.99"&gt;ここ&lt;/a&gt; を参考に設定を変更する&lt;br /&gt;
+実際に変更した設定は&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;全体設定 → 入力方式の利用準備 → 標準の入力方式&lt;/code&gt; を &lt;code&gt;Mozc&lt;/code&gt; に&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ツールバー → 入力方式切り替えメニュー&lt;/code&gt; のチェックボックスを &lt;code&gt;オフ&lt;/code&gt; に&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ツールバー → ボタン&lt;/code&gt; のチェックボックスを &lt;code&gt;全てオフ&lt;/code&gt; に&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ツールバー → 濃色背景向けアイコンを使用する&lt;/code&gt; のチェックボックスを &lt;code&gt;オン&lt;/code&gt; に&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Mozc → ツールバー → 有効にするボタン&lt;/code&gt; を &lt;code&gt;入力モード&lt;/code&gt; のみに編集&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Mozc → 特殊操作 → vi協調モードを有効にする&lt;/code&gt; のチェックボックスを &lt;code&gt;オン&lt;/code&gt; に&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="uim"></category><category term="Mozc"></category><category term="Gentoo"></category></entry><entry><title>SO-02Gの設定色々</title><link href="/posts/2015/03/so-02g_settings.html" rel="alternate"></link><updated>2015-03-23T01:08:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-03-23:posts/2015/03/so-02g_settings.html</id><summary type="html">&lt;p&gt;SO-02Gを使い始めてから変更した設定まとめ&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;0001docomoに勝手に接続してしまう (&lt;a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html"&gt;ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ&lt;/a&gt;)&lt;br /&gt;
 このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました&lt;br /&gt;

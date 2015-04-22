@@ -68,6 +68,27 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/10/dc-210n.html">裁断機(DC-210N)を購入してみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました<br />
+色々検討したんですが大型の裁断機ではなく、それより簡易的な <a href="http://www.carl.co.jp/item/DC-210N.html">DC-210N</a> を選択<br />
+一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど<br />
+まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました</p>
+<p>外観</p>
+<p><a href="/static/images/2014/10/DC-210N_1.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_1_s.jpg" /></a>
+<a href="/static/images/2014/10/DC-210N_2.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_2_s.jpg" /></a></p>
+<p>今回はお試しでこの冊子を裁断してみます<br />
+薄いので分割しなくても裁断できました</p>
+<p><a href="/static/images/2014/10/DC-210N_3.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /></a>
+<a href="/static/images/2014/10/DC-210N_4.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_4_s.jpg" /></a>
+<a href="/static/images/2014/10/DC-210N_5.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_5_s.jpg" /></a></p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/10/dc-210n.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/10/extundelete.html">操作ミスでファイルを消してしまった時の復活方法</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -382,45 +403,6 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/phantomjs.html">PhantomJSを使ってみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
-仕事で間接的に使ったことはありましたが、<br />
-プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
-<p>なにに使ったかというと<br />
-ドメインの管理ページのDNSの設定の書き換えの自動化です<br />
-このサイトのドメインは<a href="http://www.star-domain.jp/">スタードメイン</a>で管理しているのですが、<br />
-ここはDDNSの機能は提供していないんですね<br />
-このサイトはCNAMEを固定で設定できればいいので特に必要はないんですが、<br />
-サブドメインを使って固定IPアドレスでない自宅のマシンにもアクセスできるようにしたかったのです<br />
-ただ手動では面倒なのでできれば何らかの方法で自動的に更新しようと考えました</p>
-<p>一般的には<a href="http://www.mydns.jp/">MyDNS</a>等の外部のDDNSの機能を提供しているサービスを使用して<br />
-このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです<br />
-一応この方法も試して動作することも確認しましたが、<br />
-PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました</p>
-<p>ソースは<a href="https://github.com/lostman-github/stardomain-ddns">ここ</a>に置いてあります<br />
-READMEにも書いてありますが実行方法は以下です</p>
-<div class="highlight"><pre>phantomjs stardomain-ddns.js <span class="s2">&quot;&lt;email address&gt;&quot;</span> <span class="s2">&quot;&lt;password&gt;&quot;</span> <span class="s2">&quot;&lt;file name of DNS records&gt;&quot;</span>
-</pre></div>
-
-
-<p>メールアドレスとパスワードはログインするために必要なもの<br />
-あとはDNSの設定が書いてあるファイルのファイル名を指定します<br />
-このファイルの中身はスタードメインの管理ページの<br />
-<code>レコード一括編集(テキストエリア)</code> のページに表示される形式にしておきます<br />
-なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です<br />
-スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します</p>
-<p>このスクリプトを書くにあたってはまった部分がクリックの操作です<br />
-inputタグのボタンをクリックするには以下のようします</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page ...</span></pre></div>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/phantomjs.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="/index.html">&laquo;</a>
@@ -525,7 +507,7 @@ inputタグのボタンをクリックするには以下のようします</p>
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -573,6 +555,11 @@ inputタグのボタンをクリックするには以下のようします</p>
                         <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/uim.html">
+                                uim
                             </a>
                         </li>
                         <li class="list-group-item tag-2">
