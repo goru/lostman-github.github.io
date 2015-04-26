@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Diary - blog.gorugle.org</title>
+    <title>ATmega328を取り外して動作させる - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -39,7 +39,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
                         <li >
@@ -67,49 +67,195 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="/posts/2015/02/2015-todo.html">2015年ですね</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>2015年になってもう1ヶ月経ちますね、みなさまいかがお過ごしでしょうか</p>
-<p>私は年明け自分の実家や妻の実家へ行ったりで慌ただしい感じでした<br />
-そしてそのまま初仕事の日を迎えたわけですが、体調が整わないままずるずるときてしまいました<br />
-だましだまし出勤はしていたのですがちょいちょい体調不良を繰り返していて<br />
-最終的に1月末には寝こむくらいの結構大変な風邪をひいてしまいました<br />
-気がついたら3Kgも痩せてしまいましたが今では一応復活しています</p>
-<p>さて、一応新年の一発目なので、今年どんなことをしたいかとか<br />
-もう1ヶ月経っているので最近はじめたことを書こうかと思います  </p>
-<p>最近会社で筋トレをするグループができていて、誘われたので同僚と毎日2回、簡単な運動をしています<br />
-毎年言っているような気がしますが、今年はもっと体力をつけたいですね、あと英会話の勉強</p>
-<p>去年はArduino等、電子工作に手を出した年だった気がします<br />
-学生時代に勉強したオームの法則とかも懐かしいし、色々新しく知ることも多くて面白いですね<br />
-今年も引き続きなにかできたらいいなと思っています</p>
-<p>あと今年に入ってからは木工にも手を出しています<br />
-これからなにか記事にしてまとめようと思ってはいるのですがまだできていません<br />
-木工も電子工作とは似ているけれどまた違う楽しみがありますね</p>
-<p>あとは本業のソフトウェア<br />
-これはまぁ引き続きという感じで今まで作ったものの改善とか<br />
-途中のままになっているものを完成させるとか<br />
-なにかお金がかからなくて面白そうなことがあればやりたいです</p>
-<p>大雑把にまとめるとこんな感じで、 今のところ考えている具体的なことは</p>
-<ul>
-<li>運動をする → とりあえず現状でOK?</li>
-<li>英会話の勉強をする → 英会話教室に通う?</li>
-<li>電子工作関係<ul>
-<li>去年作った <a href="http://blog.gorugle.org/posts/2014/11/ir.html">赤外線リモコンのサンプル</a> をきちんとしたものに仕上げたい<ul>
-<li>リモコン以外に温度、湿度、照度等のセンサも試したい</li>
-<li>ケースに入れる</li>
-<li>PCから送信する赤外線の信号を入力できるようにする</li>
-<li>外部から操作できるようにインターフェイスを用意する</li>
-</ul>
-</li>
-<li>USB機器を複数マシンで切り替えて使える切替器の作成 → 作業中</li>
-<li><a href="http://laboratory-danger-robo.blogspot.jp/2015/01/blog-post.html">この時計</a> がいいなと思ったので似たようなものを作りたい ...</li></ul></li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/02/2015-todo.html">more ...</a>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2015/04/atmega328.html"
+                       rel="bookmark"
+                       title="Permalink to ATmega328を取り外して動作させる">
+                        ATmega328を取り外して動作させる
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2015-04-26T23:22:00+09:00"> 2015/04/26 Sun</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/arduino.html">Arduino</a>
+        /
+	<a href="/tag/atmega328.html">ATmega328</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
+                <p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
+Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
+Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
+<p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
+Arduino Uno を使ってブートローダの書き込みをしなければいけない<br />
+Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要<br />
+それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある<br />
+これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる<br />
+今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択<br />
+その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ</p>
+<p>参考にすべきページは</p>
+<ul>
+<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の <code>Instructions</code></li>
+<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoToBreadboard">ArduinoToBreadboard</a> の <code>Minimal Circuit</code></li>
+</ul>
+<p>で、前者にはおおまかな手順、後者には回路図が載っている<br />
+ただ、 <code>Instructions</code> の方に書いてあるが、この回路図のままだと Arduino Uno では動かないので注意<br />
+実際には回路図に加えて <code>RESET</code> と <code>GND</code> の間にコンデンサを接続する必要がある<br />
+(できれば回路図の方に注意書きを加えておいて欲しかったなぁ)</p>
+<p>Arduino Uno と ATmega328 の接続は回路図のままでこのようにする<br />
+コンデンサはあとから無理やり付けたので適当だけれど気にしない</p>
+<table>
+<thead>
+<tr>
+<th>Arduino Uno</th>
+<th>ATmega328</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5V</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td>5V</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>GND</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>GND</td>
+<td>22</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>17</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>18</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>19</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>これで回路は完成<br />
+<a href="/static/images/2015/04/DSC_0107.JPG"><img alt="image" src="/static/images/2015/04/DSC_0107_s.JPG" /></a></p>
+<p>Arduino IDE の準備</p>
+<ol>
+<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoToBreadboard">ArduinoToBreadboard</a> のページから <code>Breadboard1-0-x.zip</code> または <code>Breadboard1-5-x.zip</code> をダウンロードする<br />
+(インストール済みの IDE が 1.0.6 だったので今回は <code>Breadboard1-0-x.zip</code> を使用)</li>
+<li>zip を解凍して出てくる <code>breadboard</code> ディレクトリを <code>~/Documents/Arduino/hardware/</code> 以下に配置<br />
+(場所は <code>Arduino</code> -&gt; <code>Preferences</code> -&gt; <code>Sketchbook location</code> で確認できる)</li>
+<li>Arduino IDE を再起動すると <code>Tools</code> -&gt; <code>Board</code> に <code>ATmega328 on a breadboard (8 MHz internal clock)</code> が追加される</li>
+</ol>
+<p>Arduino Uno の準備</p>
+<ol>
+<li><code>File</code> -&gt; <code>Examples</code> -&gt; <code>ArduinoISP</code> を選択してスケッチを開く</li>
+<li><code>Tools</code> -&gt; <code>Board</code> が <code>Arduino Uno</code> になっていることを確認してから <code>Upload</code>  </li>
+</ol>
+<p>これで Arduino Uno を使ってブートローダを書き込むことができる<br />
+ブートローダの書き込みは</p>
+<ol>
+<li><code>Tools</code> -&gt; <code>Board</code> が <code>ATmega328 on a breadboard (8 MHz internal clock)</code> になっていることを確認</li>
+<li><code>Tools</code> -&gt; <code>Programmer</code> が <code>Arduono as ISP</code> になっていることを確認</li>
+<li><code>Tools</code> -&gt; <code>Burn Bootloader</code> で書き込み</li>
+</ol>
+<p>これで ATmega328 を Arduino として動作させることができる<br />
+実際にスケッチを書き込んで動作させるためには、また別の回路に接続しなおす必要がある<br />
+回路図のページの <code>Uploading sketches to an ATmega on a breadboard</code> の図を参考にして以下のようにする<br />
+この際 Arduino Uno に元から搭載されている ATmega328 は取り外しておく</p>
+<table>
+<thead>
+<tr>
+<th>Arduino Uno</th>
+<th>ATmega328</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RESET</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>5V</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td>5V</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>GND</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>GND</td>
+<td>22</td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>実際にサンプルの Blink を書き込んで動作を確認してみる<br />
+上記の回路に加えて ATmega328 の 19 番に LED を接続しておく<br />
+Arduino Uno のピンに対応する ATmega328 のピン番号は <a href="http://www.arduino.cc/en/Hacking/PinMapping168">ATmega168/328-Arduino Pin Mapping</a> に記載されている</p>
+<ol>
+<li><code>File</code> -&gt; <code>Examples</code> -&gt; <code>01.Basics</code> -&gt; <code>Blink</code> を選択してスケッチを開く</li>
+<li><code>Tools</code> -&gt; <code>Board</code> が <code>ATmega328 on a breadboard (8 MHz internal clock)</code> になっていることを確認してから <code>Upload</code></li>
+</ol>
+<p><a href="/static/images/2015/04/DSC_0111.JPG"><img alt="image" src="/static/images/2015/04/DSC_0111_s.JPG" /></a></p>
+<p>以上で動作確認は終了<br />
+ブートローダの書き込みと、スケッチの書き込みで回路を繋ぎ変えたりしなければいけないので結構面倒だった<br />
+ブートローダは Arduino Uno に載せる書き込み用のシールドを作っておくと便利だろう<br />
+スケッチの書き込みは多分シリアルがつながればいいのでUSBシリアルを載せた基板を用意しておくといいのかもしれない</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">

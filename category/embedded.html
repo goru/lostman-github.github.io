@@ -68,6 +68,28 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
+Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
+Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
+<p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
+Arduino Uno を使ってブートローダの書き込みをしなければいけない<br />
+Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要<br />
+それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある<br />
+これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる<br />
+今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択<br />
+その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ</p>
+<p>参考にすべきページは</p>
+<ul>
+<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の ...</li></ul>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/04/atmega328.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -271,6 +293,11 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/atmega328.html">
+                                ATmega328
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/diary.html">
                                 Diary
                             </a>
@@ -420,7 +447,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 lostman/ごる
+         <div class="col-xs-10">&copy; 2015 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

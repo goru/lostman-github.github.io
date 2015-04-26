@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Diary - blog.gorugle.org</title>
+    <title>ATmega328 - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -68,45 +68,24 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2015/02/2015-todo.html">2015年ですね</a></h2>
+                <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>2015年になってもう1ヶ月経ちますね、みなさまいかがお過ごしでしょうか</p>
-<p>私は年明け自分の実家や妻の実家へ行ったりで慌ただしい感じでした<br />
-そしてそのまま初仕事の日を迎えたわけですが、体調が整わないままずるずるときてしまいました<br />
-だましだまし出勤はしていたのですがちょいちょい体調不良を繰り返していて<br />
-最終的に1月末には寝こむくらいの結構大変な風邪をひいてしまいました<br />
-気がついたら3Kgも痩せてしまいましたが今では一応復活しています</p>
-<p>さて、一応新年の一発目なので、今年どんなことをしたいかとか<br />
-もう1ヶ月経っているので最近はじめたことを書こうかと思います  </p>
-<p>最近会社で筋トレをするグループができていて、誘われたので同僚と毎日2回、簡単な運動をしています<br />
-毎年言っているような気がしますが、今年はもっと体力をつけたいですね、あと英会話の勉強</p>
-<p>去年はArduino等、電子工作に手を出した年だった気がします<br />
-学生時代に勉強したオームの法則とかも懐かしいし、色々新しく知ることも多くて面白いですね<br />
-今年も引き続きなにかできたらいいなと思っています</p>
-<p>あと今年に入ってからは木工にも手を出しています<br />
-これからなにか記事にしてまとめようと思ってはいるのですがまだできていません<br />
-木工も電子工作とは似ているけれどまた違う楽しみがありますね</p>
-<p>あとは本業のソフトウェア<br />
-これはまぁ引き続きという感じで今まで作ったものの改善とか<br />
-途中のままになっているものを完成させるとか<br />
-なにかお金がかからなくて面白そうなことがあればやりたいです</p>
-<p>大雑把にまとめるとこんな感じで、 今のところ考えている具体的なことは</p>
+                        <p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
+Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
+Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
+<p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
+Arduino Uno を使ってブートローダの書き込みをしなければいけない<br />
+Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要<br />
+それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある<br />
+これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる<br />
+今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択<br />
+その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ</p>
+<p>参考にすべきページは</p>
 <ul>
-<li>運動をする → とりあえず現状でOK?</li>
-<li>英会話の勉強をする → 英会話教室に通う?</li>
-<li>電子工作関係<ul>
-<li>去年作った <a href="http://blog.gorugle.org/posts/2014/11/ir.html">赤外線リモコンのサンプル</a> をきちんとしたものに仕上げたい<ul>
-<li>リモコン以外に温度、湿度、照度等のセンサも試したい</li>
-<li>ケースに入れる</li>
-<li>PCから送信する赤外線の信号を入力できるようにする</li>
-<li>外部から操作できるようにインターフェイスを用意する</li>
-</ul>
-</li>
-<li>USB機器を複数マシンで切り替えて使える切替器の作成 → 作業中</li>
-<li><a href="http://laboratory-danger-robo.blogspot.jp/2015/01/blog-post.html">この時計</a> がいいなと思ったので似たようなものを作りたい ...</li></ul></li></ul>
+<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の ...</li></ul>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/02/2015-todo.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/04/atmega328.html">more ...</a>
                 </div>
             </article>
             <hr/>

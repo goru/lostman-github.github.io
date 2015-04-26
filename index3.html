@@ -68,6 +68,39 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
+紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
+PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
+(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
+通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
+I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
+<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
+せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
+といっても個別にパーツを揃えたわけでなく</p>
+<ul>
+<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
+<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
+<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
+<li>100均で売っているスピーカ</li>
+</ul>
+<p>これらを接続しただけです<br />
+今回試した手順を以下にまとめておきます<br />
+後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
+<ol>
+<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
+<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
+<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
+<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
+<li>アンプの <code>SPK ...</code></li></ol>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/07/phantomjs.html">PhantomJSを使ってみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -154,6 +187,11 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         <li class="list-group-item tag-1">
                             <a href="/tag/arduino.html">
                                 Arduino
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/atmega328.html">
+                                ATmega328
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
