@@ -68,6 +68,51 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた<br />
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね<br />
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです<br />
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ<br />
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた</p>
+<p>Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、<br />
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します<br />
+このため画面がないマシンでも GUI のアプリケーションが起動できます<br />
+サーバ上で GUI のアプリを動かすにはうってつけですね<br />
+ただこのままだと外部から描画された画面を見ることができないので<br />
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました<br />
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ</p>
+<p>必要なものをインストールする前に package.use に必要は USE フラグを追加して</p>
+<div class="highlight"><pre>app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/xvfb.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/06/sketchup-wine.html">SketchUpをLinuxにインストール</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
+大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
+SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
+<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
+ただ多少ハマった部分があったのでやったことを残しておく</p>
+<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
+自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
+インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
+<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
+インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
+(デフォルトでは <code>~/.wine ...</code></p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/sketchup-wine.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -287,83 +332,6 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/09/samba.html">今更Sambaをインストールした</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>しばらく前に<a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/">ASUS VivoTab Note 8</a>を買ったり、<a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/">HP Pavilion 15-n200 (AMD)</a>が29800円だったので妻に買ったりMacBook Airもあるし<br />
-Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました<br />
-今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね</p>
-<p>Gentooでのインストールは特に気にすることなくいつも通り<br />
-自分はクライアントの機能は不要だったので <code>-client</code> と <code>-smbclient</code> を指定した<br />
-デフォルトの設定ファイルをコピーして自分の設定を作っていく</p>
-<div class="highlight"><pre><span class="c"># emerge -av samba</span>
-<span class="c"># cp /etc/samba/smb.conf.default /etc/samba/smb.conf</span>
-</pre></div>
-
-
-<p>以下に変更した設定をメモしておく</p>
-<ul>
-<li>workgroup = WORKGROUP<br />
-Windowsのデフォルトに合わせる</li>
-<li>hosts allow = 10.0.0.<br />
-hosts deny = all<br />
-LAN内のマシン以外からのアクセスを拒否する</li>
-<li>load printers ...</li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/09/samba.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/08/mysql5.5.html">MySQL5.1から5.5へアップデート</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
-epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
-<ol>
-<li>
-<p>MySQLの停止</p>
-<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>emergeを使用してアップデート</p>
-<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
-<span class="c"># etc-update</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
-<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
-<div class="highlight"><pre>skip-innodb
-default-storage-engine=MyISAM
-</pre></div>
-
-
-</li>
-<li>
-<p>関連パッケージの更新</p>
-<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
-<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
-<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>MySQLを再起動<br />
-再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
-<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -460,7 +428,7 @@ default-storage-engine=MyISAM
                                 Linux
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/mac.html">
                                 Mac
                             </a>

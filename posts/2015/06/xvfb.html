@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>PhantomJSを使ってみた - blog.gorugle.org</title>
+    <title>Xvfb上でChromeを動かしてみた - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,7 +36,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -51,7 +51,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/misc.html">Misc</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/programming.html">Programming</a>
                         </li>
             </ul>
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2014/07/phantomjs.html"
+                    <a href="/posts/2015/06/xvfb.html"
                        rel="bookmark"
-                       title="Permalink to PhantomJSを使ってみた">
-                        PhantomJSを使ってみた
+                       title="Permalink to Xvfb上でChromeを動かしてみた">
+                        Xvfb上でChromeを動かしてみた
                     </a>
                 </h1>
             </header>
@@ -84,66 +84,108 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-07-20T03:30:00+09:00"> 2014/07/20 Sun</time>
+        <time datetime="2015-06-14T00:35:00+09:00"> 2015/06/14 Sun</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/javascript.html">JavaScript</a>
+	<a href="/tag/linux.html">Linux</a>
         /
-	<a href="/tag/phantomjs.html">PhantomJS</a>
+	<a href="/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
-仕事で間接的に使ったことはありましたが、<br />
-プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
-<p>なにに使ったかというと<br />
-ドメインの管理ページのDNSの設定の書き換えの自動化です<br />
-このサイトのドメインは<a href="http://www.star-domain.jp/">スタードメイン</a>で管理しているのですが、<br />
-ここはDDNSの機能は提供していないんですね<br />
-このサイトはCNAMEを固定で設定できればいいので特に必要はないんですが、<br />
-サブドメインを使って固定IPアドレスでない自宅のマシンにもアクセスできるようにしたかったのです<br />
-ただ手動では面倒なのでできれば何らかの方法で自動的に更新しようと考えました</p>
-<p>一般的には<a href="http://www.mydns.jp/">MyDNS</a>等の外部のDDNSの機能を提供しているサービスを使用して<br />
-このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです<br />
-一応この方法も試して動作することも確認しましたが、<br />
-PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました</p>
-<p>ソースは<a href="https://github.com/lostman-github/stardomain-ddns">ここ</a>に置いてあります<br />
-READMEにも書いてありますが実行方法は以下です</p>
-<div class="highlight"><pre>phantomjs stardomain-ddns.js <span class="s2">&quot;&lt;email address&gt;&quot;</span> <span class="s2">&quot;&lt;password&gt;&quot;</span> <span class="s2">&quot;&lt;file name of DNS records&gt;&quot;</span>
+                <p>外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた<br />
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね<br />
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです<br />
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ<br />
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた</p>
+<p>Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、<br />
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します<br />
+このため画面がないマシンでも GUI のアプリケーションが起動できます<br />
+サーバ上で GUI のアプリを動かすにはうってつけですね<br />
+ただこのままだと外部から描画された画面を見ることができないので<br />
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました<br />
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ</p>
+<p>必要なものをインストールする前に package.use に必要は USE フラグを追加して</p>
+<div class="highlight"><pre>app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads
+net-misc/tigervnc -opengl server
+x11-base/xorg-server minimal -xorg xvfb
+x11-libs/cairo X
+x11-libs/gdk-pixbuf X
 </pre></div>
 
 
-<p>メールアドレスとパスワードはログインするために必要なもの<br />
-あとはDNSの設定が書いてあるファイルのファイル名を指定します<br />
-このファイルの中身はスタードメインの管理ページの<br />
-<code>レコード一括編集(テキストエリア)</code> のページに表示される形式にしておきます<br />
-なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です<br />
-スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します</p>
-<p>このスクリプトを書くにあたってはまった部分がクリックの操作です<br />
-inputタグのボタンをクリックするには以下のようします</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;action_user_dns_index&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">click</span><span class="p">();</span>
-  <span class="p">});</span>
-<span class="p">});</span>
+<p>以下をインストール</p>
+<ul>
+<li>media-fonts/ja-ipafonts</li>
+<li>www-client/google-chrome</li>
+<li>x11-base/xorg-server</li>
+<li>x11-misc/x11vnc</li>
+<li>x11-misc/xdotool</li>
+</ul>
+<p>日本語のフォントが必要なので media-fonts/ja-ipafonts を入れているのと、
+ウインドウの操作をコマンドから行うために x11-misc/xdotool もインストールしている</p>
+<p>最終的なスクリプトはこんな感じになった</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh -x</span>
+
+<span class="nb">export </span><span class="nv">DISPLAY</span><span class="o">=</span>:0
+
+<span class="nv">WIDTH</span><span class="o">=</span>1280
+<span class="nv">HEIGHT</span><span class="o">=</span>670
+<span class="nv">PASSWORD</span><span class="o">=</span>hoge
+<span class="c">#SCALE=&quot;&quot; </span>
+<span class="nv">SCALE</span><span class="o">=</span><span class="s2">&quot;-scale 1/2&quot;</span> 
+<span class="c">#SCALE=&quot;-scale 3/4&quot; </span>
+<span class="c">#SCALE=&quot;-scale 4/5&quot;</span>
+
+Xvfb <span class="si">${</span><span class="nv">DISPLAY</span><span class="si">}</span> -screen <span class="m">0</span> <span class="si">${</span><span class="nv">WIDTH</span><span class="si">}</span>x<span class="si">${</span><span class="nv">HEIGHT</span><span class="si">}</span>x16 <span class="p">&amp;</span>
+<span class="nv">xvfb_pid</span><span class="o">=</span><span class="nv">$!</span>
+
+sleep 2
+
+<span class="nv">LANG</span><span class="o">=</span>ja_JP.utf8 google-chrome-stable --start-fullscreen <span class="s2">&quot;http://awesome.website.com&quot;</span> <span class="p">&amp;</span>
+<span class="o">(</span>sleep 10<span class="p">;</span> xdotool search --onlyvisible -name chrome windowmove <span class="m">0</span> 0<span class="p">;</span> xdotool search --onlyvisible -name chrome windowsize <span class="si">${</span><span class="nv">WIDTH</span><span class="si">}</span> <span class="si">${</span><span class="nv">HEIGHT</span><span class="si">}</span><span class="o">)</span> <span class="p">&amp;</span>
+
+x11vnc -display <span class="si">${</span><span class="nv">DISPLAY</span><span class="si">}</span> -forever <span class="si">${</span><span class="nv">SCALE</span><span class="si">}</span> -passwd <span class="si">${</span><span class="nv">PASSWORD</span><span class="si">}</span>
+
+xdotool search --onlyvisible -name chrome windowkill
+
+sleep 2
+
+<span class="nb">kill</span> <span class="nv">$xvfb_pid</span>
 </pre></div>
 
 
-<p>しかし、aタグのリンクをクリックしたい場合はうまくいきません (Firefoxでは上の書き方でも動作するんですよね<br />
-色々調べたら安心と信頼の<a href="http://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript/2706236#2706236">Stack Overflow</a>に書いてあったのでそれを参考にしました<br />
-以下のようにするとクリックイベントを発生させることができました</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;submenu_04&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">firstElementChild</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">);</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="nx">elem</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
+<ul>
+<li>Xvfb はスマホの画面で使用できる領域と同じにしておく (今回はステータスバーのサイズを考慮して 1280x670 だった</li>
+<li>Chrome のオプションは <a href="http://chrome.half-moon.org/43.html">このページ</a> にまとまっている<ul>
+<li><code>--start-fullscreen</code> のオプションを指定しても画面的にはフルスクリーンになるけれど<br />
+使用可能領域全体を使ってくれなかった、そのため xdotool を使った</li>
+</ul>
+</li>
+<li>xdotool<ul>
+<li>Chrome のウインドウを探して左上へ移動、画面のサイズに合わせてウインドウのサイズを変更<br />
+x11vnc サーバが終了したら Chrome のウインドウも閉じる、という操作を担当</li>
+</ul>
+</li>
+<li>x11vnc<ul>
+<li>クライアントが切断しても再接続できるように <code>-forever</code> を指定</li>
+<li>通信量を節約するために <code>-scale</code> も指定</li>
+</ul>
+</li>
+</ul>
+<p>以上でサーバ側の設定は終わり<br />
+スマホから VNC でつなぐにはこのサーバへ外部から接続できるようになっている必要がある<br />
+本当は VPN などを用意するのだろうけれど、今回は SSH のポートフォワードの機能を使った</p>
+<p>Android 側は <a href="https://play.google.com/store/apps/details?id=org.connectbot&amp;hl=ja">ConnectBot</a> を使ってサーバへ接続する<br />
+この際ローカルの 5900 をサーバの 5900 へフォワードするように設定しておく<br />
+そして <a href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&amp;hl=ja">VNC Viewer</a> でローカルの 5900 に接続する<br />
+この VNC クライアントは自動で画面を端末のサイズに合わせて拡大するので<br />
+-scale オプションを使用して 1/2 に縮小していても端末の画面いっぱいに描画してくれる (ただし画質は落ちる</p>
             </div>
             <!-- /.entry-content -->
         </article>

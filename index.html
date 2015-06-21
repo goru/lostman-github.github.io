@@ -68,6 +68,51 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた<br />
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね<br />
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです<br />
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ<br />
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた</p>
+<p>Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、<br />
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します<br />
+このため画面がないマシンでも GUI のアプリケーションが起動できます<br />
+サーバ上で GUI のアプリを動かすにはうってつけですね<br />
+ただこのままだと外部から描画された画面を見ることができないので<br />
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました<br />
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ</p>
+<p>必要なものをインストールする前に package.use に必要は USE フラグを追加して</p>
+<div class="highlight"><pre>app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/xvfb.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/06/sketchup-wine.html">SketchUpをLinuxにインストール</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
+大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
+SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
+<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
+ただ多少ハマった部分があったのでやったことを残しておく</p>
+<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
+自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
+インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
+<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
+インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
+(デフォルトでは <code>~/.wine ...</code></p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/sketchup-wine.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -328,96 +373,6 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
-今回使用したのは以下の部品</p>
-<ul>
-<li>Arduino Uno</li>
-<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> x1 1個50円</li>
-<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> x3 10個100円</li>
-<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> x1 1個10円</li>
-<li>プルダウン用の抵抗1KΩ x1</li>
-</ul>
-<p>それぞれを以下のように接続した</p>
-<table>
-<thead>
-<tr>
-<th>Arduino</th>
-<th>部品</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>GP1UXC41QSのVout</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>GP1UXC41QSのGND</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>GP1UXC41QSのVcc</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>タクトスイッチの2番</td>
-</tr>
-<tr>
-<td>3</td>
-<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>OSI5LA5113A x3 の+</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>OSI5LA5113A x3 の-</td>
-</tr>
-</tbody>
-</table>
-<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とあるけれど<br />
-お試しなので今回は省略して回路を組んだ<br />
-手元の環境では特に問題は起きていないけれど誤動作する可能性があるので注意</p>
-<p>実際に接続するとこのようになる</p>
-<p><a href="/static/images/2014/11/IMAG1268.jpg"><img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /></a></p>
-<p>ソースコードは ...</p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/11/mac-hostname.html">Macのホスト名を固定する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ</p>
-<div class="highlight"><pre><span class="nv">$ </span>scutil --get HostName
-HostName: not <span class="nb">set</span>
-</pre></div>
-
-
-<p>この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい<br />
-オフィスの環境だとならないけれど、自宅の環境だと <code>System Preferences -&gt; Sharing</code> で<br />
-元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう<br />
-ここの <code>Edit</code> を押すと <code>Use dynamic global hostname</code> といういかにもそれっぽい設定があるけれどこれは特に効果はなし<br />
-そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる</p>
-<div class="highlight"><pre><span class="c"># scutil --set HostName YourHostName</span>
-</pre></div>
-
-
-<p>ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない<br />
-そのためここで元々の設定とは全く別の値を指定することができるが<br />
-混乱の元なのでそういったことが起きないように気をつける必要がある</p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/11/mac-hostname.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -516,7 +471,7 @@ HostName: not <span class="nb">set</span>
                                 Linux
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/mac.html">
                                 Mac
                             </a>

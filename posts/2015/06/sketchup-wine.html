@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>PhantomJSを使ってみた - blog.gorugle.org</title>
+    <title>SketchUpをLinuxにインストール - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,7 +36,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -51,7 +51,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/misc.html">Misc</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/programming.html">Programming</a>
                         </li>
             </ul>
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2014/07/phantomjs.html"
+                    <a href="/posts/2015/06/sketchup-wine.html"
                        rel="bookmark"
-                       title="Permalink to PhantomJSを使ってみた">
-                        PhantomJSを使ってみた
+                       title="Permalink to SketchUpをLinuxにインストール">
+                        SketchUpをLinuxにインストール
                     </a>
                 </h1>
             </header>
@@ -84,65 +84,83 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-07-20T03:30:00+09:00"> 2014/07/20 Sun</time>
+        <time datetime="2015-06-06T01:51:00+09:00"> 2015/06/06 Sat</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/javascript.html">JavaScript</a>
-        /
-	<a href="/tag/phantomjs.html">PhantomJS</a>
+	<a href="/tag/linux.html">Linux</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>はじめて<a href="http://phantomjs.org/">PhantomJS</a>使ってみました<br />
-仕事で間接的に使ったことはありましたが、<br />
-プライベートで使ったのははじめてということでテストも兼ねて記事にしてみます</p>
-<p>なにに使ったかというと<br />
-ドメインの管理ページのDNSの設定の書き換えの自動化です<br />
-このサイトのドメインは<a href="http://www.star-domain.jp/">スタードメイン</a>で管理しているのですが、<br />
-ここはDDNSの機能は提供していないんですね<br />
-このサイトはCNAMEを固定で設定できればいいので特に必要はないんですが、<br />
-サブドメインを使って固定IPアドレスでない自宅のマシンにもアクセスできるようにしたかったのです<br />
-ただ手動では面倒なのでできれば何らかの方法で自動的に更新しようと考えました</p>
-<p>一般的には<a href="http://www.mydns.jp/">MyDNS</a>等の外部のDDNSの機能を提供しているサービスを使用して<br />
-このドメインで使用しているネームサーバをDDNSが提供しているものに変更するみたいです<br />
-一応この方法も試して動作することも確認しましたが、<br />
-PhantomJSを使って書き換える方法も比較的容易に実現できそうだったのでやってみました</p>
-<p>ソースは<a href="https://github.com/lostman-github/stardomain-ddns">ここ</a>に置いてあります<br />
-READMEにも書いてありますが実行方法は以下です</p>
-<div class="highlight"><pre>phantomjs stardomain-ddns.js <span class="s2">&quot;&lt;email address&gt;&quot;</span> <span class="s2">&quot;&lt;password&gt;&quot;</span> <span class="s2">&quot;&lt;file name of DNS records&gt;&quot;</span>
+                <p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
+大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
+SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
+<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
+ただ多少ハマった部分があったのでやったことを残しておく</p>
+<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
+自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
+インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
+<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
+インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
+(デフォルトでは <code>~/.wine</code> が使われる)</p>
+<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup winecfg
 </pre></div>
 
 
-<p>メールアドレスとパスワードはログインするために必要なもの<br />
-あとはDNSの設定が書いてあるファイルのファイル名を指定します<br />
-このファイルの中身はスタードメインの管理ページの<br />
-<code>レコード一括編集(テキストエリア)</code> のページに表示される形式にしておきます<br />
-なので一度手動で設定しておいて、一括編集の画面からコピペしてファイルを作ると簡単です<br />
-スクリプトを実行すると現在の設定とファイルの中身が一致しなかった場合更新します</p>
-<p>このスクリプトを書くにあたってはまった部分がクリックの操作です<br />
-inputタグのボタンをクリックするには以下のようします</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;action_user_dns_index&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">click</span><span class="p">();</span>
-  <span class="p">});</span>
-<span class="p">});</span>
+<p>次にインストーラを起動してインストールする<br />
+Wine の USE フラグに <code>X abi_x86_64 fontconfig jpeg mono opengl png ssl truetype xcomposite</code> を追加しておいた<br />
+インストーラの起動も winecfg と同様に WINEPREFIX を使って起動する</p>
+<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 SketchUpMake-ja-x64.exe
 </pre></div>
 
 
-<p>しかし、aタグのリンクをクリックしたい場合はうまくいきません (Firefoxでは上の書き方でも動作するんですよね<br />
-色々調べたら安心と信頼の<a href="http://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript/2706236#2706236">Stack Overflow</a>に書いてあったのでそれを参考にしました<br />
-以下のようにするとクリックイベントを発生させることができました</p>
-<div class="highlight"><pre><span class="nx">funcs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;submenu_04&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">firstElementChild</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">);</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="nx">elem</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
+<p>これでインストーラが起動するはずだけれど手元の環境ではフォントのサイズが極端に大きくなっていて<br />
+画面のレイアウトが操作できないレベルで崩れていた<br />
+タブを4回、スペースを1回押すことでインストールを続行できた</p>
+<p>インストールができて起動してみると <code>mfc100u.dll</code> が必要であるというエラーがでて起動できない<br />
+mfc100u.dll は Visual C++ の再頒布可能パッケージに含まれているのでそれを入手する必要がある<br />
+mfc100u.dll は <a href="http://www.wdic.org/w/TECH/Visual%20C%2B%2B%20%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA">このサイト</a> によると <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=14632">Visual C++ 2010</a> または <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=30679">Visual Studio 2012</a> に含まれている<br />
+今回は 2010 の方を使用した</p>
+<p>Microsoft のサイトへ行くと <code>vcredist_x64.exe</code> を入手することができる<br />
+このファイルを実行して展開する必要があるのだけれど、どうしても Wine を使ってはうまくできなかったので<br />
+仕方なく Windows のマシンを使用して展開した<br />
+Windows のコマンドプロンプトで <code>/x:c:\target\dir</code> のようにオプションを指定しすると<br />
+指定したディレクトリへ中身を展開することができた</p>
+<div class="highlight"><pre>&gt; vcredist_x64.exe /x:c:\target\dir
+</pre></div>
+
+
+<p>展開したファイルの中に <code>vc_red.cab</code> というファイルがあるので<br />
+それを更に展開すると <code>F_CENTRAL_mfc100u_x64</code> をいうファイルを入手することができる<br />
+Linux で展開する場合は <code>cabextract</code> コマンドが利用できる<br />
+<code>F_CENTRAL_mfc100u_x64</code> を Linux の環境へコピーしたら <code>system32</code> へ mfc100u.dll というファイル名でコピーする</p>
+<div class="highlight"><pre><span class="nv">$ </span>cp F_CENTRAL_mfc100u_x64 drive_c/windows/system32/mfc100u.dll
+</pre></div>
+
+
+<p>以上で基本的な作業は終了</p>
+<p>これ以外の細かい設定は、 SketchUp を起動するには実行するユーザが <code>video</code> グループに所属していることと<br />
+実行時のオプションに <code>/DisableRubyAPI</code> が必要だった</p>
+<div class="highlight"><pre>libGL error: failed to open drm device: Permission denied
+</pre></div>
+
+
+<p>が起きる場合、実行するユーザがvideoグループに所属していない</p>
+<div class="highlight"><pre>libGL error: unable to load driver: i965_dri.so
+</pre></div>
+
+
+<p>が起きる場合、 <code>media-libs/mesa</code> で <code>classic</code> USE フラグが有効になっていないので<br />
+<code>/usr/lib/dri/i965_dri.so</code> が存在しない</p>
+<div class="highlight"><pre><span class="n">err</span><span class="o">:</span><span class="n">ntdll</span><span class="o">:</span><span class="n">RtlpWaitForCriticalSection</span> <span class="n">section</span> <span class="mh">0x2c8b8</span> <span class="s2">&quot;?&quot;</span> <span class="n">wait</span> <span class="n">timed</span> <span class="n">out</span> <span class="k">in</span> <span class="n">thread</span> <span class="mi">0009</span><span class="o">,</span> <span class="n">blocked</span> <span class="n">by</span> <span class="mi">0000</span><span class="o">,</span> <span class="n">retrying</span> <span class="o">(</span><span class="mi">60</span> <span class="n">sec</span><span class="o">)</span>
+</pre></div>
+
+
+<p>が起きる場合、コマンドラインオプションに /DisableRubyAPI をつけていない</p>
+<p>最終的に以下のコマンドで正常に SketchUp を起動することができた</p>
+<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/winedir/sketchup/drive_c/Program Files (x86)/SketchUp/SketchUp 2015/SketchUp.exe&quot;</span> /DisableRubyAPI
 </pre></div>
             </div>
             <!-- /.entry-content -->

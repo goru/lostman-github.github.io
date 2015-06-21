@@ -1,5 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 26 Apr 2015 23:22:00 +0900</lastBuildDate><item><title>ATmega328を取り外して動作させる</title><link>/posts/2015/04/atmega328.html</link><description>&lt;p&gt;Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 14 Jun 2015 00:35:00 +0900</lastBuildDate><item><title>Xvfb上でChromeを動かしてみた</title><link>/posts/2015/06/xvfb.html</link><description>&lt;p&gt;外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた&lt;br /&gt;
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね&lt;br /&gt;
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです&lt;br /&gt;
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ&lt;br /&gt;
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた&lt;/p&gt;
+&lt;p&gt;Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、&lt;br /&gt;
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します&lt;br /&gt;
+このため画面がないマシンでも GUI のアプリケーションが起動できます&lt;br /&gt;
+サーバ上で GUI のアプリを動かすにはうってつけですね&lt;br /&gt;
+ただこのままだと外部から描画された画面を見ることができないので&lt;br /&gt;
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました&lt;br /&gt;
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ&lt;/p&gt;
+&lt;p&gt;必要なものをインストールする前に package.use に必要は USE フラグを追加して&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads
+net-misc/tigervnc -opengl server
+x11-base/xorg-server minimal -xorg xvfb
+x11-libs/cairo X
+x11-libs/gdk-pixbuf X
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以下をインストール&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;media-fonts/ja-ipafonts&lt;/li&gt;
+&lt;li&gt;www-client/google-chrome&lt;/li&gt;
+&lt;li&gt;x11-base/xorg-server&lt;/li&gt;
+&lt;li&gt;x11-misc/x11vnc&lt;/li&gt;
+&lt;li&gt;x11-misc/xdotool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;日本語のフォントが必要なので media-fonts/ja-ipafonts を入れているのと、
+ウインドウの操作をコマンドから行うために x11-misc/xdotool もインストールしている&lt;/p&gt;
+&lt;p&gt;最終的なスクリプトはこんな感じになった&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh -x&lt;/span&gt;
+
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;DISPLAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;:0
+
+&lt;span class="nv"&gt;WIDTH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1280
+&lt;span class="nv"&gt;HEIGHT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;670
+&lt;span class="nv"&gt;PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hoge
+&lt;span class="c"&gt;#SCALE=&amp;quot;&amp;quot; &lt;/span&gt;
+&lt;span class="nv"&gt;SCALE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-scale 1/2&amp;quot;&lt;/span&gt; 
+&lt;span class="c"&gt;#SCALE=&amp;quot;-scale 3/4&amp;quot; &lt;/span&gt;
+&lt;span class="c"&gt;#SCALE=&amp;quot;-scale 4/5&amp;quot;&lt;/span&gt;
+
+Xvfb &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DISPLAY&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; -screen &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;WIDTH&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;x&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HEIGHT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;x16 &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="nv"&gt;xvfb_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+
+sleep 2
+
+&lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ja_JP.utf8 google-chrome-stable --start-fullscreen &lt;span class="s2"&gt;&amp;quot;http://awesome.website.com&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;sleep 10&lt;span class="p"&gt;;&lt;/span&gt; xdotool search --onlyvisible -name chrome windowmove &lt;span class="m"&gt;0&lt;/span&gt; 0&lt;span class="p"&gt;;&lt;/span&gt; xdotool search --onlyvisible -name chrome windowsize &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;WIDTH&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HEIGHT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+
+x11vnc -display &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DISPLAY&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; -forever &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SCALE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; -passwd &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PASSWORD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+
+xdotool search --onlyvisible -name chrome windowkill
+
+sleep 2
+
+&lt;span class="nb"&gt;kill&lt;/span&gt; &lt;span class="nv"&gt;$xvfb_pid&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Xvfb はスマホの画面で使用できる領域と同じにしておく (今回はステータスバーのサイズを考慮して 1280x670 だった&lt;/li&gt;
+&lt;li&gt;Chrome のオプションは &lt;a href="http://chrome.half-moon.org/43.html"&gt;このページ&lt;/a&gt; にまとまっている&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--start-fullscreen&lt;/code&gt; のオプションを指定しても画面的にはフルスクリーンになるけれど&lt;br /&gt;
+使用可能領域全体を使ってくれなかった、そのため xdotool を使った&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;xdotool&lt;ul&gt;
+&lt;li&gt;Chrome のウインドウを探して左上へ移動、画面のサイズに合わせてウインドウのサイズを変更&lt;br /&gt;
+x11vnc サーバが終了したら Chrome のウインドウも閉じる、という操作を担当&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;x11vnc&lt;ul&gt;
+&lt;li&gt;クライアントが切断しても再接続できるように &lt;code&gt;-forever&lt;/code&gt; を指定&lt;/li&gt;
+&lt;li&gt;通信量を節約するために &lt;code&gt;-scale&lt;/code&gt; も指定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上でサーバ側の設定は終わり&lt;br /&gt;
+スマホから VNC でつなぐにはこのサーバへ外部から接続できるようになっている必要がある&lt;br /&gt;
+本当は VPN などを用意するのだろうけれど、今回は SSH のポートフォワードの機能を使った&lt;/p&gt;
+&lt;p&gt;Android 側は &lt;a href="https://play.google.com/store/apps/details?id=org.connectbot&amp;amp;hl=ja"&gt;ConnectBot&lt;/a&gt; を使ってサーバへ接続する&lt;br /&gt;
+この際ローカルの 5900 をサーバの 5900 へフォワードするように設定しておく&lt;br /&gt;
+そして &lt;a href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&amp;amp;hl=ja"&gt;VNC Viewer&lt;/a&gt; でローカルの 5900 に接続する&lt;br /&gt;
+この VNC クライアントは自動で画面を端末のサイズに合わせて拡大するので&lt;br /&gt;
+-scale オプションを使用して 1/2 に縮小していても端末の画面いっぱいに描画してくれる (ただし画質は落ちる&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 14 Jun 2015 00:35:00 +0900</pubDate><guid>tag:,2015-06-14:posts/2015/06/xvfb.html</guid><category>Linux</category><category>Gentoo</category></item><item><title>SketchUpをLinuxにインストール</title><link>/posts/2015/06/sketchup-wine.html</link><description>&lt;p&gt;SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした&lt;br /&gt;
+大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました&lt;br /&gt;
+SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった&lt;br /&gt;
+&lt;a href="https://www.winehq.org/"&gt;WineHQ&lt;/a&gt; にも &lt;a href="http://wiki.winehq.org/Sketchup"&gt;SketchUpのWikiページ&lt;/a&gt; があり情報がまとめられています&lt;br /&gt;
+ただ多少ハマった部分があったのでやったことを残しておく&lt;/p&gt;
+&lt;p&gt;まず &lt;a href="http://www.sketchup.com/ja/download"&gt;公式サイト&lt;/a&gt; からインストーラを入手する&lt;br /&gt;
+自分がダウンロードしたのは &lt;code&gt;SketchUpMake-ja-x64.exe&lt;/code&gt; だった&lt;br /&gt;
+インストール後にバージョンを確認したら &lt;code&gt;15.3.331 64ビット&lt;/code&gt; となっていた&lt;/p&gt;
+&lt;p&gt;デフォルトの &lt;code&gt;Windows XP&lt;/code&gt; だとバージョンチェックで起動できないので &lt;code&gt;winecfg&lt;/code&gt; を起動して &lt;code&gt;Windows 7&lt;/code&gt; へ変更する&lt;br /&gt;
+インストールするディレクトリを変えたい場合は &lt;code&gt;WINEPREFIX&lt;/code&gt; 環境変数を使ってwine関係のコマンドを実行する&lt;br /&gt;
+(デフォルトでは &lt;code&gt;~/.wine&lt;/code&gt; が使われる)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ WINEPREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/winedir/sketchup winecfg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;次にインストーラを起動してインストールする&lt;br /&gt;
+Wine の USE フラグに &lt;code&gt;X abi_x86_64 fontconfig jpeg mono opengl png ssl truetype xcomposite&lt;/code&gt; を追加しておいた&lt;br /&gt;
+インストーラの起動も winecfg と同様に WINEPREFIX を使って起動する&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ WINEPREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/winedir/sketchup wine64 SketchUpMake-ja-x64.exe
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これでインストーラが起動するはずだけれど手元の環境ではフォントのサイズが極端に大きくなっていて&lt;br /&gt;
+画面のレイアウトが操作できないレベルで崩れていた&lt;br /&gt;
+タブを4回、スペースを1回押すことでインストールを続行できた&lt;/p&gt;
+&lt;p&gt;インストールができて起動してみると &lt;code&gt;mfc100u.dll&lt;/code&gt; が必要であるというエラーがでて起動できない&lt;br /&gt;
+mfc100u.dll は Visual C++ の再頒布可能パッケージに含まれているのでそれを入手する必要がある&lt;br /&gt;
+mfc100u.dll は &lt;a href="http://www.wdic.org/w/TECH/Visual%20C%2B%2B%20%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA"&gt;このサイト&lt;/a&gt; によると &lt;a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=14632"&gt;Visual C++ 2010&lt;/a&gt; または &lt;a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=30679"&gt;Visual Studio 2012&lt;/a&gt; に含まれている&lt;br /&gt;
+今回は 2010 の方を使用した&lt;/p&gt;
+&lt;p&gt;Microsoft のサイトへ行くと &lt;code&gt;vcredist_x64.exe&lt;/code&gt; を入手することができる&lt;br /&gt;
+このファイルを実行して展開する必要があるのだけれど、どうしても Wine を使ってはうまくできなかったので&lt;br /&gt;
+仕方なく Windows のマシンを使用して展開した&lt;br /&gt;
+Windows のコマンドプロンプトで &lt;code&gt;/x:c:\target\dir&lt;/code&gt; のようにオプションを指定しすると&lt;br /&gt;
+指定したディレクトリへ中身を展開することができた&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt; vcredist_x64.exe /x:c:\target\dir
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;展開したファイルの中に &lt;code&gt;vc_red.cab&lt;/code&gt; というファイルがあるので&lt;br /&gt;
+それを更に展開すると &lt;code&gt;F_CENTRAL_mfc100u_x64&lt;/code&gt; をいうファイルを入手することができる&lt;br /&gt;
+Linux で展開する場合は &lt;code&gt;cabextract&lt;/code&gt; コマンドが利用できる&lt;br /&gt;
+&lt;code&gt;F_CENTRAL_mfc100u_x64&lt;/code&gt; を Linux の環境へコピーしたら &lt;code&gt;system32&lt;/code&gt; へ mfc100u.dll というファイル名でコピーする&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cp F_CENTRAL_mfc100u_x64 drive_c/windows/system32/mfc100u.dll
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以上で基本的な作業は終了&lt;/p&gt;
+&lt;p&gt;これ以外の細かい設定は、 SketchUp を起動するには実行するユーザが &lt;code&gt;video&lt;/code&gt; グループに所属していることと&lt;br /&gt;
+実行時のオプションに &lt;code&gt;/DisableRubyAPI&lt;/code&gt; が必要だった&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;libGL error: failed to open drm device: Permission denied
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;が起きる場合、実行するユーザがvideoグループに所属していない&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;libGL error: unable to load driver: i965_dri.so
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;が起きる場合、 &lt;code&gt;media-libs/mesa&lt;/code&gt; で &lt;code&gt;classic&lt;/code&gt; USE フラグが有効になっていないので&lt;br /&gt;
+&lt;code&gt;/usr/lib/dri/i965_dri.so&lt;/code&gt; が存在しない&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ntdll&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;RtlpWaitForCriticalSection&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt; &lt;span class="mh"&gt;0x2c8b8&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;?&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;wait&lt;/span&gt; &lt;span class="n"&gt;timed&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;thread&lt;/span&gt; &lt;span class="mi"&gt;0009&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blocked&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="mi"&gt;0000&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;retrying&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="n"&gt;sec&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;が起きる場合、コマンドラインオプションに /DisableRubyAPI をつけていない&lt;/p&gt;
+&lt;p&gt;最終的に以下のコマンドで正常に SketchUp を起動することができた&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ WINEPREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/winedir/sketchup wine64 &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/winedir/sketchup/drive_c/Program Files (x86)/SketchUp/SketchUp 2015/SketchUp.exe&amp;quot;&lt;/span&gt; /DisableRubyAPI
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 06 Jun 2015 01:51:00 +0900</pubDate><guid>tag:,2015-06-06:posts/2015/06/sketchup-wine.html</guid><category>Linux</category></item><item><title>ATmega328を取り外して動作させる</title><link>/posts/2015/04/atmega328.html</link><description>&lt;p&gt;Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに&lt;br /&gt;
 Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので&lt;br /&gt;
 Arduino に使われている &lt;a href="http://akizukidenshi.com/catalog/g/gI-03142/"&gt;ATmega328&lt;/a&gt; を取り外して単体で使えることを確認してみた  &lt;/p&gt;
 &lt;p&gt;まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので&lt;br /&gt;

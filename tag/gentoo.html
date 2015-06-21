@@ -68,6 +68,31 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた<br />
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね<br />
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです<br />
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ<br />
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた</p>
+<p>Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、<br />
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します<br />
+このため画面がないマシンでも GUI のアプリケーションが起動できます<br />
+サーバ上で GUI のアプリを動かすにはうってつけですね<br />
+ただこのままだと外部から描画された画面を見ることができないので<br />
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました<br />
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ</p>
+<p>必要なものをインストールする前に package.use に必要は USE フラグを追加して</p>
+<div class="highlight"><pre>app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/xvfb.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -270,7 +295,7 @@ default-storage-engine=MyISAM
                                 Linux
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/mac.html">
                                 Mac
                             </a>
