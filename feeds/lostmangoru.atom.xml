@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-06-14T00:35:00+09:00</updated><entry><title>Xvfb上でChromeを動かしてみた</title><link href="/posts/2015/06/xvfb.html" rel="alternate"></link><updated>2015-06-14T00:35:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-06-14:posts/2015/06/xvfb.html</id><summary type="html">&lt;p&gt;外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-07-19T18:54:00+09:00</updated><entry><title>デバイスからAPKを抜き出す</title><link href="/posts/2015/07/adb-apk.html" rel="alternate"></link><updated>2015-07-19T18:54:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-07-19:posts/2015/07/adb-apk.html</id><summary type="html">&lt;p&gt;&lt;a href="/static/images/2015/07/so-02g.jpg"&gt;&lt;img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SO-02Gのオレンジを買い増しました&lt;br /&gt;
+既に持っている白と同じアプリをインストールしようとしたのですが一部のアプリがストアから削除されていたので&lt;br /&gt;
+adb コマンドを使って apk を取り出してみました (色々便利なアプリがあるのは知ってる&lt;/p&gt;
+&lt;p&gt;インストールされているパッケージの一覧を表示&lt;br /&gt;
+全てのパッケージの apk のパスとパッケージ名が出力される&lt;br /&gt;
+(適当に grep して絞り込むといいと思う)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb shell pm list package -f
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;apk をデバイスからローカルへコピーする&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb pull &amp;lt;device apk path&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;インストール済みのパッケージを削除&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb shell pm uninstall &amp;lt;package name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ローカルの apk をデバイスへインストール&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb install &amp;lt;&lt;span class="nb"&gt;local &lt;/span&gt;apk path&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Android"></category><category term="SO-02G"></category></entry><entry><title>Xvfb上でChromeを動かしてみた</title><link href="/posts/2015/06/xvfb.html" rel="alternate"></link><updated>2015-06-14T00:35:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-06-14:posts/2015/06/xvfb.html</id><summary type="html">&lt;p&gt;外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた&lt;br /&gt;
 普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね&lt;br /&gt;
 私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです&lt;br /&gt;
 ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ&lt;br /&gt;
@@ -381,8 +404,7 @@ ibus を終了してから XMODIFIERS 等をエクスポートして uim を起�
 &lt;li&gt;&lt;code&gt;ツールバー → 濃色背景向けアイコンを使用する&lt;/code&gt; のチェックボックスを &lt;code&gt;オン&lt;/code&gt; に&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Mozc → ツールバー → 有効にするボタン&lt;/code&gt; を &lt;code&gt;入力モード&lt;/code&gt; のみに編集&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Mozc → 特殊操作 → vi協調モードを有効にする&lt;/code&gt; のチェックボックスを &lt;code&gt;オン&lt;/code&gt; に&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="uim"></category><category term="Mozc"></category><category term="Gentoo"></category></entry><entry><title>SO-02Gの設定色々</title><link href="/posts/2015/03/so-02g_settings.html" rel="alternate"></link><updated>2015-03-23T01:08:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-03-23:posts/2015/03/so-02g_settings.html</id><summary type="html">&lt;p&gt;&lt;a href="/static/images/2015/03/so-02g.jpg"&gt;&lt;img alt="image" src="/static/images/2015/03/so-02g_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;SO-02Gを使い始めてから変更した設定まとめ&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="uim"></category><category term="Mozc"></category><category term="Gentoo"></category></entry><entry><title>SO-02Gの設定色々</title><link href="/posts/2015/03/so-02g_settings.html" rel="alternate"></link><updated>2015-03-23T01:08:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-03-23:posts/2015/03/so-02g_settings.html</id><summary type="html">&lt;p&gt;SO-02Gを使い始めてから変更した設定まとめ&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;0001docomoに勝手に接続してしまう (&lt;a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html"&gt;ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ&lt;/a&gt;)&lt;br /&gt;
 このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました&lt;br /&gt;

@@ -68,11 +68,43 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/07/adb-apk.html">デバイスからAPKを抜き出す</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p><a href="/static/images/2015/07/so-02g.jpg"><img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /></a></p>
+<p>SO-02Gのオレンジを買い増しました<br />
+既に持っている白と同じアプリをインストールしようとしたのですが一部のアプリがストアから削除されていたので<br />
+adb コマンドを使って apk を取り出してみました (色々便利なアプリがあるのは知ってる</p>
+<p>インストールされているパッケージの一覧を表示<br />
+全てのパッケージの apk のパスとパッケージ名が出力される<br />
+(適当に grep して絞り込むといいと思う)</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell pm list package -f
+</pre></div>
+
+
+<p>apk をデバイスからローカルへコピーする</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb pull &lt;device apk path&gt;
+</pre></div>
+
+
+<p>インストール済みのパッケージを削除</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell pm uninstall &lt;package name&gt;
+</pre></div>
+
+
+<p>ローカルの apk をデバイスへインストール</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb install &lt;<span class="nb">local </span>apk path&gt;
+</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/07/adb-apk.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p><a href="/static/images/2015/03/so-02g.jpg"><img alt="image" src="/static/images/2015/03/so-02g_s.jpg" /></a></p>
-<p>SO-02Gを使い始めてから変更した設定まとめ</p>
+                        <p>SO-02Gを使い始めてから変更した設定まとめ</p>
 <ul>
 <li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
 このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />

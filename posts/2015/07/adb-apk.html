@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>SO-02G - blog.gorugle.org</title>
+    <title>デバイスからAPKを抜き出す - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -42,7 +42,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
                         <li >
@@ -67,11 +67,36 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="/posts/2015/07/adb-apk.html">デバイスからAPKを抜き出す</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p><a href="/static/images/2015/07/so-02g.jpg"><img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /></a></p>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2015/07/adb-apk.html"
+                       rel="bookmark"
+                       title="Permalink to デバイスからAPKを抜き出す">
+                        デバイスからAPKを抜き出す
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2015-07-19T18:54:00+09:00"> 2015/07/19 Sun</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/android.html">Android</a>
+        /
+	<a href="/tag/so-02g.html">SO-02G</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><a href="/static/images/2015/07/so-02g.jpg"><img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /></a></p>
 <p>SO-02Gのオレンジを買い増しました<br />
 既に持っている白と同じアプリをインストールしようとしたのですが一部のアプリがストアから削除されていたので<br />
 adb コマンドを使って apk を取り出してみました (色々便利なアプリがあるのは知ってる</p>
@@ -95,67 +120,10 @@ adb コマンドを使って apk を取り出してみました (色々便利な
 <p>ローカルの apk をデバイスへインストール</p>
 <div class="highlight"><pre><span class="nv">$ </span>adb install &lt;<span class="nb">local </span>apk path&gt;
 </pre></div>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/07/adb-apk.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>SO-02Gを使い始めてから変更した設定まとめ</p>
-<ul>
-<li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
-このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />
-接続された状態でWiFiの設定を開いて0001docomoを長押しして切断すれば次回からは自動で接続されなくなるみたいです<br />
-しかし気持ち悪いですね</li>
-<li>ドコモアプリのアップデート通知を切る (<a href="http://xperiaz.kurosuke.biz/archives/625">ドコモアプリのアップデート通知をオフにする方法</a>)<br />
-設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認</li>
-<li>OSの自動更新の無効化 (夜中に自動で実行されるみたいです)<br />
-設定→端末情報→ソフトウェア更新→ソフトウェア更新設定の変更</li>
-<li>Sonyアプリの自動更新の無効化<br />
-設定→端末情報→アプリケーション更新→右上のメニュー→設定</li>
-<li>プリインアプリの無効化<br />
-(<a href="http://xperia-freaks.org/2014/12/14/so02g-disable/">【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)</a>)<br />
-(<a href="http://usedoor.jp/howto/digital/android-smartphone/preinstall-mukouka-ichiran/">【Androidスマホ】プリインストールアプリの無効化・停止・アンインストール対応一覧表</a>)<br />
-サイトを参考に適当に、今のところ無効化しているのは以下<ul>
-<li>ウィキペディアプラグイン</li>
-<li>エリアメール</li>
-<li>エリア連動Wi-Fi</li>
-<li>オートGPS</li>
-<li>おサイフケータイアプリセットアップ</li>
-<li>おサイフケータイ 設定アプリ</li>
-<li>おサイフケータイ Webプラグインセットアップ</li>
-<li>オレンジ</li>
-<li>クラウドプリント ...</li></ul></li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/so-02g_settings.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
-Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
-アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
-本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
-Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
-<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
-<ul>
-<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
-</ul>
-<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
-SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
-<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
-                             - write an archive of the device&#39;s ...</pre></div>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
