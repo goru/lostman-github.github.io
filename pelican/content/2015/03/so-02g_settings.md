@@ -4,6 +4,8 @@ Category: Gadget
 Tags: Android, SO-02G
 Slug: so-02g_settings
 
+[![image](/static/images/2015/03/so-02g_s.jpg)](/static/images/2015/03/so-02g.jpg)
+
 SO-02Gを使い始めてから変更した設定まとめ
 
 * 0001docomoに勝手に接続してしまう ([ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ](http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html))  
