@@ -16,6 +16,8 @@ SO-02Gを使い始めてから変更した設定まとめ
 設定→端末情報→ソフトウェア更新→ソフトウェア更新設定の変更
 * Sonyアプリの自動更新の無効化  
 設定→端末情報→アプリケーション更新→右上のメニュー→設定
+* ひつじの停止  
+ホーム画面のひつじを長押し→キャラ表示 と 吹き出し表示 を 表示しない へ変更
 * プリインアプリの無効化  
 ([【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)](http://xperia-freaks.org/2014/12/14/so02g-disable/))  
 ([【Androidスマホ】プリインストールアプリの無効化・停止・アンインストール対応一覧表](http://usedoor.jp/howto/digital/android-smartphone/preinstall-mukouka-ichiran/))  
