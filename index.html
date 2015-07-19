@@ -68,6 +68,39 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/07/adb-apk.html">デバイスからAPKを抜き出す</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p><a href="/static/images/2015/07/so-02g.jpg"><img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /></a></p>
+<p>SO-02Gのオレンジを買い増しました<br />
+既に持っている白と同じアプリをインストールしようとしたのですが一部のアプリがストアから削除されていたので<br />
+adb コマンドを使って apk を取り出してみました (色々便利なアプリがあるのは知ってる</p>
+<p>インストールされているパッケージの一覧を表示<br />
+全てのパッケージの apk のパスとパッケージ名が出力される<br />
+(適当に grep して絞り込むといいと思う)</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell pm list package -f
+</pre></div>
+
+
+<p>apk をデバイスからローカルへコピーする</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb pull &lt;device apk path&gt;
+</pre></div>
+
+
+<p>インストール済みのパッケージを削除</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell pm uninstall &lt;package name&gt;
+</pre></div>
+
+
+<p>ローカルの apk をデバイスへインストール</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb install &lt;<span class="nb">local </span>apk path&gt;
+</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/07/adb-apk.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -157,8 +190,7 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                 <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p><a href="/static/images/2015/03/so-02g.jpg"><img alt="image" src="/static/images/2015/03/so-02g_s.jpg" /></a></p>
-<p>SO-02Gを使い始めてから変更した設定まとめ</p>
+                        <p>SO-02Gを使い始めてから変更した設定まとめ</p>
 <ul>
 <li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
 このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />
@@ -332,46 +364,6 @@ WiFi対応のものはアクセスポイントを介し直接サーバへデー�
 <li><a href="http://laboratory-danger-robo.blogspot.jp/2015/01/blog-post.html">この時計</a> がいいなと思ったので似たようなものを作りたい ...</li></ul></li></ul>
                     </div>
                     <a class="btn btn-default btn-xs" href="/posts/2015/02/2015-todo.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/12/j1900.html">新しいサーバ用マシン買いました</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>実はもう1ヶ月くらい前の話なんだけれど、安定して動作しているので記事にしてみる<br />
-今までの環境はHPのMicroServer1台で</p>
-<ul>
-<li>録画</li>
-<li>NFS、Sambaでのファイル共有</li>
-<li>PPPoEで有線のルータ</li>
-<li>無線のアクセスポイント</li>
-</ul>
-<p>等のサービスを提供していた<br />
-騒音の面もあってこのマシンはリビングから遠くに位置していて、リビングからは無線の電波がいまいちな状態になっていた<br />
-遅いだけなら我慢もできたんだけれど、位置によっては切断されたりもするのでアクセスポイントの位置をリビングに移動したかった<br />
-ただMicroServerはそれなりにHDDの音がするので移動するわけにはいかず…<br />
-普通の無線ルータを購入してもよかったのだけれどいろいろ考えた末、他の機能もこっちに分離するために自作することにした<br />
-購入したのは以下のパーツ</p>
-<ul>
-<li><a href="http://www.gigabyte.jp/products/product-page.aspx?pid=4918#ov">GIGABYTE GA-J1900N-D3V</a> 11010円 (10%ポイント)<br />
-Celeron J1900 (4 Core, 4 Thread)、Realtek GbEx2<br />
-ファンレスでNICが2つ付いているのがこれくらいしかなかったので必然的に</li>
-<li><a href="http://www.amazon.co.jp/dp/B00AA7SRDA">SanMax SMD-N8GNP-13H-D</a> 9561円<br />
-SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
-<li><a href="http://www.links.co.jp/item/isk-110-vesa/">ANTEC ISK-110 VESA</a> 9590円 (10%ポイント)<br />
-小さくてACアダプタだったので</li>
-</ul>
-<p>届いた箱たち<br />
-<a href="/static/images/2014/12/IMAG1204.jpg"><img alt="box" src="/static/images/2014/12/IMAG1204_s.jpg" /></a></p>
-<p>仮組みしてMemtest中<br />
-<a href="/static/images/2014/12/IMAG1205.jpg"><img alt="memtest" src="/static/images/2014/12/IMAG1205_s.jpg" /></a></p>
-<p>最終的にはこんな感じ<br />
-見えないけれど裏側に余ってたSSDが装着されている<br />
-<a href="/static/images/2014/12/IMAG1211.jpg"><img alt="assembled" src="/static/images/2014/12/IMAG1211_s.jpg" /></a></p>
-<p>今はテレビ台の中に設置されている ...</p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/12/j1900.html">more ...</a>
                 </div>
             </article>
             <hr/>
