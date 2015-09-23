@@ -38,6 +38,9 @@ DEFAULT_DATE_FORMAT = '%Y/%m/%d %a'
 
 THEME = 'themes/pelican-bootstrap3'
 
+PLUGIN_PATHS = [ 'plugins' ]
+PLUGINS = [ 'tag_cloud' ]
+
 # setting for pelican-bootstrap3
 USE_OPEN_GRAPH = False
 BOOTSTRAP_NAVBAR_INVERSE = True
