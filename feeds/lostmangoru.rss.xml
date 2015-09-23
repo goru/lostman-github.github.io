@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 19 Jul 2015 18:54:00 +0900</lastBuildDate><item><title>デバイスからAPKを抜き出す</title><link>/posts/2015/07/adb-apk.html</link><description>&lt;p&gt;&lt;a href="/static/images/2015/07/so-02g.jpg"&gt;&lt;img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 14 Sep 2015 23:00:00 +0900</lastBuildDate><item><title>mineoのドコモプランを契約してみました</title><link>/posts/2015/09/mineo.html</link><description>&lt;p&gt;&lt;a href="/static/images/2015/09/DSC_0380.JPG"&gt;&lt;img alt="image" src="/static/images/2015/09/DSC_0380_s.JPG" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/09/DSC_0401.JPG"&gt;&lt;img alt="image" src="/static/images/2015/09/DSC_0401_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://mineo.jp/"&gt;mineo&lt;/a&gt; のドコモプランの先行予約をすることができたので契約してみました&lt;br /&gt;
+今回契約したのはシングルタイプ(データ専用)&lt;br /&gt;
+キャンペーンで6ヶ月800円割引、先行予約で更に3ヶ月800円割引になるので&lt;br /&gt;
+シングルの1GBのプラン(800円)であれば初期費用がかかるのと、その後9ヶ月はユニバーサルサービス料の負担だけで利用できる&lt;br /&gt;
+更に特に最低利用期間を設けていないということなので9ヶ月後に解約することも可能&lt;/p&gt;
+&lt;p&gt;初期費用は通常3000円掛かるが、エントリーパッケージを予め購入しておくと多少安く済ませることができるみたいで&lt;br /&gt;
+&lt;a href="http://www.amazon.co.jp/dp/B00UT26M0Q"&gt;Amazon&lt;/a&gt; や、 &lt;a href="http://www.yodobashi.com/%E3%82%B1%E3%82%A4%E3%83%BB%E3%82%AA%E3%83%97%E3%83%86%E3%82%A3%E3%82%B3%E3%83%A0-K-OPTI-COM-mineo-%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/pd/100000001002612616/"&gt;ヨドバシ&lt;/a&gt; で1600-1700円程度で購入できる&lt;br /&gt;
+コードが記載された紙が入っているので契約時に入力すると初期費用が請求されなくなるという仕組み&lt;br /&gt;
+多少手間だけれど特に急いでいるわけでもないので安く済ませられるためこちらを利用してみた&lt;/p&gt;
+&lt;p&gt;9日の深夜に手続きをして、11日に手続き完了のメール、14日にSIMが到着した&lt;br /&gt;
+サービス開始から間もないので参考にならないかもしれないけれど一応スピードテストをしてみた&lt;br /&gt;
+自宅付近と、オフィス付近の結果はこのような感じで今のところ快調の模様&lt;br /&gt;
+このままの速度が維持されるのであれば(難しいと思うけど)、メインに使っている音声有りの回線もMNPしてもいいかもと思ってる&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/09/Screenshot_2015-09-14-11-57-12.png"&gt;&lt;img alt="image" src="/static/images/2015/09/Screenshot_2015-09-14-11-57-12_s.png" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/09/Screenshot_2015-09-14-12-45-23.png"&gt;&lt;img alt="image" src="/static/images/2015/09/Screenshot_2015-09-14-12-45-23_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 14 Sep 2015 23:00:00 +0900</pubDate><guid>tag:,2015-09-14:posts/2015/09/mineo.html</guid><category>MVNO</category></item><item><title>デバイスからAPKを抜き出す</title><link>/posts/2015/07/adb-apk.html</link><description>&lt;p&gt;&lt;a href="/static/images/2015/07/so-02g.jpg"&gt;&lt;img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;SO-02Gのオレンジを買い増しました&lt;br /&gt;
 既に持っている白と同じアプリをインストールしようとしたのですが一部のアプリがストアから削除されていたので&lt;br /&gt;
 adb コマンドを使って apk を取り出してみました (色々便利なアプリがあるのは知ってる&lt;/p&gt;
