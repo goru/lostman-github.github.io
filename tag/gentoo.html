@@ -68,6 +68,41 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/11/wn-g300ua.html">WN-G300UAを使ってみる</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>今までWiFiのアクセスポイントには <a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/">WLI-UC-GNM</a> を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに<br />
+アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 <a href="http://www.iodata.jp/product/network/adp/wn-g300ua/">WN-G300UA</a> が <a href="http://itkobo-z.jp/wp/archives/432">RaspberryPiでの動作実績もあるみたい</a> で良さそうだったので購入してみました<br />
+ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした<br />
+上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…</p>
+<ul>
+<li>このデバイス用のドライバがカーネルに含まれていますがまともに動作しませんでした (繋がるけれどすぐ切れるという動作 Kernel 3.14.48)</li>
+<li>チップセットメーカーもドライバを提供していて参考にしていたサイトではそれを使うように説明がありました<br />
+しかし手元のカーネルではビルドすらできませんでした<br />
+参考にしていたサイトはRaspberryPiを使ったサイトが多かったのですが、彼らの使用しているカーネルは古かったようです</li>
+</ul>
+<p>いろいろ検証した結果ArchLinuxのパッケージで使われているリポジトリとパッチを当てたものを使用すれば動作することがわかりました<br />
+Arch以外のディストリビュージョンではそのままビルドすることができないのでArchで使っているリポジトリをサブモジュールにしてMakefileとWN-G300UA用のパッチを追加したリポジトリを作成しました</p>
+<ul>
+<li><a href="https://github.com/lostman-github/8192cu">8192cu</a></li>
+<li><a href="https://github.com/lostman-github/hostapd-rtl">hostapd-rtl</a></li>
+</ul>
+<p>以下の手順でビルドすることができます</p>
+<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/lostman-github/8192cu
+<span class="nv">$ </span><span class="nb">cd </span>8192cu
+<span class="nv">$ </span>git checkout WN-G300UA
+<span class="nv">$ </span>git submodule init
+<span class="nv">$ </span>git submodule update
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">cd</span> -
+
+<span class="nv">$ </span>git clone ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/11/wn-g300ua.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -225,12 +260,12 @@ default-storage-engine=MyISAM
                                 Android
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/aquestalk-pico-lsi.html">
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -305,7 +340,7 @@ default-storage-engine=MyISAM
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -320,7 +355,7 @@ default-storage-engine=MyISAM
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
@@ -356,6 +391,11 @@ default-storage-engine=MyISAM
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/so-02g-mvno.html">
+                                SO-02G MVNO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -365,7 +405,7 @@ default-storage-engine=MyISAM
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>

@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 14 Sep 2015 23:00:00 +0900</lastBuildDate><item><title>mineoのドコモプランを契約してみました</title><link>/posts/2015/09/mineo.html</link><description>&lt;p&gt;&lt;a href="/static/images/2015/09/DSC_0380.JPG"&gt;&lt;img alt="image" src="/static/images/2015/09/DSC_0380_s.JPG" /&gt;&lt;/a&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 01 Nov 2015 03:30:00 +0900</lastBuildDate><item><title>WN-G300UAを使ってみる</title><link>/posts/2015/11/wn-g300ua.html</link><description>&lt;p&gt;今までWiFiのアクセスポイントには &lt;a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/"&gt;WLI-UC-GNM&lt;/a&gt; を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに&lt;br /&gt;
+アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 &lt;a href="http://www.iodata.jp/product/network/adp/wn-g300ua/"&gt;WN-G300UA&lt;/a&gt; が &lt;a href="http://itkobo-z.jp/wp/archives/432"&gt;RaspberryPiでの動作実績もあるみたい&lt;/a&gt; で良さそうだったので購入してみました&lt;br /&gt;
+ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした&lt;br /&gt;
+上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;このデバイス用のドライバがカーネルに含まれていますがまともに動作しませんでした (繋がるけれどすぐ切れるという動作 Kernel 3.14.48)&lt;/li&gt;
+&lt;li&gt;チップセットメーカーもドライバを提供していて参考にしていたサイトではそれを使うように説明がありました&lt;br /&gt;
+しかし手元のカーネルではビルドすらできませんでした&lt;br /&gt;
+参考にしていたサイトはRaspberryPiを使ったサイトが多かったのですが、彼らの使用しているカーネルは古かったようです&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;いろいろ検証した結果ArchLinuxのパッケージで使われているリポジトリとパッチを当てたものを使用すれば動作することがわかりました&lt;br /&gt;
+Arch以外のディストリビュージョンではそのままビルドすることができないのでArchで使っているリポジトリをサブモジュールにしてMakefileとWN-G300UA用のパッチを追加したリポジトリを作成しました&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/lostman-github/8192cu"&gt;8192cu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lostman-github/hostapd-rtl"&gt;hostapd-rtl&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以下の手順でビルドすることができます&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/lostman-github/8192cu
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;8192cu
+&lt;span class="nv"&gt;$ &lt;/span&gt;git checkout WN-G300UA
+&lt;span class="nv"&gt;$ &lt;/span&gt;git submodule init
+&lt;span class="nv"&gt;$ &lt;/span&gt;git submodule update
+&lt;span class="nv"&gt;$ &lt;/span&gt;make
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; -
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/lostman-github/hostapd-rtl
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;hostapd-rtl
+&lt;span class="nv"&gt;$ &lt;/span&gt;git checkout WN-G300UA
+&lt;span class="nv"&gt;$ &lt;/span&gt;git submodule init
+&lt;span class="nv"&gt;$ &lt;/span&gt;git submodule update
+&lt;span class="nv"&gt;$ &lt;/span&gt;make
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; -
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これで &lt;code&gt;8192cu/src/8192cu.ko&lt;/code&gt; と &lt;code&gt;hostapd-rtl/src/hostapd/hostapd&lt;/code&gt; がビルドされます&lt;br /&gt;
+&lt;code&gt;hostapd-rtl/src/hostapd/hostapd.conf&lt;/code&gt; にWN-G300UA用の修正も含まれているので以下の部分を書き換えるだけで動作するはず&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ssid&lt;/li&gt;
+&lt;li&gt;wpa_passphrase&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;修正したら以下のコマンドでアクセスポイントを起動します&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# insmod 8192cu/src/8192cu.ko rtw_power_mgnt=0 rtw_enusbss=1 rtw_ips_mode=1&lt;/span&gt;
+&lt;span class="c"&gt;# ./hostapd-rtl/src/hostapd/hostapd -P /run/hostapd.pid -B hostapd-rtl/src/hostapd/hostapd.conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;今の所このドライバとhostapdの組み合わせで大きな問題は起きていませんが、稀にhostapdがおかしくなるようでアクセスポイントに接続できなくなってしまうことがあります&lt;br /&gt;
+その場合はhostapdを再起動すると解消するようです (ただ面倒くさい)&lt;br /&gt;
+電波の問題は解決できましたが、結局安定性に関しては以前よりはマシだがいまいち解決せずという状況です…&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 01 Nov 2015 03:30:00 +0900</pubDate><guid>tag:,2015-11-01:posts/2015/11/wn-g300ua.html</guid><category>Linux</category><category>Gentoo</category></item><item><title>メインの回線もmineoに移行</title><link>/posts/2015/10/mineo-dual.html</link><description>&lt;p&gt;今までauのガラケーのまま維持していたメインの回線もmineoにMNPしました&lt;br /&gt;
+自分の都合でなかなか宅配を受け取れなかったのを除いてとてもスムーズに移行できたのでどれくらい時間が掛かったのかメモしておきます&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;10/15 15時頃にauから電話でMNP番号を取得&lt;/li&gt;
+&lt;li&gt;10/16 23時半頃にウェブページからmineoに申し込み&lt;/li&gt;
+&lt;li&gt;10/18 17時頃に手続き完了のメール&lt;/li&gt;
+&lt;li&gt;10/19 SIMが到着するが受け取れず&lt;/li&gt;
+&lt;li&gt;10/24 ようやくSIMを受け取りMNPの切り替え&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;といった感じでした、受け取れなかった期間を除けば実質4日程度で手続きが完了しました&lt;br /&gt;
+その間に切り替えの30分程度以外は不通期間もないので良かったと思います&lt;br /&gt;
+ただ初期費用を安くするためのエントリーパッケージの入手に2、3日追加で掛かります&lt;br /&gt;
+設定の手順が書いてある冊子がSIMに同梱されていて必要な情報は基本それに記載されていましたが、mineoのメールサーバーの設定はIMAPを推奨しているようでその設定のみが記載されていました&lt;br /&gt;
+Gmailからメールを見たい場合はPOPを使う必要があって使えないのかと思いましたが、mineoのサイトに別途情報がありました  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://support.mineo.jp/usqa/set/initset/mail/4208847_8870.html"&gt;POP3で設定できますか？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;このSIMは買い増したSO-02Gに挿して使っているのですが、以下のコマンドを実行することでドコモのスマホのテザリングのAPN制限が回避できました&lt;br /&gt;
+(&lt;a href="http://app-roid.com/blog-entry-1498.html"&gt;ドコモ版XPERIA Z3（SO-01G）でMVNOのIIJmioでテザリングを有効化させる手順&lt;/a&gt;)&lt;br /&gt;
+ただアップデート時にリセットされたり変更できなくなる可能性もあると思われるのでアップデートには注意したほうがいいかもしれない&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb shell settings put global tether_dun_required 0
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 24 Oct 2015 23:00:00 +0900</pubDate><guid>tag:,2015-10-24:posts/2015/10/mineo-dual.html</guid><category>Android</category><category>SO-02G MVNO</category></item><item><title>mineoのドコモプランを契約してみました</title><link>/posts/2015/09/mineo.html</link><description>&lt;p&gt;&lt;a href="/static/images/2015/09/DSC_0380.JPG"&gt;&lt;img alt="image" src="/static/images/2015/09/DSC_0380_s.JPG" /&gt;&lt;/a&gt;
 &lt;a href="/static/images/2015/09/DSC_0401.JPG"&gt;&lt;img alt="image" src="/static/images/2015/09/DSC_0401_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://mineo.jp/"&gt;mineo&lt;/a&gt; のドコモプランの先行予約をすることができたので契約してみました&lt;br /&gt;
 今回契約したのはシングルタイプ(データ専用)&lt;br /&gt;

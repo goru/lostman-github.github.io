@@ -68,6 +68,26 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/10/windows10.html">Windows10を試してみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p><a href="http://windows.microsoft.com/ja-jp/windows/preview">Windows10 Technical Preview</a>がでたのでKVMにインストールしてみた<br />
+このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と<br />
+表示されるがUserAgentをIEに変更してから再度アクセスしたらダウンロードすることができた</p>
+<p>QEMUはひさしぶりなので使い方を忘れていたんだけれど以下のようにすることで特に問題なくインストールして動作させることができた</p>
+<div class="highlight"><pre><span class="nv">$ </span>qemu-img create -f qcow2 windows10.img 32G
+<span class="nv">$ </span>qemu-system-x86_64 -enable-kvm -cpu host -hda windows10.img -cdrom Windows10-en-x64.iso -boot d -m 4G
+</pre></div>
+
+
+<p>ただ電源の切り方がWindows8.1から更に変更されているので少し戸惑った</p>
+<p><a href="/static/images/2014/10/windows10.jpg"><img alt="Windows10 with KVM" src="/static/images/2014/10/windows10_s.jpg" /></a></p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/10/windows10.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/09/samba.html">今更Sambaをインストールした</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -223,12 +243,12 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 Android
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/aquestalk-pico-lsi.html">
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -303,7 +323,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -318,7 +338,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
@@ -354,6 +374,11 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/so-02g-mvno.html">
+                                SO-02G MVNO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -363,7 +388,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>

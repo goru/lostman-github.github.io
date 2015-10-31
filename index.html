@@ -68,6 +68,72 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/11/wn-g300ua.html">WN-G300UAを使ってみる</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>今までWiFiのアクセスポイントには <a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/">WLI-UC-GNM</a> を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに<br />
+アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 <a href="http://www.iodata.jp/product/network/adp/wn-g300ua/">WN-G300UA</a> が <a href="http://itkobo-z.jp/wp/archives/432">RaspberryPiでの動作実績もあるみたい</a> で良さそうだったので購入してみました<br />
+ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした<br />
+上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…</p>
+<ul>
+<li>このデバイス用のドライバがカーネルに含まれていますがまともに動作しませんでした (繋がるけれどすぐ切れるという動作 Kernel 3.14.48)</li>
+<li>チップセットメーカーもドライバを提供していて参考にしていたサイトではそれを使うように説明がありました<br />
+しかし手元のカーネルではビルドすらできませんでした<br />
+参考にしていたサイトはRaspberryPiを使ったサイトが多かったのですが、彼らの使用しているカーネルは古かったようです</li>
+</ul>
+<p>いろいろ検証した結果ArchLinuxのパッケージで使われているリポジトリとパッチを当てたものを使用すれば動作することがわかりました<br />
+Arch以外のディストリビュージョンではそのままビルドすることができないのでArchで使っているリポジトリをサブモジュールにしてMakefileとWN-G300UA用のパッチを追加したリポジトリを作成しました</p>
+<ul>
+<li><a href="https://github.com/lostman-github/8192cu">8192cu</a></li>
+<li><a href="https://github.com/lostman-github/hostapd-rtl">hostapd-rtl</a></li>
+</ul>
+<p>以下の手順でビルドすることができます</p>
+<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/lostman-github/8192cu
+<span class="nv">$ </span><span class="nb">cd </span>8192cu
+<span class="nv">$ </span>git checkout WN-G300UA
+<span class="nv">$ </span>git submodule init
+<span class="nv">$ </span>git submodule update
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">cd</span> -
+
+<span class="nv">$ </span>git clone ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/11/wn-g300ua.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/10/mineo-dual.html">メインの回線もmineoに移行</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>今までauのガラケーのまま維持していたメインの回線もmineoにMNPしました<br />
+自分の都合でなかなか宅配を受け取れなかったのを除いてとてもスムーズに移行できたのでどれくらい時間が掛かったのかメモしておきます</p>
+<ol>
+<li>10/15 15時頃にauから電話でMNP番号を取得</li>
+<li>10/16 23時半頃にウェブページからmineoに申し込み</li>
+<li>10/18 17時頃に手続き完了のメール</li>
+<li>10/19 SIMが到着するが受け取れず</li>
+<li>10/24 ようやくSIMを受け取りMNPの切り替え</li>
+</ol>
+<p>といった感じでした、受け取れなかった期間を除けば実質4日程度で手続きが完了しました<br />
+その間に切り替えの30分程度以外は不通期間もないので良かったと思います<br />
+ただ初期費用を安くするためのエントリーパッケージの入手に2、3日追加で掛かります<br />
+設定の手順が書いてある冊子がSIMに同梱されていて必要な情報は基本それに記載されていましたが、mineoのメールサーバーの設定はIMAPを推奨しているようでその設定のみが記載されていました<br />
+Gmailからメールを見たい場合はPOPを使う必要があって使えないのかと思いましたが、mineoのサイトに別途情報がありました  </p>
+<ul>
+<li><a href="http://support.mineo.jp/usqa/set/initset/mail/4208847_8870.html">POP3で設定できますか？</a></li>
+</ul>
+<p>このSIMは買い増したSO-02Gに挿して使っているのですが、以下のコマンドを実行することでドコモのスマホのテザリングのAPN制限が回避できました<br />
+(<a href="http://app-roid.com/blog-entry-1498.html">ドコモ版XPERIA Z3（SO-01G）でMVNOのIIJmioでテザリングを有効化させる手順</a>)<br />
+ただアップデート時にリセットされたり変更できなくなる可能性もあると思われるのでアップデートには注意したほうがいいかもしれない</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell settings put global tether_dun_required 0
+</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/10/mineo-dual.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/09/mineo.html">mineoのドコモプランを契約してみました</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -281,71 +347,6 @@ Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
-Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
-アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
-本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
-Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
-<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
-<ul>
-<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
-</ul>
-<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
-SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
-<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
-                             - write an archive of the device&#39;s ...</pre></div>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2015/02/withings.html">WiFi機能付き体重計を買ってみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>体重計は元々持っていたのですが最近多少体重が気になってきているのと<br />
-あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;記録をつけるのが面倒<br />
-と言うことで <a href="http://www.amazon.co.jp/dp/B00GRP609C">Withings Smart Body Analyzer WS-50</a> を購入してみました<br />
-とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います</p>
-<p><a href="/static/images/2015/02/IMAG1576.jpg"><img alt="box" src="/static/images/2015/02/IMAG1576_s.jpg" /></a>
-<a href="/static/images/2015/02/IMAG1578.jpg"><img alt="unbox" src="/static/images/2015/02/IMAG1578_s.jpg" /></a></p>
-<p>まず無線を使用してデータを外部に記録してくれる体重計には主にBluetoothとWiFiの2種類があるみたいです<br />
-それ以外にFelicaを使用するものもあるようでした<br />
-Bluetooth対応のものは一度スマホのアプリへデータを送信し、アプリがサーバへデータを送信する仕組みになっているみたいです<br />
-WiFi対応のものはアクセスポイントを介し直接サーバへデータを送信するようです<br />
-あまり詳しくは調べていないのですが、おそらくBluetooth対応の機種ではデータを送信する際に<br />
-必ずアプリ側の操作が必要なのではないかということが気になりました<br />
-それでは何かしらの操作が必要という点では手作業で記録するのと変わらないわけで<br />
-あまりメリットがないかなと感じたためWiFi対応の機種を購入することに決めました</p>
-<p>とかそんなことをいろいろ考えてWS-50を購入してみて良かったと思った点は</p>
-<ul>
-<li>体重計に乗るだけで電源がONになり計測開始</li>
-<li>前回体重を元に乗っている人を自動判別</li>
-<li>計測が終わると自動でデータをアップロード</li>
-<li>勝手に電源OFF</li>
-</ul>
-<p>といったところです<br />
-個別に見るとそれほどすごい機能でもないし、おそらく他の体重計でも実現できていると思うのですが<br />
-なにがいいかというと、とりあえずなにも考えずに乗って画面が消えたら降りればいい、というところ<br />
-僕が体重を計るのは朝か夜の風呂から出たあとなのですが、風呂から出た時は眼鏡を掛けていません<br />
-結構目が悪いので立った状態で体重計に乗ると表示が見えないんです<br />
-なので今まではなんとなくタイミングを見計らって体重計から降りて確認していました<br />
-今では画面が消えたら降りて、あとでスマホで確認すればOKです、非常にスマートだと思います</p>
-<p>他社も似たようなWiFi機能付き体重計を出しているのですがその中でなぜこの機種を選んだかというと<br />
-計測したデータの預りが無料だった点、あとCSVでのエクスポートもできるみたいです<br />
-正直、半年以上は有料とか、機能制限があって全ての機能を使うには課金とか、ちょっとそれは嫌だなと思いました…</p>
-<p>そんな感じでこの体重計には概ね満足だったのですが、いくつか気になる点もあったのであげておきます</p>
-<ul>
-<li>付属の説明書が役に立たない ...</li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/02/withings.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -374,12 +375,12 @@ WiFi対応のものはアクセスポイントを介し直接サーバへデー�
                                 Android
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/aquestalk-pico-lsi.html">
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -454,7 +455,7 @@ WiFi対応のものはアクセスポイントを介し直接サーバへデー�
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -469,7 +470,7 @@ WiFi対応のものはアクセスポイントを介し直接サーバへデー�
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
@@ -505,6 +506,11 @@ WiFi対応のものはアクセスポイントを介し直接サーバへデー�
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/so-02g-mvno.html">
+                                SO-02G MVNO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -514,7 +520,7 @@ WiFi対応のものはアクセスポイントを介し直接サーバへデー�
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>

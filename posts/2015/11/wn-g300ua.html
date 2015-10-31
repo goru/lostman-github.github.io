@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>GitHub Pages関連で調べたこと - blog.gorugle.org</title>
+    <title>WN-G300UAを使ってみる - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,7 +36,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -45,7 +45,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/internet.html">Internet</a>
                         </li>
                         <li >
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2014/07/github-pages.html"
+                    <a href="/posts/2015/11/wn-g300ua.html"
                        rel="bookmark"
-                       title="Permalink to GitHub Pages関連で調べたこと">
-                        GitHub Pages関連で調べたこと
+                       title="Permalink to WN-G300UAを使ってみる">
+                        WN-G300UAを使ってみる
                     </a>
                 </h1>
             </header>
@@ -84,26 +84,68 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-07-24T00:16:00+09:00"> 2014/07/24 Thu</time>
+        <time datetime="2015-11-01T03:30:00+09:00"> 2015/11/01 Sun</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/github.html">GitHub</a>
+	<a href="/tag/linux.html">Linux</a>
+        /
+	<a href="/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <ul>
-<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br />
-  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br />
-  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
-<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br />
-  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
-<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br />
-  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br />
-  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
+                <p>今までWiFiのアクセスポイントには <a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/">WLI-UC-GNM</a> を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに<br />
+アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 <a href="http://www.iodata.jp/product/network/adp/wn-g300ua/">WN-G300UA</a> が <a href="http://itkobo-z.jp/wp/archives/432">RaspberryPiでの動作実績もあるみたい</a> で良さそうだったので購入してみました<br />
+ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした<br />
+上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…</p>
+<ul>
+<li>このデバイス用のドライバがカーネルに含まれていますがまともに動作しませんでした (繋がるけれどすぐ切れるという動作 Kernel 3.14.48)</li>
+<li>チップセットメーカーもドライバを提供していて参考にしていたサイトではそれを使うように説明がありました<br />
+しかし手元のカーネルではビルドすらできませんでした<br />
+参考にしていたサイトはRaspberryPiを使ったサイトが多かったのですが、彼らの使用しているカーネルは古かったようです</li>
 </ul>
+<p>いろいろ検証した結果ArchLinuxのパッケージで使われているリポジトリとパッチを当てたものを使用すれば動作することがわかりました<br />
+Arch以外のディストリビュージョンではそのままビルドすることができないのでArchで使っているリポジトリをサブモジュールにしてMakefileとWN-G300UA用のパッチを追加したリポジトリを作成しました</p>
+<ul>
+<li><a href="https://github.com/lostman-github/8192cu">8192cu</a></li>
+<li><a href="https://github.com/lostman-github/hostapd-rtl">hostapd-rtl</a></li>
+</ul>
+<p>以下の手順でビルドすることができます</p>
+<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/lostman-github/8192cu
+<span class="nv">$ </span><span class="nb">cd </span>8192cu
+<span class="nv">$ </span>git checkout WN-G300UA
+<span class="nv">$ </span>git submodule init
+<span class="nv">$ </span>git submodule update
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">cd</span> -
+
+<span class="nv">$ </span>git clone https://github.com/lostman-github/hostapd-rtl
+<span class="nv">$ </span><span class="nb">cd </span>hostapd-rtl
+<span class="nv">$ </span>git checkout WN-G300UA
+<span class="nv">$ </span>git submodule init
+<span class="nv">$ </span>git submodule update
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">cd</span> -
+</pre></div>
+
+
+<p>これで <code>8192cu/src/8192cu.ko</code> と <code>hostapd-rtl/src/hostapd/hostapd</code> がビルドされます<br />
+<code>hostapd-rtl/src/hostapd/hostapd.conf</code> にWN-G300UA用の修正も含まれているので以下の部分を書き換えるだけで動作するはず</p>
+<ul>
+<li>ssid</li>
+<li>wpa_passphrase</li>
+</ul>
+<p>修正したら以下のコマンドでアクセスポイントを起動します</p>
+<div class="highlight"><pre><span class="c"># insmod 8192cu/src/8192cu.ko rtw_power_mgnt=0 rtw_enusbss=1 rtw_ips_mode=1</span>
+<span class="c"># ./hostapd-rtl/src/hostapd/hostapd -P /run/hostapd.pid -B hostapd-rtl/src/hostapd/hostapd.conf</span>
+</pre></div>
+
+
+<p>今の所このドライバとhostapdの組み合わせで大きな問題は起きていませんが、稀にhostapdがおかしくなるようでアクセスポイントに接続できなくなってしまうことがあります<br />
+その場合はhostapdを再起動すると解消するようです (ただ面倒くさい)<br />
+電波の問題は解決できましたが、結局安定性に関しては以前よりはマシだがいまいち解決せずという状況です…</p>
             </div>
             <!-- /.entry-content -->
         </article>

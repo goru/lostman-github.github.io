@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>GitHub Pages関連で調べたこと - blog.gorugle.org</title>
+    <title>SO-02G MVNO - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -45,7 +45,7 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/internet.html">Internet</a>
                         </li>
                         <li >
@@ -67,47 +67,37 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="/posts/2014/07/github-pages.html"
-                       rel="bookmark"
-                       title="Permalink to GitHub Pages関連で調べたこと">
-                        GitHub Pages関連で調べたこと
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <time datetime="2014-07-24T00:16:00+09:00"> 2014/07/24 Thu</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/github.html">GitHub</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <ul>
-<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br />
-  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br />
-  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
-<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br />
-  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
-<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br />
-  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br />
-  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
+            <article>
+                <h2><a href="/posts/2015/10/mineo-dual.html">メインの回線もmineoに移行</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>今までauのガラケーのまま維持していたメインの回線もmineoにMNPしました<br />
+自分の都合でなかなか宅配を受け取れなかったのを除いてとてもスムーズに移行できたのでどれくらい時間が掛かったのかメモしておきます</p>
+<ol>
+<li>10/15 15時頃にauから電話でMNP番号を取得</li>
+<li>10/16 23時半頃にウェブページからmineoに申し込み</li>
+<li>10/18 17時頃に手続き完了のメール</li>
+<li>10/19 SIMが到着するが受け取れず</li>
+<li>10/24 ようやくSIMを受け取りMNPの切り替え</li>
+</ol>
+<p>といった感じでした、受け取れなかった期間を除けば実質4日程度で手続きが完了しました<br />
+その間に切り替えの30分程度以外は不通期間もないので良かったと思います<br />
+ただ初期費用を安くするためのエントリーパッケージの入手に2、3日追加で掛かります<br />
+設定の手順が書いてある冊子がSIMに同梱されていて必要な情報は基本それに記載されていましたが、mineoのメールサーバーの設定はIMAPを推奨しているようでその設定のみが記載されていました<br />
+Gmailからメールを見たい場合はPOPを使う必要があって使えないのかと思いましたが、mineoのサイトに別途情報がありました  </p>
+<ul>
+<li><a href="http://support.mineo.jp/usqa/set/initset/mail/4208847_8870.html">POP3で設定できますか？</a></li>
 </ul>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
+<p>このSIMは買い増したSO-02Gに挿して使っているのですが、以下のコマンドを実行することでドコモのスマホのテザリングのAPN制限が回避できました<br />
+(<a href="http://app-roid.com/blog-entry-1498.html">ドコモ版XPERIA Z3（SO-01G）でMVNOのIIJmioでテザリングを有効化させる手順</a>)<br />
+ただアップデート時にリセットされたり変更できなくなる可能性もあると思われるのでアップデートには注意したほうがいいかもしれない</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell settings put global tether_dun_required 0
+</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/10/mineo-dual.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">

@@ -68,6 +68,83 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/09/samba.html">今更Sambaをインストールした</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>しばらく前に<a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/">ASUS VivoTab Note 8</a>を買ったり、<a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/">HP Pavilion 15-n200 (AMD)</a>が29800円だったので妻に買ったりMacBook Airもあるし<br />
+Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました<br />
+今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね</p>
+<p>Gentooでのインストールは特に気にすることなくいつも通り<br />
+自分はクライアントの機能は不要だったので <code>-client</code> と <code>-smbclient</code> を指定した<br />
+デフォルトの設定ファイルをコピーして自分の設定を作っていく</p>
+<div class="highlight"><pre><span class="c"># emerge -av samba</span>
+<span class="c"># cp /etc/samba/smb.conf.default /etc/samba/smb.conf</span>
+</pre></div>
+
+
+<p>以下に変更した設定をメモしておく</p>
+<ul>
+<li>workgroup = WORKGROUP<br />
+Windowsのデフォルトに合わせる</li>
+<li>hosts allow = 10.0.0.<br />
+hosts deny = all<br />
+LAN内のマシン以外からのアクセスを拒否する</li>
+<li>load printers ...</li></ul>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/09/samba.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2014/08/mysql5.5.html">MySQL5.1から5.5へアップデート</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
+epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
+<ol>
+<li>
+<p>MySQLの停止</p>
+<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>emergeを使用してアップデート</p>
+<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
+<span class="c"># etc-update</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
+<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
+<div class="highlight"><pre>skip-innodb
+default-storage-engine=MyISAM
+</pre></div>
+
+
+</li>
+<li>
+<p>関連パッケージの更新</p>
+<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
+<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
+<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>MySQLを再起動<br />
+再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
+<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/08/self-signed-certificate.html">Nginxで自己署名証明書を使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -331,12 +408,12 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                                 Android
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/aquestalk-pico-lsi.html">
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -411,7 +488,7 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -426,7 +503,7 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
@@ -462,6 +539,11 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/so-02g-mvno.html">
+                                SO-02G MVNO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -471,7 +553,7 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>

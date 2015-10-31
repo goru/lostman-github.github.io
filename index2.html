@@ -68,6 +68,71 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
+Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
+アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
+本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
+Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
+<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
+<ul>
+<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
+</ul>
+<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
+SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
+<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
+                             - write an archive of the device&#39;s ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/02/withings.html">WiFi機能付き体重計を買ってみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>体重計は元々持っていたのですが最近多少体重が気になってきているのと<br />
+あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;記録をつけるのが面倒<br />
+と言うことで <a href="http://www.amazon.co.jp/dp/B00GRP609C">Withings Smart Body Analyzer WS-50</a> を購入してみました<br />
+とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います</p>
+<p><a href="/static/images/2015/02/IMAG1576.jpg"><img alt="box" src="/static/images/2015/02/IMAG1576_s.jpg" /></a>
+<a href="/static/images/2015/02/IMAG1578.jpg"><img alt="unbox" src="/static/images/2015/02/IMAG1578_s.jpg" /></a></p>
+<p>まず無線を使用してデータを外部に記録してくれる体重計には主にBluetoothとWiFiの2種類があるみたいです<br />
+それ以外にFelicaを使用するものもあるようでした<br />
+Bluetooth対応のものは一度スマホのアプリへデータを送信し、アプリがサーバへデータを送信する仕組みになっているみたいです<br />
+WiFi対応のものはアクセスポイントを介し直接サーバへデータを送信するようです<br />
+あまり詳しくは調べていないのですが、おそらくBluetooth対応の機種ではデータを送信する際に<br />
+必ずアプリ側の操作が必要なのではないかということが気になりました<br />
+それでは何かしらの操作が必要という点では手作業で記録するのと変わらないわけで<br />
+あまりメリットがないかなと感じたためWiFi対応の機種を購入することに決めました</p>
+<p>とかそんなことをいろいろ考えてWS-50を購入してみて良かったと思った点は</p>
+<ul>
+<li>体重計に乗るだけで電源がONになり計測開始</li>
+<li>前回体重を元に乗っている人を自動判別</li>
+<li>計測が終わると自動でデータをアップロード</li>
+<li>勝手に電源OFF</li>
+</ul>
+<p>といったところです<br />
+個別に見るとそれほどすごい機能でもないし、おそらく他の体重計でも実現できていると思うのですが<br />
+なにがいいかというと、とりあえずなにも考えずに乗って画面が消えたら降りればいい、というところ<br />
+僕が体重を計るのは朝か夜の風呂から出たあとなのですが、風呂から出た時は眼鏡を掛けていません<br />
+結構目が悪いので立った状態で体重計に乗ると表示が見えないんです<br />
+なので今まではなんとなくタイミングを見計らって体重計から降りて確認していました<br />
+今では画面が消えたら降りて、あとでスマホで確認すればOKです、非常にスマートだと思います</p>
+<p>他社も似たようなWiFi機能付き体重計を出しているのですがその中でなぜこの機種を選んだかというと<br />
+計測したデータの預りが無料だった点、あとCSVでのエクスポートもできるみたいです<br />
+正直、半年以上は有料とか、機能制限があって全ての機能を使うには課金とか、ちょっとそれは嫌だなと思いました…</p>
+<p>そんな感じでこの体重計には概ね満足だったのですが、いくつか気になる点もあったのであげておきます</p>
+<ul>
+<li>付属の説明書が役に立たない ...</li></ul>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/02/withings.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/02/2015-todo.html">2015年ですね</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -335,83 +400,6 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/09/samba.html">今更Sambaをインストールした</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>しばらく前に<a href="http://www.asus.com/jp/Tablets_Mobile/ASUS_VivoTab_Note_8_M80TA/">ASUS VivoTab Note 8</a>を買ったり、<a href="http://h50146.www5.hp.com/directplus/personal/notebooks/dp_pavilion15_n200_amd/">HP Pavilion 15-n200 (AMD)</a>が29800円だったので妻に買ったりMacBook Airもあるし<br />
-Linux以外のマシンが増えてきたので、これらのマシンからもファイルサーバを利用できるようにSambaの導入をしました<br />
-今までは自分のLinuxマシンだけだったんでNFSで間に合ってたんだけどね</p>
-<p>Gentooでのインストールは特に気にすることなくいつも通り<br />
-自分はクライアントの機能は不要だったので <code>-client</code> と <code>-smbclient</code> を指定した<br />
-デフォルトの設定ファイルをコピーして自分の設定を作っていく</p>
-<div class="highlight"><pre><span class="c"># emerge -av samba</span>
-<span class="c"># cp /etc/samba/smb.conf.default /etc/samba/smb.conf</span>
-</pre></div>
-
-
-<p>以下に変更した設定をメモしておく</p>
-<ul>
-<li>workgroup = WORKGROUP<br />
-Windowsのデフォルトに合わせる</li>
-<li>hosts allow = 10.0.0.<br />
-hosts deny = all<br />
-LAN内のマシン以外からのアクセスを拒否する</li>
-<li>load printers ...</li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/09/samba.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/08/mysql5.5.html">MySQL5.1から5.5へアップデート</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
-epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
-<ol>
-<li>
-<p>MySQLの停止</p>
-<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>emergeを使用してアップデート</p>
-<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
-<span class="c"># etc-update</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
-<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
-<div class="highlight"><pre>skip-innodb
-default-storage-engine=MyISAM
-</pre></div>
-
-
-</li>
-<li>
-<p>関連パッケージの更新</p>
-<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
-<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
-<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>MySQLを再起動<br />
-再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
-<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="/index.html">&laquo;</a>
@@ -441,12 +429,12 @@ default-storage-engine=MyISAM
                                 Android
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/aquestalk-pico-lsi.html">
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -521,7 +509,7 @@ default-storage-engine=MyISAM
                                 MacUIM
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mozc.html">
                                 Mozc
                             </a>
@@ -536,7 +524,7 @@ default-storage-engine=MyISAM
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
@@ -572,6 +560,11 @@ default-storage-engine=MyISAM
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/so-02g-mvno.html">
+                                SO-02G MVNO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -581,7 +574,7 @@ default-storage-engine=MyISAM
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>
