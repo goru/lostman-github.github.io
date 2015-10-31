@@ -20,3 +20,10 @@ Slug: mineo-dual
 Gmailからメールを見たい場合はPOPを使う必要があって使えないのかと思いましたが、mineoのサイトに別途情報がありました  
 
 * [POP3で設定できますか？](http://support.mineo.jp/usqa/set/initset/mail/4208847_8870.html)
+
+このSIMは買い増したSO-02Gに挿して使っているのですが、以下のコマンドを実行することでドコモのスマホのテザリングのAPN制限が回避できました  
+([ドコモ版XPERIA Z3（SO-01G）でMVNOのIIJmioでテザリングを有効化させる手順](http://app-roid.com/blog-entry-1498.html))  
+ただアップデート時にリセットされたり変更できなくなる可能性もあると思われるのでアップデートには注意したほうがいいかもしれない
+
+    :::bash
+    $ adb shell settings put global tether_dun_required 0
