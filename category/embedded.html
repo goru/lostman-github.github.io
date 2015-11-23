@@ -68,6 +68,43 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/11/esp-wroom-02.html">ESP-WROOM-02を試してみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>ESP-WROOM-02を試してみました。
+ESP-WROOM-02はデフォルトではATコマンドで操作を受け付けるファームウェアが書き込まれています。
+それ以外にArduinoやNodeMCUとして使えるファームウェアも使用することができるみたいです。</p>
+<p>今回試したのはATコマンドでの動作です。
+これはPCとUSBシリアルで接続してシリアルコンソールからATコマンドを送ることで操作します。
+今回使ったものは以下。</p>
+<ul>
+<li><a href="http://akizukidenshi.com/catalog/g/gK-06894/">FT231X USBシリアル変換モジュール AE-FT231X</a> 750円</li>
+<li><a href="http://akizukidenshi.com/catalog/g/gI-00432/">低損失CMOS三端子レギュレータ 3.3V 500mA NJU7223F33</a> 50円</li>
+<li><a href="https://www.switch-science.com/catalog/2347/">ESP-WROOM-02ピッチ変換済みモジュール《フル版》</a> 1100円</li>
+<li>その他抵抗等</li>
+</ul>
+<p>USBシリアルは今後もよく使うと思うのでこのような変換基板を作ってみました。
+今回は使わないけれど、リセットボタンと5V/3Vの切り替えスイッチ付き。</p>
+<p><a href="/static/images/2015/11/usb-serial.png"><img alt="image" src="/static/images/2015/11/usb-serial_s.png" /></a></p>
+<p>上記のUSBシリアル変換基板とESP-WROOM-02を次のように接続するだけで動作確認できます。
+ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3Vは使用せず、5Vを三端子レギュレータを介して入力するようにします。
+(<a href="http://nemuisan.blog.bai.ne.jp/?eid=216185">ESP-WROOM-02を使ってみる3 -そんな電源で大丈夫か-</a>)</p>
+<p><a href="/static/images/2015/11/esp-wroom-02.png"><img alt="image" src="/static/images/2015/11/esp-wroom-02_s.png" /></a>
+<a href="/static/images/2015/11/DSC_0565.JPG"><img alt="image" src="/static/images/2015/11/DSC_0565_s.JPG" /></a></p>
+<p>次にPCとの接続にはUSBシリアルのドライバをインストールしなければいけないので、FTDIのページからVCP Driverをダウンロードしてインストールしておきます。</p>
+<ul>
+<li><a href="http://www.ftdichip.com/Drivers/VCP.htm">Virtual COM Port Drivers</a></li>
+</ul>
+<p>PCと接続したらArduino IDEを起動して <code>Tools -&gt; Serial Port</code> から認識されているデバイスを選択します。
+選択したら <code>Tools -&gt; Serial Monitor</code> をクリックしてシリアルモニタを起動します。</p>
+<p><a href="/static/images/2015/11/Screenshot_2015-11-01-15-12-00.png"><img alt="image" src="/static/images/2015/11/Screenshot_2015-11-01-15-12-00_s.png" /></a></p>
+<p>シリアルモニタが起動したら ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/11/esp-wroom-02.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -305,6 +342,11 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         <li class="list-group-item tag-4">
                             <a href="/tag/e-book.html">
                                 e-book
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/esp-wroom-02.html">
+                                ESP-WROOM-02
                             </a>
                         </li>
                         <li class="list-group-item tag-1">

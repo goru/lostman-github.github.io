@@ -1,5 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 01 Nov 2015 03:30:00 +0900</lastBuildDate><item><title>WN-G300UAを使ってみる</title><link>/posts/2015/11/wn-g300ua.html</link><description>&lt;p&gt;今までWiFiのアクセスポイントには &lt;a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/"&gt;WLI-UC-GNM&lt;/a&gt; を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 23 Nov 2015 19:20:00 +0900</lastBuildDate><item><title>ESP-WROOM-02を試してみた</title><link>/posts/2015/11/esp-wroom-02.html</link><description>&lt;p&gt;ESP-WROOM-02を試してみました。
+ESP-WROOM-02はデフォルトではATコマンドで操作を受け付けるファームウェアが書き込まれています。
+それ以外にArduinoやNodeMCUとして使えるファームウェアも使用することができるみたいです。&lt;/p&gt;
+&lt;p&gt;今回試したのはATコマンドでの動作です。
+これはPCとUSBシリアルで接続してシリアルコンソールからATコマンドを送ることで操作します。
+今回使ったものは以下。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://akizukidenshi.com/catalog/g/gK-06894/"&gt;FT231X USBシリアル変換モジュール AE-FT231X&lt;/a&gt; 750円&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://akizukidenshi.com/catalog/g/gI-00432/"&gt;低損失CMOS三端子レギュレータ 3.3V 500mA NJU7223F33&lt;/a&gt; 50円&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.switch-science.com/catalog/2347/"&gt;ESP-WROOM-02ピッチ変換済みモジュール《フル版》&lt;/a&gt; 1100円&lt;/li&gt;
+&lt;li&gt;その他抵抗等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;USBシリアルは今後もよく使うと思うのでこのような変換基板を作ってみました。
+今回は使わないけれど、リセットボタンと5V/3Vの切り替えスイッチ付き。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/11/usb-serial.png"&gt;&lt;img alt="image" src="/static/images/2015/11/usb-serial_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;上記のUSBシリアル変換基板とESP-WROOM-02を次のように接続するだけで動作確認できます。
+ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3Vは使用せず、5Vを三端子レギュレータを介して入力するようにします。
+(&lt;a href="http://nemuisan.blog.bai.ne.jp/?eid=216185"&gt;ESP-WROOM-02を使ってみる3 -そんな電源で大丈夫か-&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/11/esp-wroom-02.png"&gt;&lt;img alt="image" src="/static/images/2015/11/esp-wroom-02_s.png" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/11/DSC_0565.JPG"&gt;&lt;img alt="image" src="/static/images/2015/11/DSC_0565_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;次にPCとの接続にはUSBシリアルのドライバをインストールしなければいけないので、FTDIのページからVCP Driverをダウンロードしてインストールしておきます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.ftdichip.com/Drivers/VCP.htm"&gt;Virtual COM Port Drivers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PCと接続したらArduino IDEを起動して &lt;code&gt;Tools -&amp;gt; Serial Port&lt;/code&gt; から認識されているデバイスを選択します。
+選択したら &lt;code&gt;Tools -&amp;gt; Serial Monitor&lt;/code&gt; をクリックしてシリアルモニタを起動します。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/11/Screenshot_2015-11-01-15-12-00.png"&gt;&lt;img alt="image" src="/static/images/2015/11/Screenshot_2015-11-01-15-12-00_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;シリアルモニタが起動したら &lt;code&gt;Both NL &amp;amp; CR&lt;/code&gt; 、 &lt;code&gt;115200 baud&lt;/code&gt; に設定を変更します。
+&lt;code&gt;AT&lt;/code&gt; と入力して &lt;code&gt;OK&lt;/code&gt; が返ってくればモジュールの起動には成功して使用可能状態になっています。
+以下の &lt;code&gt;&amp;gt;&lt;/code&gt; の行のコマンドを入力していくと、WiFiのアクセスポイントに接続し、HTTPで外部のリソースにアクセスすることができます。
+(&lt;a href="http://www.pwv.co.jp/~take/TakeWiki/index.php?Arduino%E5%8B%89%E5%BC%B7%E4%BC%9A%2F0N-WiFi%E3%83%A2%E3%82%B7%E3%82%99%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%9D%E3%81%AE%EF%BC%91"&gt;Arduino勉強会/0N-WiFiモジュールその１&lt;/a&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt; AT
+
+OK
+
+# Stationモードにする (APモードなどもある)
+&amp;gt; AT+CWMODE=1
+
+OK
+
+# アクセスポイントに接続
+&amp;gt; AT+CWJAP=&amp;quot;SSID&amp;quot;,&amp;quot;PASSWORD&amp;quot;
+
+WIFI DISCONNECT
+WIFI CONNECTED
+WIFI GOT IP
+
+OK
+
+# モジュールに割り当てられているIPアドレスとMACアドレスを表示
+&amp;gt; AT+CIFSR
+
++CIFSR:STAIP,&amp;quot;IP_ADDRESS&amp;quot;
++CIFSR:STAMAC,&amp;quot;MAC_ADDRESS&amp;quot;
+
+OK
+
+# サーバに接続
+&amp;gt; AT+CIPSTART=&amp;quot;TCP&amp;quot;,&amp;quot;www.google.co.jp&amp;quot;,80
+
+CONNECT
+
+OK
+
+# 送信するバイト数を設定、今回は `GET / HTTP/1.0` と改行2回分の18Byte
+&amp;gt; AT+CIPSEND=18
+
+OK
+
+&amp;gt; GET / HTTP/1.0
+
+Recv 18 bytes
+
+SEND OK
+
++IPD,494:HTTP/1.0 302 Found
+Cache-Control: private
+Content-Type: text/html; charset=UTF-8
+Location: http://www.google.co.jp/?gfe_rd=cr&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;ei=L601Vq2QHfP98wf0qZKADQ
+Content-Length: 261
+Date: Sun, 01 Nov 2015 06:11:59 GMT
+Server: GFE/2.0
+
+&lt;span class="nt"&gt;&amp;lt;HTML&amp;gt;&amp;lt;HEAD&amp;gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;content-type&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html;charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;TITLE&amp;gt;&lt;/span&gt;302 Moved&lt;span class="nt"&gt;&amp;lt;/TITLE&amp;gt;&amp;lt;/HEAD&amp;gt;&amp;lt;BODY&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;H1&amp;gt;&lt;/span&gt;302 Moved&lt;span class="nt"&gt;&amp;lt;/H1&amp;gt;&lt;/span&gt;
+The document has moved
+&lt;span class="nt"&gt;&amp;lt;A&lt;/span&gt; &lt;span class="na"&gt;HREF=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.google.co.jp/?gfe_rd=cr&amp;amp;amp;ei=L601Vq2QHfP98wf0qZKADQ&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;here&lt;span class="nt"&gt;&amp;lt;/A&amp;gt;&lt;/span&gt;.
+&lt;span class="nt"&gt;&amp;lt;/BODY&amp;gt;&amp;lt;/HTML&amp;gt;&lt;/span&gt;
+
+CLOSED
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;とりあえずGoogleにアクセスすることはできました。
+ATコマンド経由で使用するにはシリアル経由で他のデバイスと接続する必要があり、その場合無駄に複雑になってしまいます。
+せっかくESP-WROOM-02自体をArduinoとして使用できるので、そうすればとてもシンプルなシステムになるはず。
+次回はこのモジュールをArduinoとして使う方法を試したいと思います。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Mon, 23 Nov 2015 19:20:00 +0900</pubDate><guid>tag:,2015-11-23:posts/2015/11/esp-wroom-02.html</guid><category>ESP-WROOM-02</category></item><item><title>WN-G300UAを使ってみる</title><link>/posts/2015/11/wn-g300ua.html</link><description>&lt;p&gt;今までWiFiのアクセスポイントには &lt;a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/"&gt;WLI-UC-GNM&lt;/a&gt; を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに&lt;br /&gt;
 アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 &lt;a href="http://www.iodata.jp/product/network/adp/wn-g300ua/"&gt;WN-G300UA&lt;/a&gt; が &lt;a href="http://itkobo-z.jp/wp/archives/432"&gt;RaspberryPiでの動作実績もあるみたい&lt;/a&gt; で良さそうだったので購入してみました&lt;br /&gt;
 ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした&lt;br /&gt;
 上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…&lt;/p&gt;

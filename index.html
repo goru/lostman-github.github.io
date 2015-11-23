@@ -68,6 +68,43 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/11/esp-wroom-02.html">ESP-WROOM-02を試してみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>ESP-WROOM-02を試してみました。
+ESP-WROOM-02はデフォルトではATコマンドで操作を受け付けるファームウェアが書き込まれています。
+それ以外にArduinoやNodeMCUとして使えるファームウェアも使用することができるみたいです。</p>
+<p>今回試したのはATコマンドでの動作です。
+これはPCとUSBシリアルで接続してシリアルコンソールからATコマンドを送ることで操作します。
+今回使ったものは以下。</p>
+<ul>
+<li><a href="http://akizukidenshi.com/catalog/g/gK-06894/">FT231X USBシリアル変換モジュール AE-FT231X</a> 750円</li>
+<li><a href="http://akizukidenshi.com/catalog/g/gI-00432/">低損失CMOS三端子レギュレータ 3.3V 500mA NJU7223F33</a> 50円</li>
+<li><a href="https://www.switch-science.com/catalog/2347/">ESP-WROOM-02ピッチ変換済みモジュール《フル版》</a> 1100円</li>
+<li>その他抵抗等</li>
+</ul>
+<p>USBシリアルは今後もよく使うと思うのでこのような変換基板を作ってみました。
+今回は使わないけれど、リセットボタンと5V/3Vの切り替えスイッチ付き。</p>
+<p><a href="/static/images/2015/11/usb-serial.png"><img alt="image" src="/static/images/2015/11/usb-serial_s.png" /></a></p>
+<p>上記のUSBシリアル変換基板とESP-WROOM-02を次のように接続するだけで動作確認できます。
+ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3Vは使用せず、5Vを三端子レギュレータを介して入力するようにします。
+(<a href="http://nemuisan.blog.bai.ne.jp/?eid=216185">ESP-WROOM-02を使ってみる3 -そんな電源で大丈夫か-</a>)</p>
+<p><a href="/static/images/2015/11/esp-wroom-02.png"><img alt="image" src="/static/images/2015/11/esp-wroom-02_s.png" /></a>
+<a href="/static/images/2015/11/DSC_0565.JPG"><img alt="image" src="/static/images/2015/11/DSC_0565_s.JPG" /></a></p>
+<p>次にPCとの接続にはUSBシリアルのドライバをインストールしなければいけないので、FTDIのページからVCP Driverをダウンロードしてインストールしておきます。</p>
+<ul>
+<li><a href="http://www.ftdichip.com/Drivers/VCP.htm">Virtual COM Port Drivers</a></li>
+</ul>
+<p>PCと接続したらArduino IDEを起動して <code>Tools -&gt; Serial Port</code> から認識されているデバイスを選択します。
+選択したら <code>Tools -&gt; Serial Monitor</code> をクリックしてシリアルモニタを起動します。</p>
+<p><a href="/static/images/2015/11/Screenshot_2015-11-01-15-12-00.png"><img alt="image" src="/static/images/2015/11/Screenshot_2015-11-01-15-12-00_s.png" /></a></p>
+<p>シリアルモニタが起動したら ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/11/esp-wroom-02.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/11/wn-g300ua.html">WN-G300UAを使ってみる</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -308,45 +345,6 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/03/redmine.html">Redmineをインストールしてみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて<br />
-日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした<br />
-Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気がしていたんだけれどRedmineは以前仕事でも使っていたし<br />
-自分のサーバにインストールして使うとなると思いの外選択肢が少ない感じだったのでRedmineを入れてみました</p>
-<p>もやっとした要件は</p>
-<ul>
-<li>サービスでなく、自分のサーバにインストールできること</li>
-<li>依存するものが少なく、導入が楽</li>
-<li>日付を入れずにタスクを登録できる</li>
-<li>優先度を設定できる</li>
-<li>日付が入っているものはカレンダーで確認できる</li>
-<li>スマホからタスクを確認、編集できる</li>
-</ul>
-<p>なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした<br />
-ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする<br />
-あとスマホでのタスクの確認はRedmineではできなくて、 <a href="https://play.google.com/store/apps/details?id=jp.co.projectmode.redminepm">RedminePM</a> というアプリから行うことにしました</p>
-<p>今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して<br />
-ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール<br />
-と、全て専用ユーザのホームディレクトリ以下で済ますことにしました<br />
-また、追加でインストールするものも抑えたかったのでRedmineはWEBRick、SQLite、ImageMagickなし、で動かすことにしました</p>
-<p>まずユーザを作って、ログイン</p>
-<div class="highlight"><pre><span class="c"># useradd -m redmine</span>
-<span class="c"># su - redmine</span>
-</pre></div>
-
-
-<p><a href="https://github.com/sstephenson/rbenv">rbenv</a> と <a href="https://github.com/sstephenson/ruby-build">ruby-build</a> をインストールする<br />
-ここからは全てこのユーザのホームディレクトリ以下で作業</p>
-<ul>
-<li><a href="https://www.qoosky.net/references/128/">rbenvおよびbundlerの基本的な使用方法 ...</a></li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/redmine.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -398,6 +396,11 @@ Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気�
                         <li class="list-group-item tag-4">
                             <a href="/tag/e-book.html">
                                 e-book
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/esp-wroom-02.html">
+                                ESP-WROOM-02
                             </a>
                         </li>
                         <li class="list-group-item tag-1">
