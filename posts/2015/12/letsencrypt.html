@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>WS-50 - blog.gorugle.org</title>
+    <title>GentooとNginxでLet's Encryptを使う - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,7 +36,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -67,49 +67,122 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="/posts/2015/02/withings.html">WiFi機能付き体重計を買ってみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>体重計は元々持っていたのですが最近多少体重が気になってきているのと<br />
-あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;記録をつけるのが面倒<br />
-と言うことで <a href="http://www.amazon.co.jp/dp/B00GRP609C">Withings Smart Body Analyzer WS-50</a> を購入してみました<br />
-とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います</p>
-<p><a href="/static/images/2015/02/IMAG1576.jpg"><img alt="box" src="/static/images/2015/02/IMAG1576_s.jpg" /></a>
-<a href="/static/images/2015/02/IMAG1578.jpg"><img alt="unbox" src="/static/images/2015/02/IMAG1578_s.jpg" /></a></p>
-<p>まず無線を使用してデータを外部に記録してくれる体重計には主にBluetoothとWiFiの2種類があるみたいです<br />
-それ以外にFelicaを使用するものもあるようでした<br />
-Bluetooth対応のものは一度スマホのアプリへデータを送信し、アプリがサーバへデータを送信する仕組みになっているみたいです<br />
-WiFi対応のものはアクセスポイントを介し直接サーバへデータを送信するようです<br />
-あまり詳しくは調べていないのですが、おそらくBluetooth対応の機種ではデータを送信する際に<br />
-必ずアプリ側の操作が必要なのではないかということが気になりました<br />
-それでは何かしらの操作が必要という点では手作業で記録するのと変わらないわけで<br />
-あまりメリットがないかなと感じたためWiFi対応の機種を購入することに決めました</p>
-<p>とかそんなことをいろいろ考えてWS-50を購入してみて良かったと思った点は</p>
-<ul>
-<li>体重計に乗るだけで電源がONになり計測開始</li>
-<li>前回体重を元に乗っている人を自動判別</li>
-<li>計測が終わると自動でデータをアップロード</li>
-<li>勝手に電源OFF</li>
-</ul>
-<p>といったところです<br />
-個別に見るとそれほどすごい機能でもないし、おそらく他の体重計でも実現できていると思うのですが<br />
-なにがいいかというと、とりあえずなにも考えずに乗って画面が消えたら降りればいい、というところ<br />
-僕が体重を計るのは朝か夜の風呂から出たあとなのですが、風呂から出た時は眼鏡を掛けていません<br />
-結構目が悪いので立った状態で体重計に乗ると表示が見えないんです<br />
-なので今まではなんとなくタイミングを見計らって体重計から降りて確認していました<br />
-今では画面が消えたら降りて、あとでスマホで確認すればOKです、非常にスマートだと思います</p>
-<p>他社も似たようなWiFi機能付き体重計を出しているのですがその中でなぜこの機種を選んだかというと<br />
-計測したデータの預りが無料だった点、あとCSVでのエクスポートもできるみたいです<br />
-正直、半年以上は有料とか、機能制限があって全ての機能を使うには課金とか、ちょっとそれは嫌だなと思いました…</p>
-<p>そんな感じでこの体重計には概ね満足だったのですが、いくつか気になる点もあったのであげておきます</p>
-<ul>
-<li>付属の説明書が役に立たない ...</li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/02/withings.html">more ...</a>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2015/12/letsencrypt.html"
+                       rel="bookmark"
+                       title="Permalink to GentooとNginxでLet's Encryptを使う">
+                        GentooとNginxでLet's Encryptを使う
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2015-12-05T22:30:00+09:00"> 2015/12/05 Sat</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/gentoo.html">Gentoo</a>
+        /
+	<a href="/tag/nginx.html">Nginx</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
+                <p><a href="https://letsencrypt.org/">Let's Encrypt</a> がPublic Betaになったので使ってみました。
+Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
+ただ試してみた結果現状でもとても簡単に利用できました。</p>
+<p>基本的には <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html">ドキュメント</a> の <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#installation">Installation</a> と <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#how-to-run-the-client">How to run the client</a> の章を読めば事足りて、
+あとは必要に応じて <a href="https://letsencrypt.readthedocs.org/en/latest/using.html">User Guide</a> も読むといいはず。</p>
+<p>まず必要なファイルはgithubからcloneするだけ、コマンドを実行したタイミングでディストリビュージョンごとに必要なパッケージが自動でインストールされるようになっていました。
+Gentooの場合は <code>bootstrap/_gentoo_common.sh</code> に書かれていて以下のパッケージがインストールされるようになっていました。
+あと普通に実行するとGentooは実験的なサポートなので <code>--debug</code> をつけて実行するように言われるのでそのようにします。
+ただこれは初回のパッケージのインストール時のみ必要みたいなので、次回以降はつける必要がありませんでした。</p>
+<div class="highlight"><pre><span class="nv">PACKAGES</span><span class="o">=</span><span class="s2">&quot;dev-vcs/git</span>
+<span class="s2">  dev-lang/python:2.7</span>
+<span class="s2">  dev-python/virtualenv</span>
+<span class="s2">  dev-util/dialog</span>
+<span class="s2">  app-admin/augeas</span>
+<span class="s2">  dev-libs/openssl</span>
+<span class="s2">  dev-libs/libffi</span>
+<span class="s2">  app-misc/ca-certificates</span>
+<span class="s2">  virtual/pkgconfig&quot;</span>
+</pre></div>
+
+
+<p>とりあえず <code>--help</code> を指定して起動してみると、これだけでパッケージのインストールが始まりました。</p>
+<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/letsencrypt/letsencrypt
+<span class="nv">$ </span><span class="nb">cd </span>letsencrypt
+<span class="nv">$ </span>./letsencrypt-auto --debug --help
+</pre></div>
+
+
+<p>これで下準備が済んだので証明書の取得ができます。
+コマンドを実行するとLet's Encryptのアカウント?の取得から証明書の生成までを自動で行ってくれるみたいです。</p>
+<ul>
+<li>まだプラグインが対応していないNginxを使うので <code>certonly</code> と <code>--standalone</code> を指定。</li>
+<li><code>--standalone-supported-challenges tls-sni-01</code> を指定する必要がありました。
+僕の環境ではHTTPSしか通らないようになっているので <code>tls-sni-01</code> を指定。
+(おそらく)ドメインの存在確認のためにLet's Encryptのコマンドが80か443のポートで待ち受ける必要があるみたいです。
+なのでこのコマンドは実際に使用するドメインが割り当てられているマシン、かつNginxを停止した状態で実行する必要があると思われます。
+(停止しないで実行するとエラーになりました、Apacheなどの対応しているウェブサーバーの場合は停止しないで実行できるのだと思います)
+詳細は <a href="https://letsencrypt.readthedocs.org/en/latest/using.html#standalone">User Guide/Plugins/Standalone</a> を参照</li>
+<li><code>--email</code> にメールアドレスを指定。
+適当なアドレスを指定できましたが、アカウントの情報を復活させるためにも使われるみたいなので連絡がつくアドレスを指定したほうがよさそうです。</li>
+<li><code>-d</code> は証明書を使うドメイン名を指定。</li>
+</ul>
+<p>実際のコマンドはこのようにしました。</p>
+<div class="highlight"><pre><span class="nv">$ </span>./letsencrypt-auto certonly --standalone --standalone-supported-challenges tls-sni-01 --email &lt;Your email address&gt; -d &lt;Your domain name&gt;
+Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: sudo /home/admin/.local/share/letsencrypt/bin/letsencrypt certonly --standalone --standalone-supported-challenges tls-sni-01 --email &lt;Your email address&gt; -d &lt;Your domain name&gt;
+</pre></div>
+
+
+<p>コマンドを実行するとこのような同意画面が出るのでよく読んで同意</p>
+<p><a href="/static/images/2015/12/letsencrypt-terms.png"><img alt="image" src="/static/images/2015/12/letsencrypt-terms.png" /></a></p>
+<p>最後にこのようなメッセージが表示されました。
+<code>/etc/letsencrypt</code> に生成された諸々のファイルが保存されているのでバックアップするように、と書かれています。
+あと証明書の有効期限は3ヶ月と短くなっているので有効期限が過ぎる前に更新する必要があります。
+同じコマンドを再度実行することで更新できます。
+(<a href="https://letsencrypt.readthedocs.org/en/latest/using.html#renewal">User Guide/Renewal</a> を参照、ここにはcrontabに書いておくようにと記載があります)</p>
+<div class="highlight"><pre>IMPORTANT NOTES:
+ - If you lose your account credentials, you can recover through
+   e-mails sent to &lt;Your email address&gt;.
+ - Your account credentials have been saved in your Let<span class="s1">&#39;s Encrypt</span>
+<span class="s1">   configuration directory at /etc/letsencrypt. You should make a</span>
+<span class="s1">   secure backup of this folder now. This configuration directory will</span>
+<span class="s1">   also contain certificates and private keys obtained by Let&#39;</span>s
+   Encrypt so making regular backups of this folder is ideal.
+
+ - Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/&lt;Your domain name&gt;/fullchain.pem. Your cert
+   will expire on 2016-03-03. To obtain a new version of the
+   certificate in the future, simply run Let<span class="s1">&#39;s Encrypt again.</span>
+<span class="s1"> - If like Let&#39;</span>s Encrypt, please consider supporting our work by:
+
+   Donating to ISRG / Let<span class="err">&#39;</span>s Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+</pre></div>
+
+
+<p>最後にNginxで生成された証明書を使うように設定します。
+<code>/etc/letsencrypt/live/&lt;Your domain name&gt;/</code> 以下に指定したドメインの証明書一式が保存されているので、
+<code>/etc/nginx/nginx.conf</code> のSSL証明書の部分を以下のように編集して再起動すればOKです。
+再起動したらブラウザで接続してLet's Encryptの証明書が使われているか確認してみます。</p>
+<div class="highlight"><pre>ssl_certificate     /etc/letsencrypt/live/&lt;Your domain name&gt;/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/&lt;Your domain name&gt;/privkey.pem;
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">

@@ -68,6 +68,30 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/12/letsencrypt.html">GentooとNginxでLet's Encryptを使う</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p><a href="https://letsencrypt.org/">Let's Encrypt</a> がPublic Betaになったので使ってみました。
+Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
+ただ試してみた結果現状でもとても簡単に利用できました。</p>
+<p>基本的には <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html">ドキュメント</a> の <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#installation">Installation</a> と <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#how-to-run-the-client">How to run the client</a> の章を読めば事足りて、
+あとは必要に応じて <a href="https://letsencrypt.readthedocs.org/en/latest/using.html">User Guide</a> も読むといいはず。</p>
+<p>まず必要なファイルはgithubからcloneするだけ、コマンドを実行したタイミングでディストリビュージョンごとに必要なパッケージが自動でインストールされるようになっていました。
+Gentooの場合は <code>bootstrap/_gentoo_common.sh</code> に書かれていて以下のパッケージがインストールされるようになっていました。
+あと普通に実行するとGentooは実験的なサポートなので <code>--debug</code> をつけて実行するように言われるのでそのようにします。
+ただこれは初回のパッケージのインストール時のみ必要みたいなので、次回以降はつける必要がありませんでした。</p>
+<div class="highlight"><pre><span class="nv">PACKAGES</span><span class="o">=</span><span class="s2">&quot;dev-vcs/git</span>
+<span class="s2">  dev-lang/python:2.7</span>
+<span class="s2">  dev-python/virtualenv</span>
+<span class="s2">  dev-util/dialog</span>
+<span class="s2">  app-admin/augeas</span>
+<span class="s2">  dev-libs ...</span></pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/12/letsencrypt.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/11/wn-g300ua.html">WN-G300UAを使ってみる</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -314,39 +338,6 @@ P.S. The /proc/mdstat ...</pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/10/extundelete.html">操作ミスでファイルを消してしまった時の復活方法</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>ファイルサーバのデータを整理中に <code>rm *hoge*</code> と入力しようとして <code>rm *</code> まで入力した状態で<br />
-hogeをコピペで貼り付けようとしました<br />
-この時hogeの先頭に改行が含まれていたため、 <code>rm *</code> が実行されてしまい<br />
-カレントディレクトリ内のファイルを全て削除してしまいました、事故です<br />
-このような場合、 <a href="http://extundelete.sourceforge.net/">extundelete</a> というソフトを使うと復活できるみたいなので、試してみました</p>
-<p>まず削除してしまったファイルがあるボリュームをroでマウントしなおします<br />
-この作業はできるだけ早く行う必要があります<br />
-自分の場合、別のプロセスがこのボリュームに書き込みをしていたので<br />
-削除したファイルのinodeが再利用されてしまいかなりのファイルを失いました</p>
-<div class="highlight"><pre><span class="c"># mount -o remount,ro /mnt/lvm</span>
-</pre></div>
-
-
-<p>次にdateコマンドで操作ミスが発生した時刻の確認をします</p>
-<div class="highlight"><pre><span class="nv">$ </span>date +%s
-1413993600
-</pre></div>
-
-
-<p>extundeleteで復活させます<br />
-復活できなかったファイルが以下のようにログに出力されて<br />
-復活できたファイルはカレントディレクトリの <code>RECOVERED_FILES</code> 以下に出力されます</p>
-<div class="highlight"><pre><span class="c"># extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0</span>
-Only show and process deleted entries <span class="k">if ...</span></pre></div>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/10/extundelete.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -473,7 +464,7 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>

@@ -68,6 +68,30 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/12/letsencrypt.html">GentooとNginxでLet's Encryptを使う</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p><a href="https://letsencrypt.org/">Let's Encrypt</a> がPublic Betaになったので使ってみました。
+Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
+ただ試してみた結果現状でもとても簡単に利用できました。</p>
+<p>基本的には <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html">ドキュメント</a> の <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#installation">Installation</a> と <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#how-to-run-the-client">How to run the client</a> の章を読めば事足りて、
+あとは必要に応じて <a href="https://letsencrypt.readthedocs.org/en/latest/using.html">User Guide</a> も読むといいはず。</p>
+<p>まず必要なファイルはgithubからcloneするだけ、コマンドを実行したタイミングでディストリビュージョンごとに必要なパッケージが自動でインストールされるようになっていました。
+Gentooの場合は <code>bootstrap/_gentoo_common.sh</code> に書かれていて以下のパッケージがインストールされるようになっていました。
+あと普通に実行するとGentooは実験的なサポートなので <code>--debug</code> をつけて実行するように言われるのでそのようにします。
+ただこれは初回のパッケージのインストール時のみ必要みたいなので、次回以降はつける必要がありませんでした。</p>
+<div class="highlight"><pre><span class="nv">PACKAGES</span><span class="o">=</span><span class="s2">&quot;dev-vcs/git</span>
+<span class="s2">  dev-lang/python:2.7</span>
+<span class="s2">  dev-python/virtualenv</span>
+<span class="s2">  dev-util/dialog</span>
+<span class="s2">  app-admin/augeas</span>
+<span class="s2">  dev-libs ...</span></pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/12/letsencrypt.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/03/redmine.html">Redmineをインストールしてみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -255,7 +279,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>

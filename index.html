@@ -68,6 +68,30 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/12/letsencrypt.html">GentooとNginxでLet's Encryptを使う</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p><a href="https://letsencrypt.org/">Let's Encrypt</a> がPublic Betaになったので使ってみました。
+Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
+ただ試してみた結果現状でもとても簡単に利用できました。</p>
+<p>基本的には <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html">ドキュメント</a> の <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#installation">Installation</a> と <a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#how-to-run-the-client">How to run the client</a> の章を読めば事足りて、
+あとは必要に応じて <a href="https://letsencrypt.readthedocs.org/en/latest/using.html">User Guide</a> も読むといいはず。</p>
+<p>まず必要なファイルはgithubからcloneするだけ、コマンドを実行したタイミングでディストリビュージョンごとに必要なパッケージが自動でインストールされるようになっていました。
+Gentooの場合は <code>bootstrap/_gentoo_common.sh</code> に書かれていて以下のパッケージがインストールされるようになっていました。
+あと普通に実行するとGentooは実験的なサポートなので <code>--debug</code> をつけて実行するように言われるのでそのようにします。
+ただこれは初回のパッケージのインストール時のみ必要みたいなので、次回以降はつける必要がありませんでした。</p>
+<div class="highlight"><pre><span class="nv">PACKAGES</span><span class="o">=</span><span class="s2">&quot;dev-vcs/git</span>
+<span class="s2">  dev-lang/python:2.7</span>
+<span class="s2">  dev-python/virtualenv</span>
+<span class="s2">  dev-util/dialog</span>
+<span class="s2">  app-admin/augeas</span>
+<span class="s2">  dev-libs ...</span></pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/12/letsencrypt.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/11/esp-wroom-02.html">ESP-WROOM-02を試してみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -315,36 +339,6 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>SO-02Gを使い始めてから変更した設定まとめ</p>
-<ul>
-<li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
-このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />
-接続された状態でWiFiの設定を開いて0001docomoを長押しして切断すれば次回からは自動で接続されなくなるみたいです<br />
-しかし気持ち悪いですね</li>
-<li>ドコモアプリのアップデート通知を切る (<a href="http://xperiaz.kurosuke.biz/archives/625">ドコモアプリのアップデート通知をオフにする方法</a>)<br />
-設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認</li>
-<li>OSの自動更新の無効化 (夜中に自動で実行されるみたいです)<br />
-設定→端末情報→ソフトウェア更新→ソフトウェア更新設定の変更</li>
-<li>Sonyアプリの自動更新の無効化<br />
-設定→端末情報→アプリケーション更新→右上のメニュー→設定</li>
-<li>ひつじの停止<br />
-ホーム画面のひつじを長押し→キャラ表示 と 吹き出し表示 を 表示しない へ変更</li>
-<li>プリインアプリの無効化<br />
-(<a href="http://xperia-freaks.org/2014/12/14/so02g-disable/">【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)</a>)<br />
-(<a href="http://usedoor.jp/howto/digital/android-smartphone/preinstall-mukouka-ichiran/">【Androidスマホ】プリインストールアプリの無効化・停止・アンインストール対応一覧表</a>)<br />
-サイトを参考に適当に、今のところ無効化しているのは以下<ul>
-<li>ウィキペディアプラグイン</li>
-<li>エリアメール</li>
-<li>エリア連動Wi-Fi ...</li></ul></li></ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/so-02g_settings.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -354,6 +348,8 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         href="/index2.html">2</a></li>
                 <li class=""><a
                         href="/index3.html">3</a></li>
+                <li class=""><a
+                        href="/index4.html">4</a></li>
             <li class="next"><a
                     href="/index2.html">&raquo;</a></li>
     </ul>
@@ -473,7 +469,7 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                                 MySQL
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/nginx.html">
                                 Nginx
                             </a>
