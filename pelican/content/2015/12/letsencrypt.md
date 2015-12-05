@@ -62,7 +62,7 @@ Gentooの場合は `bootstrap/_gentoo_common.sh` に書かれていて以下の�
 最後にこのようなメッセージが表示されました。
 `/etc/letsencrypt` に生成された諸々のファイルが保存されているのでバックアップするように、と書かれています。
 あと証明書の有効期限は3ヶ月と短くなっているので有効期限が過ぎる前に更新する必要があります。
-同じコマンドを再度実行することで更新できます。
+同じコマンドを再度実行することで更新できます。 (ただ更新時もNginxを一度停止する必要がありました。)
 ([User Guide/Renewal](https://letsencrypt.readthedocs.org/en/latest/using.html#renewal) を参照、ここにはcrontabに書いておくようにと記載があります)
 
     :::bash
