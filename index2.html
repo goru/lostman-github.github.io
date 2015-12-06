@@ -68,6 +68,25 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>一時期 ibus が色々話題になりましたね <a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html">*1</a> <a href="http://www.kaoriya.net/blog/2013/10/18/">*2</a><br />
+僕の環境では ibus-mozc を使っていたのですが、 1.5 系へは移行せず 1.4 系にとどまっていました<br />
+このまま放置していてもよかったんだけれど、 Gentoo のリポジトリから 1.4 が<br />
+なくなっていることに気がついたので別のインプットメソッドへ移行することにしました</p>
+<p>Linux でのインプットメソッドで代表的なものは ibus 、 uim 、 fcitx といくつかあるけれど<br />
+Mac で MacUIM を使っているので Linux のマシンでも uim を使うことにしました<br />
+ただ Gentoo の公式リポジトリのパッケージでは mozc を uim と組み合わせることができないみたいだったので<br />
+自分で ebuild を書くか、他の人が書いたものを使わせてもらうかのどちらかがあるみたいです<br />
+今回は <a href="https://bitbucket.org/wjn/wjn-overlay">wjn-overlay</a> を使わせてもらうことにしました</p>
+<p>ここ ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/04/uin-mozc.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -395,27 +414,6 @@ P.S. The /proc/mdstat ...</pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/10/dc-210n.html">裁断機(DC-210N)を購入してみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました<br />
-色々検討したんですが大型の裁断機ではなく、それより簡易的な <a href="http://www.carl.co.jp/item/DC-210N.html">DC-210N</a> を選択<br />
-一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど<br />
-まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました</p>
-<p>外観</p>
-<p><a href="/static/images/2014/10/DC-210N_1.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_1_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_2.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_2_s.jpg" /></a></p>
-<p>今回はお試しでこの冊子を裁断してみます<br />
-薄いので分割しなくても裁断できました</p>
-<p><a href="/static/images/2014/10/DC-210N_3.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_4.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_4_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_5.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_5_s.jpg" /></a></p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/10/dc-210n.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="/index.html">&laquo;</a>
@@ -452,7 +450,7 @@ P.S. The /proc/mdstat ...</pre></div>
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-1">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -472,7 +470,7 @@ P.S. The /proc/mdstat ...</pre></div>
                                 e-book
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/esp-wroom-02.html">
                                 ESP-WROOM-02
                             </a>

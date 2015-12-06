@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-12-05T22:30:00+09:00</updated><entry><title>GentooとNginxでLet's Encryptを使う</title><link href="/posts/2015/12/letsencrypt.html" rel="alternate"></link><updated>2015-12-05T22:30:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-12-05:posts/2015/12/letsencrypt.html</id><summary type="html">&lt;p&gt;&lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt; がPublic Betaになったので使ってみました。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-12-06T19:00:00+09:00</updated><entry><title>ESP-WROOM-02をArduinoとして使ってみた</title><link href="/posts/2015/12/esp-wroom-02-arduino.html" rel="alternate"></link><updated>2015-12-06T19:00:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-12-06:posts/2015/12/esp-wroom-02-arduino.html</id><summary type="html">&lt;p&gt;前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
+今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
+外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。&lt;/p&gt;
+&lt;p&gt;まずBoards ManagerをサポートしているArduino IDEが必要なので &lt;a href="https://www.arduino.cc/en/Main/Software"&gt;公式サイト&lt;/a&gt; から最新の1.6.6をダウンロードしてインストールしておきます。
+手元の環境は古いままで1.0.6がインストールされていました。&lt;/p&gt;
+&lt;p&gt;Arduino IDEを起動したらBoards ManagerにESP8266のサイトを登録します。
+ソースはgithubの &lt;a href="https://github.com/esp8266/Arduino"&gt;esp8266/Arduino&lt;/a&gt; で管理されていて手順が記載されていました。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Arduino -&amp;gt; Preferences -&amp;gt; Additional Board Manager URLs&lt;/code&gt; を開いて &lt;code&gt;http://arduino.esp8266.com/stable/package_esp8266com_index.json&lt;/code&gt; を追加します。&lt;/li&gt;
+&lt;li&gt;Arduino IDEを一度再起動して、 &lt;code&gt;Tools -&amp;gt; Board -&amp;gt; Boards Manager&lt;/code&gt; を開きます。
+自動で一覧が読み込まれ、 &lt;code&gt;esp8266 by ESP8266 Community&lt;/code&gt; が表示されているはずなので選択してインストールします。 (現時点では2.0.0でした。)&lt;/li&gt;
+&lt;li&gt;インストール後にもう一度IDEを再起動して (Boardの表示が二重になっていておかしかったので) &lt;code&gt;Tools -&amp;gt; Board -&amp;gt; Generic ESP8266 Module&lt;/code&gt; を選択します。&lt;/li&gt;
+&lt;li&gt;最後に &lt;code&gt;Tools -&amp;gt; Port -&amp;gt;&lt;/code&gt; で接続しているUSBシリアルのデバイスを選択すれば準備は完了です。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;スケッチを書き込むにはESP-WROOM-02をUART download modeで起動する必要があります。 (&lt;a href="http://doc.switch-science.com/datasheets/0B-ESP8266__Hardware_User_Guide__EN_v1.1.pdf"&gt;Hardware User Guide&lt;/a&gt; の &lt;code&gt;4.2. Download Firmware&lt;/code&gt; )
+他の人の作例では &lt;code&gt;IO0&lt;/code&gt; と &lt;code&gt;RST&lt;/code&gt; にタクトスイッチを接続しているケースが多いようで、以下の動作になるようにスイッチを操作します。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;IO0をGNDと接続&lt;/li&gt;
+&lt;li&gt;ESP-WROOM-02を(再)起動&lt;/li&gt;
+&lt;li&gt;IO0をGNDから切断 (起動したタイミングでのみチェックしているので)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;とりあえず空のスケッチを書き込んでみたらこのように出力されたのでうまくできていそうです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Sketch uses 198,580 bytes (45%) of program storage space. Maximum is 434,160 bytes.
+Global variables use 32,982 bytes (40%) of dynamic memory, leaving 48,938 bytes for local variables. Maximum is 81,920 bytes.
+Uploading 202736 bytes from /var/folders/2r/gnf1wxzd7ysd8ps4cwmhpsn00000gp/T/build47405d589e6a6ed4482aeeb82c132d10.tmp/sketch_dec06a.ino.bin to flash at 0x00000000
+......................................................................................................................................................................................................
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;試しにアクセスポイントへ接続して、ウェブサーバーから取得したデータを、シリアル経由で送信するスケッチを書いてみました。
+(一度だけ実行されればいいのでsetupに全ての処理を書いています。)
+上述の手順でスケッチをアップロードし、アップロードが終わったらシリアルモニタを開いてみましょう。
+シリアルモニタに取得したHTMLが表示されていれば成功です。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;ESP8266WiFi.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#define WIFI_SSID   &amp;quot;&amp;lt;SSID&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="cp"&gt;#define WIFI_PASSWD &amp;quot;&amp;lt;PASSWORD&amp;gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#define TARGET_HOST &amp;quot;www.google.com&amp;quot;&lt;/span&gt;
+&lt;span class="cp"&gt;#define TARGET_PORT 80&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;115200&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Connecting to &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WIFI_SSID&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;WiFi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WIFI_SSID&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WIFI_PASSWD&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WiFi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;WL_CONNECTED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;IP address is &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WiFi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localIP&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+
+  &lt;span class="n"&gt;WiFiClient&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Connecting to &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TARGET_HOST&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TARGET_HOST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TARGET_PORT&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Could not connect.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;GET / HTTP/1.0&lt;/span&gt;&lt;span class="se"&gt;\r\n\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readStringUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;\r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Done&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// put your main code here, to run repeatedly:&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="ESP-WROOM-02"></category><category term="Arduino"></category></entry><entry><title>GentooとNginxでLet's Encryptを使う</title><link href="/posts/2015/12/letsencrypt.html" rel="alternate"></link><updated>2015-12-05T22:30:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-12-05:posts/2015/12/letsencrypt.html</id><summary type="html">&lt;p&gt;&lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt; がPublic Betaになったので使ってみました。
 Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
 ただ試してみた結果現状でもとても簡単に利用できました。&lt;/p&gt;
 &lt;p&gt;基本的には &lt;a href="https://letsencrypt.readthedocs.org/en/latest/intro.html"&gt;ドキュメント&lt;/a&gt; の &lt;a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#installation"&gt;Installation&lt;/a&gt; と &lt;a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#how-to-run-the-client"&gt;How to run the client&lt;/a&gt; の章を読めば事足りて、

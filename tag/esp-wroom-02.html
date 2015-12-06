@@ -68,6 +68,26 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/12/esp-wroom-02-arduino.html">ESP-WROOM-02をArduinoとして使ってみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
+今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
+外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。</p>
+<p>まずBoards ManagerをサポートしているArduino IDEが必要なので <a href="https://www.arduino.cc/en/Main/Software">公式サイト</a> から最新の1.6.6をダウンロードしてインストールしておきます。
+手元の環境は古いままで1.0.6がインストールされていました。</p>
+<p>Arduino IDEを起動したらBoards ManagerにESP8266のサイトを登録します。
+ソースはgithubの <a href="https://github.com/esp8266/Arduino">esp8266/Arduino</a> で管理されていて手順が記載されていました。</p>
+<ol>
+<li><code>Arduino -&gt; Preferences -&gt; Additional Board Manager URLs</code> を開いて <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code> を追加します。</li>
+<li>Arduino IDEを一度再起動して、 <code>Tools -&gt; Board -&gt; Boards Manager</code> を開きます。
+自動で一覧が読み込まれ、 <code>esp8266 by ESP8266 Community</code> が表示されているはずなので選択してインストールします。 (現時点では2 ...</li></ol>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/12/esp-wroom-02-arduino.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/11/esp-wroom-02.html">ESP-WROOM-02を試してみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -126,7 +146,7 @@ ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3V�
                                 AquesTalk pico LSI
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-1">
                             <a href="/tag/arduino.html">
                                 Arduino
                             </a>
@@ -146,7 +166,7 @@ ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3V�
                                 e-book
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/esp-wroom-02.html">
                                 ESP-WROOM-02
                             </a>

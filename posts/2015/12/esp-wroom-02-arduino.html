@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Redmineをインストールしてみた - blog.gorugle.org</title>
+    <title>ESP-WROOM-02をArduinoとして使ってみた - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,10 +36,10 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
                         <li >
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2015/03/redmine.html"
+                    <a href="/posts/2015/12/esp-wroom-02-arduino.html"
                        rel="bookmark"
-                       title="Permalink to Redmineをインストールしてみた">
-                        Redmineをインストールしてみた
+                       title="Permalink to ESP-WROOM-02をArduinoとして使ってみた">
+                        ESP-WROOM-02をArduinoとして使ってみた
                     </a>
                 </h1>
             </header>
@@ -84,155 +84,101 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2015-03-21T15:53:00+09:00"> 2015/03/21 Sat</time>
+        <time datetime="2015-12-06T19:00:00+09:00"> 2015/12/06 Sun</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/ruby.html">Ruby</a>
+	<a href="/tag/esp-wroom-02.html">ESP-WROOM-02</a>
         /
-	<a href="/tag/redmine.html">Redmine</a>
-        /
-	<a href="/tag/nginx.html">Nginx</a>
+	<a href="/tag/arduino.html">Arduino</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて<br />
-日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした<br />
-Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気がしていたんだけれどRedmineは以前仕事でも使っていたし<br />
-自分のサーバにインストールして使うとなると思いの外選択肢が少ない感じだったのでRedmineを入れてみました</p>
-<p>もやっとした要件は</p>
-<ul>
-<li>サービスでなく、自分のサーバにインストールできること</li>
-<li>依存するものが少なく、導入が楽</li>
-<li>日付を入れずにタスクを登録できる</li>
-<li>優先度を設定できる</li>
-<li>日付が入っているものはカレンダーで確認できる</li>
-<li>スマホからタスクを確認、編集できる</li>
-</ul>
-<p>なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした<br />
-ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする<br />
-あとスマホでのタスクの確認はRedmineではできなくて、 <a href="https://play.google.com/store/apps/details?id=jp.co.projectmode.redminepm">RedminePM</a> というアプリから行うことにしました</p>
-<p>今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して<br />
-ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール<br />
-と、全て専用ユーザのホームディレクトリ以下で済ますことにしました<br />
-また、追加でインストールするものも抑えたかったのでRedmineはWEBRick、SQLite、ImageMagickなし、で動かすことにしました</p>
-<p>まずユーザを作って、ログイン</p>
-<div class="highlight"><pre><span class="c"># useradd -m redmine</span>
-<span class="c"># su - redmine</span>
+                <p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
+今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
+外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。</p>
+<p>まずBoards ManagerをサポートしているArduino IDEが必要なので <a href="https://www.arduino.cc/en/Main/Software">公式サイト</a> から最新の1.6.6をダウンロードしてインストールしておきます。
+手元の環境は古いままで1.0.6がインストールされていました。</p>
+<p>Arduino IDEを起動したらBoards ManagerにESP8266のサイトを登録します。
+ソースはgithubの <a href="https://github.com/esp8266/Arduino">esp8266/Arduino</a> で管理されていて手順が記載されていました。</p>
+<ol>
+<li><code>Arduino -&gt; Preferences -&gt; Additional Board Manager URLs</code> を開いて <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code> を追加します。</li>
+<li>Arduino IDEを一度再起動して、 <code>Tools -&gt; Board -&gt; Boards Manager</code> を開きます。
+自動で一覧が読み込まれ、 <code>esp8266 by ESP8266 Community</code> が表示されているはずなので選択してインストールします。 (現時点では2.0.0でした。)</li>
+<li>インストール後にもう一度IDEを再起動して (Boardの表示が二重になっていておかしかったので) <code>Tools -&gt; Board -&gt; Generic ESP8266 Module</code> を選択します。</li>
+<li>最後に <code>Tools -&gt; Port -&gt;</code> で接続しているUSBシリアルのデバイスを選択すれば準備は完了です。</li>
+</ol>
+<p>スケッチを書き込むにはESP-WROOM-02をUART download modeで起動する必要があります。 (<a href="http://doc.switch-science.com/datasheets/0B-ESP8266__Hardware_User_Guide__EN_v1.1.pdf">Hardware User Guide</a> の <code>4.2. Download Firmware</code> )
+他の人の作例では <code>IO0</code> と <code>RST</code> にタクトスイッチを接続しているケースが多いようで、以下の動作になるようにスイッチを操作します。</p>
+<ol>
+<li>IO0をGNDと接続</li>
+<li>ESP-WROOM-02を(再)起動</li>
+<li>IO0をGNDから切断 (起動したタイミングでのみチェックしているので)</li>
+</ol>
+<p>とりあえず空のスケッチを書き込んでみたらこのように出力されたのでうまくできていそうです。</p>
+<div class="highlight"><pre>Sketch uses 198,580 bytes (45%) of program storage space. Maximum is 434,160 bytes.
+Global variables use 32,982 bytes (40%) of dynamic memory, leaving 48,938 bytes for local variables. Maximum is 81,920 bytes.
+Uploading 202736 bytes from /var/folders/2r/gnf1wxzd7ysd8ps4cwmhpsn00000gp/T/build47405d589e6a6ed4482aeeb82c132d10.tmp/sketch_dec06a.ino.bin to flash at 0x00000000
+......................................................................................................................................................................................................
 </pre></div>
 
 
-<p><a href="https://github.com/sstephenson/rbenv">rbenv</a> と <a href="https://github.com/sstephenson/ruby-build">ruby-build</a> をインストールする<br />
-ここからは全てこのユーザのホームディレクトリ以下で作業</p>
-<ul>
-<li><a href="https://www.qoosky.net/references/128/">rbenvおよびbundlerの基本的な使用方法</a>  </li>
-<li><a href="http://qiita.com/emadurandal/items/a60886152a4c99ce1017">Rails開発環境の構築（rbenvでRuby導入からBundler、Rails導入まで）</a></li>
-</ul>
-<p>rbenvとruby-buildをclone</p>
-<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/sstephenson/rbenv.git .rbenv
-<span class="nv">$ </span>git clone https://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
-</pre></div>
+<p>試しにアクセスポイントへ接続して、ウェブサーバーから取得したデータを、シリアル経由で送信するスケッチを書いてみました。
+(一度だけ実行されればいいのでsetupに全ての処理を書いています。)
+上述の手順でスケッチをアップロードし、アップロードが終わったらシリアルモニタを開いてみましょう。
+シリアルモニタに取得したHTMLが表示されていれば成功です。</p>
+<div class="highlight"><pre><span class="cp">#include &lt;ESP8266WiFi.h&gt;</span>
 
+<span class="cp">#define WIFI_SSID   &quot;&lt;SSID&gt;&quot;</span>
+<span class="cp">#define WIFI_PASSWD &quot;&lt;PASSWORD&gt;&quot;</span>
 
-<p>rbenvの設定を.bashrcに追加</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt;.bashrc
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(rbenv init -)&quot;&#39;</span> &gt;&gt;.bashrc
-<span class="nv">$ </span><span class="nb">source</span> .bashrc
-</pre></div>
+<span class="cp">#define TARGET_HOST &quot;www.google.com&quot;</span>
+<span class="cp">#define TARGET_PORT 80</span>
 
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
 
-<p>rbenvでrubyとbundlerをインストールする<br />
-<code>rbenv install -l</code> でインストール可能なRubyのバージョン、 <code>rbenv versions</code> でインストール済みを確認できる</p>
-<div class="highlight"><pre><span class="nv">$ </span>rbenv install -l
-...
-  2.2.0-rc1
-  2.2.0
-  2.2.1
-  2.3.0-dev
-...
-<span class="nv">$ </span>rbenv install 2.2.1
-<span class="nv">$ </span>rbenv versions
-  2.2.1
-<span class="nv">$ </span>rbenv global 2.2.1
-<span class="nv">$ </span>rbenv <span class="nb">exec </span>gem install bundler --no-rdoc --no-ri
-<span class="nv">$ </span>rbenv rehash
-</pre></div>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Connecting to &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">WIFI_SSID</span><span class="p">);</span>
 
+  <span class="n">WiFi</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">WIFI_SSID</span><span class="p">,</span> <span class="n">WIFI_PASSWD</span><span class="p">);</span>
 
-<p>Redmineをインストールする</p>
-<ul>
-<li><a href="http://blog.redmine.jp/articles/3_0/installation_centos/">Redmine 3.0をCentOS 7.0にインストールする手順</a></li>
-<li><a href="http://redmine.jp/guide/RedmineInstall/">Redmineのインストール</a></li>
-<li><a href="http://www.redmine.org/projects/redmine/wiki/redmineinstall">Installing Redmine</a></li>
-</ul>
-<p>Redmineをclone (最新のバージョンは3.0なので、ブランチを切り替え)</p>
-<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/redmine/redmine.git
-<span class="nv">$ </span><span class="nb">cd </span>redmine
-<span class="nv">$ </span>git checkout 3.0-stable
-<span class="nv">$ </span>cp config/database.yml.example config/database.yml
-<span class="nv">$ </span>cp config/configuration.yml.example config/configuration.yml
-</pre></div>
+  <span class="k">while</span> <span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
 
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP address is &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">localIP</span><span class="p">());</span>
 
-<p><code>config/database.yml</code> は以下のSQLiteの部分以外すべてコメントアウト<br />
-<code>config/configuration.yml</code> には本来メールサーバ等の設定が必要だけれど今回は必要ないので特に編集はしない</p>
-<div class="highlight"><pre># SQLite3 configuration example
-production:
-  adapter: sqlite3
-  database: db/redmine.sqlite3
-</pre></div>
+  <span class="n">WiFiClient</span> <span class="n">client</span><span class="p">;</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Connecting to &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">TARGET_HOST</span><span class="p">);</span>
 
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">TARGET_HOST</span><span class="p">,</span> <span class="n">TARGET_PORT</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Could not connect.&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<p>RedmineがURLのサブディレクトリ以下に見えるようにインストールしたかったのでこれらを参考にした</p>
-<ul>
-<li><a href="http://www.redmine.org/boards/2/topics/30676?r=30881#message-30881">Redmine 2.0 "No route matches"</a></li>
-<li><a href="http://www.redmine.org/issues/11058">Run Redmine in a sub directory results in "No route matches"</a></li>
-<li><a href="http://www.redmine.org/issues/11881#note-14">FCGI mode does not support sub-URI</a></li>
-</ul>
-<p><code>config/environment.rb</code> の末尾の部分がこのようになるように <code>default_scope</code> と <code>relative_url_root</code> を追加</p>
-<div class="highlight"><pre><span class="no">RedmineApp</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">default_scope</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/redmine&#39;</span><span class="p">,</span> <span class="ss">:shallow_path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/redmine&#39;</span> <span class="p">}</span>
-<span class="c1"># Initialize the Rails application</span>
-<span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">initialize!</span>
-<span class="no">Redmine</span><span class="o">::</span><span class="no">Utils</span><span class="o">::</span><span class="n">relative_url_root</span> <span class="o">=</span> <span class="s2">&quot;/redmine&quot;</span>
-</pre></div>
+  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;GET / HTTP/1.0</span><span class="se">\r\n\r\n</span><span class="s">&quot;</span><span class="p">);</span>
 
+  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 
-<p>サブディレクトリにアクセスしてもpublicの中身が見えるようにリンクを作成</p>
-<div class="highlight"><pre><span class="nv">$ </span>ln -s . public/redmine
-</pre></div>
+  <span class="k">while</span> <span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;\r&#39;</span><span class="p">));</span>
+  <span class="p">}</span>
 
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Done&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<p>Redmineが依存するGemをインストール、各種初期データの生成</p>
-<div class="highlight"><pre><span class="nv">$ </span>bundle install --without development <span class="nb">test </span>rmagick --path vendor/bundle
-<span class="nv">$ </span>bundle <span class="nb">exec </span>rake generate_secret_token
-<span class="nv">$ RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>rake db:migrate
-<span class="nv">$ RAILS_ENV</span><span class="o">=</span>production <span class="nv">REDMINE_LANG</span><span class="o">=</span>ja bundle <span class="nb">exec </span>rake redmine:load_default_data
-</pre></div>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your main code here, to run repeatedly:</span>
 
-
-<p>ひと通りインストールが終わったので起動して <a href="http://localhost:3000/redmine">http://localhost:3000/redmine</a> にアクセスしてみる</p>
-<div class="highlight"><pre><span class="nv">$ </span>ruby bin/rails server webrick -e production
-</pre></div>
-
-
-<ul>
-<li><code>bin/rails</code> を使う (2.x系と変わっているらしい</li>
-<li>デフォルトでは127.0.0.1にbindされるので別のマシンからアクセスしたい場合は <code>-b 192.168.1.1</code> オプションを使う</li>
-<li>デーモンとして起動させたい場合は <code>-d</code> オプションを使う</li>
-</ul>
-<p>起動しなかったり、うまく動作していなさそうだったら <code>log/production.log</code> を確認する<br />
-問題なさそうであれば <code>config/environments/production.rb</code> を編集してログレベルを下げる</p>
-<div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="ss">:warn</span>
-</pre></div>
-
-
-<p>前段のNginxに設定を追加して外からアクセスできるようにしておわり</p>
-<div class="highlight"><pre><span class="nt">location</span> <span class="o">/</span><span class="nt">redmine</span> <span class="p">{</span>
-        <span class="n">auth_basic</span> <span class="s2">&quot;restricted - redmine&quot;</span><span class="p">;</span>
-        <span class="n">auth_basic_user_file</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">htpasswd</span><span class="o">/</span><span class="n">of</span><span class="o">/</span><span class="n">redmine</span><span class="p">;</span>
-        <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="n">localhost</span><span class="o">:</span><span class="m">3000</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
             </div>
