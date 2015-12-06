@@ -28,7 +28,7 @@ Uploading 202736 bytes from /var/folders/2r/gnf1wxzd7ysd8ps4cwmhpsn00000gp/T/bui
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;試しにアクセスポイントへ接続して、ウェブサーバーから取得したデータを、シリアル経由で送信するスケッチを書いてみました。
+&lt;p&gt;試しにアクセスポイントへ接続して、ウェブサーバーから取得したデータを、シリアル経由で送信するスケッチを &lt;a href="https://github.com/lostman-github/arduino/blob/master/ESP-WROOM-02/httpclient/httpclient.ino"&gt;書いてみました&lt;/a&gt; 。
 (一度だけ実行されればいいのでsetupに全ての処理を書いています。)
 上述の手順でスケッチをアップロードし、アップロードが終わったらシリアルモニタを開いてみましょう。
 シリアルモニタに取得したHTMLが表示されていれば成功です。&lt;/p&gt;
@@ -83,7 +83,11 @@ Uploading 202736 bytes from /var/folders/2r/gnf1wxzd7ysd8ps4cwmhpsn00000gp/T/bui
   &lt;span class="c1"&gt;// put your main code here, to run repeatedly:&lt;/span&gt;
 
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 06 Dec 2015 19:00:00 +0900</pubDate><guid>tag:,2015-12-06:posts/2015/12/esp-wroom-02-arduino.html</guid><category>ESP-WROOM-02</category><category>Arduino</category></item><item><title>GentooとNginxでLet's Encryptを使う</title><link>/posts/2015/12/letsencrypt.html</link><description>&lt;p&gt;&lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt; がPublic Betaになったので使ってみました。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これでArduinoとしての動作が確認できました。
+ESP-WROOM-02にセンサーをつないだり、液晶をつないだりしてネットワークに接続できるデバイスを簡単に作ることができそうです。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 06 Dec 2015 19:00:00 +0900</pubDate><guid>tag:,2015-12-06:posts/2015/12/esp-wroom-02-arduino.html</guid><category>ESP-WROOM-02</category><category>Arduino</category></item><item><title>GentooとNginxでLet's Encryptを使う</title><link>/posts/2015/12/letsencrypt.html</link><description>&lt;p&gt;&lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt; がPublic Betaになったので使ってみました。
 Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
 ただ試してみた結果現状でもとても簡単に利用できました。&lt;/p&gt;
 &lt;p&gt;基本的には &lt;a href="https://letsencrypt.readthedocs.org/en/latest/intro.html"&gt;ドキュメント&lt;/a&gt; の &lt;a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#installation"&gt;Installation&lt;/a&gt; と &lt;a href="https://letsencrypt.readthedocs.org/en/latest/intro.html#how-to-run-the-client"&gt;How to run the client&lt;/a&gt; の章を読めば事足りて、
