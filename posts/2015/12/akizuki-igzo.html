@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>adb backupのデータを展開する - blog.gorugle.org</title>
+    <title>秋月電子で買えるIGZO液晶を試してみた - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -36,13 +36,13 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
                         <li >
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2015/03/adb-backup.html"
+                    <a href="/posts/2015/12/akizuki-igzo.html"
                        rel="bookmark"
-                       title="Permalink to adb backupのデータを展開する">
-                        adb backupのデータを展開する
+                       title="Permalink to 秋月電子で買えるIGZO液晶を試してみた">
+                        秋月電子で買えるIGZO液晶を試してみた
                     </a>
                 </h1>
             </header>
@@ -84,86 +84,66 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2015-03-14T16:53:00+09:00"> 2015/03/14 Sat</time>
+        <time datetime="2015-12-18T02:04:00+09:00"> 2015/12/18 Fri</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/android.html">Android</a>
+	<a href="/tag/hardware.html">Hardware</a>
         /
-	<a href="/tag/htl21.html">HTL21</a>
+	<a href="/tag/sharp.html">SHARP</a>
         /
-	<a href="/tag/so-02g.html">SO-02G</a>
+	<a href="/tag/igzo.html">IGZO</a>
+        /
+	<a href="/tag/gentoo.html">Gentoo</a>
+        /
+	<a href="/tag/linux.html">Linux</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
-Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
-アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
-本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
-Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
-<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
-<ul>
-<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
-</ul>
-<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
-SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
-<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
-                             - write an archive of the device&#39;s data to &lt;file&gt;.
-                               If no -f option is supplied then the data is written
-                               to &quot;backup.ab&quot; in the current directory.
-                               (-apk|-noapk enable/disable backup of the .apks themselves
-                                  in the archive; the default is noapk.)
-                               (-obb|-noobb enable/disable backup of any installed apk expansion
-                                  (aka .obb) files associated with each application; the default
-                                  is noobb.)
-                               (-shared|-noshared enable/disable backup of the device&#39;s
-                                  shared storage / SD card contents; the default is noshared.)
-                               (-all means to back up all installed applications)
-                               (-system|-nosystem toggles whether -all automatically includes
-                                  system applications; the default is to include system apps)
-                               (&lt;packages...&gt; is the list of applications to be backed up.  If
-                                  the -all or -shared flags are passed, then the package
-                                  list is optional.  Applications explicitly given on the
-                                  command line will be included even if -nosystem would
-                                  ordinarily cause them to be omitted.)
-</pre></div>
-
-
-<p><code>adb backup</code> の説明はこんな感じなので、アプリのバックアップが必要なければ <code>-shared</code> だけ指定すればよさそう<br />
-<code>-shared</code> を付けて実行すると SD カードの中身までバックアップしようとするので実行前に外しておくこと<br />
-実行するとコンソールにこのようなメッセージが出力されるので端末の画面を確認する</p>
-<div class="highlight"><pre><span class="nv">$ </span>adb backup -f backup.ab -shared
-Now unlock your device and confirm the backup operation.
-</pre></div>
-
-
-<p><a href="/static/images/2015/03/Screenshot_2015-03-15-02-27-34.png"><img alt="dialog" src="/static/images/2015/03/Screenshot_2015-03-15-02-27-34_s.png" /></a></p>
-<p>端末側にこのようなダイアログが表示されるので、パスワードの入力をせずに <code>データのバックアップ</code> をタップする<br />
-バックアップの処理中は特にプログレスが表示されるわけではないのでそのまま放置する<br />
-処理が終了するとしれっとプロンプトが戻ってきているはず</p>
-<p>これでデータの吸い出しは終わったので変換して展開すれば取り出すことができる<br />
-<a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a> のサイトから <code>abe.jar</code> をダウンロードする</p>
-<div class="highlight"><pre><span class="n">unpack</span><span class="o">:</span> <span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">abe</span><span class="o">.</span><span class="na">jar</span> <span class="n">unpack</span> <span class="o">&lt;</span><span class="n">backup</span><span class="o">.</span><span class="na">ab</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">backup</span><span class="o">.</span><span class="na">tar</span><span class="o">&gt;</span> <span class="o">[</span><span class="n">password</span><span class="o">]</span>
-</pre></div>
-
-
-<p>README を読むと展開をするにはこのようなコマンドを実行すればいいみたいなのでそのとおりに実行する</p>
-<div class="highlight"><pre><span class="nv">$ </span>java -jar abe.jar unpack backup.ab backup.tar
-Strong AES encryption not allowed
-Magic: ANDROID BACKUP
-Version: 1
-Compressed: 1
-Algorithm: none
-<span class="m">1710935552</span> bytes written to backup.tar.
-</pre></div>
-
-
-<p>これで一般的な tar 形式に変換されたので展開して中身を取り出すことができた<br />
-今回は取り出した中身を SD カードにコピーして新しい端末で使用することにした</p>
-<p>参考
-* <a href="http://port139.hatenablog.com/entry/2014/07/17/065152">adb backup で Android 端末のバックアップを作成する(3)</a></p>
+                <p>秋月電子で <a href="http://akizukidenshi.com/catalog/g/gM-10016/">SHARPの7インチIGZO液晶モジュール</a> を購入したらあっという間に届いたので動作確認してみました。
+動作確認自体は土曜に終わっていて、本当はアクリルのケースを作成してから記事を書くつもりでした。
+が、月曜の夜に見積もり依頼を出して既に木曜の深夜です…
+メールには2営業日と書いてあったのに何が起きているんだろうなぁと少しイラッときたので先に記事だけ書いてしまうことにしました。
+(ちなみに今日くらいから <a href="http://blog.siliconhouse.jp/archives/52092332.html">シリコンハウスでも購入できる</a> みたいですね。)</p>
+<p>組み立てと接続に関しては付属の説明書を参考にすれば特に問題なく済ませることができると思います。
+注意すべきことがあるとすれば、細い方のフレキシブルケーブルのコネクタは、開く方向が太い方とは逆になっていた点くらいです。
+あとは単純に壊さないように作業するだけです。(すごく壊れやすそうなので何度も作業したくない感じでした。)</p>
+<p>映像の出力機器に関して、とりあえず普段使用している <a href="http://www.amazon.co.jp/dp/B00E3AHJDO">MiniDP-HDMI変換ケーブル</a> を使ってMBAと接続してみたのですが無反応でした。
+次にGentooがインストールされているデスクトップと <a href="http://www.amazon.co.jp/dp/B000T738TE">DVI-HDMI変換ケーブル</a> を使って接続してみたら、こちらはうまく表示されました。
+MBAが悪いのか、変換ケーブルが悪いのかは切り分けることができていませんが多少相性はあるようです。
+Twitterでも報告している人がいましたが接続する機器によっては映らないということがわりと当たり前に起こりそうです。こわいですね。</p>
+<p>下の画像はデスクトップに接続して画面を左に90度回転した状態で撮影したものです。
+この液晶の仕様でデフォルトでは縦画面の1200ｘ1920で認識されるようです。
+なので、横向きで使用したい場合はOS側で画面を回転させてやる必要があります。
+(この仕様のせいでおそらくPC以外の機器との接続が難しくなっているのだと思われます。)</p>
+<p>Gentoo(Linux)のXでは <code>xrandr</code> というコマンドがあり、これを利用すると画面を回転させることができます。
+今回はこのように <code>xrandr -o left</code> 実行しました。</p>
+<p><a href="/static/images/2015/12/DSC_0595.JPG"><img alt="image" src="/static/images/2015/12/DSC_0595_s.JPG" /></a></p>
+<p>アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために <a href="https://www.sketchup.com/ja">SketchUp</a> を使っていて、これでも書けそうだったので使ってみました。
+<strong>僕はまだ実物を手に入れていない</strong> のでこれでうまく収まるのかはよくわかりませんが、作った図面を貼り付けておこうと思います。
+元データが欲しい方は <a href="/static/2015/12/Akizuki-IGZO.zip">こちら</a> からダウンロードできるようにしておきました。
+(もし誰か僕より先にこの実物を手に入れた人がいたら、 <a href="https://twitter.com/lostman">僕に</a> フィードバックを貰えるとありがたいです…)</p>
+<p><a href="/static/images/2015/12/Akizuki-IGZO_1.png"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_1_s.png" /></a>
+<a href="/static/images/2015/12/Akizuki-IGZO_2.png"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_2_s.png" /></a></p>
+<p><a href="/static/images/2015/12/Akizuki-IGZO_3.png"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_3_s.png" /></a>
+<a href="/static/images/2015/12/Akizuki-IGZO_4.png"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_4_s.png" /></a></p>
+<p><a href="/static/images/2015/12/Akizuki-IGZO_5.png"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_5_s.png" /></a></p>
+<p>表面、裏面共にネジを使用する部分はサラザグリにしてフラットになるようにしました。
+依頼を予定している業者が厚みが3mm以下のアクリル板に対してサラザグリの加工を受け付けていないようだったので、この加工をする必要がある板は3mm厚になっています。
+もし必要なければ普通の穴に変更してアクリルの厚さも薄くできるはずです。
+他にRaspberryPi Zeroの <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/mechanical/rpi-zero-v1_2_dimensions.pdf">公式の仕様</a> を参考にマウントできるネジ穴を設けました。
+M2.5のタップ穴も受け付けていないようだったのでM2になっています。
+近い将来RaspberryPi Zeroが普通に入手できるようになったらここにマウントできるはずです。
+液晶の変換基板、RaspberryPi共に2mmか3mmのスペーサーを挟んで3枚目の板に固定します。
+一部のネジは5枚目の板と共にネジで固定するようになっています。こちらにもスペーサーが必要です。
+あと板の四隅のうち右下のネジ穴は4枚目の厚みの分、ここにも10mmのスペーサーが必要です。
+これら以外には特に特筆すべき点はありません、ただコネクタ周りのクリアランスに問題がないかはわかっていません。
+おそらくL型のケーブルで接続する必要があると思われます。</p>
+<p>さて、いつ見積もりの結果が来るかなぁ…
+<a href="http://fabcafe.com/tokyo/fab_details">FabCafe Tokyo</a> ではデータと素材を持ち込むとレーザーカッターで加工をしてくれるみたいなので、もしかしたら図面を作りなおしてそちらにトライするかもしれません。
+正直手間とかを考えたら多少高くても業者にお願いした方が楽だろうと思っていたのですが、想像以上にレスポンスが悪いので迷っているところです。</p>
             </div>
             <!-- /.entry-content -->
         </article>

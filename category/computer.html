@@ -68,6 +68,35 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/12/akizuki-igzo.html">秋月電子で買えるIGZO液晶を試してみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>秋月電子で <a href="http://akizukidenshi.com/catalog/g/gM-10016/">SHARPの7インチIGZO液晶モジュール</a> を購入したらあっという間に届いたので動作確認してみました。
+動作確認自体は土曜に終わっていて、本当はアクリルのケースを作成してから記事を書くつもりでした。
+が、月曜の夜に見積もり依頼を出して既に木曜の深夜です…
+メールには2営業日と書いてあったのに何が起きているんだろうなぁと少しイラッときたので先に記事だけ書いてしまうことにしました。
+(ちなみに今日くらいから <a href="http://blog.siliconhouse.jp/archives/52092332.html">シリコンハウスでも購入できる</a> みたいですね。)</p>
+<p>組み立てと接続に関しては付属の説明書を参考にすれば特に問題なく済ませることができると思います。
+注意すべきことがあるとすれば、細い方のフレキシブルケーブルのコネクタは、開く方向が太い方とは逆になっていた点くらいです。
+あとは単純に壊さないように作業するだけです。(すごく壊れやすそうなので何度も作業したくない感じでした。)</p>
+<p>映像の出力機器に関して、とりあえず普段使用している <a href="http://www.amazon.co.jp/dp/B00E3AHJDO">MiniDP-HDMI変換ケーブル</a> を使ってMBAと接続してみたのですが無反応でした。
+次にGentooがインストールされているデスクトップと <a href="http://www.amazon.co.jp/dp/B000T738TE">DVI-HDMI変換ケーブル</a> を使って接続してみたら、こちらはうまく表示されました。
+MBAが悪いのか、変換ケーブルが悪いのかは切り分けることができていませんが多少相性はあるようです。
+Twitterでも報告している人がいましたが接続する機器によっては映らないということがわりと当たり前に起こりそうです。こわいですね。</p>
+<p>下の画像はデスクトップに接続して画面を左に90度回転した状態で撮影したものです。
+この液晶の仕様でデフォルトでは縦画面の1200ｘ1920で認識されるようです。
+なので、横向きで使用したい場合はOS側で画面を回転させてやる必要があります。
+(この仕様のせいでおそらくPC以外の機器との接続が難しくなっているのだと思われます。)</p>
+<p>Gentoo(Linux)のXでは <code>xrandr</code> というコマンドがあり、これを利用すると画面を回転させることができます。
+今回はこのように <code>xrandr -o left</code> 実行しました。</p>
+<p><a href="/static/images/2015/12/DSC_0595.JPG"><img alt="image" src="/static/images/2015/12/DSC_0595_s.JPG" /></a></p>
+<p>アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために <a href="https://www.sketchup.com/ja">SketchUp</a> を使っていて ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/12/akizuki-igzo.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/12/letsencrypt.html">GentooとNginxでLet's Encryptを使う</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -317,27 +346,6 @@ P.S. The /proc/mdstat ...</pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/10/dc-210n.html">裁断機(DC-210N)を購入してみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました<br />
-色々検討したんですが大型の裁断機ではなく、それより簡易的な <a href="http://www.carl.co.jp/item/DC-210N.html">DC-210N</a> を選択<br />
-一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど<br />
-まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました</p>
-<p>外観</p>
-<p><a href="/static/images/2014/10/DC-210N_1.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_1_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_2.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_2_s.jpg" /></a></p>
-<p>今回はお試しでこの冊子を裁断してみます<br />
-薄いので分割しなくても裁断できました</p>
-<p><a href="/static/images/2014/10/DC-210N_3.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_4.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_4_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_5.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_5_s.jpg" /></a></p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/10/dc-210n.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -404,7 +412,7 @@ P.S. The /proc/mdstat ...</pre></div>
                                 GitHub
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/hardware.html">
                                 Hardware
                             </a>
@@ -417,6 +425,11 @@ P.S. The /proc/mdstat ...</pre></div>
                         <li class="list-group-item tag-4">
                             <a href="/tag/htl21.html">
                                 HTL21
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/igzo.html">
+                                IGZO
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -492,6 +505,11 @@ P.S. The /proc/mdstat ...</pre></div>
                         <li class="list-group-item tag-4">
                             <a href="/tag/samba.html">
                                 Samba
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/sharp.html">
+                                SHARP
                             </a>
                         </li>
                         <li class="list-group-item tag-2">
