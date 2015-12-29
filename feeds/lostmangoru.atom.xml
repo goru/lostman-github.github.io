@@ -1,5 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-12-18T02:04:00+09:00</updated><entry><title>秋月電子で買えるIGZO液晶を試してみた</title><link href="/posts/2015/12/akizuki-igzo.html" rel="alternate"></link><updated>2015-12-18T02:04:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-12-18:posts/2015/12/akizuki-igzo.html</id><summary type="html">&lt;p&gt;秋月電子で &lt;a href="http://akizukidenshi.com/catalog/g/gM-10016/"&gt;SHARPの7インチIGZO液晶モジュール&lt;/a&gt; を購入したらあっという間に届いたので動作確認してみました。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2015-12-29T17:04:00+09:00</updated><entry><title>秋月電子で買えるIGZO液晶のケースを作ってみた</title><link href="/posts/2015/12/akizuki-igzo-case.html" rel="alternate"></link><updated>2015-12-29T17:04:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-12-29:posts/2015/12/akizuki-igzo-case.html</id><summary type="html">&lt;p&gt;&lt;a href="akizuki-igzo.html"&gt;前回&lt;/a&gt; 動作確認をした液晶ですが、ケースの加工の見積もりを依頼した業者がどうも信用できない印象だったのでキャンセルしました。
+レーザーカッターを使わせてもらえる場所がいくつかあるので、そこを利用して自作することにしました。
+そのうちリーズナブルで講習を受ける必要もないし場所も職場とそれほど離れていなかったため &lt;a href="http://fabcafe.com/tokyo/"&gt;FabCafe Tokyo&lt;/a&gt; でカットしてもらうことにしました。&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fabcafe.com/tokyo/fab_details#universal-laser-vls"&gt;レーザーカッター&lt;/a&gt; の説明にあるように、Drop-inでの利用は10分800円。
+データの作成方法は簡単にですが &lt;a href="http://fabcafe.com/tokyo/faq#laser-cutter"&gt;FAQ&lt;/a&gt; に書いてありました。
+ただ見るべき場所が分散しているので、FAQからの抜粋と今回実際に利用してみてわかったことをまとめておきます。&lt;/p&gt;
+&lt;p&gt;素材について (主にアクリル板について)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;800x450mmまでの素材をカット可能&lt;/li&gt;
+&lt;li&gt;アクリル板の場合、厚みは最大5mmまで&lt;/li&gt;
+&lt;li&gt;上記の制限内であれば持ちこみ可能&lt;/li&gt;
+&lt;li&gt;150x150mm、2mm厚のアクリル板は店頭で購入できる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;データについて&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;図面のデータはIllustrator CS4形式を推奨&lt;/li&gt;
+&lt;li&gt;カラーモードはRGB&lt;/li&gt;
+&lt;li&gt;カットしたい線の太さは0.01pt、色はRGBで255,0,0&lt;/li&gt;
+&lt;li&gt;カットする順序を変えたい場合は赤と緑以外で別の色にしておく (今回は0,255,255を使用)&lt;/li&gt;
+&lt;li&gt;彫刻する面は、線無し、塗りつぶしの色は0,255,0&lt;/li&gt;
+&lt;li&gt;上記の条件を満たしていればInkscapeで作成したSVGでも可 (今回は問題なかった、ズレる可能性はある)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Inkscapeについて&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;はじめに &lt;code&gt;ファイル -&amp;gt; ドキュメントのプロパティ&lt;/code&gt; でページサイズの単位を &lt;code&gt;mm&lt;/code&gt; へ変更し、サイズを素材のサイズに変更する。&lt;/li&gt;
+&lt;li&gt;線の太さを0.01ptにすると細すぎて見えなくなるので &lt;code&gt;表示 -&amp;gt; 表示モード -&amp;gt; アウトライン&lt;/code&gt; に変更する。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;オブジェクト -&amp;gt; フィル/ストローク&lt;/code&gt; で選択したオブジェクトの線の太さや、色等を変更できる。
+(おそらく、だけれどページサイズの単位に線の太さの単位が引きずられている。線の太さの単位が毎回mmになってしまう。このため、一度0.01ptに変更してもフィル/ストロークの画面を出すと0.004mmで上書きされてしまう。再度単位をptに変更すると小数の演算の結果0.011ptになってしまう(うまく割り切れないからだと思う)。注意が必要。)&lt;ul&gt;
+&lt;li&gt;カットしたい線は フィル: &lt;code&gt;塗りなし&lt;/code&gt; ストロークの塗り: &lt;code&gt;255,0,0&lt;/code&gt; ストロークのスタイル: &lt;code&gt;0.01pt&lt;/code&gt; に変更する。&lt;/li&gt;
+&lt;li&gt;彫刻のは フィル: &lt;code&gt;0,255,0&lt;/code&gt; ストロークの塗り: &lt;code&gt;塗りなし&lt;/code&gt; に変更する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;複数のオブジェクトをグループ化しておくとIllustratorで開いた時に線の太さがおかしくなるので、最終的にグループ化を全て解除した状態で保存しておく。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上記の注意点を考慮して作成したSVGがこちら。 (画像を右クリックしてリンク先を保存してください。)&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/Akizuki-IGZO-2mm.svg"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO-2mm_s.png" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/12/Akizuki-IGZO-3mm.svg"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO-3mm_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;この図面には以下のパーツが含まれています。
+これら以外の部分は空き領域で、再利用しやすいように四角形にカットするようにしています。
+(液晶の周囲を覆っている枠が3mmでもよい、RaspberryPiは要らないなど割り切れば3mmの板1枚でも収まりますね。)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;液晶の周囲を覆う枠 (2mm) x1&lt;/li&gt;
+&lt;li&gt;基板を取り付ける際に使用するスペーサー (2mm) x8&lt;/li&gt;
+&lt;li&gt;液晶の表面側の板 (3mm) x1&lt;/li&gt;
+&lt;li&gt;基板を取り付ける板 (液晶の基板とRaspberry Pi Zeroを取り付けることができます) (3mm) x1&lt;/li&gt;
+&lt;li&gt;基板の厚み分の高さを稼ぐための枠 (3mm) x3&lt;/li&gt;
+&lt;li&gt;上記枠で支えていない1点に使用するためのスペーサー (3mm) x3&lt;/li&gt;
+&lt;li&gt;裏蓋 (3mm) x1&lt;/li&gt;
+&lt;li&gt;裏蓋 (Raspberry Pi Zeroマウント時はこちらを使用) (3mm) x1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;今回アクリル板に穴は用意してありますが、液晶の小さい方の基板は固定しませんでした。
+それを前提に購入した最低限必要なパーツを以下に挙げます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/B001D7BTK4"&gt;光 スミホリデー アクリル板 透明 2x180x320mm A000-2SS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/B001D7BTNG"&gt;光 スミホリデー アクリル板 透明 3x320x545mm A000-3S&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/B002UNMGC0"&gt;SK11 六角軸 フリードリル 鉄工用 10mm&lt;/a&gt; (表側の板に皿ネジを使いたいため購入)&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/B00MIA7HQK"&gt;インサートナット M2 3mm HSB-203030&lt;/a&gt; x4 (Raspberry Pi Zero用)&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/B00MIA6H0W"&gt;インサートナット M3 3mm HSB-304530&lt;/a&gt; x8-22 (液晶の基板、裏蓋用)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hands.net/goods/4979874465863/"&gt;皿ネジ M3 20mm&lt;/a&gt; x4 (表面からから裏蓋まで通して固定するためのネジ)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hands.net/goods/4979874462527/"&gt;なべ小ねじ M2 6mm&lt;/a&gt; x4 (Raspberry Pi Zero用)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hands.net/goods/4979874462633/"&gt;なべ小ねじ M3 6mm&lt;/a&gt; x4 (液晶の大きい方の基板用)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SVGファイルを保存したUSBメモリと、アクリル板を購入してFabCafeに行けばカットしてもらえます。
+Drop-inで利用したので &lt;strong&gt;当日の開店時間&lt;/strong&gt; に電話で枠の空き状況を確認して予約した上で店頭へ行きます。
+予約時に素材を確認されるので、アクリル板を持ち込みたいと伝えました。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/20151224103408.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/20151224103408_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;自分の番がきたら店員にUSBメモリと素材を渡します。
+店員と一緒にデータに問題がないか確認します。
+&lt;strong&gt;カットしたい順序を変えるために色を変える&lt;/strong&gt; はFAQには書いていないので、この時に伝える必要があると思われます。
+(僕は2mmの方のカット時に順序を定義していなかったのでスペーサーの部分が失敗しました。
+失敗に気がついて質問をしたら順序を決めたい場合は色を変えておく必要があると言われました。)
+データに問題がないことが確認できたらあとはおまかせでカットが終わるまで待つだけです。
+なにか飲み物を飲みながら終わるのを待ちましょう。
+(僕は気になって仕方なかったのでずっとレーザーカッターの動きを眺めていました。)
+今回はトータルで20分でした。
+ただこれは空き領域に他のものも入れてカットした時間なので実際にはもう少し短くなると思います。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/20151224104559.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/20151224104559_s.JPG" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/12/20151224110710.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/20151224110710_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;カットが終わったら不要な枠は取り外して捨ててもらいましょう。
+レジで飲み物の代金とカットの代金を合わせて支払えば終わりです。
+今回は20分だったので1600円でした。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/DSC_0628.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0628_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;アクリル板のカットが済んだので皿ネジ用の穴の加工とインサートナットの取り付けです。
+皿ネジ用の穴は、購入したフリードリルを使用して表面に使用する板に開いている穴を現物合わせで拡張しました。
+インサートナットははんだごてを使用して挿入しました。
+フレキシブルケーブルが少しギリギリになってしまいましたが概ね問題なく組み立てることができました。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/DSC_0644.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0644_s.JPG" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/12/DSC_0660.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0660_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/DSC_0658.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0658_s.JPG" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2015/12/DSC_0657.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0657_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;皿ネジとインサートナットのおかげで両面ともフラットですっきり仕上げることができました。
+最後に動作確認をすれば終わりです。
+僕の場合この時にフレキシブルケーブルが半分抜けかかっていて映りませんでした。(気をつけましょう…)&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2015/12/DSC_0652.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0652_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;トータルで掛かった金額は工具(ドリル)抜きで&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;アクリル板が2枚で2134円&lt;/li&gt;
+&lt;li&gt;加工代が20分で1600円&lt;/li&gt;
+&lt;li&gt;インサートナットが2セットで1123円&lt;/li&gt;
+&lt;li&gt;ネジが3種類で350円&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;で5207円でした。&lt;/p&gt;
+&lt;p&gt;本文中で書いたように実際に使ってみないとわからないことがいくつかありました。
+線の順序だったりとか、他に気になったのは素材の扱いです。
+店員に渡すとレーザーカッターにセットして作業を始めてくれるのですが、まず素材を正確に配置する必要があります。
+そのため位置を合わせてレーザーカッターを動作させて確認、という作業を何度か繰り返します。
+この時レーザーカッターの網のような台の上に素材を置いていて、位置をずらして調節していました。
+そのため全面が保護されていない素材を使う場合は、保護されていない部分に網で傷が付いてしまいました。(店員にもよると思いますが…)
+購入したアクリル板は左上の一部分に保護されていない領域があるので、あらかじめ避けるなどしておいたほうがよかったと思いました。&lt;/p&gt;
+&lt;p&gt;終えてみて、FabCafeはとても有用なサービスだと感じました。
+他のサービスでは機器の使い方の講習を受けて自分で操作する必要があるサービスが多い印象です。
+機器の操作方法を学ぶのも面白いと思うのですが、お金と時間が掛かるので目的のものをすぐに手に入れることができません。
+FabCafeはデータを渡すだけでよいというのも手軽だし、物もその場で手に入ります。
+自分の用途に合った物を自分で作れるのは素晴らしいですね。
+レーザーカッター欲しい…&lt;/p&gt;</summary><category term="Hardware"></category><category term="SHARP"></category><category term="IGZO"></category></entry><entry><title>秋月電子で買えるIGZO液晶を試してみた</title><link href="/posts/2015/12/akizuki-igzo.html" rel="alternate"></link><updated>2015-12-18T02:04:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2015-12-18:posts/2015/12/akizuki-igzo.html</id><summary type="html">&lt;p&gt;秋月電子で &lt;a href="http://akizukidenshi.com/catalog/g/gM-10016/"&gt;SHARPの7インチIGZO液晶モジュール&lt;/a&gt; を購入したらあっという間に届いたので動作確認してみました。
 動作確認自体は土曜に終わっていて、本当はアクリルのケースを作成してから記事を書くつもりでした。
 が、月曜の夜に見積もり依頼を出して既に木曜の深夜です…
 メールには2営業日と書いてあったのに何が起きているんだろうなぁと少しイラッときたので先に記事だけ書いてしまうことにしました。
@@ -18,15 +132,16 @@ Twitterでも報告している人がいましたが接続する機器によっ�
 &lt;p&gt;Gentoo(Linux)のXでは &lt;code&gt;xrandr&lt;/code&gt; というコマンドがあり、これを利用すると画面を回転させることができます。
 今回はこのように &lt;code&gt;xrandr -o left&lt;/code&gt; 実行しました。&lt;/p&gt;
 &lt;p&gt;&lt;a href="/static/images/2015/12/DSC_0595.JPG"&gt;&lt;img alt="image" src="/static/images/2015/12/DSC_0595_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために &lt;a href="https://www.sketchup.com/ja"&gt;SketchUp&lt;/a&gt; を使っていて、これでも書けそうだったので使ってみました。
+&lt;p&gt;&lt;del&gt;アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために &lt;a href="https://www.sketchup.com/ja"&gt;SketchUp&lt;/a&gt; を使っていて、これでも書けそうだったので使ってみました。
 &lt;strong&gt;僕はまだ実物を手に入れていない&lt;/strong&gt; のでこれでうまく収まるのかはよくわかりませんが、作った図面を貼り付けておこうと思います。
-元データが欲しい方は &lt;a href="/static/2015/12/Akizuki-IGZO.zip"&gt;こちら&lt;/a&gt; からダウンロードできるようにしておきました。
-(もし誰か僕より先にこの実物を手に入れた人がいたら、 &lt;a href="https://twitter.com/lostman"&gt;僕に&lt;/a&gt; フィードバックを貰えるとありがたいです…)&lt;/p&gt;
-&lt;p&gt;&lt;a href="/static/images/2015/12/Akizuki-IGZO_1.png"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_1_s.png" /&gt;&lt;/a&gt;
-&lt;a href="/static/images/2015/12/Akizuki-IGZO_2.png"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_2_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="/static/images/2015/12/Akizuki-IGZO_3.png"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_3_s.png" /&gt;&lt;/a&gt;
-&lt;a href="/static/images/2015/12/Akizuki-IGZO_4.png"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_4_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="/static/images/2015/12/Akizuki-IGZO_5.png"&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_5_s.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+元データが欲しい方は こちら からダウンロードできるようにしておきました。
+(もし誰か僕より先にこの実物を手に入れた人がいたら、フィードバックを貰えるとありがたいです…)&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;新しい図面を作成してレーザーカッターを使って実際にケースを作成してみたので &lt;a href="akizuki-igzo-case.html"&gt;こちら&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_1_s.png" /&gt;
+&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_2_s.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_3_s.png" /&gt;
+&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_4_s.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/static/images/2015/12/Akizuki-IGZO_5_s.png" /&gt;&lt;/p&gt;
 &lt;p&gt;表面、裏面共にネジを使用する部分はサラザグリにしてフラットになるようにしました。
 依頼を予定している業者が厚みが3mm以下のアクリル板に対してサラザグリの加工を受け付けていないようだったので、この加工をする必要がある板は3mm厚になっています。
 もし必要なければ普通の穴に変更してアクリルの厚さも薄くできるはずです。

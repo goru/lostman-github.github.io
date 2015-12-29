@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>SketchUpをLinuxにインストール - blog.gorugle.org</title>
+    <title>秋月電子で買えるIGZO液晶のケースを作ってみた - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -71,10 +71,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2015/06/sketchup-wine.html"
+                    <a href="/posts/2015/12/akizuki-igzo-case.html"
                        rel="bookmark"
-                       title="Permalink to SketchUpをLinuxにインストール">
-                        SketchUpをLinuxにインストール
+                       title="Permalink to 秋月電子で買えるIGZO液晶のケースを作ってみた">
+                        秋月電子で買えるIGZO液晶のケースを作ってみた
                     </a>
                 </h1>
             </header>
@@ -84,84 +84,135 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2015-06-06T01:51:00+09:00"> 2015/06/06 Sat</time>
+        <time datetime="2015-12-29T17:04:00+09:00"> 2015/12/29 Tue</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/linux.html">Linux</a>
+	<a href="/tag/hardware.html">Hardware</a>
+        /
+	<a href="/tag/sharp.html">SHARP</a>
+        /
+	<a href="/tag/igzo.html">IGZO</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
-大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
-SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
-<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
-ただ多少ハマった部分があったのでやったことを残しておく</p>
-<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
-自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
-インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
-<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
-インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
-(デフォルトでは <code>~/.wine</code> が使われる)</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup winecfg
-</pre></div>
-
-
-<p>次にインストーラを起動してインストールする<br />
-Wine の USE フラグに <code>X abi_x86_64 fontconfig jpeg mono opengl png ssl truetype xcomposite</code> を追加しておいた<br />
-インストーラの起動も winecfg と同様に WINEPREFIX を使って起動する</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 SketchUpMake-ja-x64.exe
-</pre></div>
-
-
-<p>これでインストーラが起動するはずだけれど手元の環境ではフォントのサイズが極端に大きくなっていて<br />
-画面のレイアウトが操作できないレベルで崩れていた<br />
-タブを4回、スペースを1回押すことでインストールを続行できた</p>
-<p>インストールができて起動してみると <code>mfc100u.dll</code> が必要であるというエラーがでて起動できない<br />
-mfc100u.dll は Visual C++ の再頒布可能パッケージに含まれているのでそれを入手する必要がある<br />
-mfc100u.dll は <a href="http://www.wdic.org/w/TECH/Visual%20C%2B%2B%20%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA">このサイト</a> によると <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=14632">Visual C++ 2010</a> または <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=30679">Visual Studio 2012</a> に含まれている<br />
-今回は 2010 の方を使用した</p>
-<p>Microsoft のサイトへ行くと <code>vcredist_x64.exe</code> を入手することができる<br />
-このファイルを実行して展開する必要があるのだけれど、どうしても Wine を使ってはうまくできなかったので<br />
-仕方なく Windows のマシンを使用して展開した<br />
-Windows のコマンドプロンプトで <code>/x:c:\target\dir</code> のようにオプションを指定しすると<br />
-指定したディレクトリへ中身を展開することができた</p>
-<div class="highlight"><pre>&gt; vcredist_x64.exe /x:c:\target\dir
-</pre></div>
-
-
-<p>展開したファイルの中に <code>vc_red.cab</code> というファイルがあるので<br />
-それを更に展開すると <code>F_CENTRAL_mfc100u_x64</code> をいうファイルを入手することができる<br />
-Linux で展開する場合は <code>cabextract</code> コマンドが利用できる<br />
-<code>F_CENTRAL_mfc100u_x64</code> を Linux の環境へコピーしたら <code>system32</code> へ mfc100u.dll というファイル名でコピーする</p>
-<div class="highlight"><pre><span class="nv">$ </span>cp F_CENTRAL_mfc100u_x64 drive_c/windows/system32/mfc100u.dll
-</pre></div>
-
-
-<p>以上で基本的な作業は終了</p>
-<p>これ以外の細かい設定は、 SketchUp を起動するには実行するユーザが <code>video</code> グループに所属していることと<br />
-実行時のオプションに <code>/DisableRubyAPI</code> が必要だった</p>
-<div class="highlight"><pre>libGL error: failed to open drm device: Permission denied
-</pre></div>
-
-
-<p>が起きる場合、実行するユーザがvideoグループに所属していない</p>
-<div class="highlight"><pre>libGL error: unable to load driver: i965_dri.so
-</pre></div>
-
-
-<p>が起きる場合、 <code>media-libs/mesa</code> で <code>classic</code> USE フラグが有効になっていないので<br />
-<code>/usr/lib/dri/i965_dri.so</code> が存在しない</p>
-<div class="highlight"><pre><span class="n">err</span><span class="o">:</span><span class="n">ntdll</span><span class="o">:</span><span class="n">RtlpWaitForCriticalSection</span> <span class="n">section</span> <span class="mh">0x2c8b8</span> <span class="s2">&quot;?&quot;</span> <span class="n">wait</span> <span class="n">timed</span> <span class="n">out</span> <span class="k">in</span> <span class="n">thread</span> <span class="mi">0009</span><span class="o">,</span> <span class="n">blocked</span> <span class="n">by</span> <span class="mi">0000</span><span class="o">,</span> <span class="n">retrying</span> <span class="o">(</span><span class="mi">60</span> <span class="n">sec</span><span class="o">)</span>
-</pre></div>
-
-
-<p>が起きる場合、コマンドラインオプションに /DisableRubyAPI をつけていない</p>
-<p>最終的に以下のコマンドで正常に SketchUp を起動することができた</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/winedir/sketchup/drive_c/Program Files (x86)/SketchUp/SketchUp 2015/SketchUp.exe&quot;</span> /DisableRubyAPI
-</pre></div>
+                <p><a href="akizuki-igzo.html">前回</a> 動作確認をした液晶ですが、ケースの加工の見積もりを依頼した業者がどうも信用できない印象だったのでキャンセルしました。
+レーザーカッターを使わせてもらえる場所がいくつかあるので、そこを利用して自作することにしました。
+そのうちリーズナブルで講習を受ける必要もないし場所も職場とそれほど離れていなかったため <a href="http://fabcafe.com/tokyo/">FabCafe Tokyo</a> でカットしてもらうことにしました。</p>
+<p><a href="http://fabcafe.com/tokyo/fab_details#universal-laser-vls">レーザーカッター</a> の説明にあるように、Drop-inでの利用は10分800円。
+データの作成方法は簡単にですが <a href="http://fabcafe.com/tokyo/faq#laser-cutter">FAQ</a> に書いてありました。
+ただ見るべき場所が分散しているので、FAQからの抜粋と今回実際に利用してみてわかったことをまとめておきます。</p>
+<p>素材について (主にアクリル板について)</p>
+<ul>
+<li>800x450mmまでの素材をカット可能</li>
+<li>アクリル板の場合、厚みは最大5mmまで</li>
+<li>上記の制限内であれば持ちこみ可能</li>
+<li>150x150mm、2mm厚のアクリル板は店頭で購入できる</li>
+</ul>
+<p>データについて</p>
+<ul>
+<li>図面のデータはIllustrator CS4形式を推奨</li>
+<li>カラーモードはRGB</li>
+<li>カットしたい線の太さは0.01pt、色はRGBで255,0,0</li>
+<li>カットする順序を変えたい場合は赤と緑以外で別の色にしておく (今回は0,255,255を使用)</li>
+<li>彫刻する面は、線無し、塗りつぶしの色は0,255,0</li>
+<li>上記の条件を満たしていればInkscapeで作成したSVGでも可 (今回は問題なかった、ズレる可能性はある)</li>
+</ul>
+<p>Inkscapeについて</p>
+<ul>
+<li>はじめに <code>ファイル -&gt; ドキュメントのプロパティ</code> でページサイズの単位を <code>mm</code> へ変更し、サイズを素材のサイズに変更する。</li>
+<li>線の太さを0.01ptにすると細すぎて見えなくなるので <code>表示 -&gt; 表示モード -&gt; アウトライン</code> に変更する。</li>
+<li><code>オブジェクト -&gt; フィル/ストローク</code> で選択したオブジェクトの線の太さや、色等を変更できる。
+(おそらく、だけれどページサイズの単位に線の太さの単位が引きずられている。線の太さの単位が毎回mmになってしまう。このため、一度0.01ptに変更してもフィル/ストロークの画面を出すと0.004mmで上書きされてしまう。再度単位をptに変更すると小数の演算の結果0.011ptになってしまう(うまく割り切れないからだと思う)。注意が必要。)<ul>
+<li>カットしたい線は フィル: <code>塗りなし</code> ストロークの塗り: <code>255,0,0</code> ストロークのスタイル: <code>0.01pt</code> に変更する。</li>
+<li>彫刻のは フィル: <code>0,255,0</code> ストロークの塗り: <code>塗りなし</code> に変更する。</li>
+</ul>
+</li>
+<li>複数のオブジェクトをグループ化しておくとIllustratorで開いた時に線の太さがおかしくなるので、最終的にグループ化を全て解除した状態で保存しておく。</li>
+</ul>
+<p>上記の注意点を考慮して作成したSVGがこちら。 (画像を右クリックしてリンク先を保存してください。)</p>
+<p><a href="/static/images/2015/12/Akizuki-IGZO-2mm.svg"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO-2mm_s.png" /></a>
+<a href="/static/images/2015/12/Akizuki-IGZO-3mm.svg"><img alt="image" src="/static/images/2015/12/Akizuki-IGZO-3mm_s.png" /></a></p>
+<p>この図面には以下のパーツが含まれています。
+これら以外の部分は空き領域で、再利用しやすいように四角形にカットするようにしています。
+(液晶の周囲を覆っている枠が3mmでもよい、RaspberryPiは要らないなど割り切れば3mmの板1枚でも収まりますね。)</p>
+<ul>
+<li>液晶の周囲を覆う枠 (2mm) x1</li>
+<li>基板を取り付ける際に使用するスペーサー (2mm) x8</li>
+<li>液晶の表面側の板 (3mm) x1</li>
+<li>基板を取り付ける板 (液晶の基板とRaspberry Pi Zeroを取り付けることができます) (3mm) x1</li>
+<li>基板の厚み分の高さを稼ぐための枠 (3mm) x3</li>
+<li>上記枠で支えていない1点に使用するためのスペーサー (3mm) x3</li>
+<li>裏蓋 (3mm) x1</li>
+<li>裏蓋 (Raspberry Pi Zeroマウント時はこちらを使用) (3mm) x1</li>
+</ul>
+<p>今回アクリル板に穴は用意してありますが、液晶の小さい方の基板は固定しませんでした。
+それを前提に購入した最低限必要なパーツを以下に挙げます。</p>
+<ul>
+<li><a href="http://www.amazon.co.jp/dp/B001D7BTK4">光 スミホリデー アクリル板 透明 2x180x320mm A000-2SS</a></li>
+<li><a href="http://www.amazon.co.jp/dp/B001D7BTNG">光 スミホリデー アクリル板 透明 3x320x545mm A000-3S</a></li>
+<li><a href="http://www.amazon.co.jp/dp/B002UNMGC0">SK11 六角軸 フリードリル 鉄工用 10mm</a> (表側の板に皿ネジを使いたいため購入)</li>
+<li><a href="http://www.amazon.co.jp/dp/B00MIA7HQK">インサートナット M2 3mm HSB-203030</a> x4 (Raspberry Pi Zero用)</li>
+<li><a href="http://www.amazon.co.jp/dp/B00MIA6H0W">インサートナット M3 3mm HSB-304530</a> x8-22 (液晶の基板、裏蓋用)</li>
+<li><a href="https://hands.net/goods/4979874465863/">皿ネジ M3 20mm</a> x4 (表面からから裏蓋まで通して固定するためのネジ)</li>
+<li><a href="https://hands.net/goods/4979874462527/">なべ小ねじ M2 6mm</a> x4 (Raspberry Pi Zero用)</li>
+<li><a href="https://hands.net/goods/4979874462633/">なべ小ねじ M3 6mm</a> x4 (液晶の大きい方の基板用)</li>
+</ul>
+<p>SVGファイルを保存したUSBメモリと、アクリル板を購入してFabCafeに行けばカットしてもらえます。
+Drop-inで利用したので <strong>当日の開店時間</strong> に電話で枠の空き状況を確認して予約した上で店頭へ行きます。
+予約時に素材を確認されるので、アクリル板を持ち込みたいと伝えました。</p>
+<p><a href="/static/images/2015/12/20151224103408.JPG"><img alt="image" src="/static/images/2015/12/20151224103408_s.JPG" /></a></p>
+<p>自分の番がきたら店員にUSBメモリと素材を渡します。
+店員と一緒にデータに問題がないか確認します。
+<strong>カットしたい順序を変えるために色を変える</strong> はFAQには書いていないので、この時に伝える必要があると思われます。
+(僕は2mmの方のカット時に順序を定義していなかったのでスペーサーの部分が失敗しました。
+失敗に気がついて質問をしたら順序を決めたい場合は色を変えておく必要があると言われました。)
+データに問題がないことが確認できたらあとはおまかせでカットが終わるまで待つだけです。
+なにか飲み物を飲みながら終わるのを待ちましょう。
+(僕は気になって仕方なかったのでずっとレーザーカッターの動きを眺めていました。)
+今回はトータルで20分でした。
+ただこれは空き領域に他のものも入れてカットした時間なので実際にはもう少し短くなると思います。</p>
+<p><a href="/static/images/2015/12/20151224104559.JPG"><img alt="image" src="/static/images/2015/12/20151224104559_s.JPG" /></a>
+<a href="/static/images/2015/12/20151224110710.JPG"><img alt="image" src="/static/images/2015/12/20151224110710_s.JPG" /></a></p>
+<p>カットが終わったら不要な枠は取り外して捨ててもらいましょう。
+レジで飲み物の代金とカットの代金を合わせて支払えば終わりです。
+今回は20分だったので1600円でした。</p>
+<p><a href="/static/images/2015/12/DSC_0628.JPG"><img alt="image" src="/static/images/2015/12/DSC_0628_s.JPG" /></a></p>
+<p>アクリル板のカットが済んだので皿ネジ用の穴の加工とインサートナットの取り付けです。
+皿ネジ用の穴は、購入したフリードリルを使用して表面に使用する板に開いている穴を現物合わせで拡張しました。
+インサートナットははんだごてを使用して挿入しました。
+フレキシブルケーブルが少しギリギリになってしまいましたが概ね問題なく組み立てることができました。</p>
+<p><a href="/static/images/2015/12/DSC_0644.JPG"><img alt="image" src="/static/images/2015/12/DSC_0644_s.JPG" /></a>
+<a href="/static/images/2015/12/DSC_0660.JPG"><img alt="image" src="/static/images/2015/12/DSC_0660_s.JPG" /></a></p>
+<p><a href="/static/images/2015/12/DSC_0658.JPG"><img alt="image" src="/static/images/2015/12/DSC_0658_s.JPG" /></a>
+<a href="/static/images/2015/12/DSC_0657.JPG"><img alt="image" src="/static/images/2015/12/DSC_0657_s.JPG" /></a></p>
+<p>皿ネジとインサートナットのおかげで両面ともフラットですっきり仕上げることができました。
+最後に動作確認をすれば終わりです。
+僕の場合この時にフレキシブルケーブルが半分抜けかかっていて映りませんでした。(気をつけましょう…)</p>
+<p><a href="/static/images/2015/12/DSC_0652.JPG"><img alt="image" src="/static/images/2015/12/DSC_0652_s.JPG" /></a></p>
+<p>トータルで掛かった金額は工具(ドリル)抜きで</p>
+<ul>
+<li>アクリル板が2枚で2134円</li>
+<li>加工代が20分で1600円</li>
+<li>インサートナットが2セットで1123円</li>
+<li>ネジが3種類で350円</li>
+</ul>
+<p>で5207円でした。</p>
+<p>本文中で書いたように実際に使ってみないとわからないことがいくつかありました。
+線の順序だったりとか、他に気になったのは素材の扱いです。
+店員に渡すとレーザーカッターにセットして作業を始めてくれるのですが、まず素材を正確に配置する必要があります。
+そのため位置を合わせてレーザーカッターを動作させて確認、という作業を何度か繰り返します。
+この時レーザーカッターの網のような台の上に素材を置いていて、位置をずらして調節していました。
+そのため全面が保護されていない素材を使う場合は、保護されていない部分に網で傷が付いてしまいました。(店員にもよると思いますが…)
+購入したアクリル板は左上の一部分に保護されていない領域があるので、あらかじめ避けるなどしておいたほうがよかったと思いました。</p>
+<p>終えてみて、FabCafeはとても有用なサービスだと感じました。
+他のサービスでは機器の使い方の講習を受けて自分で操作する必要があるサービスが多い印象です。
+機器の操作方法を学ぶのも面白いと思うのですが、お金と時間が掛かるので目的のものをすぐに手に入れることができません。
+FabCafeはデータを渡すだけでよいというのも手軽だし、物もその場で手に入ります。
+自分の用途に合った物を自分で作れるのは素晴らしいですね。
+レーザーカッター欲しい…</p>
             </div>
             <!-- /.entry-content -->
         </article>

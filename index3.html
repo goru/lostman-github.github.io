@@ -68,6 +68,33 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/11/mac-hostname.html">Macのホスト名を固定する</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ</p>
+<div class="highlight"><pre><span class="nv">$ </span>scutil --get HostName
+HostName: not <span class="nb">set</span>
+</pre></div>
+
+
+<p>この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい<br />
+オフィスの環境だとならないけれど、自宅の環境だと <code>System Preferences -&gt; Sharing</code> で<br />
+元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう<br />
+ここの <code>Edit</code> を押すと <code>Use dynamic global hostname</code> といういかにもそれっぽい設定があるけれどこれは特に効果はなし<br />
+そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる</p>
+<div class="highlight"><pre><span class="c"># scutil --set HostName YourHostName</span>
+</pre></div>
+
+
+<p>ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない<br />
+そのためここで元々の設定とは全く別の値を指定することができるが<br />
+混乱の元なのでそういったことが起きないように気をつける必要がある</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/11/mac-hostname.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/11/smart.html">使えなくなったHDDのS.M.A.R.T.の結果</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -372,25 +399,6 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/github-pages.html">GitHub Pages関連で調べたこと</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <ul>
-<li><a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository">Adding a CNAME file to your repository</a><br />
-  サブドメインを使用する場合はリポジトリに割り当てたいサブドメインを書いた <code>CNAME</code> ファイルを追加するのと、<br />
-  使用しているDNSの設定でサブドメインと <code>hoge.github.io</code> をCNAMEで関連付ける</li>
-<li><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a><br />
-  gitのsubmoduleを使用する場合、リポジトリのURLは <code>git://</code> でなく <code>https://</code> を使用しなければいけない</li>
-<li><a href="https://help.github.com/articles/using-jekyll-with-pages#turning-jekyll-off">Turning Jekyll off</a><br />
-  デフォルトでJekyllが有効になっているので <code>*.rst</code> なファイルをアップロードすると変換しようとする<br />
-  これを無効にするために <code>.nojekyll</code> をリポジトリのルートに作成する</li>
-</ul>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/github-pages.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="/index2.html">&laquo;</a>
@@ -462,7 +470,7 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                                 GitHub
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/hardware.html">
                                 Hardware
                             </a>
@@ -477,7 +485,7 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                                 HTL21
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/igzo.html">
                                 IGZO
                             </a>
@@ -557,7 +565,7 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                                 Samba
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/sharp.html">
                                 SHARP
                             </a>
