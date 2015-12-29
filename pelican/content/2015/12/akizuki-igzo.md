@@ -29,18 +29,20 @@ Gentoo(Linux)のXでは `xrandr` というコマンドがあり、これを利�
 
 [![image](/static/images/2015/12/DSC_0595_s.JPG)](/static/images/2015/12/DSC_0595.JPG)
 
-アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために [SketchUp](https://www.sketchup.com/ja) を使っていて、これでも書けそうだったので使ってみました。
+<del>アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために [SketchUp](https://www.sketchup.com/ja) を使っていて、これでも書けそうだったので使ってみました。
 **僕はまだ実物を手に入れていない** のでこれでうまく収まるのかはよくわかりませんが、作った図面を貼り付けておこうと思います。
-元データが欲しい方は [こちら](/static/2015/12/Akizuki-IGZO.zip) からダウンロードできるようにしておきました。
-(もし誰か僕より先にこの実物を手に入れた人がいたら、 [僕に](https://twitter.com/lostman) フィードバックを貰えるとありがたいです…)
+元データが欲しい方は こちら からダウンロードできるようにしておきました。
+(もし誰か僕より先にこの実物を手に入れた人がいたら、フィードバックを貰えるとありがたいです…)</del>
 
-[![image](/static/images/2015/12/Akizuki-IGZO_1_s.png)](/static/images/2015/12/Akizuki-IGZO_1.png)
-[![image](/static/images/2015/12/Akizuki-IGZO_2_s.png)](/static/images/2015/12/Akizuki-IGZO_2.png)
+新しい図面を作成してレーザーカッターを使って実際にケースを作成してみたので [こちら](akizuki-igzo-case.html) を参照してください。
 
-[![image](/static/images/2015/12/Akizuki-IGZO_3_s.png)](/static/images/2015/12/Akizuki-IGZO_3.png)
-[![image](/static/images/2015/12/Akizuki-IGZO_4_s.png)](/static/images/2015/12/Akizuki-IGZO_4.png)
+![image](/static/images/2015/12/Akizuki-IGZO_1_s.png)
+![image](/static/images/2015/12/Akizuki-IGZO_2_s.png)
 
-[![image](/static/images/2015/12/Akizuki-IGZO_5_s.png)](/static/images/2015/12/Akizuki-IGZO_5.png)
+![image](/static/images/2015/12/Akizuki-IGZO_3_s.png)
+![image](/static/images/2015/12/Akizuki-IGZO_4_s.png)
+
+![image](/static/images/2015/12/Akizuki-IGZO_5_s.png)
 
 表面、裏面共にネジを使用する部分はサラザグリにしてフラットになるようにしました。
 依頼を予定している業者が厚みが3mm以下のアクリル板に対してサラザグリの加工を受け付けていないようだったので、この加工をする必要がある板は3mm厚になっています。
