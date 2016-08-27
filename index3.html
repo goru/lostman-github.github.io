@@ -68,6 +68,69 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
+今回使用したのは以下の部品</p>
+<ul>
+<li>Arduino Uno</li>
+<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> x1 1個50円</li>
+<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> x3 10個100円</li>
+<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> x1 1個10円</li>
+<li>プルダウン用の抵抗1KΩ x1</li>
+</ul>
+<p>それぞれを以下のように接続した</p>
+<table>
+<thead>
+<tr>
+<th>Arduino</th>
+<th>部品</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>GP1UXC41QSのVout</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GP1UXC41QSのGND</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>GP1UXC41QSのVcc</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>タクトスイッチの2番</td>
+</tr>
+<tr>
+<td>3</td>
+<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>OSI5LA5113A x3 の+</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>OSI5LA5113A x3 の-</td>
+</tr>
+</tbody>
+</table>
+<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とあるけれど<br />
+お試しなので今回は省略して回路を組んだ<br />
+手元の環境では特に問題は起きていないけれど誤動作する可能性があるので注意</p>
+<p>実際に接続するとこのようになる</p>
+<p><a href="/static/images/2014/11/IMAG1268.jpg"><img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /></a></p>
+<p>ソースコードは ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/11/mac-hostname.html">Macのホスト名を固定する</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -319,86 +382,6 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
-配線は以下の通り  </p>
-<table>
-<thead>
-<tr>
-<th>Pin</th>
-<th>AquesTalk</th>
-<th>-&gt;</th>
-<th>Arduino</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>/RESET</td>
-<td></td>
-<td>RESET</td>
-</tr>
-<tr>
-<td>4</td>
-<td>SMOD0</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SMOD1</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>7</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>8</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>20</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>22</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>27</td>
-<td>SDA</td>
-<td></td>
-<td>A4</td>
-</tr>
-<tr>
-<td>28</td>
-<td>SCL</td>
-<td></td>
-<td>A5</td>
-</tr>
-</tbody>
-</table>
-<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
-I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
-あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="/index2.html">&laquo;</a>
@@ -535,7 +518,7 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                                 Mozc
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mvno.html">
                                 MVNO
                             </a>
@@ -586,11 +569,6 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/so-02g-mvno.html">
-                                SO-02G MVNO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -600,7 +578,12 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/walkman.html">
+                                Walkman
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>
@@ -630,7 +613,7 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 lostman/ごる
+         <div class="col-xs-10">&copy; 2016 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

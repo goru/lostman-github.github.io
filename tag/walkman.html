@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>SO-02G MVNO - blog.gorugle.org</title>
+    <title>Walkman - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -68,33 +68,41 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/posts/2015/10/mineo-dual.html">メインの回線もmineoに移行</a></h2>
+                <h2><a href="/posts/2016/08/nw-e052.html">AnniversaryUpdate適用後にNW-E052が使用不能になる問題の対応</a></h2>
                 <div class="summary">
                     <div class="entry-content">
-                        <p>今までauのガラケーのまま維持していたメインの回線もmineoにMNPしました<br />
-自分の都合でなかなか宅配を受け取れなかったのを除いてとてもスムーズに移行できたのでどれくらい時間が掛かったのかメモしておきます</p>
-<ol>
-<li>10/15 15時頃にauから電話でMNP番号を取得</li>
-<li>10/16 23時半頃にウェブページからmineoに申し込み</li>
-<li>10/18 17時頃に手続き完了のメール</li>
-<li>10/19 SIMが到着するが受け取れず</li>
-<li>10/24 ようやくSIMを受け取りMNPの切り替え</li>
-</ol>
-<p>といった感じでした、受け取れなかった期間を除けば実質4日程度で手続きが完了しました<br />
-その間に切り替えの30分程度以外は不通期間もないので良かったと思います<br />
-ただ初期費用を安くするためのエントリーパッケージの入手に2、3日追加で掛かります<br />
-設定の手順が書いてある冊子がSIMに同梱されていて必要な情報は基本それに記載されていましたが、mineoのメールサーバーの設定はIMAPを推奨しているようでその設定のみが記載されていました<br />
-Gmailからメールを見たい場合はPOPを使う必要があって使えないのかと思いましたが、mineoのサイトに別途情報がありました  </p>
+                        <h3>何が起きたか</h3>
+<p>妻のマシンをWindows10へアップデートしたあとしばらくしてから(AnniversaryUpdate適用後)、Walkmanが使えなくなったと言われました。
+具体的には以下のような画面が表示されたので本体の初期化をしたが状況が改善されない、ということでした。</p>
+<p><a href="/static/images/2016/08/walkman-01.png"><img alt="image" src="/static/images/2016/08/walkman-01_s.png" /></a>
+<a href="/static/images/2016/08/walkman-02.png"><img alt="image" src="/static/images/2016/08/walkman-02_s.png" /></a></p>
+<p>通常WalkmanはUSBメモリと同じようにエクスプローラに表示されるのでプロパティを確認してみると、
+このようになっていてドライブとして正しく認識されていないようでした。</p>
+<p><a href="/static/images/2016/08/walkman-03.png"><img alt="image" src="/static/images/2016/08/walkman-03_s.png" /></a></p>
+<p>コンピュータの管理から確認してみるとこう。ボリュームが無いように見えます。</p>
+<p><a href="/static/images/2016/08/walkman-04.png"><img alt="image" src="/static/images/2016/08/walkman-04_s.png" /></a></p>
+<h3>公式の情報</h3>
+<p>Windowsのアップデートをする前は特に問題なく使えていたということでした。
+アップデートが原因だとはあまり考えられないのではと思ったのですが、調べてみたら公式のアナウンスを見つけることができました。</p>
 <ul>
-<li><a href="http://support.mineo.jp/usqa/set/initset/mail/4208847_8870.html">POP3で設定できますか？</a></li>
+<li><a href="http://www.sony.jp/support/walkman/index.html">Windows 10 Anniversary Update適用後のパソコンでウォークマン®が認識されない症状について</a></li>
+<li><a href="http://qa.support.sony.jp/solution/S1608150081554/">詳細</a> (当時このページは存在しませんでした。)</li>
 </ul>
-<p>このSIMは買い増したSO-02Gに挿して使っているのですが、以下のコマンドを実行することでドコモのスマホのテザリングのAPN制限が回避できました<br />
-(<a href="http://app-roid.com/blog-entry-1498.html">ドコモ版XPERIA Z3（SO-01G）でMVNOのIIJmioでテザリングを有効化させる手順</a>)<br />
-ただアップデート時にリセットされたり変更できなくなる可能性もあると思われるのでアップデートには注意したほうがいいかもしれない</p>
-<div class="highlight"><pre><span class="nv">$ </span>adb shell settings put global tether_dun_required 0
-</pre></div>
+<p>ここにはE080/S10/S770/S780で問題が起きること、これらのモデルはソフトウェアアップデートで対応することが書かれていました。
+手元のNW-E052でも同様の問題が起きていましたが、サポートが切れているためかここでは触れられていませんでした。
+また当時は暫定の回避策の情報もなかったので打てる対策がない状況でした。</p>
+<h3>見つけた対応策</h3>
+<p>買い換えるしかないのかなぁと思ったのですが、なんとか回避できないかと思ってしつこく調べていたら <a href="http://hanabi.2ch.net/test/read.cgi/wm/1451440843/269">認識するようにできたという情報</a> があったので試してみました。
+結果的にあとからアナウンスされた公式の回避策も含めて以下の2通りの方法があります。</p>
+<ol>
+<li>Windows10以外またはAnniversaryUpdate未適用のPCでフォーマットする。 (公式)</li>
+<li><a href="http://forest.watch.impress.co.jp/library/software/partwizhome/">MiniTool Partition Wizard</a> というツールを使ってWalkmanのボリュームに対し <code>Set inactive</code> という操作をする。 (非公式)</li>
+</ol>
+<p>環境を用意できる人は1の公式の対応策に従ってください。
+ただこの公式の方法ですが、普通の人は他のPCを用意できない場合が多いと思います。
+が、AnniversaryUpdate適用済みのPCでも復活させる方法を偶然見つけたのでこちらも書いておきます ...</p>
                     </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/10/mineo-dual.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="/posts/2016/08/nw-e052.html">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -220,7 +228,7 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                                 Mozc
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mvno.html">
                                 MVNO
                             </a>
@@ -271,11 +279,6 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/so-02g-mvno.html">
-                                SO-02G MVNO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -285,7 +288,12 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/walkman.html">
+                                Walkman
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>
@@ -315,7 +323,7 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 lostman/ごる
+         <div class="col-xs-10">&copy; 2016 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

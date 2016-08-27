@@ -68,6 +68,31 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <p>外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた<br />
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね<br />
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです<br />
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ<br />
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた</p>
+<p>Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、<br />
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します<br />
+このため画面がないマシンでも GUI のアプリケーションが起動できます<br />
+サーバ上で GUI のアプリを動かすにはうってつけですね<br />
+ただこのままだと外部から描画された画面を見ることができないので<br />
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました<br />
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ</p>
+<p>必要なものをインストールする前に package.use に必要は USE フラグを追加して</p>
+<div class="highlight"><pre>app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads ...</pre></div>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/xvfb.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/06/sketchup-wine.html">SketchUpをLinuxにインストール</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -345,69 +370,6 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
-今回使用したのは以下の部品</p>
-<ul>
-<li>Arduino Uno</li>
-<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> x1 1個50円</li>
-<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> x3 10個100円</li>
-<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> x1 1個10円</li>
-<li>プルダウン用の抵抗1KΩ x1</li>
-</ul>
-<p>それぞれを以下のように接続した</p>
-<table>
-<thead>
-<tr>
-<th>Arduino</th>
-<th>部品</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>GP1UXC41QSのVout</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>GP1UXC41QSのGND</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>GP1UXC41QSのVcc</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>タクトスイッチの2番</td>
-</tr>
-<tr>
-<td>3</td>
-<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>OSI5LA5113A x3 の+</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>OSI5LA5113A x3 の-</td>
-</tr>
-</tbody>
-</table>
-<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とあるけれど<br />
-お試しなので今回は省略して回路を組んだ<br />
-手元の環境では特に問題は起きていないけれど誤動作する可能性があるので注意</p>
-<p>実際に接続するとこのようになる</p>
-<p><a href="/static/images/2014/11/IMAG1268.jpg"><img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /></a></p>
-<p>ソースコードは ...</p>
-                    </div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="/index.html">&laquo;</a>
@@ -544,7 +506,7 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                                 Mozc
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mvno.html">
                                 MVNO
                             </a>
@@ -595,11 +557,6 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/so-02g-mvno.html">
-                                SO-02G MVNO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -609,7 +566,12 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/walkman.html">
+                                Walkman
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>
@@ -639,7 +601,7 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 lostman/ごる
+         <div class="col-xs-10">&copy; 2016 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

@@ -68,6 +68,45 @@ blog.gorugle.org            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="/posts/2016/08/nw-e052.html">AnniversaryUpdate適用後にNW-E052が使用不能になる問題の対応</a></h2>
+                <div class="summary">
+                    <div class="entry-content">
+                        <h3>何が起きたか</h3>
+<p>妻のマシンをWindows10へアップデートしたあとしばらくしてから(AnniversaryUpdate適用後)、Walkmanが使えなくなったと言われました。
+具体的には以下のような画面が表示されたので本体の初期化をしたが状況が改善されない、ということでした。</p>
+<p><a href="/static/images/2016/08/walkman-01.png"><img alt="image" src="/static/images/2016/08/walkman-01_s.png" /></a>
+<a href="/static/images/2016/08/walkman-02.png"><img alt="image" src="/static/images/2016/08/walkman-02_s.png" /></a></p>
+<p>通常WalkmanはUSBメモリと同じようにエクスプローラに表示されるのでプロパティを確認してみると、
+このようになっていてドライブとして正しく認識されていないようでした。</p>
+<p><a href="/static/images/2016/08/walkman-03.png"><img alt="image" src="/static/images/2016/08/walkman-03_s.png" /></a></p>
+<p>コンピュータの管理から確認してみるとこう。ボリュームが無いように見えます。</p>
+<p><a href="/static/images/2016/08/walkman-04.png"><img alt="image" src="/static/images/2016/08/walkman-04_s.png" /></a></p>
+<h3>公式の情報</h3>
+<p>Windowsのアップデートをする前は特に問題なく使えていたということでした。
+アップデートが原因だとはあまり考えられないのではと思ったのですが、調べてみたら公式のアナウンスを見つけることができました。</p>
+<ul>
+<li><a href="http://www.sony.jp/support/walkman/index.html">Windows 10 Anniversary Update適用後のパソコンでウォークマン®が認識されない症状について</a></li>
+<li><a href="http://qa.support.sony.jp/solution/S1608150081554/">詳細</a> (当時このページは存在しませんでした。)</li>
+</ul>
+<p>ここにはE080/S10/S770/S780で問題が起きること、これらのモデルはソフトウェアアップデートで対応することが書かれていました。
+手元のNW-E052でも同様の問題が起きていましたが、サポートが切れているためかここでは触れられていませんでした。
+また当時は暫定の回避策の情報もなかったので打てる対策がない状況でした。</p>
+<h3>見つけた対応策</h3>
+<p>買い換えるしかないのかなぁと思ったのですが、なんとか回避できないかと思ってしつこく調べていたら <a href="http://hanabi.2ch.net/test/read.cgi/wm/1451440843/269">認識するようにできたという情報</a> があったので試してみました。
+結果的にあとからアナウンスされた公式の回避策も含めて以下の2通りの方法があります。</p>
+<ol>
+<li>Windows10以外またはAnniversaryUpdate未適用のPCでフォーマットする。 (公式)</li>
+<li><a href="http://forest.watch.impress.co.jp/library/software/partwizhome/">MiniTool Partition Wizard</a> というツールを使ってWalkmanのボリュームに対し <code>Set inactive</code> という操作をする。 (非公式)</li>
+</ol>
+<p>環境を用意できる人は1の公式の対応策に従ってください。
+ただこの公式の方法ですが、普通の人は他のPCを用意できない場合が多いと思います。
+が、AnniversaryUpdate適用済みのPCでも復活させる方法を偶然見つけたのでこちらも書いておきます ...</p>
+                    </div>
+                    <a class="btn btn-default btn-xs" href="/posts/2016/08/nw-e052.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/12/akizuki-igzo-case.html">秋月電子で買えるIGZO液晶のケースを作ってみた</a></h2>
                 <div class="summary">
                     <div class="entry-content">
@@ -292,7 +331,7 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                                 Mozc
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="/tag/mvno.html">
                                 MVNO
                             </a>
@@ -343,11 +382,6 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/so-02g-mvno.html">
-                                SO-02G MVNO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
                             <a href="/tag/todo.html">
                                 ToDo
                             </a>
@@ -357,7 +391,12 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
                                 uim
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/walkman.html">
+                                Walkman
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
                             <a href="/tag/windows.html">
                                 Windows
                             </a>
@@ -387,7 +426,7 @@ SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 lostman/ごる
+         <div class="col-xs-10">&copy; 2016 lostman/ごる
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
