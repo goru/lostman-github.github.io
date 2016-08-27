@@ -1,7 +1,7 @@
 Title: メインの回線もmineoに移行
 Date: 2015-10-24 23:00
 Category: Gadget
-Tags: Android, SO-02G MVNO
+Tags: Android, SO-02G, MVNO
 Slug: mineo-dual
 
 今までauのガラケーのまま維持していたメインの回線もmineoにMNPしました  
