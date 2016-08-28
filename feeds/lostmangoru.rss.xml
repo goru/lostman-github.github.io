@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 28 Aug 2016 01:26:00 +0900</lastBuildDate><item><title>AnniversaryUpdate適用後にNW-E052が使用不能になる問題の対応</title><link>/posts/2016/08/nw-e052.html</link><description>&lt;h3&gt;何が起きたか&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 28 Aug 2016 01:26:00 +0900</lastBuildDate><item><title>AnniversaryUpdate適用後にNW-E052が認識されなくなる問題の対応</title><link>/posts/2016/08/nw-e052.html</link><description>&lt;h3&gt;何が起きたか&lt;/h3&gt;
 &lt;p&gt;妻のマシンをWindows10へアップデートしたあとしばらくしてから(AnniversaryUpdate適用後)、Walkmanが使えなくなったと言われました。
 具体的には以下のような画面が表示されたので本体の初期化をしたが状況が改善されない、ということでした。&lt;/p&gt;
 &lt;p&gt;&lt;a href="/static/images/2016/08/walkman-01.png"&gt;&lt;img alt="image" src="/static/images/2016/08/walkman-01_s.png" /&gt;&lt;/a&gt;
