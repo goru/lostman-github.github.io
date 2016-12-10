@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:og="http://ogp.me/ns#"
-      xmlns:fb="https://www.facebook.com/2008/fbml">
+<html lang="en">
 <head>
     <title>Mozc - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+
+
+
+    <meta name="author" content="lostman/ごる" />
+    <meta name="keywords" content="Mozc" />
+
 
 
     <!-- Bootstrap -->
@@ -19,11 +23,14 @@
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
 
 
+
+
+
 </head>
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -56,22 +63,20 @@ blog.gorugle.org            </a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-
             <article>
                 <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>一時期 ibus が色々話題になりましたね <a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html">*1</a> <a href="http://www.kaoriya.net/blog/2013/10/18/">*2</a><br />
+                <div class="summary"><p>一時期 ibus が色々話題になりましたね <a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html">*1</a> <a href="http://www.kaoriya.net/blog/2013/10/18/">*2</a><br />
 僕の環境では ibus-mozc を使っていたのですが、 1.5 系へは移行せず 1.4 系にとどまっていました<br />
 このまま放置していてもよかったんだけれど、 Gentoo のリポジトリから 1.4 が<br />
 なくなっていることに気がついたので別のインプットメソッドへ移行することにしました</p>
@@ -81,16 +86,13 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
 自分で ebuild を書くか、他の人が書いたものを使わせてもらうかのどちらかがあるみたいです<br />
 今回は <a href="https://bitbucket.org/wjn/wjn-overlay">wjn-overlay</a> を使わせてもらうことにしました</p>
 <p>ここ ...</p>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2015/04/uin-mozc.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="/posts/2014/08/macuim-mozc.html">MacUIM/Mozcを使う</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>ターミナルは<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a>をビルドして使用しています<br />
+                <div class="summary"><p>ターミナルは<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a>をビルドして使用しています<br />
 これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません<br />
 今までほとんど困ることはなくて、必要なときはコピペで対応していました<br />
 ただ最近ここをvimで書いていることもあり、<a href="https://code.google.com/p/macuim/">MacUIM</a>をインストールして入力できるようにしました</p>
@@ -102,215 +104,216 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
 <li><code>Helper -&gt; Use Helper-Applet</code> をチェック (メニューバーに状態が表示される)</li>
 <li><code>Uim -&gt; Global settings -&gt; Specify default IM</code> をチェック</li>
 <li><code>Uim -&gt; Global settings -&gt; Default input method</code> で ...</li></ol></li></ol>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/08/macuim-mozc.html">more ...</a>
                 </div>
             </article>
             <hr/>
 
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
 
 
 
-                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
-                    <ul class="list-group" id="tags">
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/android.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/aquestalk-pico-lsi.html">
-                                AquesTalk pico LSI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/arduino.html">
-                                Arduino
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/atmega328.html">
-                                ATmega328
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/diary.html">
-                                Diary
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/e-book.html">
-                                e-book
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/esp-wroom-02.html">
-                                ESP-WROOM-02
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/f5321.html">
-                                F5321
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/fabcafe.html">
-                                FabCafe
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/gentoo.html">
-                                Gentoo
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/github.html">
-                                GitHub
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/hardware.html">
-                                Hardware
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/hdd.html">
-                                HDD
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/htl21.html">
-                                HTL21
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/igzo.html">
-                                IGZO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/inkscape.html">
-                                Inkscape
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/ir.html">
-                                IR
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/javascript.html">
-                                JavaScript
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/kvm.html">
-                                KVM
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/linux.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/mac.html">
-                                Mac
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/macuim.html">
-                                MacUIM
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/mozc.html">
-                                Mozc
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/mvno.html">
-                                MVNO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/mysql.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/nginx.html">
-                                Nginx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/pelican.html">
-                                Pelican
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/phantomjs.html">
-                                PhantomJS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/redmine.html">
-                                Redmine
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/ruby.html">
-                                Ruby
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/samba.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/sharp.html">
-                                SHARP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/so-02g.html">
-                                SO-02G
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/todo.html">
-                                ToDo
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/uim.html">
-                                uim
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/walkman.html">
-                                Walkman
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/windows.html">
-                                Windows
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/ws-50.html">
-                                WS-50
-                            </a>
-                        </li>
-                    </ul>
-                </li>    
+            <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/arduino.html">
+                            Arduino
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/so-02g.html">
+                            SO-02G
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/mac.html">
+                            Mac
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/igzo.html">
+                            IGZO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
 
     <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
         <div id="gh_repos">
@@ -318,11 +321,10 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
         </div>
             <a href="https://github.com/lostman-github">@lostman-github</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>
+            </aside>
+        </div>
     </div>
 </div>
 <footer>
@@ -330,14 +332,14 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2015 lostman/ごる
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
       </div>
    </div>
 </footer>
-<script src="//code.jquery.com/jquery.js"></script>
+<script src="/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/theme/js/bootstrap.min.js"></script>
@@ -345,6 +347,7 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="/theme/js/respond.min.js"></script>
 
+    <!-- GitHub JS -->
     <script type="text/javascript">
         $(document).ready(function () {
             if (!window.jXHR) {
@@ -364,5 +367,7 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
         });
     </script>
     <script src="/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
 </body>
 </html>

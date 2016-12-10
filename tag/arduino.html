@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:og="http://ogp.me/ns#"
-      xmlns:fb="https://www.facebook.com/2008/fbml">
+<html lang="en">
 <head>
     <title>Arduino - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+
+
+
+    <meta name="author" content="lostman/ごる" />
+    <meta name="keywords" content="Arduino" />
+
 
 
     <!-- Bootstrap -->
@@ -19,11 +23,14 @@
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
 
 
+
+
+
 </head>
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -56,22 +63,20 @@ blog.gorugle.org            </a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-
             <article>
                 <h2><a href="/posts/2015/12/esp-wroom-02-arduino.html">ESP-WROOM-02をArduinoとして使ってみた</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
+                <div class="summary"><p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
 今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
 外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。</p>
 <p>まずBoards ManagerをサポートしているArduino IDEが必要なので <a href="https://www.arduino.cc/en/Main/Software">公式サイト</a> から最新の1.6.6をダウンロードしてインストールしておきます。
@@ -82,16 +87,13 @@ blog.gorugle.org            </a>
 <li><code>Arduino -&gt; Preferences -&gt; Additional Board Manager URLs</code> を開いて <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code> を追加します。</li>
 <li>Arduino IDEを一度再起動して、 <code>Tools -&gt; Board -&gt; Boards Manager</code> を開きます。
 自動で一覧が読み込まれ、 <code>esp8266 by ESP8266 Community</code> が表示されているはずなので選択してインストールします。 (現時点では2 ...</li></ol>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2015/12/esp-wroom-02-arduino.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
+                <div class="summary"><p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
 Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
 Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
 <p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
@@ -104,16 +106,13 @@ Arduino に搭載されている ATmega328 は 16MHz / 5V で動作している�
 <p>参考にすべきページは</p>
 <ul>
 <li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の ...</li></ul>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2015/04/atmega328.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
+                <div class="summary"><p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
 今回使用したのは以下の部品</p>
 <ul>
 <li>Arduino Uno</li>
@@ -167,16 +166,13 @@ Arduino に搭載されている ATmega328 は 16MHz / 5V で動作している�
 <p>実際に接続するとこのようになる</p>
 <p><a href="/static/images/2014/11/IMAG1268.jpg"><img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /></a></p>
 <p>ソースコードは ...</p>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>ArduinoとAquesTalkをI2Cで接続してみました<br />
+                <div class="summary"><p>ArduinoとAquesTalkをI2Cで接続してみました<br />
 配線は以下の通り  </p>
 <table>
 <thead>
@@ -247,16 +243,13 @@ Arduino に搭載されている ATmega328 は 16MHz / 5V で動作している�
 <p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
 I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
 あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
-                <div class="summary">
-                    <div class="entry-content">
-                        <p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
+                <div class="summary"><p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
 紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
 PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
 (技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
@@ -280,215 +273,216 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 <li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
 <li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
 <li>アンプの <code>SPK ...</code></li></ol>
-                    </div>
                     <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
                 </div>
             </article>
             <hr/>
 
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
 
 
 
-                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
-                    <ul class="list-group" id="tags">
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/android.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/aquestalk-pico-lsi.html">
-                                AquesTalk pico LSI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/arduino.html">
-                                Arduino
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/atmega328.html">
-                                ATmega328
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/diary.html">
-                                Diary
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/e-book.html">
-                                e-book
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/esp-wroom-02.html">
-                                ESP-WROOM-02
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/f5321.html">
-                                F5321
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/fabcafe.html">
-                                FabCafe
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/gentoo.html">
-                                Gentoo
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/github.html">
-                                GitHub
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/hardware.html">
-                                Hardware
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/hdd.html">
-                                HDD
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/htl21.html">
-                                HTL21
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/igzo.html">
-                                IGZO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/inkscape.html">
-                                Inkscape
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/ir.html">
-                                IR
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/javascript.html">
-                                JavaScript
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/kvm.html">
-                                KVM
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/linux.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/mac.html">
-                                Mac
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/macuim.html">
-                                MacUIM
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/mozc.html">
-                                Mozc
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/mvno.html">
-                                MVNO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/mysql.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/nginx.html">
-                                Nginx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/pelican.html">
-                                Pelican
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/phantomjs.html">
-                                PhantomJS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/redmine.html">
-                                Redmine
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/ruby.html">
-                                Ruby
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/samba.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="/tag/sharp.html">
-                                SHARP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/so-02g.html">
-                                SO-02G
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/todo.html">
-                                ToDo
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/uim.html">
-                                uim
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/walkman.html">
-                                Walkman
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="/tag/windows.html">
-                                Windows
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/ws-50.html">
-                                WS-50
-                            </a>
-                        </li>
-                    </ul>
-                </li>    
+            <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/arduino.html">
+                            Arduino
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/so-02g.html">
+                            SO-02G
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/mac.html">
+                            Mac
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/igzo.html">
+                            IGZO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
 
     <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
         <div id="gh_repos">
@@ -496,11 +490,10 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
         </div>
             <a href="https://github.com/lostman-github">@lostman-github</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>
+            </aside>
+        </div>
     </div>
 </div>
 <footer>
@@ -508,14 +501,14 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2015 lostman/ごる
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
       </div>
    </div>
 </footer>
-<script src="//code.jquery.com/jquery.js"></script>
+<script src="/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/theme/js/bootstrap.min.js"></script>
@@ -523,6 +516,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="/theme/js/respond.min.js"></script>
 
+    <!-- GitHub JS -->
     <script type="text/javascript">
         $(document).ready(function () {
             if (!window.jXHR) {
@@ -542,5 +536,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
         });
     </script>
     <script src="/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
 </body>
 </html>

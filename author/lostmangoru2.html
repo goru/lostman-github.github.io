@@ -1,9 +1,618 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
+    <title>Articles by lostman/ごる - blog.gorugle.org</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+        <meta name="author" content="lostman/ごる" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+
 </head>
 <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+blog.gorugle.org            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="/category/computer.html">Computer</a>
+                        </li>
+                        <li >
+                            <a href="/category/embedded.html">Embedded</a>
+                        </li>
+                        <li >
+                            <a href="/category/gadget.html">Gadget</a>
+                        </li>
+                        <li >
+                            <a href="/category/internet.html">Internet</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <article>
+                <h2><a href="/posts/2015/07/adb-apk.html">デバイスからAPKを抜き出す</a></h2>
+                <div class="summary"><p><a href="/static/images/2015/07/so-02g.jpg"><img alt="image" src="/static/images/2015/07/so-02g_s.jpg" /></a></p>
+<p>SO-02Gのオレンジを買い増しました<br />
+既に持っている白と同じアプリをインストールしようとしたのですが一部のアプリがストアから削除されていたので<br />
+adb コマンドを使って apk を取り出してみました (色々便利なアプリがあるのは知ってる</p>
+<p>インストールされているパッケージの一覧を表示<br />
+全てのパッケージの apk のパスとパッケージ名が出力される<br />
+(適当に grep して絞り込むといいと思う)</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell pm list package -f
+</pre></div>
+
+
+<p>apk をデバイスからローカルへコピーする</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb pull &lt;device apk path&gt;
+</pre></div>
+
+
+<p>インストール済みのパッケージを削除</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell pm uninstall &lt;package name&gt;
+</pre></div>
+
+
+<p>ローカルの apk をデバイスへインストール</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb install &lt;<span class="nb">local </span>apk path&gt;
+</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/07/adb-apk.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/06/xvfb.html">Xvfb上でChromeを動かしてみた</a></h2>
+                <div class="summary"><p>外出中にFlashを使ったサイトをチェックしたいという要望が某所から出てきたので環境を作ってみた<br />
+普段から PC を持ち歩いている人には必要ないことかもしれないけれど普通の人は持ち歩いていないよね<br />
+私も荷物を持つのが嫌いなのでポケットに入るスマホと財布くらいしか持ち歩いていないです<br />
+ということで、スマホで見れるといいけれど Android の Firefox で使える Flash はもうサポートが切れているのでいまいちな感じ<br />
+で、自宅には常時起動のマシンがあるのでそこで何か用意できないかなと考えて今回 Xvfb を試してみた</p>
+<p>Xvfb はなにかというと通常 X はクライアントからの要求を受けてドライバを経由して実際のモニタに描画するのに対し、<br />
+モニタでなくメモリ上に確保した仮想のフレームバッファに画面を描画します<br />
+このため画面がないマシンでも GUI のアプリケーションが起動できます<br />
+サーバ上で GUI のアプリを動かすにはうってつけですね<br />
+ただこのままだと外部から描画された画面を見ることができないので<br />
+x11vnc を使って外部から画面の様子をVNCクライアントを使って見れるようにしました<br />
+Chrome を選択したのは Flash を動かすのに追加でプラグインが必要ないためってだけ</p>
+<p>必要なものをインストールする前に package.use に必要は USE フラグを追加して</p>
+<div class="highlight"><pre>app-text/ghostscript-gpl cups
+media-fonts/ja-ipafonts X
+net-libs/libvncserver threads ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/xvfb.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/06/sketchup-wine.html">SketchUpをLinuxにインストール</a></h2>
+                <div class="summary"><p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
+大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
+SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
+<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
+ただ多少ハマった部分があったのでやったことを残しておく</p>
+<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
+自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
+インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
+<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
+インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
+(デフォルトでは <code>~/.wine ...</code></p>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/06/sketchup-wine.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
+                <div class="summary"><p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
+Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
+Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
+<p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
+Arduino Uno を使ってブートローダの書き込みをしなければいけない<br />
+Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要<br />
+それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある<br />
+これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる<br />
+今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択<br />
+その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ</p>
+<p>参考にすべきページは</p>
+<ul>
+<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の ...</li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/04/atmega328.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
+                <div class="summary"><p>一時期 ibus が色々話題になりましたね <a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html">*1</a> <a href="http://www.kaoriya.net/blog/2013/10/18/">*2</a><br />
+僕の環境では ibus-mozc を使っていたのですが、 1.5 系へは移行せず 1.4 系にとどまっていました<br />
+このまま放置していてもよかったんだけれど、 Gentoo のリポジトリから 1.4 が<br />
+なくなっていることに気がついたので別のインプットメソッドへ移行することにしました</p>
+<p>Linux でのインプットメソッドで代表的なものは ibus 、 uim 、 fcitx といくつかあるけれど<br />
+Mac で MacUIM を使っているので Linux のマシンでも uim を使うことにしました<br />
+ただ Gentoo の公式リポジトリのパッケージでは mozc を uim と組み合わせることができないみたいだったので<br />
+自分で ebuild を書くか、他の人が書いたものを使わせてもらうかのどちらかがあるみたいです<br />
+今回は <a href="https://bitbucket.org/wjn/wjn-overlay">wjn-overlay</a> を使わせてもらうことにしました</p>
+<p>ここ ...</p>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/04/uin-mozc.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
+                <div class="summary"><p>SO-02Gを使い始めてから変更した設定まとめ</p>
+<ul>
+<li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
+このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />
+接続された状態でWiFiの設定を開いて0001docomoを長押しして切断すれば次回からは自動で接続されなくなるみたいです<br />
+しかし気持ち悪いですね</li>
+<li>ドコモアプリのアップデート通知を切る (<a href="http://xperiaz.kurosuke.biz/archives/625">ドコモアプリのアップデート通知をオフにする方法</a>)<br />
+設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認</li>
+<li>OSの自動更新の無効化 (夜中に自動で実行されるみたいです)<br />
+設定→端末情報→ソフトウェア更新→ソフトウェア更新設定の変更</li>
+<li>Sonyアプリの自動更新の無効化<br />
+設定→端末情報→アプリケーション更新→右上のメニュー→設定</li>
+<li>ひつじの停止<br />
+ホーム画面のひつじを長押し→キャラ表示 と 吹き出し表示 を 表示しない へ変更</li>
+<li>プリインアプリの無効化<br />
+(<a href="http://xperia-freaks.org/2014/12/14/so02g-disable/">【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)</a>)<br />
+(<a href="http://usedoor.jp/howto/digital/android-smartphone/preinstall-mukouka-ichiran/">【Androidスマホ】プリインストールアプリの無効化・停止・アンインストール対応一覧表</a>)<br />
+サイトを参考に適当に、今のところ無効化しているのは以下<ul>
+<li>ウィキペディアプラグイン</li>
+<li>エリアメール</li>
+<li>エリア連動Wi-Fi ...</li></ul></li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/so-02g_settings.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/03/redmine.html">Redmineをインストールしてみた</a></h2>
+                <div class="summary"><p>Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて<br />
+日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした<br />
+Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気がしていたんだけれどRedmineは以前仕事でも使っていたし<br />
+自分のサーバにインストールして使うとなると思いの外選択肢が少ない感じだったのでRedmineを入れてみました</p>
+<p>もやっとした要件は</p>
+<ul>
+<li>サービスでなく、自分のサーバにインストールできること</li>
+<li>依存するものが少なく、導入が楽</li>
+<li>日付を入れずにタスクを登録できる</li>
+<li>優先度を設定できる</li>
+<li>日付が入っているものはカレンダーで確認できる</li>
+<li>スマホからタスクを確認、編集できる</li>
+</ul>
+<p>なんとなく導入が面倒というイメージを持っていたんだけれど、手順を見る限り簡単そうでした<br />
+ただ、少しハマった部分もあるのでそれは後述 (最新は3.0.1なんだけれどドキュメントが2.xのまま更新されていなかったりする<br />
+あとスマホでのタスクの確認はRedmineではできなくて、 <a href="https://play.google.com/store/apps/details?id=jp.co.projectmode.redminepm">RedminePM</a> というアプリから行うことにしました</p>
+<p>今回RedmineをインストールするOSにはRubyが入っていないのでRedmine用のユーザを用意して<br />
+ホームディレクトリにrbenvをインストール、rbenvを使ってRubyをインストール、Redmineをインストール<br />
+と、全て専用ユーザのホームディレクトリ以下で済ますことにしました<br />
+また、追加でインストールするものも抑えたかったのでRedmineはWEBRick、SQLite、ImageMagickなし、で動かすことにしました</p>
+<p>まずユーザを作って、ログイン</p>
+<div class="highlight"><pre><span class="c"># useradd -m redmine</span>
+<span class="c"># su - redmine</span>
+</pre></div>
+
+
+<p><a href="https://github.com/sstephenson/rbenv">rbenv</a> と <a href="https://github.com/sstephenson/ruby-build">ruby-build</a> をインストールする<br />
+ここからは全てこのユーザのホームディレクトリ以下で作業</p>
+<ul>
+<li><a href="https://www.qoosky.net/references/128/">rbenvおよびbundlerの基本的な使用方法 ...</a></li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/redmine.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
+                <div class="summary"><p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
+Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
+アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
+本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
+Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
+<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
+<ul>
+<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
+</ul>
+<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
+SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
+<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
+                             - write an archive of the device&#39;s ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/02/withings.html">WiFi機能付き体重計を買ってみた</a></h2>
+                <div class="summary"><p>体重計は元々持っていたのですが最近多少体重が気になってきているのと<br />
+あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;記録をつけるのが面倒<br />
+と言うことで <a href="http://www.amazon.co.jp/dp/B00GRP609C">Withings Smart Body Analyzer WS-50</a> を購入してみました<br />
+とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います</p>
+<p><a href="/static/images/2015/02/IMAG1576.jpg"><img alt="box" src="/static/images/2015/02/IMAG1576_s.jpg" /></a>
+<a href="/static/images/2015/02/IMAG1578.jpg"><img alt="unbox" src="/static/images/2015/02/IMAG1578_s.jpg" /></a></p>
+<p>まず無線を使用してデータを外部に記録してくれる体重計には主にBluetoothとWiFiの2種類があるみたいです<br />
+それ以外にFelicaを使用するものもあるようでした<br />
+Bluetooth対応のものは一度スマホのアプリへデータを送信し、アプリがサーバへデータを送信する仕組みになっているみたいです<br />
+WiFi対応のものはアクセスポイントを介し直接サーバへデータを送信するようです<br />
+あまり詳しくは調べていないのですが、おそらくBluetooth対応の機種ではデータを送信する際に<br />
+必ずアプリ側の操作が必要なのではないかということが気になりました<br />
+それでは何かしらの操作が必要という点では手作業で記録するのと変わらないわけで<br />
+あまりメリットがないかなと感じたためWiFi対応の機種を購入することに決めました</p>
+<p>とかそんなことをいろいろ考えてWS-50を購入してみて良かったと思った点は</p>
+<ul>
+<li>体重計に乗るだけで電源がONになり計測開始</li>
+<li>前回体重を元に乗っている人を自動判別</li>
+<li>計測が終わると自動でデータをアップロード</li>
+<li>勝手に電源OFF</li>
+</ul>
+<p>といったところです<br />
+個別に見るとそれほどすごい機能でもないし、おそらく他の体重計でも実現できていると思うのですが<br />
+なにがいいかというと、とりあえずなにも考えずに乗って画面が消えたら降りればいい、というところ<br />
+僕が体重を計るのは朝か夜の風呂から出たあとなのですが、風呂から出た時は眼鏡を掛けていません<br />
+結構目が悪いので立った状態で体重計に乗ると表示が見えないんです<br />
+なので今まではなんとなくタイミングを見計らって体重計から降りて確認していました<br />
+今では画面が消えたら降りて、あとでスマホで確認すればOKです、非常にスマートだと思います</p>
+<p>他社も似たようなWiFi機能付き体重計を出しているのですがその中でなぜこの機種を選んだかというと<br />
+計測したデータの預りが無料だった点、あとCSVでのエクスポートもできるみたいです<br />
+正直、半年以上は有料とか、機能制限があって全ての機能を使うには課金とか、ちょっとそれは嫌だなと思いました…</p>
+<p>そんな感じでこの体重計には概ね満足だったのですが、いくつか気になる点もあったのであげておきます</p>
+<ul>
+<li>付属の説明書が役に立たない ...</li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/02/withings.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/posts/2015/02/2015-todo.html">2015年ですね</a></h2>
+                <div class="summary"><p>2015年になってもう1ヶ月経ちますね、みなさまいかがお過ごしでしょうか</p>
+<p>私は年明け自分の実家や妻の実家へ行ったりで慌ただしい感じでした<br />
+そしてそのまま初仕事の日を迎えたわけですが、体調が整わないままずるずるときてしまいました<br />
+だましだまし出勤はしていたのですがちょいちょい体調不良を繰り返していて<br />
+最終的に1月末には寝こむくらいの結構大変な風邪をひいてしまいました<br />
+気がついたら3Kgも痩せてしまいましたが今では一応復活しています</p>
+<p>さて、一応新年の一発目なので、今年どんなことをしたいかとか<br />
+もう1ヶ月経っているので最近はじめたことを書こうかと思います  </p>
+<p>最近会社で筋トレをするグループができていて、誘われたので同僚と毎日2回、簡単な運動をしています<br />
+毎年言っているような気がしますが、今年はもっと体力をつけたいですね、あと英会話の勉強</p>
+<p>去年はArduino等、電子工作に手を出した年だった気がします<br />
+学生時代に勉強したオームの法則とかも懐かしいし、色々新しく知ることも多くて面白いですね<br />
+今年も引き続きなにかできたらいいなと思っています</p>
+<p>あと今年に入ってからは木工にも手を出しています<br />
+これからなにか記事にしてまとめようと思ってはいるのですがまだできていません<br />
+木工も電子工作とは似ているけれどまた違う楽しみがありますね</p>
+<p>あとは本業のソフトウェア<br />
+これはまぁ引き続きという感じで今まで作ったものの改善とか<br />
+途中のままになっているものを完成させるとか<br />
+なにかお金がかからなくて面白そうなことがあればやりたいです</p>
+<p>大雑把にまとめるとこんな感じで、 今のところ考えている具体的なことは</p>
+<ul>
+<li>運動をする → とりあえず現状でOK?</li>
+<li>英会話の勉強をする → 英会話教室に通う?</li>
+<li>電子工作関係<ul>
+<li>去年作った <a href="http://blog.gorugle.org/posts/2014/11/ir.html">赤外線リモコンのサンプル</a> をきちんとしたものに仕上げたい<ul>
+<li>リモコン以外に温度、湿度、照度等のセンサも試したい</li>
+<li>ケースに入れる</li>
+<li>PCから送信する赤外線の信号を入力できるようにする</li>
+<li>外部から操作できるようにインターフェイスを用意する</li>
+</ul>
+</li>
+<li>USB機器を複数マシンで切り替えて使える切替器の作成 → 作業中</li>
+<li><a href="http://laboratory-danger-robo.blogspot.jp/2015/01/blog-post.html">この時計</a> がいいなと思ったので似たようなものを作りたい ...</li></ul></li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/02/2015-todo.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+
+        <ul class="pagination">
+                <li class="prev"><a href="/author/lostmangoru.html">&laquo;</a>
+                </li>
+                    <li class=""><a
+                            href="/author/lostmangoru.html">1</a></li>
+                    <li class="active"><a
+                            href="/author/lostmangoru2.html">2</a></li>
+                    <li class=""><a
+                            href="/author/lostmangoru3.html">3</a></li>
+                    <li class=""><a
+                            href="/author/lostmangoru4.html">4</a></li>
+                <li class="next"><a
+                        href="/author/lostmangoru3.html">&raquo;</a></li>
+        </ul>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/arduino.html">
+                            Arduino
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/so-02g.html">
+                            SO-02G
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/mac.html">
+                            Mac
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/igzo.html">
+                            IGZO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/lostman-github">@lostman-github</a> on GitHub
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 lostman/ごる
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = '/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'lostman-github',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
 
 </body>
 </html>
