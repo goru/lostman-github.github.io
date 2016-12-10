@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 28 Aug 2016 01:26:00 +0900</lastBuildDate><item><title>AnniversaryUpdate適用後にNW-E052が認識されなくなる問題の対応</title><link>/posts/2016/08/nw-e052.html</link><description>&lt;h3&gt;何が起きたか&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 10 Dec 2016 18:53:00 +0900</lastBuildDate><item><title>グローバル版のXperia X Compactを買ってみた</title><link>/posts/2016/12/f5321.html</link><description>&lt;p&gt;Amazon.deで &lt;a href="https://www.amazon.de/gp/product/B01L34I7HY"&gt;Xperia X Compact (F5321)&lt;/a&gt; が安売りしていたので購入。 ( &lt;a href="https://jetstream.bz/archives/44764"&gt;Jetstream BLOG&lt;/a&gt; )
+海外のAmazonで買い物をするのは初めてだったのでまとめてみました。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2016/12/20161210183658.jpg"&gt;&lt;img alt="image" src="/static/images/2016/12/20161210183658_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;11月7日頃、Amazon.deでのVAT込みの値段が50ユーロ引きの399ユーロでした。 (当時のレートがだいたい115円だったので45885円)
+それまではポンドが安かったのでCloveで購入しようかと考えていたのですが、このタイミングで逆転したのでAmazon.deで買うことにしました。&lt;/p&gt;
+&lt;p&gt;海外のAmazonでは日本のAmazonのアカウントは使えないので新しく作る必要がありました。
+今回はAmazon.deを使いましたが、日本以外の国のAmazonのアカウントは共通で使えるそうです。&lt;/p&gt;
+&lt;p&gt;Amazon.deで購入する場合に掛かる金額は以下の3種類でした。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;商品代金(VAT抜き) + 送料 + デポジット&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Amazonでの価格はVAT(付加価値税)込みの表示なのですが、このVATというのがよくわかっていませんでした。
+&lt;a href="http://ec.europa.eu/taxation_customs/sites/taxation/files/resources/documents/taxation/vat/how_vat_works/rates/vat_rates_en.pdf"&gt;ドイツのVATは19%&lt;/a&gt; で海外から購入する場合は課税の対象外になるそうです。
+なので日本から購入する場合は、399ユーロと表示されていたら19%の課税前の335.29ユーロが実際の価格になります。
+この価格はAmazonであればカートに入れて注文画面まで進むと確認することができました。&lt;/p&gt;
+&lt;p&gt;Amazon.deから日本へ発送する場合は、 &lt;a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=201910850#GUID-94F272E0-F280-4956-87FB-E99C2528462A__SECTION_386D40FABC914DB1941850CE711B83C5"&gt;2つのオプション&lt;/a&gt; から選ぶことができました。
+今回は速い方の配送オプションを選択してみました。
+注文画面では27.11ユーロになっていました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AmazonGlobal Eilzustellung (8-12 working days), EUR 18.50 per deliver + 5.00 per kg (proportionally)&lt;/li&gt;
+&lt;li&gt;AmazonGlobal Express Delivery (2-4 working days), EUR 25.50 per delivery + 5.00 per kg (proportionally) &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;デポジットですが、海外から購入する場合は日本の税関で日本の消費税の支払いが必要になるそうです。
+多くの場合配送業者が立て替えて引渡し時に支払いをするか、あとで請求されるか、だそうですが
+Amazonでは予めある程度の金額を取っておいてそれを支払いに充て、余ったらあとで返金をするという仕組みになっているそうです。
+今回の場合28.99ユーロになっていました。&lt;/p&gt;
+&lt;p&gt;最終的にトータル 335.29 + 27.11 + 28.99 で391.39ユーロなのでだいたい45000円前後で購入できました。(と思っていました)&lt;/p&gt;
+&lt;p&gt;9日の夜に注文してわくわくして待っていたのですが、一週間経ってもAmazon側で何の処理もされていないようで全く発送される気配がありません。
+在庫があるにも関わらずステータスの画面では16日までWill Dispatchの状態のままでした。
+メールをして確認をしてもらうことも考えたのですが、やり取りに更に数日掛かりそうなので、一度注文をキャンセルして再注文してみることにしました。
+16日に再注文して、今度はすぐDispatchされて18日に発送、21日に手元に到着しました。&lt;/p&gt;
+&lt;p&gt;アメリカの大統領選のあとでユーロ高が進んでいる状況だったので、カード会社に請求が届いて実際に円での支払いがいくらになるのか読めない状況でした。
+発送された18日のタイミングでは117円、実際のカード会社の請求は19日に換算で、使われたレートは119.439円でした。
+したがって 391.39 * 119.439 で46747円が実際に支払った金額になりました。&lt;/p&gt;
+&lt;p&gt;ちなみに、梱包はすごく簡素 (&lt;del&gt;雑&lt;/del&gt;) で緩衝材も使われておらず薄めのダンボールでできた封筒のようなものに商品がそのまま入れられていました。
+梱包の中で商品の箱が移動してしまうような状態で擦れて箱がすごく汚れていました。
+壊れていたわけではないのですがこれには正直がっかりしました。&lt;/p&gt;
+&lt;p&gt;端末自体は非常に満足しています。
+Felicaが載っていないのでオフィスのドアが開けられないのは残念ですが、グローバル版も防水だということなのでいつも通り風呂で使っています。&lt;/p&gt;
+&lt;p&gt;USB-Cケーブルがまだ高いと感じたので、とりあえず &lt;a href="http://amzn.asia/2lnlcOZ"&gt;AnkerのUSB-C変換アダプタ&lt;/a&gt; を使っています。
+フィルムは &lt;a href="http://amzn.asia/7eJcp9d"&gt;レイアウトのTPUフィルム&lt;/a&gt; と &lt;a href="http://amzn.asia/iDImcvF"&gt;背面用&lt;/a&gt; を買ってみました。
+背面に関してはフィルムの厚みの段差が気になるという点 (これは仕方ない) を除いて、カーブしている部分まで含めて全面がカバーされるのでよさそうです。
+表面のフィルムも商品の説明にはフルカバーと書いてあるのですが、背面と違い横幅がカーブしている部分までではなく、液晶部分より少し広いくらいでした。
+手触りは滑りもよく満足しているのですが、カバーしている範囲がいまいちなのでこちらは買い換えるかもしれません。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 10 Dec 2016 18:53:00 +0900</pubDate><guid>tag:,2016-12-10:posts/2016/12/f5321.html</guid><category>Android</category><category>F5321</category></item><item><title>AnniversaryUpdate適用後にNW-E052が認識されなくなる問題の対応</title><link>/posts/2016/08/nw-e052.html</link><description>&lt;h3&gt;何が起きたか&lt;/h3&gt;
 &lt;p&gt;妻のマシンをWindows10へアップデートしたあとしばらくしてから(AnniversaryUpdate適用後)、Walkmanが使えなくなったと言われました。
 具体的には以下のような画面が表示されたので本体の初期化をしたが状況が改善されない、ということでした。&lt;/p&gt;
 &lt;p&gt;&lt;a href="/static/images/2016/08/walkman-01.png"&gt;&lt;img alt="image" src="/static/images/2016/08/walkman-01_s.png" /&gt;&lt;/a&gt;
