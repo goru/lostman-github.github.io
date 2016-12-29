@@ -74,6 +74,25 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2016/12/f5321-region.html">Xperiaの地域コードを調べる</a></h2>
+                <div class="summary"><p>Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
+Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。
+手元の端末にはアップデートがきていないのと、そもそもF5321自体にどれくらい派生モデルがあるのかもよく知りません。
+(US版は指紋認証が無効化されているとか、XperiaのHK版はいつもアップデートがくるのが遅いとか色々あるみたいですね。)</p>
+<p>購入時にどこの国向けの端末なのかというのはちょっと気になっていたのですが、商品ページに書いていなかったのでよくわかっていませんでした。
+手元に届いたものを確認してみたら、指紋認証が使えること(USではない)と、付属していたアダプタがEU向けのもの(HKではない)、という感じでした。
+そのためどこの国向けかは不明ながらとりあえずUS/HKではなさそうだったのでそれ以上は調べていませんでした。
+(ちなみに箱に貼ってあるバーコード等から判別することはできなさそうで、開けて起動してみないとわからないみたいです。)</p>
+<p>ぐぐってみたら端末でCDAという どこの地域/キャリア向けの製品であるかを表すコード を調べることができるみたいです。
+電話アプリを起動して電話番号の入力画面で <code>*#*#7378423#*#*</code> と入力すると、 <code>Service info</code> アプリが起動するので
+<code>Softwaree info</code> の <code>Customization Version</code> を確認します。
+手元の端末は <code>1305-6830_R3B</code> でした。</p>
+<p>このコードが実際にどこの国やキャリアを指すのかは <a href="https://xpericheck.com">XperiCheck.com ...</a></p>
+                    <a class="btn btn-default btn-xs" href="/posts/2016/12/f5321-region.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2016/12/f5321.html">グローバル版のXperia X Compactを買ってみた</a></h2>
                 <div class="summary"><p>Amazon.deで <a href="https://www.amazon.de/gp/product/B01L34I7HY">Xperia X Compact (F5321)</a> が安売りしていたので購入。 ( <a href="https://jetstream.bz/archives/44764">Jetstream BLOG</a> )
 海外のAmazonで買い物をするのは初めてだったのでまとめてみました。</p>
@@ -324,29 +343,6 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/09/mineo.html">mineoのドコモプランを契約してみました</a></h2>
-                <div class="summary"><p><a href="/static/images/2015/09/DSC_0380.JPG"><img alt="image" src="/static/images/2015/09/DSC_0380_s.JPG" /></a>
-<a href="/static/images/2015/09/DSC_0401.JPG"><img alt="image" src="/static/images/2015/09/DSC_0401_s.JPG" /></a></p>
-<p><a href="http://mineo.jp/">mineo</a> のドコモプランの先行予約をすることができたので契約してみました<br />
-今回契約したのはシングルタイプ(データ専用)<br />
-キャンペーンで6ヶ月800円割引、先行予約で更に3ヶ月800円割引になるので<br />
-シングルの1GBのプラン(800円)であれば初期費用がかかるのと、その後9ヶ月はユニバーサルサービス料の負担だけで利用できる<br />
-更に特に最低利用期間を設けていないということなので9ヶ月後に解約することも可能</p>
-<p>初期費用は通常3000円掛かるが、エントリーパッケージを予め購入しておくと多少安く済ませることができるみたいで<br />
-<a href="http://www.amazon.co.jp/dp/B00UT26M0Q">Amazon</a> や、 <a href="http://www.yodobashi.com/%E3%82%B1%E3%82%A4%E3%83%BB%E3%82%AA%E3%83%97%E3%83%86%E3%82%A3%E3%82%B3%E3%83%A0-K-OPTI-COM-mineo-%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/pd/100000001002612616/">ヨドバシ</a> で1600-1700円程度で購入できる<br />
-コードが記載された紙が入っているので契約時に入力すると初期費用が請求されなくなるという仕組み<br />
-多少手間だけれど特に急いでいるわけでもないので安く済ませられるためこちらを利用してみた</p>
-<p>9日の深夜に手続きをして、11日に手続き完了のメール、14日にSIMが到着した<br />
-サービス開始から間もないので参考にならないかもしれないけれど一応スピードテストをしてみた<br />
-自宅付近と、オフィス付近の結果はこのような感じで今のところ快調の模様<br />
-このままの速度が維持されるのであれば(難しいと思うけど)、メインに使っている音声有りの回線もMNPしてもいいかもと思ってる</p>
-<p><a href="/static/images/2015/09/Screenshot_2015-09-14-11-57-12.png"><img alt="image" src="/static/images/2015/09/Screenshot_2015-09-14-11-57-12_s.png" /></a>
-<a href="/static/images/2015/09/Screenshot_2015-09-14-12-45-23.png"><img alt="image" src="/static/images/2015/09/Screenshot_2015-09-14-12-45-23_s.png" /></a></p>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/09/mineo.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -378,11 +374,6 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/arduino.html">
                             Arduino
                         </a>
@@ -392,14 +383,14 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                             Android
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/hardware.html">
+                            Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -408,13 +399,18 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/mac.html">
-                            Mac
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
+                        <a href="/tag/so-02g.html">
+                            SO-02G
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/mac.html">
+                            Mac
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -423,13 +419,8 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
+                        <a href="/tag/igzo.html">
+                            IGZO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -438,8 +429,18 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/igzo.html">
-                            IGZO
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -448,23 +449,18 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/todo.html">
+                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -473,18 +469,18 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/macuim.html">
                             MacUIM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -493,8 +489,28 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -508,33 +524,13 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/fabcafe.html">
                             FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/github.html">
-                            GitHub
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -543,23 +539,23 @@ Gmailからメールを見たい場合はPOPを使う必要があって使えな
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/phantomjs.html">
                             PhantomJS
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
+                        <a href="/tag/redmine.html">
+                            Redmine
                         </a>
                     </li>
                 </ul>

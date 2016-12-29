@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ATmega328を取り外して動作させる - blog.gorugle.org</title>
+    <title>Xperiaの地域コードを調べる - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
 
 
 
-<link rel="canonical" href="/posts/2015/04/atmega328.html">
+<link rel="canonical" href="/posts/2016/12/f5321-region.html">
 
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Arduino,ATmega328" />
-        <meta name="description" content="Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので Arduino に使われている ATmega328 を取り外して単体で使えることを確認してみた まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので Arduino Uno を使ってブートローダの書き込みをしなければいけない Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要 それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる 今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択 その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ 参考にすべきページは ArduinoISP の ..." />
+        <meta name="keywords" content="Android,F5321" />
+        <meta name="description" content="Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。 Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。 手元の端末にはアップデートがきていないのと、そもそもF5321自体にどれくらい派生モデルがあるのかもよく知りません。 (US版は指紋認証が無効化されているとか、XperiaのHK版はいつもアップデートがくるのが遅いとか色々あるみたいですね。) 購入時にどこの国向けの端末なのかというのはちょっと気になっていたのですが、商品ページに書いていなかったのでよくわかっていませんでした。 手元に届いたものを確認してみたら、指紋認証が使えること(USではない)と、付属していたアダプタがEU向けのもの(HKではない)、という感じでした。 そのためどこの国向けかは不明ながらとりあえずUS/HKではなさそうだったのでそれ以上は調べていませんでした。 (ちなみに箱に貼ってあるバーコード等から判別することはできなさそうで、開けて起動してみないとわからないみたいです。) ぐぐってみたら端末でCDAという どこの地域/キャリア向けの製品であるかを表すコード を調べることができるみたいです。 電話アプリを起動して電話番号の入力画面で *#*#7378423#*#* と入力すると、 Service info アプリが起動するので Softwaree info の Customization Version を確認します。 手元の端末は 1305-6830_R3B でした。 このコードが実際にどこの国やキャリアを指すのかは XperiCheck.com ..." />
 
 
 
@@ -48,10 +48,10 @@ blog.gorugle.org            </a>
                         <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/gadget.html">Gadget</a>
                         </li>
                         <li >
@@ -80,10 +80,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2015/04/atmega328.html"
+                    <a href="/posts/2016/12/f5321-region.html"
                        rel="bookmark"
-                       title="Permalink to ATmega328を取り外して動作させる">
-                        ATmega328を取り外して動作させる
+                       title="Permalink to Xperiaの地域コードを調べる">
+                        Xperiaの地域コードを調べる
                     </a>
                 </h1>
             </header>
@@ -93,7 +93,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2015-04-26T23:22:00+09:00"> 2015/04/26 Sun</time>
+        <time datetime="2016-12-29T18:15:00+09:00"> 2016/12/29 Thu</time>
     </span>
 
 
@@ -101,168 +101,29 @@ blog.gorugle.org            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/arduino.html">Arduino</a>
+	<a href="/tag/android.html">Android</a>
         /
-	<a href="/tag/atmega328.html">ATmega328</a>
+	<a href="/tag/f5321.html">F5321</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
-Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
-Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
-<p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
-Arduino Uno を使ってブートローダの書き込みをしなければいけない<br />
-Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要<br />
-それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある<br />
-これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる<br />
-今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択<br />
-その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ</p>
-<p>参考にすべきページは</p>
-<ul>
-<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の <code>Instructions</code></li>
-<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoToBreadboard">ArduinoToBreadboard</a> の <code>Minimal Circuit</code></li>
-</ul>
-<p>で、前者にはおおまかな手順、後者には回路図が載っている<br />
-ただ、 <code>Instructions</code> の方に書いてあるが、この回路図のままだと Arduino Uno では動かないので注意<br />
-実際には回路図に加えて <code>RESET</code> と <code>GND</code> の間にコンデンサを接続する必要がある<br />
-(できれば回路図の方に注意書きを加えておいて欲しかったなぁ)</p>
-<p>Arduino Uno と ATmega328 の接続は回路図のままでこのようにする<br />
-コンデンサはあとから無理やり付けたので適当だけれど気にしない</p>
-<table>
-<thead>
-<tr>
-<th>Arduino Uno</th>
-<th>ATmega328</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5V</td>
-<td>7</td>
-<td></td>
-</tr>
-<tr>
-<td>5V</td>
-<td>20</td>
-<td></td>
-</tr>
-<tr>
-<td>GND</td>
-<td>8</td>
-<td></td>
-</tr>
-<tr>
-<td>GND</td>
-<td>22</td>
-<td></td>
-</tr>
-<tr>
-<td>10</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr>
-<td>11</td>
-<td>17</td>
-<td></td>
-</tr>
-<tr>
-<td>12</td>
-<td>18</td>
-<td></td>
-</tr>
-<tr>
-<td>13</td>
-<td>19</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>これで回路は完成<br />
-<a href="/static/images/2015/04/DSC_0107.JPG"><img alt="image" src="/static/images/2015/04/DSC_0107_s.JPG" /></a></p>
-<p>Arduino IDE の準備</p>
-<ol>
-<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoToBreadboard">ArduinoToBreadboard</a> のページから <code>Breadboard1-0-x.zip</code> または <code>Breadboard1-5-x.zip</code> をダウンロードする<br />
-(インストール済みの IDE が 1.0.6 だったので今回は <code>Breadboard1-0-x.zip</code> を使用)</li>
-<li>zip を解凍して出てくる <code>breadboard</code> ディレクトリを <code>~/Documents/Arduino/hardware/</code> 以下に配置<br />
-(場所は <code>Arduino</code> -&gt; <code>Preferences</code> -&gt; <code>Sketchbook location</code> で確認できる)</li>
-<li>Arduino IDE を再起動すると <code>Tools</code> -&gt; <code>Board</code> に <code>ATmega328 on a breadboard (8 MHz internal clock)</code> が追加される</li>
-</ol>
-<p>Arduino Uno の準備</p>
-<ol>
-<li><code>File</code> -&gt; <code>Examples</code> -&gt; <code>ArduinoISP</code> を選択してスケッチを開く</li>
-<li><code>Tools</code> -&gt; <code>Board</code> が <code>Arduino Uno</code> になっていることを確認してから <code>Upload</code>  </li>
-</ol>
-<p>これで Arduino Uno を使ってブートローダを書き込むことができる<br />
-ブートローダの書き込みは</p>
-<ol>
-<li><code>Tools</code> -&gt; <code>Board</code> が <code>ATmega328 on a breadboard (8 MHz internal clock)</code> になっていることを確認</li>
-<li><code>Tools</code> -&gt; <code>Programmer</code> が <code>Arduono as ISP</code> になっていることを確認</li>
-<li><code>Tools</code> -&gt; <code>Burn Bootloader</code> で書き込み</li>
-</ol>
-<p>これで ATmega328 を Arduino として動作させることができる<br />
-実際にスケッチを書き込んで動作させるためには、また別の回路に接続しなおす必要がある<br />
-回路図のページの <code>Uploading sketches to an ATmega on a breadboard</code> の図を参考にして以下のようにする<br />
-この際 Arduino Uno に元から搭載されている ATmega328 は取り外しておく</p>
-<table>
-<thead>
-<tr>
-<th>Arduino Uno</th>
-<th>ATmega328</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RESET</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr>
-<td>5V</td>
-<td>7</td>
-<td></td>
-</tr>
-<tr>
-<td>5V</td>
-<td>20</td>
-<td></td>
-</tr>
-<tr>
-<td>GND</td>
-<td>8</td>
-<td></td>
-</tr>
-<tr>
-<td>GND</td>
-<td>22</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>2</td>
-<td></td>
-</tr>
-<tr>
-<td>1</td>
-<td>3</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>実際にサンプルの Blink を書き込んで動作を確認してみる<br />
-上記の回路に加えて ATmega328 の 19 番に LED を接続しておく<br />
-Arduino Uno のピンに対応する ATmega328 のピン番号は <a href="http://www.arduino.cc/en/Hacking/PinMapping168">ATmega168/328-Arduino Pin Mapping</a> に記載されている</p>
-<ol>
-<li><code>File</code> -&gt; <code>Examples</code> -&gt; <code>01.Basics</code> -&gt; <code>Blink</code> を選択してスケッチを開く</li>
-<li><code>Tools</code> -&gt; <code>Board</code> が <code>ATmega328 on a breadboard (8 MHz internal clock)</code> になっていることを確認してから <code>Upload</code></li>
-</ol>
-<p><a href="/static/images/2015/04/DSC_0111.JPG"><img alt="image" src="/static/images/2015/04/DSC_0111_s.JPG" /></a></p>
-<p>以上で動作確認は終了<br />
-ブートローダの書き込みと、スケッチの書き込みで回路を繋ぎ変えたりしなければいけないので結構面倒だった<br />
-ブートローダは Arduino Uno に載せる書き込み用のシールドを作っておくと便利だろう<br />
-スケッチの書き込みは多分シリアルがつながればいいのでUSBシリアルを載せた基板を用意しておくといいのかもしれない</p>
+                <p>Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
+Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。
+手元の端末にはアップデートがきていないのと、そもそもF5321自体にどれくらい派生モデルがあるのかもよく知りません。
+(US版は指紋認証が無効化されているとか、XperiaのHK版はいつもアップデートがくるのが遅いとか色々あるみたいですね。)</p>
+<p>購入時にどこの国向けの端末なのかというのはちょっと気になっていたのですが、商品ページに書いていなかったのでよくわかっていませんでした。
+手元に届いたものを確認してみたら、指紋認証が使えること(USではない)と、付属していたアダプタがEU向けのもの(HKではない)、という感じでした。
+そのためどこの国向けかは不明ながらとりあえずUS/HKではなさそうだったのでそれ以上は調べていませんでした。
+(ちなみに箱に貼ってあるバーコード等から判別することはできなさそうで、開けて起動してみないとわからないみたいです。)</p>
+<p>ぐぐってみたら端末でCDAという どこの地域/キャリア向けの製品であるかを表すコード を調べることができるみたいです。
+電話アプリを起動して電話番号の入力画面で <code>*#*#7378423#*#*</code> と入力すると、 <code>Service info</code> アプリが起動するので
+<code>Softwaree info</code> の <code>Customization Version</code> を確認します。
+手元の端末は <code>1305-6830_R3B</code> でした。</p>
+<p>このコードが実際にどこの国やキャリアを指すのかは <a href="https://xpericheck.com">XperiCheck.com</a> で確認できました。
+XperiCheckの <a href="https://xpericheck.com/device/F5321">F5321のページ</a> を確認してみると、
+<code>1305-6830</code> に該当するのは <code>Customized DE</code> なので、DE版でした。
+EUの国のどこかかなと思っていましたが、イギリスから発送されたのにドイツ版だったのはちょっと意外でした。
+ちなみに最新のファームウェアバージョンは <code>34.1.A.3.49-R3B</code> なのでAndroid7.0はまだ配信されていないようです。</p>
             </div>
             <!-- /.entry-content -->
         </article>

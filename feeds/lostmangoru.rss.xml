@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 10 Dec 2016 18:53:00 +0900</lastBuildDate><item><title>グローバル版のXperia X Compactを買ってみた</title><link>/posts/2016/12/f5321.html</link><description>&lt;p&gt;Amazon.deで &lt;a href="https://www.amazon.de/gp/product/B01L34I7HY"&gt;Xperia X Compact (F5321)&lt;/a&gt; が安売りしていたので購入。 ( &lt;a href="https://jetstream.bz/archives/44764"&gt;Jetstream BLOG&lt;/a&gt; )
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 29 Dec 2016 18:15:00 +0900</lastBuildDate><item><title>Xperiaの地域コードを調べる</title><link>/posts/2016/12/f5321-region.html</link><description>&lt;p&gt;Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
+Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。
+手元の端末にはアップデートがきていないのと、そもそもF5321自体にどれくらい派生モデルがあるのかもよく知りません。
+(US版は指紋認証が無効化されているとか、XperiaのHK版はいつもアップデートがくるのが遅いとか色々あるみたいですね。)&lt;/p&gt;
+&lt;p&gt;購入時にどこの国向けの端末なのかというのはちょっと気になっていたのですが、商品ページに書いていなかったのでよくわかっていませんでした。
+手元に届いたものを確認してみたら、指紋認証が使えること(USではない)と、付属していたアダプタがEU向けのもの(HKではない)、という感じでした。
+そのためどこの国向けかは不明ながらとりあえずUS/HKではなさそうだったのでそれ以上は調べていませんでした。
+(ちなみに箱に貼ってあるバーコード等から判別することはできなさそうで、開けて起動してみないとわからないみたいです。)&lt;/p&gt;
+&lt;p&gt;ぐぐってみたら端末でCDAという どこの地域/キャリア向けの製品であるかを表すコード を調べることができるみたいです。
+電話アプリを起動して電話番号の入力画面で &lt;code&gt;*#*#7378423#*#*&lt;/code&gt; と入力すると、 &lt;code&gt;Service info&lt;/code&gt; アプリが起動するので
+&lt;code&gt;Softwaree info&lt;/code&gt; の &lt;code&gt;Customization Version&lt;/code&gt; を確認します。
+手元の端末は &lt;code&gt;1305-6830_R3B&lt;/code&gt; でした。&lt;/p&gt;
+&lt;p&gt;このコードが実際にどこの国やキャリアを指すのかは &lt;a href="https://xpericheck.com"&gt;XperiCheck.com&lt;/a&gt; で確認できました。
+XperiCheckの &lt;a href="https://xpericheck.com/device/F5321"&gt;F5321のページ&lt;/a&gt; を確認してみると、
+&lt;code&gt;1305-6830&lt;/code&gt; に該当するのは &lt;code&gt;Customized DE&lt;/code&gt; なので、DE版でした。
+EUの国のどこかかなと思っていましたが、イギリスから発送されたのにドイツ版だったのはちょっと意外でした。
+ちなみに最新のファームウェアバージョンは &lt;code&gt;34.1.A.3.49-R3B&lt;/code&gt; なのでAndroid7.0はまだ配信されていないようです。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Thu, 29 Dec 2016 18:15:00 +0900</pubDate><guid>tag:,2016-12-29:posts/2016/12/f5321-region.html</guid><category>Android</category><category>F5321</category></item><item><title>グローバル版のXperia X Compactを買ってみた</title><link>/posts/2016/12/f5321.html</link><description>&lt;p&gt;Amazon.deで &lt;a href="https://www.amazon.de/gp/product/B01L34I7HY"&gt;Xperia X Compact (F5321)&lt;/a&gt; が安売りしていたので購入。 ( &lt;a href="https://jetstream.bz/archives/44764"&gt;Jetstream BLOG&lt;/a&gt; )
 海外のAmazonで買い物をするのは初めてだったのでまとめてみました。&lt;/p&gt;
 &lt;p&gt;&lt;a href="/static/images/2016/12/20161210183658.jpg"&gt;&lt;img alt="image" src="/static/images/2016/12/20161210183658_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;11月7日頃、Amazon.deでのVAT込みの値段が50ユーロ引きの399ユーロでした。 (当時のレートがだいたい115円だったので45885円)
