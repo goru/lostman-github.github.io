@@ -74,6 +74,52 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2014/08/mysql5.5.html">MySQL5.1から5.5へアップデート</a></h2>
+                <div class="summary"><p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
+epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
+<ol>
+<li>
+<p>MySQLの停止</p>
+<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>emergeを使用してアップデート</p>
+<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
+<span class="c"># etc-update</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
+<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
+<div class="highlight"><pre>skip-innodb
+default-storage-engine=MyISAM
+</pre></div>
+
+
+</li>
+<li>
+<p>関連パッケージの更新</p>
+<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
+<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
+<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>MySQLを再起動<br />
+再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
+<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/08/self-signed-certificate.html">Nginxで自己署名証明書を使う</a></h2>
                 <div class="summary"><p>ドメインを取ったのでそのうちきちんとした証明書を使おうかとは思っていますが<br />
 とりあえずしばらくはオレオレ証明書で運用しようと思っています<br />
@@ -314,23 +360,23 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/arduino.html">
                             Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/android.html">
-                            Android
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
                         <a href="/tag/gentoo.html">
                             Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -339,8 +385,8 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -349,18 +395,13 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/mac.html">
                             Mac
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -369,8 +410,8 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -379,13 +420,18 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -393,44 +439,9 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                             AquesTalk pico LSI
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -439,23 +450,18 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -464,28 +470,8 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/e-book.html">
-                            e-book
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/github.html">
-                            GitHub
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -494,13 +480,78 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="/tag/redmine.html">
                             Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
                         </a>
                     </li>
                 </ul>
@@ -524,7 +575,7 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 lostman/ごる
+         <div class="col-xs-10">&copy; 2017 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

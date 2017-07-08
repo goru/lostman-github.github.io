@@ -74,6 +74,46 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2015/02/withings.html">WiFi機能付き体重計を買ってみた</a></h2>
+                <div class="summary"><p>体重計は元々持っていたのですが最近多少体重が気になってきているのと<br />
+あまり頻繁に計らないので以前どれくらいだったか思い出せない&amp;記録をつけるのが面倒<br />
+と言うことで <a href="http://www.amazon.co.jp/dp/B00GRP609C">Withings Smart Body Analyzer WS-50</a> を購入してみました<br />
+とは言っても実際主に使うのは妻なんですが、せっかく買ったのでどんな感じか書いてみようと思います</p>
+<p><a href="/static/images/2015/02/IMAG1576.jpg"><img alt="box" src="/static/images/2015/02/IMAG1576_s.jpg" /></a>
+<a href="/static/images/2015/02/IMAG1578.jpg"><img alt="unbox" src="/static/images/2015/02/IMAG1578_s.jpg" /></a></p>
+<p>まず無線を使用してデータを外部に記録してくれる体重計には主にBluetoothとWiFiの2種類があるみたいです<br />
+それ以外にFelicaを使用するものもあるようでした<br />
+Bluetooth対応のものは一度スマホのアプリへデータを送信し、アプリがサーバへデータを送信する仕組みになっているみたいです<br />
+WiFi対応のものはアクセスポイントを介し直接サーバへデータを送信するようです<br />
+あまり詳しくは調べていないのですが、おそらくBluetooth対応の機種ではデータを送信する際に<br />
+必ずアプリ側の操作が必要なのではないかということが気になりました<br />
+それでは何かしらの操作が必要という点では手作業で記録するのと変わらないわけで<br />
+あまりメリットがないかなと感じたためWiFi対応の機種を購入することに決めました</p>
+<p>とかそんなことをいろいろ考えてWS-50を購入してみて良かったと思った点は</p>
+<ul>
+<li>体重計に乗るだけで電源がONになり計測開始</li>
+<li>前回体重を元に乗っている人を自動判別</li>
+<li>計測が終わると自動でデータをアップロード</li>
+<li>勝手に電源OFF</li>
+</ul>
+<p>といったところです<br />
+個別に見るとそれほどすごい機能でもないし、おそらく他の体重計でも実現できていると思うのですが<br />
+なにがいいかというと、とりあえずなにも考えずに乗って画面が消えたら降りればいい、というところ<br />
+僕が体重を計るのは朝か夜の風呂から出たあとなのですが、風呂から出た時は眼鏡を掛けていません<br />
+結構目が悪いので立った状態で体重計に乗ると表示が見えないんです<br />
+なので今まではなんとなくタイミングを見計らって体重計から降りて確認していました<br />
+今では画面が消えたら降りて、あとでスマホで確認すればOKです、非常にスマートだと思います</p>
+<p>他社も似たようなWiFi機能付き体重計を出しているのですがその中でなぜこの機種を選んだかというと<br />
+計測したデータの預りが無料だった点、あとCSVでのエクスポートもできるみたいです<br />
+正直、半年以上は有料とか、機能制限があって全ての機能を使うには課金とか、ちょっとそれは嫌だなと思いました…</p>
+<p>そんな感じでこの体重計には概ね満足だったのですが、いくつか気になる点もあったのであげておきます</p>
+<ul>
+<li>付属の説明書が役に立たない ...</li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/02/withings.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/02/2015-todo.html">2015年ですね</a></h2>
                 <div class="summary"><p>2015年になってもう1ヶ月経ちますね、みなさまいかがお過ごしでしょうか</p>
 <p>私は年明け自分の実家や妻の実家へ行ったりで慌ただしい感じでした<br />
@@ -342,52 +382,6 @@ LAN内のマシン以外からのアクセスを拒否する</li>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/08/mysql5.5.html">MySQL5.1から5.5へアップデート</a></h2>
-                <div class="summary"><p>GentooからMySQL5.5がStableになったし5.1はmaskするよ、というお知らせが来ていました<br />
-epgrecとMediatombで使っているのですが5.5でも問題なさそうなのでアップデートしました</p>
-<ol>
-<li>
-<p>MySQLの停止</p>
-<div class="highlight"><pre><span class="c"># /etc/init.d/mysql stop</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>emergeを使用してアップデート</p>
-<div class="highlight"><pre><span class="c"># emerge -uav mysql</span>
-<span class="c"># etc-update</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>InnoDBが有効になっているとepgrecが遅くなるみたいなので設定を変更する <a href="http://sarami.pv.s-labo.com/blog/zatta/?p=221">*</a><br />
-<code>/etc/mysql/my.cnf</code> に以下の二行を追加</p>
-<div class="highlight"><pre>skip-innodb
-default-storage-engine=MyISAM
-</pre></div>
-
-
-</li>
-<li>
-<p>関連パッケージの更新</p>
-<div class="highlight"><pre><span class="c"># emerge @preserved-rebuild -a</span>
-<span class="c"># revdep-rebuild --library libmysqlclient.so.16</span>
-<span class="c"># revdep-rebuild --library libmysqlclient_r.so.16</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>MySQLを再起動<br />
-再起動すると <code>/var/log/mysql/mysqld.err</code> に以下のようなエラーが出力されて<br />
-<code>mysql_upgrade</code> を実行するように指示されます ...</p></li></ol>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/08/mysql5.5.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="/author/lostmangoru2.html">&laquo;</a>
@@ -415,23 +409,23 @@ default-storage-engine=MyISAM
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/arduino.html">
                             Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/android.html">
-                            Android
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
                         <a href="/tag/gentoo.html">
                             Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -440,8 +434,8 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -450,18 +444,13 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/mac.html">
                             Mac
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -470,8 +459,8 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -480,13 +469,18 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -494,44 +488,9 @@ default-storage-engine=MyISAM
                             AquesTalk pico LSI
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -540,23 +499,18 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -565,28 +519,8 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/e-book.html">
-                            e-book
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/github.html">
-                            GitHub
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -595,13 +529,78 @@ default-storage-engine=MyISAM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="/tag/redmine.html">
                             Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
                         </a>
                     </li>
                 </ul>
@@ -625,7 +624,7 @@ default-storage-engine=MyISAM
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 lostman/ごる
+         <div class="col-xs-10">&copy; 2017 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

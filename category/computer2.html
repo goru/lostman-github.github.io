@@ -75,6 +75,43 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2014/12/j1900.html">新しいサーバ用マシン買いました</a></h2>
+                <div class="summary"><p>実はもう1ヶ月くらい前の話なんだけれど、安定して動作しているので記事にしてみる<br />
+今までの環境はHPのMicroServer1台で</p>
+<ul>
+<li>録画</li>
+<li>NFS、Sambaでのファイル共有</li>
+<li>PPPoEで有線のルータ</li>
+<li>無線のアクセスポイント</li>
+</ul>
+<p>等のサービスを提供していた<br />
+騒音の面もあってこのマシンはリビングから遠くに位置していて、リビングからは無線の電波がいまいちな状態になっていた<br />
+遅いだけなら我慢もできたんだけれど、位置によっては切断されたりもするのでアクセスポイントの位置をリビングに移動したかった<br />
+ただMicroServerはそれなりにHDDの音がするので移動するわけにはいかず…<br />
+普通の無線ルータを購入してもよかったのだけれどいろいろ考えた末、他の機能もこっちに分離するために自作することにした<br />
+購入したのは以下のパーツ</p>
+<ul>
+<li><a href="http://www.gigabyte.jp/products/product-page.aspx?pid=4918#ov">GIGABYTE GA-J1900N-D3V</a> 11010円 (10%ポイント)<br />
+Celeron J1900 (4 Core, 4 Thread)、Realtek GbEx2<br />
+ファンレスでNICが2つ付いているのがこれくらいしかなかったので必然的に</li>
+<li><a href="http://www.amazon.co.jp/dp/B00AA7SRDA">SanMax SMD-N8GNP-13H-D</a> 9561円<br />
+SO-DIMM DDR3-1333 4GBx2 ELPIDAチップ</li>
+<li><a href="http://www.links.co.jp/item/isk-110-vesa/">ANTEC ISK-110 VESA</a> 9590円 (10%ポイント)<br />
+小さくてACアダプタだったので</li>
+</ul>
+<p>届いた箱たち<br />
+<a href="/static/images/2014/12/IMAG1204.jpg"><img alt="box" src="/static/images/2014/12/IMAG1204_s.jpg" /></a></p>
+<p>仮組みしてMemtest中<br />
+<a href="/static/images/2014/12/IMAG1205.jpg"><img alt="memtest" src="/static/images/2014/12/IMAG1205_s.jpg" /></a></p>
+<p>最終的にはこんな感じ<br />
+見えないけれど裏側に余ってたSSDが装着されている<br />
+<a href="/static/images/2014/12/IMAG1211.jpg"><img alt="assembled" src="/static/images/2014/12/IMAG1211_s.jpg" /></a></p>
+<p>今はテレビ台の中に設置されている ...</p>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/12/j1900.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/11/mac-hostname.html">Macのホスト名を固定する</a></h2>
                 <div class="summary"><p>自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ</p>
 <div class="highlight"><pre><span class="nv">$ </span>scutil --get HostName
@@ -321,23 +358,23 @@ You are about to be asked to enter information that will ...</pre></div></li></o
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/arduino.html">
                             Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/android.html">
-                            Android
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
                         <a href="/tag/gentoo.html">
                             Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -346,8 +383,8 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -356,18 +393,13 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/mac.html">
                             Mac
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -376,8 +408,8 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -386,13 +418,18 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -400,44 +437,9 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                             AquesTalk pico LSI
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -446,23 +448,18 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -471,28 +468,8 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/e-book.html">
-                            e-book
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/github.html">
-                            GitHub
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -501,13 +478,78 @@ You are about to be asked to enter information that will ...</pre></div></li></o
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="/tag/redmine.html">
                             Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
                         </a>
                     </li>
                 </ul>
@@ -531,7 +573,7 @@ You are about to be asked to enter information that will ...</pre></div></li></o
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 lostman/ごる
+         <div class="col-xs-10">&copy; 2017 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

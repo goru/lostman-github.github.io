@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>e-book - blog.gorugle.org</title>
+    <title>スキャンしたjpegからKindle用のmobiを作る - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,9 +9,11 @@
 
 
 
+<link rel="canonical" href="/posts/2017/07/kindle-mobi.html">
 
-    <meta name="author" content="lostman/ごる" />
-    <meta name="keywords" content="e-book" />
+        <meta name="author" content="lostman/ごる" />
+        <meta name="keywords" content="e-book,Kindle" />
+        <meta name="description" content="はじめに 随分前に 裁断機を買いました 。 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で ComittoN を使って閲覧できるようにしていました。 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。 VPNを構築すればこの制限は回避できます。 手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。 そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。 スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。 スキャン後の画像データを調べる 今回はmobi形式のデータを作成するのに Kindle Comic Creator と画像の前処理にImageMagic を使います。 お試しとして、以前スキャンした攻殻機動隊のデータを使いました。 この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚、縦が2125-2166px、横は1473-1489pxでした。 ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。 Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。 あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。 Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。 ImageMagicはhomebrewでインストールしました。 正しくインストールされていれば identify と convert コマンドが使えるようになっているはずです。 既に上に書いてありますが ..." />
 
 
 
@@ -43,7 +45,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -74,9 +76,38 @@ blog.gorugle.org            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>
-                <h2><a href="/posts/2017/07/kindle-mobi.html">スキャンしたjpegからKindle用のmobiを作る</a></h2>
-                <div class="summary"><h3>はじめに</h3>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2017/07/kindle-mobi.html"
+                       rel="bookmark"
+                       title="Permalink to スキャンしたjpegからKindle用のmobiを作る">
+                        スキャンしたjpegからKindle用のmobiを作る
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2017-07-08T23:10:00+09:00"> 2017/07/08 Sat</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/e-book.html">e-book</a>
+        /
+	<a href="/tag/kindle.html">Kindle</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h3>はじめに</h3>
 <p>随分前に <a href="/posts/2014/10/dc-210n.html">裁断機を買いました</a> 。
 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で <a href="https://play.google.com/store/apps/details?id=jp.dip.muracoro.comitton&amp;hl=ja">ComittoN</a> を使って閲覧できるようにしていました。
 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。
@@ -95,29 +126,126 @@ Kindle Comic Creatorは全ての画像が同じアスペクト比になってい
 <p>Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。
 ImageMagicはhomebrewでインストールしました。
 正しくインストールされていれば <code>identify</code> と <code>convert</code> コマンドが使えるようになっているはずです。</p>
-<p>既に上に書いてありますが ...</p>
-                    <a class="btn btn-default btn-xs" href="/posts/2017/07/kindle-mobi.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/10/dc-210n.html">裁断機(DC-210N)を購入してみた</a></h2>
-                <div class="summary"><p>もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました<br />
-色々検討したんですが大型の裁断機ではなく、それより簡易的な <a href="http://www.carl.co.jp/item/DC-210N.html">DC-210N</a> を選択<br />
-一度に裁断できる枚数が40枚ということなので、裁断する前にまず本を分解する作業が必ず入るけれど<br />
-まぁ元々そんなに本を買う方でないので使う機会もそれほど頻繁でないだろうということでしまっておけるこのモデルにしました</p>
-<p>外観</p>
-<p><a href="/static/images/2014/10/DC-210N_1.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_1_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_2.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_2_s.jpg" /></a></p>
-<p>今回はお試しでこの冊子を裁断してみます<br />
-薄いので分割しなくても裁断できました</p>
-<p><a href="/static/images/2014/10/DC-210N_3.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_4.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_4_s.jpg" /></a>
-<a href="/static/images/2014/10/DC-210N_5.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_5_s.jpg" /></a></p>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/10/dc-210n.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+<p>既に上に書いてありますが、まず画像のサイズにどれくらいばらつきがあるか調べましょう。
+画像が置いてあるディレクトリに移動して以下のコマンドを実行すれば縦横の最大最小がわかります。</p>
+<div class="highlight"><pre><span class="nv">$ </span>identify -format <span class="s2">&quot;%h\n&quot;</span> *.jpg 2&gt;/dev/null <span class="p">|</span> sort <span class="p">|</span> sed -n <span class="s1">&#39;1p;$p&#39;</span>
+2125
+2166
+
+<span class="nv">$ </span>identify -format <span class="s2">&quot;%w\n&quot;</span> *.jpg 2&gt;/dev/null <span class="p">|</span> sort <span class="p">|</span> sed -n <span class="s1">&#39;1p;$p&#39;</span>
+1473
+1489
+</pre></div>
+
+
+<p>原本を既に捨ててしまったので、元々の本のサイズが何であったかわかりませんでした。
+その場合は以下のようにしてppiとpxからだいたいのサイズをmmで求めることができました。
+そのサイズを参考にして <a href="https://ja.wikipedia.org/wiki/%E7%B4%99%E3%81%AE%E5%AF%B8%E6%B3%95">紙の寸法</a> から近い用紙を探します。
+今回は <code>JIS B6 (182x128mm)</code> だったみたいです。</p>
+<div class="highlight"><pre><span class="nv">$ </span>identify -format <span class="s2">&quot;%[fx:h/resolution.y*25.4]x%[fx:w/resolution.x*25.4]mm\n&quot;</span> 000001.jpg
+182.203x125.053mm
+</pre></div>
+
+
+<h3>縮小後のサイズを決める</h3>
+<p>JIS B6の長辺(182mm)と短辺(128mm)の比( <code>182 / 128 = 1.4218</code> )はだいたい <code>1.4218:1</code> です。
+この比を使って元データの長辺(2166px)から短辺を求めると <code>2166 / 1.4218 = 1523.4210px</code> でした。
+これより大きい元データはないので、短辺に余白を追加することでJIS B6のアスペクト比に合わせるという方針にします。
+(ちなみに元データの短辺(1489px)から長辺を求めると <code>1489 * 1.4218 = 2117.0602px</code> で、元データの長辺のほうが大きいのでダメ)</p>
+<p>JIS B6の比でNexus9の画面の長辺(2048px)から短辺の長さを求める( <code>2048 / 1.4218 = 1440.4276px</code> )とだいたい <code>1440px</code> になります。
+ということで、元データを <code>2048x1440px</code> へ縮小して、左右の足りない部分は余白を追加することにします。</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;scale=4; 2048 / (182 / 128)&quot;</span> <span class="p">|</span> bc
+1440.4276
+</pre></div>
+
+
+<h3>縮小する</h3>
+<p>Kindle Comic Creatorの仕様(?)的に <code>カバー画像</code> と呼ばれる書籍一覧に表示される表紙に該当する画像は、
+他のページと同じアスペクト比になっていなくてもよいみたいなので、表紙(000001.jpg)だけは元データのアスペクト比のまま縮小します。
+また、縮小する際に <a href="https://www.imagemagick.org/script/command-line-options.php#strip">-strip</a> オプションを付けてEXIF等の不要な情報を削除します。</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir out
+<span class="nv">$ </span>convert -resize x2048 -strip 000001.jpg out/000001.jpg
+</pre></div>
+
+
+<p>裏表紙(000052.jpg)は通常ページと同じ扱いなので余白(背景は黒)を追加してアスペクト比を調節しますが、
+見開きページとして設定しないので中央に配置( <code>-gravity Center</code> )して、左右に追加されるようにします。</p>
+<div class="highlight"><pre><span class="nv">$ </span>convert -resize 1440x2048 -strip -gravity Center -background black -extent 1440x2048 000052.jpg out/000052.jpg
+</pre></div>
+
+
+<p>表紙、裏表紙以外のページ(000002.jpgから000051.jpg)を縮小します。
+これらのページも余白を追加しますが、右ページは左側に寄せて右側に( <code>-gravity West</code> )、
+左ページは右側に寄せて左側に( <code>-gravity East</code> )余白を追加しないと、
+見開きページとして設定した場合に、中央のつなぎ目の部分に余白が入ってしまうことになります。
+そのためこのようなスクリプト(実際にはワンライナー)で偶数ページと奇数ページで右寄せ左寄せが変わるようにしました。</p>
+<div class="highlight"><pre><span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">2</span> 51<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+  <span class="nv">p</span><span class="o">=</span><span class="s2">&quot;West&quot;</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span>expr <span class="nv">$i</span> % 2<span class="sb">`</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">p</span><span class="o">=</span><span class="s2">&quot;East&quot;</span>
+  <span class="k">fi</span>
+  <span class="nv">f</span><span class="o">=</span><span class="sb">`</span><span class="nb">printf</span> <span class="s2">&quot;%06d.jpg&quot;</span> <span class="nv">$i</span><span class="sb">`</span>
+  <span class="nb">echo</span> <span class="nv">$f</span>
+  convert -resize 1440x2048 -strip -gravity <span class="nv">$p</span> -background black -extent 1440x2048 <span class="nv">$f</span> out/<span class="nv">$f</span>
+<span class="k">done</span>
+</pre></div>
+
+
+<p>以上でmobiファイルに使う画像データの用意ができました。</p>
+<h3>mobiファイルを作る</h3>
+<ol>
+<li>Kindle Comic Creatorを起動して <code>新しい本を作成</code> を押します。</li>
+<li><code>本のページ進行方向</code> は漫画の場合は <code>右から左へ</code> のままでOKです。</li>
+<li>
+<p><code>本のページサイズ(画像の解像度)</code> という入力欄に関しては、 <code>?</code> ボタンを押すと説明がでますが、
+   <code>1280を最大値として、それを超える場合は縦横の比率を合わせた値を入力する</code> とあります。
+   今回の場合、横と縦の比率は <code>1:1.4218</code> で <code>1280 / 1.4218 = 900.2672</code> となるため、 <code>w: 900px, h: 1280px</code> と設定します。</p>
+</li>
+<li>
+<p><code>続ける</code> を押して次のページへ進みます。
+   メタデータは適当に入力します。</p>
+</li>
+<li><code>カバー画像</code> には表紙用に変換したファイル(000001.jpg)を指定します。</li>
+<li>
+<p>保存するディレクトリは適当に空のディレクトリを用意します。</p>
+</li>
+<li>
+<p><code>ページの追加を開始</code> を押します。</p>
+</li>
+<li>ファイルを選択するダイアログが表示されるので、表紙以外のファイルを全て選択します。
+   選択したファイルが <code>ブックマネージャ</code> に追加されます。</li>
+<li>
+<p><code>ページ設定</code> の <code>全てを見開きページに設定</code> で見開きページの設定をします。
+   見開きページに設定しておくと、デバイスが横画面の場合に左右に並んで表示されます。
+   逆に見開きページに設定していてもデバイスが縦画面の場合は左右バラバラに表示されるみたいです。</p>
+</li>
+<li>
+<p>見開きの設定やページ順が問題なさそうであればmobiファイルを生成します。
+    メニューバーの <code>ビルド -&gt; ビルド&amp;プレビュー</code> でmobiファイルの生成がはじまります。
+    生成が終わるとプレビューが起動するみたいなのですが、手元の環境では起動しませんでした…。
+    ビルドが終わるとはじめに設定したディレクトリにmobiファイルが生成されています。</p>
+</li>
+</ol>
+<h3>デバイスへ転送</h3>
+<p>できたファイルをデバイスへ転送します。
+何を使ってもいいのですが今回は <a href="https://www.android.com/filetransfer/">Android File Transfer</a> を使いました。</p>
+<p>Android File Transferを起動してUSBケーブルでデバイスと接続すると <code>Can't access device storage</code> と言われるので一度閉じます。
+この状態でデバイスの通知をみると <code>この端末を USB で充電</code> と出ているはずなので <code>ファイルを転送する</code> に変更します。
+すると、Android File Transferが使える状態で再度起動します。</p>
+<p>Kindleが認識するパスは <code>Android/data/com.amazon.kindle/files</code> なので、ここへmobiファイルをコピーします。
+コピーしたら、USBケーブルを抜いてKindleアプリを再起動すれば、追加したmobiファイルが見えるようになります。</p>
+<h3>最後に</h3>
+<p>ComittoNではjpegをzipで固めただけなので、ページの進行方向や見開きページに関する情報を持っていません。
+そのためファイルを開く時に自分で設定しなければいけないのが少し煩わしいなと感じていました。
+mobiファイルをKindleで開く場合はそういった煩わしさがないのでスムーズに読み始められそうです。
+ファイルの作り方も流石にzipで固めるのと比べるのはかわいそうですが、ほとんど手間はかからないので面倒くさくなってしまうこともなさそうです。
+元のデータがそこそこ高画質だったためか画質も問題ないと感じたし、速度も遅いとは思いませんでした。</p>
+<p>スペック的にKindle Paperwhite等のデバイスでも同じ感じで読めるのかがちょっと気になりますが、
+今後新しい本を買うときはKindle版を買うことを検討しても悪くはないかもしれないなと思いました。</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">

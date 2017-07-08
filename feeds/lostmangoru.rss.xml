@@ -1,5 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 29 Dec 2016 18:15:00 +0900</lastBuildDate><item><title>Xperiaの地域コードを調べる</title><link>/posts/2016/12/f5321-region.html</link><description>&lt;p&gt;Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 08 Jul 2017 23:10:00 +0900</lastBuildDate><item><title>スキャンしたjpegからKindle用のmobiを作る</title><link>/posts/2017/07/kindle-mobi.html</link><description>&lt;h3&gt;はじめに&lt;/h3&gt;
+&lt;p&gt;随分前に &lt;a href="/posts/2014/10/dc-210n.html"&gt;裁断機を買いました&lt;/a&gt; 。
+この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で &lt;a href="https://play.google.com/store/apps/details?id=jp.dip.muracoro.comitton&amp;amp;hl=ja"&gt;ComittoN&lt;/a&gt; を使って閲覧できるようにしていました。
+この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。
+VPNを構築すればこの制限は回避できます。&lt;/p&gt;
+&lt;p&gt;手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。
+そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。
+スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。&lt;/p&gt;
+&lt;h3&gt;スキャン後の画像データを調べる&lt;/h3&gt;
+&lt;p&gt;今回はmobi形式のデータを作成するのに &lt;a href="https://www.amazon.co.jp/gp/feature.html?docId=3077699036"&gt;Kindle Comic Creator&lt;/a&gt; と画像の前処理に&lt;a href="https://www.imagemagick.org/script/index.php"&gt;ImageMagic&lt;/a&gt; を使います。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2014/10/DC-210N_3.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;お試しとして、以前スキャンした攻殻機動隊のデータを使いました。
+この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚、縦が2125-2166px、横は1473-1489pxでした。
+ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。
+Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。
+あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。&lt;/p&gt;
+&lt;p&gt;Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。
+ImageMagicはhomebrewでインストールしました。
+正しくインストールされていれば &lt;code&gt;identify&lt;/code&gt; と &lt;code&gt;convert&lt;/code&gt; コマンドが使えるようになっているはずです。&lt;/p&gt;
+&lt;p&gt;既に上に書いてありますが、まず画像のサイズにどれくらいばらつきがあるか調べましょう。
+画像が置いてあるディレクトリに移動して以下のコマンドを実行すれば縦横の最大最小がわかります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;identify -format &lt;span class="s2"&gt;&amp;quot;%h\n&amp;quot;&lt;/span&gt; *.jpg 2&amp;gt;/dev/null &lt;span class="p"&gt;|&lt;/span&gt; sort &lt;span class="p"&gt;|&lt;/span&gt; sed -n &lt;span class="s1"&gt;&amp;#39;1p;$p&amp;#39;&lt;/span&gt;
+2125
+2166
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;identify -format &lt;span class="s2"&gt;&amp;quot;%w\n&amp;quot;&lt;/span&gt; *.jpg 2&amp;gt;/dev/null &lt;span class="p"&gt;|&lt;/span&gt; sort &lt;span class="p"&gt;|&lt;/span&gt; sed -n &lt;span class="s1"&gt;&amp;#39;1p;$p&amp;#39;&lt;/span&gt;
+1473
+1489
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;原本を既に捨ててしまったので、元々の本のサイズが何であったかわかりませんでした。
+その場合は以下のようにしてppiとpxからだいたいのサイズをmmで求めることができました。
+そのサイズを参考にして &lt;a href="https://ja.wikipedia.org/wiki/%E7%B4%99%E3%81%AE%E5%AF%B8%E6%B3%95"&gt;紙の寸法&lt;/a&gt; から近い用紙を探します。
+今回は &lt;code&gt;JIS B6 (182x128mm)&lt;/code&gt; だったみたいです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;identify -format &lt;span class="s2"&gt;&amp;quot;%[fx:h/resolution.y*25.4]x%[fx:w/resolution.x*25.4]mm\n&amp;quot;&lt;/span&gt; 000001.jpg
+182.203x125.053mm
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;縮小後のサイズを決める&lt;/h3&gt;
+&lt;p&gt;JIS B6の長辺(182mm)と短辺(128mm)の比( &lt;code&gt;182 / 128 = 1.4218&lt;/code&gt; )はだいたい &lt;code&gt;1.4218:1&lt;/code&gt; です。
+この比を使って元データの長辺(2166px)から短辺を求めると &lt;code&gt;2166 / 1.4218 = 1523.4210px&lt;/code&gt; でした。
+これより大きい元データはないので、短辺に余白を追加することでJIS B6のアスペクト比に合わせるという方針にします。
+(ちなみに元データの短辺(1489px)から長辺を求めると &lt;code&gt;1489 * 1.4218 = 2117.0602px&lt;/code&gt; で、元データの長辺のほうが大きいのでダメ)&lt;/p&gt;
+&lt;p&gt;JIS B6の比でNexus9の画面の長辺(2048px)から短辺の長さを求める( &lt;code&gt;2048 / 1.4218 = 1440.4276px&lt;/code&gt; )とだいたい &lt;code&gt;1440px&lt;/code&gt; になります。
+ということで、元データを &lt;code&gt;2048x1440px&lt;/code&gt; へ縮小して、左右の足りない部分は余白を追加することにします。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;scale=4; 2048 / (182 / 128)&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; bc
+1440.4276
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;縮小する&lt;/h3&gt;
+&lt;p&gt;Kindle Comic Creatorの仕様(?)的に &lt;code&gt;カバー画像&lt;/code&gt; と呼ばれる書籍一覧に表示される表紙に該当する画像は、
+他のページと同じアスペクト比になっていなくてもよいみたいなので、表紙(000001.jpg)だけは元データのアスペクト比のまま縮小します。
+また、縮小する際に &lt;a href="https://www.imagemagick.org/script/command-line-options.php#strip"&gt;-strip&lt;/a&gt; オプションを付けてEXIF等の不要な情報を削除します。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir out
+&lt;span class="nv"&gt;$ &lt;/span&gt;convert -resize x2048 -strip 000001.jpg out/000001.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;裏表紙(000052.jpg)は通常ページと同じ扱いなので余白(背景は黒)を追加してアスペクト比を調節しますが、
+見開きページとして設定しないので中央に配置( &lt;code&gt;-gravity Center&lt;/code&gt; )して、左右に追加されるようにします。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;convert -resize 1440x2048 -strip -gravity Center -background black -extent 1440x2048 000052.jpg out/000052.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;表紙、裏表紙以外のページ(000002.jpgから000051.jpg)を縮小します。
+これらのページも余白を追加しますが、右ページは左側に寄せて右側に( &lt;code&gt;-gravity West&lt;/code&gt; )、
+左ページは右側に寄せて左側に( &lt;code&gt;-gravity East&lt;/code&gt; )余白を追加しないと、
+見開きページとして設定した場合に、中央のつなぎ目の部分に余白が入ってしまうことになります。
+そのためこのようなスクリプト(実際にはワンライナー)で偶数ページと奇数ページで右寄せ左寄せが変わるようにしました。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="sb"&gt;`&lt;/span&gt;seq &lt;span class="m"&gt;2&lt;/span&gt; 51&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;West&amp;quot;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;expr &lt;span class="nv"&gt;$i&lt;/span&gt; % 2&lt;span class="sb"&gt;`&lt;/span&gt; -ne &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;East&amp;quot;&lt;/span&gt;
+  &lt;span class="k"&gt;fi&lt;/span&gt;
+  &lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;%06d.jpg&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$f&lt;/span&gt;
+  convert -resize 1440x2048 -strip -gravity &lt;span class="nv"&gt;$p&lt;/span&gt; -background black -extent 1440x2048 &lt;span class="nv"&gt;$f&lt;/span&gt; out/&lt;span class="nv"&gt;$f&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以上でmobiファイルに使う画像データの用意ができました。&lt;/p&gt;
+&lt;h3&gt;mobiファイルを作る&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Kindle Comic Creatorを起動して &lt;code&gt;新しい本を作成&lt;/code&gt; を押します。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;本のページ進行方向&lt;/code&gt; は漫画の場合は &lt;code&gt;右から左へ&lt;/code&gt; のままでOKです。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;本のページサイズ(画像の解像度)&lt;/code&gt; という入力欄に関しては、 &lt;code&gt;?&lt;/code&gt; ボタンを押すと説明がでますが、
+   &lt;code&gt;1280を最大値として、それを超える場合は縦横の比率を合わせた値を入力する&lt;/code&gt; とあります。
+   今回の場合、横と縦の比率は &lt;code&gt;1:1.4218&lt;/code&gt; で &lt;code&gt;1280 / 1.4218 = 900.2672&lt;/code&gt; となるため、 &lt;code&gt;w: 900px, h: 1280px&lt;/code&gt; と設定します。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;続ける&lt;/code&gt; を押して次のページへ進みます。
+   メタデータは適当に入力します。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;カバー画像&lt;/code&gt; には表紙用に変換したファイル(000001.jpg)を指定します。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;保存するディレクトリは適当に空のディレクトリを用意します。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ページの追加を開始&lt;/code&gt; を押します。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;ファイルを選択するダイアログが表示されるので、表紙以外のファイルを全て選択します。
+   選択したファイルが &lt;code&gt;ブックマネージャ&lt;/code&gt; に追加されます。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ページ設定&lt;/code&gt; の &lt;code&gt;全てを見開きページに設定&lt;/code&gt; で見開きページの設定をします。
+   見開きページに設定しておくと、デバイスが横画面の場合に左右に並んで表示されます。
+   逆に見開きページに設定していてもデバイスが縦画面の場合は左右バラバラに表示されるみたいです。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;見開きの設定やページ順が問題なさそうであればmobiファイルを生成します。
+    メニューバーの &lt;code&gt;ビルド -&amp;gt; ビルド&amp;amp;プレビュー&lt;/code&gt; でmobiファイルの生成がはじまります。
+    生成が終わるとプレビューが起動するみたいなのですが、手元の環境では起動しませんでした…。
+    ビルドが終わるとはじめに設定したディレクトリにmobiファイルが生成されています。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;デバイスへ転送&lt;/h3&gt;
+&lt;p&gt;できたファイルをデバイスへ転送します。
+何を使ってもいいのですが今回は &lt;a href="https://www.android.com/filetransfer/"&gt;Android File Transfer&lt;/a&gt; を使いました。&lt;/p&gt;
+&lt;p&gt;Android File Transferを起動してUSBケーブルでデバイスと接続すると &lt;code&gt;Can't access device storage&lt;/code&gt; と言われるので一度閉じます。
+この状態でデバイスの通知をみると &lt;code&gt;この端末を USB で充電&lt;/code&gt; と出ているはずなので &lt;code&gt;ファイルを転送する&lt;/code&gt; に変更します。
+すると、Android File Transferが使える状態で再度起動します。&lt;/p&gt;
+&lt;p&gt;Kindleが認識するパスは &lt;code&gt;Android/data/com.amazon.kindle/files&lt;/code&gt; なので、ここへmobiファイルをコピーします。
+コピーしたら、USBケーブルを抜いてKindleアプリを再起動すれば、追加したmobiファイルが見えるようになります。&lt;/p&gt;
+&lt;h3&gt;最後に&lt;/h3&gt;
+&lt;p&gt;ComittoNではjpegをzipで固めただけなので、ページの進行方向や見開きページに関する情報を持っていません。
+そのためファイルを開く時に自分で設定しなければいけないのが少し煩わしいなと感じていました。
+mobiファイルをKindleで開く場合はそういった煩わしさがないのでスムーズに読み始められそうです。
+ファイルの作り方も流石にzipで固めるのと比べるのはかわいそうですが、ほとんど手間はかからないので面倒くさくなってしまうこともなさそうです。
+元のデータがそこそこ高画質だったためか画質も問題ないと感じたし、速度も遅いとは思いませんでした。&lt;/p&gt;
+&lt;p&gt;スペック的にKindle Paperwhite等のデバイスでも同じ感じで読めるのかがちょっと気になりますが、
+今後新しい本を買うときはKindle版を買うことを検討しても悪くはないかもしれないなと思いました。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 08 Jul 2017 23:10:00 +0900</pubDate><guid>tag:,2017-07-08:posts/2017/07/kindle-mobi.html</guid><category>e-book</category><category>Kindle</category></item><item><title>Xperiaの地域コードを調べる</title><link>/posts/2016/12/f5321-region.html</link><description>&lt;p&gt;Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
 Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。
 手元の端末にはアップデートがきていないのと、そもそもF5321自体にどれくらい派生モデルがあるのかもよく知りません。
 (US版は指紋認証が無効化されているとか、XperiaのHK版はいつもアップデートがくるのが遅いとか色々あるみたいですね。)&lt;/p&gt;
