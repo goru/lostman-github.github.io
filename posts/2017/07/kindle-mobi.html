@@ -12,8 +12,8 @@
 <link rel="canonical" href="/posts/2017/07/kindle-mobi.html">
 
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="e-book,Kindle" />
-        <meta name="description" content="はじめに 随分前に 裁断機を買いました 。 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で ComittoN を使って閲覧できるようにしていました。 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。 VPNを構築すればこの制限は回避できます。 手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。 そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。 スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。 スキャン後の画像データを調べる 今回はmobi形式のデータを作成するのに Kindle Comic Creator と画像の前処理にImageMagic を使います。 お試しとして、以前スキャンした攻殻機動隊のデータを使いました。 この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚、縦が2125-2166px、横は1473-1489pxでした。 ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。 Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。 あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。 Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。 ImageMagicはhomebrewでインストールしました。 正しくインストールされていれば identify と convert コマンドが使えるようになっているはずです。 既に上に書いてありますが ..." />
+        <meta name="keywords" content="e-book,Kindle,Android" />
+        <meta name="description" content="はじめに 随分前に 裁断機を買いました 。 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で ComittoN を使って閲覧できるようにしていました。 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。 VPNを構築すればこの制限は回避できます。 ただしかし手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。 そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。 スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。 スキャン後の画像データを調べる 今回はmobi形式のデータを作成するのに Kindle Comic Creator と画像の前処理にImageMagic を使います。 お試しとして、以前スキャンした攻殻機動隊のデータを使いました。 この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚(000001.jpg-000052.jpg)、 縦が2125-2166px、横は1473-1489pxでした。ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。 Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。 あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。 Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。 ImageMagicはhomebrewでインストールしました。 正しくインストールされていれば identify と ..." />
 
 
 
@@ -104,6 +104,8 @@ blog.gorugle.org            </a>
 	<a href="/tag/e-book.html">e-book</a>
         /
 	<a href="/tag/kindle.html">Kindle</a>
+        /
+	<a href="/tag/android.html">Android</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -112,15 +114,15 @@ blog.gorugle.org            </a>
 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で <a href="https://play.google.com/store/apps/details?id=jp.dip.muracoro.comitton&amp;hl=ja">ComittoN</a> を使って閲覧できるようにしていました。
 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。
 VPNを構築すればこの制限は回避できます。</p>
-<p>手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。
+<p>ただしかし手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。
 そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。
 スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。</p>
 <h3>スキャン後の画像データを調べる</h3>
 <p>今回はmobi形式のデータを作成するのに <a href="https://www.amazon.co.jp/gp/feature.html?docId=3077699036">Kindle Comic Creator</a> と画像の前処理に<a href="https://www.imagemagick.org/script/index.php">ImageMagic</a> を使います。</p>
 <p><a href="/static/images/2014/10/DC-210N_3.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /></a></p>
 <p>お試しとして、以前スキャンした攻殻機動隊のデータを使いました。
-この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚、縦が2125-2166px、横は1473-1489pxでした。
-ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。
+この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚(000001.jpg-000052.jpg)、
+縦が2125-2166px、横は1473-1489pxでした。ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。
 Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。
 あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。</p>
 <p>Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。
@@ -153,7 +155,8 @@ ImageMagicはhomebrewでインストールしました。
 これより大きい元データはないので、短辺に余白を追加することでJIS B6のアスペクト比に合わせるという方針にします。
 (ちなみに元データの短辺(1489px)から長辺を求めると <code>1489 * 1.4218 = 2117.0602px</code> で、元データの長辺のほうが大きいのでダメ)</p>
 <p>JIS B6の比でNexus9の画面の長辺(2048px)から短辺の長さを求める( <code>2048 / 1.4218 = 1440.4276px</code> )とだいたい <code>1440px</code> になります。
-ということで、元データを <code>2048x1440px</code> へ縮小して、左右の足りない部分は余白を追加することにします。</p>
+ということで、元データを <code>2048x1440px</code> へ縮小して、左右の足りない部分は余白を追加することにします。
+ちなみに <code>bc</code> コマンドを使って計算してみました。</p>
 <div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;scale=4; 2048 / (182 / 128)&quot;</span> <span class="p">|</span> bc
 1440.4276
 </pre></div>
@@ -197,8 +200,8 @@ ImageMagicはhomebrewでインストールしました。
 <li>Kindle Comic Creatorを起動して <code>新しい本を作成</code> を押します。</li>
 <li><code>本のページ進行方向</code> は漫画の場合は <code>右から左へ</code> のままでOKです。</li>
 <li>
-<p><code>本のページサイズ(画像の解像度)</code> という入力欄に関しては、 <code>?</code> ボタンを押すと説明がでますが、
-   <code>1280を最大値として、それを超える場合は縦横の比率を合わせた値を入力する</code> とあります。
+<p><code>本のページサイズ(画像の解像度)</code> という入力欄に関しては、 <code>?</code> ボタンを押すと説明が出ますが、
+   <code>1280を最大値として、それを超える場合は縦横の比率を合わせた値を入力する。</code> とあります。
    今回の場合、横と縦の比率は <code>1:1.4218</code> で <code>1280 / 1.4218 = 900.2672</code> となるため、 <code>w: 900px, h: 1280px</code> と設定します。</p>
 </li>
 <li>
@@ -222,7 +225,9 @@ ImageMagicはhomebrewでインストールしました。
 <li>
 <p>見開きの設定やページ順が問題なさそうであればmobiファイルを生成します。
     メニューバーの <code>ビルド -&gt; ビルド&amp;プレビュー</code> でmobiファイルの生成がはじまります。
-    生成が終わるとプレビューが起動するみたいなのですが、手元の環境では起動しませんでした…。
+    ( <code>ファイル -&gt; KF8ブックとしてエクスポート</code> でもよいですが、
+    保存先のディレクトリとファイル名を入力しなければいけないのでビルドのほうが楽です。)
+    (生成が終わるとプレビューが起動するみたいなのですが、手元の環境では起動しませんでした…。)
     ビルドが終わるとはじめに設定したディレクトリにmobiファイルが生成されています。</p>
 </li>
 </ol>
@@ -238,7 +243,8 @@ ImageMagicはhomebrewでインストールしました。
 <p>ComittoNではjpegをzipで固めただけなので、ページの進行方向や見開きページに関する情報を持っていません。
 そのためファイルを開く時に自分で設定しなければいけないのが少し煩わしいなと感じていました。
 mobiファイルをKindleで開く場合はそういった煩わしさがないのでスムーズに読み始められそうです。
-ファイルの作り方も流石にzipで固めるのと比べるのはかわいそうですが、ほとんど手間はかからないので面倒くさくなってしまうこともなさそうです。
+ファイルの作り方も流石にzipで固めるのと比べるのはかわいそうですが、
+一度やり方がわかってしまえばほとんど手間はかからないので面倒くさくなってしまうこともなさそうです。
 元のデータがそこそこ高画質だったためか画質も問題ないと感じたし、速度も遅いとは思いませんでした。</p>
 <p>スペック的にKindle Paperwhite等のデバイスでも同じ感じで読めるのかがちょっと気になりますが、
 今後新しい本を買うときはKindle版を買うことを検討しても悪くはないかもしれないなと思いました。</p>
@@ -259,13 +265,13 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -279,18 +285,18 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/windows.html">
                             Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -299,23 +305,8 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/igzo.html">
-                            IGZO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -329,8 +320,13 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -339,13 +335,18 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/igzo.html">
+                            IGZO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -354,43 +355,8 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -399,23 +365,13 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/samba.html">
                             Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -424,18 +380,13 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/macuim.html">
                             MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -444,13 +395,68 @@ mobiファイルをKindleで開く場合はそういった煩わしさがない�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/fabcafe.html">
                             FabCafe
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/uim.html">
                             uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                 </ul>

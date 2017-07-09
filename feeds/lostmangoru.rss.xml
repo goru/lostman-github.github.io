@@ -4,15 +4,15 @@
 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で &lt;a href="https://play.google.com/store/apps/details?id=jp.dip.muracoro.comitton&amp;amp;hl=ja"&gt;ComittoN&lt;/a&gt; を使って閲覧できるようにしていました。
 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。
 VPNを構築すればこの制限は回避できます。&lt;/p&gt;
-&lt;p&gt;手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。
+&lt;p&gt;ただしかし手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。
 そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。
 スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。&lt;/p&gt;
 &lt;h3&gt;スキャン後の画像データを調べる&lt;/h3&gt;
 &lt;p&gt;今回はmobi形式のデータを作成するのに &lt;a href="https://www.amazon.co.jp/gp/feature.html?docId=3077699036"&gt;Kindle Comic Creator&lt;/a&gt; と画像の前処理に&lt;a href="https://www.imagemagick.org/script/index.php"&gt;ImageMagic&lt;/a&gt; を使います。&lt;/p&gt;
 &lt;p&gt;&lt;a href="/static/images/2014/10/DC-210N_3.jpg"&gt;&lt;img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;お試しとして、以前スキャンした攻殻機動隊のデータを使いました。
-この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚、縦が2125-2166px、横は1473-1489pxでした。
-ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。
+この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚(000001.jpg-000052.jpg)、
+縦が2125-2166px、横は1473-1489pxでした。ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。
 Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。
 あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。&lt;/p&gt;
 &lt;p&gt;Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。
@@ -45,7 +45,8 @@ ImageMagicはhomebrewでインストールしました。
 これより大きい元データはないので、短辺に余白を追加することでJIS B6のアスペクト比に合わせるという方針にします。
 (ちなみに元データの短辺(1489px)から長辺を求めると &lt;code&gt;1489 * 1.4218 = 2117.0602px&lt;/code&gt; で、元データの長辺のほうが大きいのでダメ)&lt;/p&gt;
 &lt;p&gt;JIS B6の比でNexus9の画面の長辺(2048px)から短辺の長さを求める( &lt;code&gt;2048 / 1.4218 = 1440.4276px&lt;/code&gt; )とだいたい &lt;code&gt;1440px&lt;/code&gt; になります。
-ということで、元データを &lt;code&gt;2048x1440px&lt;/code&gt; へ縮小して、左右の足りない部分は余白を追加することにします。&lt;/p&gt;
+ということで、元データを &lt;code&gt;2048x1440px&lt;/code&gt; へ縮小して、左右の足りない部分は余白を追加することにします。
+ちなみに &lt;code&gt;bc&lt;/code&gt; コマンドを使って計算してみました。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;scale=4; 2048 / (182 / 128)&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; bc
 1440.4276
 &lt;/pre&gt;&lt;/div&gt;
@@ -89,8 +90,8 @@ ImageMagicはhomebrewでインストールしました。
 &lt;li&gt;Kindle Comic Creatorを起動して &lt;code&gt;新しい本を作成&lt;/code&gt; を押します。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;本のページ進行方向&lt;/code&gt; は漫画の場合は &lt;code&gt;右から左へ&lt;/code&gt; のままでOKです。&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;本のページサイズ(画像の解像度)&lt;/code&gt; という入力欄に関しては、 &lt;code&gt;?&lt;/code&gt; ボタンを押すと説明がでますが、
-   &lt;code&gt;1280を最大値として、それを超える場合は縦横の比率を合わせた値を入力する&lt;/code&gt; とあります。
+&lt;p&gt;&lt;code&gt;本のページサイズ(画像の解像度)&lt;/code&gt; という入力欄に関しては、 &lt;code&gt;?&lt;/code&gt; ボタンを押すと説明が出ますが、
+   &lt;code&gt;1280を最大値として、それを超える場合は縦横の比率を合わせた値を入力する。&lt;/code&gt; とあります。
    今回の場合、横と縦の比率は &lt;code&gt;1:1.4218&lt;/code&gt; で &lt;code&gt;1280 / 1.4218 = 900.2672&lt;/code&gt; となるため、 &lt;code&gt;w: 900px, h: 1280px&lt;/code&gt; と設定します。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -114,7 +115,9 @@ ImageMagicはhomebrewでインストールしました。
 &lt;li&gt;
 &lt;p&gt;見開きの設定やページ順が問題なさそうであればmobiファイルを生成します。
     メニューバーの &lt;code&gt;ビルド -&amp;gt; ビルド&amp;amp;プレビュー&lt;/code&gt; でmobiファイルの生成がはじまります。
-    生成が終わるとプレビューが起動するみたいなのですが、手元の環境では起動しませんでした…。
+    ( &lt;code&gt;ファイル -&amp;gt; KF8ブックとしてエクスポート&lt;/code&gt; でもよいですが、
+    保存先のディレクトリとファイル名を入力しなければいけないのでビルドのほうが楽です。)
+    (生成が終わるとプレビューが起動するみたいなのですが、手元の環境では起動しませんでした…。)
     ビルドが終わるとはじめに設定したディレクトリにmobiファイルが生成されています。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -130,10 +133,11 @@ ImageMagicはhomebrewでインストールしました。
 &lt;p&gt;ComittoNではjpegをzipで固めただけなので、ページの進行方向や見開きページに関する情報を持っていません。
 そのためファイルを開く時に自分で設定しなければいけないのが少し煩わしいなと感じていました。
 mobiファイルをKindleで開く場合はそういった煩わしさがないのでスムーズに読み始められそうです。
-ファイルの作り方も流石にzipで固めるのと比べるのはかわいそうですが、ほとんど手間はかからないので面倒くさくなってしまうこともなさそうです。
+ファイルの作り方も流石にzipで固めるのと比べるのはかわいそうですが、
+一度やり方がわかってしまえばほとんど手間はかからないので面倒くさくなってしまうこともなさそうです。
 元のデータがそこそこ高画質だったためか画質も問題ないと感じたし、速度も遅いとは思いませんでした。&lt;/p&gt;
 &lt;p&gt;スペック的にKindle Paperwhite等のデバイスでも同じ感じで読めるのかがちょっと気になりますが、
-今後新しい本を買うときはKindle版を買うことを検討しても悪くはないかもしれないなと思いました。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 08 Jul 2017 23:10:00 +0900</pubDate><guid>tag:,2017-07-08:posts/2017/07/kindle-mobi.html</guid><category>e-book</category><category>Kindle</category></item><item><title>Xperiaの地域コードを調べる</title><link>/posts/2016/12/f5321-region.html</link><description>&lt;p&gt;Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
+今後新しい本を買うときはKindle版を買うことを検討しても悪くはないかもしれないなと思いました。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 08 Jul 2017 23:10:00 +0900</pubDate><guid>tag:,2017-07-08:posts/2017/07/kindle-mobi.html</guid><category>e-book</category><category>Kindle</category><category>Android</category></item><item><title>Xperiaの地域コードを調べる</title><link>/posts/2016/12/f5321-region.html</link><description>&lt;p&gt;Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
 Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。
 手元の端末にはアップデートがきていないのと、そもそもF5321自体にどれくらい派生モデルがあるのかもよく知りません。
 (US版は指紋認証が無効化されているとか、XperiaのHK版はいつもアップデートがくるのが遅いとか色々あるみたいですね。)&lt;/p&gt;
@@ -192,7 +196,11 @@ Felicaが載っていないのでオフィスのドアが開けられないの�
 フィルムは &lt;a href="http://amzn.asia/7eJcp9d"&gt;レイアウトのTPUフィルム&lt;/a&gt; と &lt;a href="http://amzn.asia/iDImcvF"&gt;背面用&lt;/a&gt; を買ってみました。
 背面に関してはフィルムの厚みの段差が気になるという点 (これは仕方ない) を除いて、カーブしている部分まで含めて全面がカバーされるのでよさそうです。
 表面のフィルムも商品の説明にはフルカバーと書いてあるのですが、背面と違い横幅がカーブしている部分までではなく、液晶部分より少し広いくらいでした。
-手触りは滑りもよく満足しているのですが、カバーしている範囲がいまいちなのでこちらは買い換えるかもしれません。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 10 Dec 2016 18:53:00 +0900</pubDate><guid>tag:,2016-12-10:posts/2016/12/f5321.html</guid><category>Android</category><category>F5321</category></item><item><title>AnniversaryUpdate適用後にNW-E052が認識されなくなる問題の対応</title><link>/posts/2016/08/nw-e052.html</link><description>&lt;h3&gt;何が起きたか&lt;/h3&gt;
+手触りは滑りもよく満足しているのですが、カバーしている範囲がいまいちなのでこちらは買い換えるかもしれません。&lt;/p&gt;
+&lt;p&gt;追記
+1月7日付でデポジットの余剰分の返金がありました。
+デポジット28.99ユーロのうち13.71ユーロが返金され、1月8日のレートの1ユーロ125.467円で換算されて、実際には1720円の返金になりました。
+ということなので、46747 - 1720 = 45027円が最終的な購入金額になりました。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 10 Dec 2016 18:53:00 +0900</pubDate><guid>tag:,2016-12-10:posts/2016/12/f5321.html</guid><category>Android</category><category>F5321</category></item><item><title>AnniversaryUpdate適用後にNW-E052が認識されなくなる問題の対応</title><link>/posts/2016/08/nw-e052.html</link><description>&lt;h3&gt;何が起きたか&lt;/h3&gt;
 &lt;p&gt;妻のマシンをWindows10へアップデートしたあとしばらくしてから(AnniversaryUpdate適用後)、Walkmanが使えなくなったと言われました。
 具体的には以下のような画面が表示されたので本体の初期化をしたが状況が改善されない、ということでした。&lt;/p&gt;
 &lt;p&gt;&lt;a href="/static/images/2016/08/walkman-01.png"&gt;&lt;img alt="image" src="/static/images/2016/08/walkman-01_s.png" /&gt;&lt;/a&gt;

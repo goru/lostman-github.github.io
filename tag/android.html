@@ -75,6 +75,31 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2017/07/kindle-mobi.html">スキャンしたjpegからKindle用のmobiを作る</a></h2>
+                <div class="summary"><h3>はじめに</h3>
+<p>随分前に <a href="/posts/2014/10/dc-210n.html">裁断機を買いました</a> 。
+この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で <a href="https://play.google.com/store/apps/details?id=jp.dip.muracoro.comitton&amp;hl=ja">ComittoN</a> を使って閲覧できるようにしていました。
+この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。
+VPNを構築すればこの制限は回避できます。</p>
+<p>ただしかし手元にある本の数がそれほど多いというわけではないけれど、物理的な本がこれ以上増え続けるのもどうかなと思い始めてきたので、最近新しく買う本はKindleにしようかどうかと考えていました。
+そこで、もしKindleへ移行した場合、既存のデータもKindleで読むことができないかと考えました。
+スキャン済みのデータは多くないので簡単に変換できるようであれば変換してしまってKindleに一本化したいというのが今回の動機です。</p>
+<h3>スキャン後の画像データを調べる</h3>
+<p>今回はmobi形式のデータを作成するのに <a href="https://www.amazon.co.jp/gp/feature.html?docId=3077699036">Kindle Comic Creator</a> と画像の前処理に<a href="https://www.imagemagick.org/script/index.php">ImageMagic</a> を使います。</p>
+<p><a href="/static/images/2014/10/DC-210N_3.jpg"><img alt="image" src="/static/images/2014/10/DC-210N_3_s.jpg" /></a></p>
+<p>お試しとして、以前スキャンした攻殻機動隊のデータを使いました。
+この冊子のデータは300ppiでスキャンしたもので、表紙、裏表紙を含めて全部で52枚(000001.jpg-000052.jpg)、
+縦が2125-2166px、横は1473-1489pxでした。ScanSnapが適当にトリミングするので画像の大きさにばらつきがあります。
+Kindle Comic Creatorは全ての画像が同じアスペクト比になっていないとダメみたいなので余白を加えるなどして調節が必要そうです。
+あとNexus9の解像度が2048x1536で、それ以上大きくても意味がないので少し縮小した方がサイズの節約になりそうです。</p>
+<p>Kindle Comic CreatorがWindows/Mac対応だったのでMacで作業しました。
+ImageMagicはhomebrewでインストールしました。
+正しくインストールされていれば <code>identify</code> と ...</p>
+                    <a class="btn btn-default btn-xs" href="/posts/2017/07/kindle-mobi.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2016/12/f5321-region.html">Xperiaの地域コードを調べる</a></h2>
                 <div class="summary"><p>Xperia X Compact (F5321)にAndroid7.0のアップデートが一部で配信されているみたいですね。
 Amazon.deで購入したXperia X Compactはイギリスから発送されていたみたいなのでUK版かなと勝手に思っていたのですが、どうやら違うみたいです。
@@ -236,13 +261,13 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -256,18 +281,18 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/windows.html">
                             Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -276,23 +301,8 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/igzo.html">
-                            IGZO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -306,8 +316,13 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -316,13 +331,18 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/igzo.html">
+                            IGZO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -331,43 +351,8 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -376,23 +361,13 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/samba.html">
                             Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -401,18 +376,13 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/macuim.html">
                             MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -421,13 +391,68 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/fabcafe.html">
                             FabCafe
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/uim.html">
                             uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                 </ul>
@@ -451,7 +476,7 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 lostman/ごる
+         <div class="col-xs-10">&copy; 2017 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
