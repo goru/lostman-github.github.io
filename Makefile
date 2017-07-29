@@ -5,5 +5,6 @@ serve:
 	python -m pelican.server
 
 clean:
-	rm -rf author categories.html feeds tag theme archives.html authors.html category index.html posts tags.html
+	git checkout archives.html author/ authors.html categories.html category/ feeds/ index*.html posts/ tag/ tags.html
+	git clean -df posts/ tag/
 	rm -rf pelican/__pycache__ pelican/cache pelican/output
