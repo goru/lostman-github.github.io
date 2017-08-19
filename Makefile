@@ -6,5 +6,5 @@ serve:
 
 clean:
 	git checkout archives.html author/ authors.html categories.html category/ feeds/ index*.html posts/ tag/ tags.html
-	git clean -df posts/ tag/
+	git clean -df category/ posts/ tag/
 	rm -rf pelican/__pycache__ pelican/cache pelican/output
