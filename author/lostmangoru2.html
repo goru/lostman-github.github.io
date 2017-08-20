@@ -74,6 +74,38 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2015/11/wn-g300ua.html">WN-G300UAを使ってみる</a></h2>
+                <div class="summary"><p>今までWiFiのアクセスポイントには <a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/">WLI-UC-GNM</a> を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに<br />
+アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 <a href="http://www.iodata.jp/product/network/adp/wn-g300ua/">WN-G300UA</a> が <a href="http://itkobo-z.jp/wp/archives/432">RaspberryPiでの動作実績もあるみたい</a> で良さそうだったので購入してみました<br />
+ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした<br />
+上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…</p>
+<ul>
+<li>このデバイス用のドライバがカーネルに含まれていますがまともに動作しませんでした (繋がるけれどすぐ切れるという動作 Kernel 3.14.48)</li>
+<li>チップセットメーカーもドライバを提供していて参考にしていたサイトではそれを使うように説明がありました<br />
+しかし手元のカーネルではビルドすらできませんでした<br />
+参考にしていたサイトはRaspberryPiを使ったサイトが多かったのですが、彼らの使用しているカーネルは古かったようです</li>
+</ul>
+<p>いろいろ検証した結果ArchLinuxのパッケージで使われているリポジトリとパッチを当てたものを使用すれば動作することがわかりました<br />
+Arch以外のディストリビュージョンではそのままビルドすることができないのでArchで使っているリポジトリをサブモジュールにしてMakefileとWN-G300UA用のパッチを追加したリポジトリを作成しました</p>
+<ul>
+<li><a href="https://github.com/lostman-github/8192cu">8192cu</a></li>
+<li><a href="https://github.com/lostman-github/hostapd-rtl">hostapd-rtl</a></li>
+</ul>
+<p>以下の手順でビルドすることができます</p>
+<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/lostman-github/8192cu
+<span class="nv">$ </span><span class="nb">cd </span>8192cu
+<span class="nv">$ </span>git checkout WN-G300UA
+<span class="nv">$ </span>git submodule init
+<span class="nv">$ </span>git submodule update
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">cd</span> -
+
+<span class="nv">$ </span>git clone ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/11/wn-g300ua.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/10/mineo-dual.html">メインの回線もmineoに移行</a></h2>
                 <div class="summary"><p>今までauのガラケーのまま維持していたメインの回線もmineoにMNPしました<br />
 自分の都合でなかなか宅配を受け取れなかったのを除いてとてもスムーズに移行できたのでどれくらい時間が掛かったのかメモしておきます</p>
@@ -291,25 +323,6 @@ Redmine等のプロジェクト管理ソフトを入れるのは大袈裟な気�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/03/adb-backup.html">adb backupのデータを展開する</a></h2>
-                <div class="summary"><p>会社から支給されていた HTL21 の調子がわるくて、最近いつの間にか電源が落ちていたりするので<br />
-Xperia Z3 Compact (SO-02G) に変えてもらいました<br />
-アプリは手動でインストールし直して済むくらいしか入っていないのでそれでよかっんだけれど<br />
-本体に入っている画像等のデータを簡単に抜き出す方法がよくわかりませんでした<br />
-Android 4.0 以降からは <code>adb backup</code> が使えるのでそれでデータを抜き出せそうな気がして調べてみたところ<br />
-<code>adb backup</code> でバックアップされる独自形式のデータを tar 形式に変換するツールが既にありました</p>
-<ul>
-<li><a href="http://sourceforge.jp/projects/sfnet_adbextractor/">Android Backup Extractor</a></li>
-</ul>
-<p>これを使えばバックアップしたデータのうち必要なものだけ抜き出せそう<br />
-SD カードになにもかも保存してくれると移行が楽でいいんだけれどなぁ</p>
-<div class="highlight"><pre>adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
-                             - write an archive of the device&#39;s ...</pre></div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/03/adb-backup.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="/author/lostmangoru.html">&laquo;</a>
@@ -357,8 +370,8 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -367,33 +380,23 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/mac.html">
                             Mac
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
+                        <a href="/tag/hardware.html">
+                            Hardware
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
                         <a href="/tag/e-book.html">
                             e-book
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -407,8 +410,13 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -421,14 +429,9 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                             SHARP
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -437,38 +440,8 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -477,38 +450,33 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/diary.html">
                             Diary
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -522,8 +490,58 @@ SD カードになにもかも保存してくれると移行が楽でいいん�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/ws-50.html">
                             WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

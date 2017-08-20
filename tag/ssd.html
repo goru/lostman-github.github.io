@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>MacUIM - blog.gorugle.org</title>
+    <title>SSD - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
 
 
     <meta name="author" content="lostman/ごる" />
-    <meta name="keywords" content="MacUIM" />
+    <meta name="keywords" content="SSD" />
 
 
 
@@ -75,20 +75,21 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
-                <h2><a href="/posts/2014/08/macuim-mozc.html">MacUIM/Mozcを使う</a></h2>
-                <div class="summary"><p>ターミナルは<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a>をビルドして使用しています<br />
-これはX11のアプリなのでMacの標準のインプットメソッド経由では日本語を入力することができません<br />
-今までほとんど困ることはなくて、必要なときはコピペで対応していました<br />
-ただ最近ここをvimで書いていることもあり、<a href="https://code.google.com/p/macuim/">MacUIM</a>をインストールして入力できるようにしました</p>
-<ol>
-<li>まず上記サイトからダウンロードしてきたアーカイブをインストールします</li>
-<li>次に <code>System Preferences -&gt; Language &amp; Text -&gt; Input Sources</code> で <code>MacUIM (Japanese)</code> のチェックを入れる</li>
-<li><code>System Preferences -&gt; MacUIM</code> を開いて<ol>
-<li><code>General -&gt; Input Method</code> で <code>Mozc</code> を選択</li>
-<li><code>Helper -&gt; Use Helper-Applet</code> をチェック (メニューバーに状態が表示される)</li>
-<li><code>Uim -&gt; Global settings -&gt; Specify default IM</code> をチェック</li>
-<li><code>Uim -&gt; Global settings -&gt; Default input method</code> で ...</li></ol></li></ol>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/08/macuim-mozc.html">more ...</a>
+                <h2><a href="/posts/2017/07/mac-ssd.html">MacBook Air (11-inch, Mid 2012) のSSDをM.2接続のSSDに換装した</a></h2>
+                <div class="summary"><h3>JetDrive高すぎ問題</h3>
+<p>MacBook Air (11-inch, Mid 2012) のメモリを8GBにカスタマイズしたものを使っています。
+このマシンは主に仕事で使っていて、XcodeやらIntelliJやらを入れているので標準の128GBではカツカツの状態でした。
+ちょっと思うところがあってWindowsの仮想マシンを用意したいなと考えたのですが、この状態ではどうにもならないので思い切って換装することにしました。</p>
+<p>MacBook AirのSSDを換装するとなるとTranscendの <a href="https://jp.transcend-info.com/apple/jetdrive/">JetDrive</a> が主な選択肢になるようです。
+ただし <a href="http://amzn.asia/f7ZsZVw">Transcend JetDrive 480GB TS480GJDM520</a> が40196円なのに対して、
+今回購入した <a href="http://amzn.asia/4doAZ53">Crucial MX300 525GB CT525MX300SSD4/JP</a> は18080円で、自作などに使われるM.2のSSDと比べると倍くらいの値段になっています。
+幸い使っているMacBook AirはM.2接続のSSDが使えることがわかっています。
+できれば動作が保証されていそうなJetDriveを使いたいところですが、値段に負けてこちらを選ぶことにしました。</p>
+<p>当然M.2のSSDをそのまま接続することはできないので <a href="http://amzn.asia/9nSJNCb">M.2のコネクタをMacBook AirのSSDのコネクタに変換するアダプタ</a> と、
+<a href="http://amzn.asia/0jF8ZJu">MacBook AirのSSDをSATAへ変換するためのアダプタ</a> も合わせて購入しました。</p>
+<ul>
+<li><a href="http://amzn.asia/4doAZ53">Crucial MX300 525GB CT525MX300SSD4/JP</a> 18080円 ...</li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2017/07/mac-ssd.html">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -325,7 +326,7 @@ blog.gorugle.org            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 lostman/ごる
+         <div class="col-xs-10">&copy; 2017 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

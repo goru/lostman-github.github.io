@@ -74,6 +74,25 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2017/07/mac-ssd.html">MacBook Air (11-inch, Mid 2012) のSSDをM.2接続のSSDに換装した</a></h2>
+                <div class="summary"><h3>JetDrive高すぎ問題</h3>
+<p>MacBook Air (11-inch, Mid 2012) のメモリを8GBにカスタマイズしたものを使っています。
+このマシンは主に仕事で使っていて、XcodeやらIntelliJやらを入れているので標準の128GBではカツカツの状態でした。
+ちょっと思うところがあってWindowsの仮想マシンを用意したいなと考えたのですが、この状態ではどうにもならないので思い切って換装することにしました。</p>
+<p>MacBook AirのSSDを換装するとなるとTranscendの <a href="https://jp.transcend-info.com/apple/jetdrive/">JetDrive</a> が主な選択肢になるようです。
+ただし <a href="http://amzn.asia/f7ZsZVw">Transcend JetDrive 480GB TS480GJDM520</a> が40196円なのに対して、
+今回購入した <a href="http://amzn.asia/4doAZ53">Crucial MX300 525GB CT525MX300SSD4/JP</a> は18080円で、自作などに使われるM.2のSSDと比べると倍くらいの値段になっています。
+幸い使っているMacBook AirはM.2接続のSSDが使えることがわかっています。
+できれば動作が保証されていそうなJetDriveを使いたいところですが、値段に負けてこちらを選ぶことにしました。</p>
+<p>当然M.2のSSDをそのまま接続することはできないので <a href="http://amzn.asia/9nSJNCb">M.2のコネクタをMacBook AirのSSDのコネクタに変換するアダプタ</a> と、
+<a href="http://amzn.asia/0jF8ZJu">MacBook AirのSSDをSATAへ変換するためのアダプタ</a> も合わせて購入しました。</p>
+<ul>
+<li><a href="http://amzn.asia/4doAZ53">Crucial MX300 525GB CT525MX300SSD4/JP</a> 18080円 ...</li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2017/07/mac-ssd.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2017/07/kindle-mobi.html">スキャンしたjpegからKindle用のmobiを作る</a></h2>
                 <div class="summary"><h3>はじめに</h3>
 <p>随分前に <a href="/posts/2014/10/dc-210n.html">裁断機を買いました</a> 。
@@ -308,38 +327,6 @@ ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3V�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/11/wn-g300ua.html">WN-G300UAを使ってみる</a></h2>
-                <div class="summary"><p>今までWiFiのアクセスポイントには <a href="http://buffalo.jp/product/wireless-lan/client/wli-uc-gnm/">WLI-UC-GNM</a> を使用していたのですが、たまにOSごと巻き込んでクラッシュするのとアンテナがないので電波が悪い部屋があったので交換してみることに<br />
-アンテナがついている機種でLinuxでの動作実績がありそうなものを探した結果 <a href="http://www.iodata.jp/product/network/adp/wn-g300ua/">WN-G300UA</a> が <a href="http://itkobo-z.jp/wp/archives/432">RaspberryPiでの動作実績もあるみたい</a> で良さそうだったので購入してみました<br />
-ちなみにWLI-UC-GNMは772円、WN-G300UAは1470円でした<br />
-上述の参考サイトにはモジュールのオプションでパワーマネージメントを無効にすれば普通に動くということだったのですが、これから色々ハマるとは思いもしませんでした…</p>
-<ul>
-<li>このデバイス用のドライバがカーネルに含まれていますがまともに動作しませんでした (繋がるけれどすぐ切れるという動作 Kernel 3.14.48)</li>
-<li>チップセットメーカーもドライバを提供していて参考にしていたサイトではそれを使うように説明がありました<br />
-しかし手元のカーネルではビルドすらできませんでした<br />
-参考にしていたサイトはRaspberryPiを使ったサイトが多かったのですが、彼らの使用しているカーネルは古かったようです</li>
-</ul>
-<p>いろいろ検証した結果ArchLinuxのパッケージで使われているリポジトリとパッチを当てたものを使用すれば動作することがわかりました<br />
-Arch以外のディストリビュージョンではそのままビルドすることができないのでArchで使っているリポジトリをサブモジュールにしてMakefileとWN-G300UA用のパッチを追加したリポジトリを作成しました</p>
-<ul>
-<li><a href="https://github.com/lostman-github/8192cu">8192cu</a></li>
-<li><a href="https://github.com/lostman-github/hostapd-rtl">hostapd-rtl</a></li>
-</ul>
-<p>以下の手順でビルドすることができます</p>
-<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/lostman-github/8192cu
-<span class="nv">$ </span><span class="nb">cd </span>8192cu
-<span class="nv">$ </span>git checkout WN-G300UA
-<span class="nv">$ </span>git submodule init
-<span class="nv">$ </span>git submodule update
-<span class="nv">$ </span>make
-<span class="nv">$ </span><span class="nb">cd</span> -
-
-<span class="nv">$ </span>git clone ...</pre></div>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/11/wn-g300ua.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -386,8 +373,8 @@ Arch以外のディストリビュージョンではそのままビルドする�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -396,33 +383,23 @@ Arch以外のディストリビュージョンではそのままビルドする�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/mac.html">
                             Mac
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
+                        <a href="/tag/hardware.html">
+                            Hardware
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
                         <a href="/tag/e-book.html">
                             e-book
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -436,8 +413,13 @@ Arch以外のディストリビュージョンではそのままビルドする�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -450,14 +432,9 @@ Arch以外のディストリビュージョンではそのままビルドする�
                             SHARP
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -466,38 +443,8 @@ Arch以外のディストリビュージョンではそのままビルドする�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -506,38 +453,33 @@ Arch以外のディストリビュージョンではそのままビルドする�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/diary.html">
                             Diary
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
+                        <a href="/tag/kindle.html">
+                            Kindle
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -551,8 +493,58 @@ Arch以外のディストリビュージョンではそのままビルドする�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/ws-50.html">
                             WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

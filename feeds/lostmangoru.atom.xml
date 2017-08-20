@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2017-07-08T23:10:00+09:00</updated><entry><title>スキャンしたjpegからKindle用のmobiを作る</title><link href="/posts/2017/07/kindle-mobi.html" rel="alternate"></link><updated>2017-07-08T23:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-07-08:posts/2017/07/kindle-mobi.html</id><summary type="html">&lt;h3&gt;はじめに&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2017-07-15T23:10:00+09:00</updated><entry><title>MacBook Air (11-inch, Mid 2012) のSSDをM.2接続のSSDに換装した</title><link href="/posts/2017/07/mac-ssd.html" rel="alternate"></link><updated>2017-07-15T23:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-07-15:posts/2017/07/mac-ssd.html</id><summary type="html">&lt;h3&gt;JetDrive高すぎ問題&lt;/h3&gt;
+&lt;p&gt;MacBook Air (11-inch, Mid 2012) のメモリを8GBにカスタマイズしたものを使っています。
+このマシンは主に仕事で使っていて、XcodeやらIntelliJやらを入れているので標準の128GBではカツカツの状態でした。
+ちょっと思うところがあってWindowsの仮想マシンを用意したいなと考えたのですが、この状態ではどうにもならないので思い切って換装することにしました。&lt;/p&gt;
+&lt;p&gt;MacBook AirのSSDを換装するとなるとTranscendの &lt;a href="https://jp.transcend-info.com/apple/jetdrive/"&gt;JetDrive&lt;/a&gt; が主な選択肢になるようです。
+ただし &lt;a href="http://amzn.asia/f7ZsZVw"&gt;Transcend JetDrive 480GB TS480GJDM520&lt;/a&gt; が40196円なのに対して、
+今回購入した &lt;a href="http://amzn.asia/4doAZ53"&gt;Crucial MX300 525GB CT525MX300SSD4/JP&lt;/a&gt; は18080円で、自作などに使われるM.2のSSDと比べると倍くらいの値段になっています。
+幸い使っているMacBook AirはM.2接続のSSDが使えることがわかっています。
+できれば動作が保証されていそうなJetDriveを使いたいところですが、値段に負けてこちらを選ぶことにしました。&lt;/p&gt;
+&lt;p&gt;当然M.2のSSDをそのまま接続することはできないので &lt;a href="http://amzn.asia/9nSJNCb"&gt;M.2のコネクタをMacBook AirのSSDのコネクタに変換するアダプタ&lt;/a&gt; と、
+&lt;a href="http://amzn.asia/0jF8ZJu"&gt;MacBook AirのSSDをSATAへ変換するためのアダプタ&lt;/a&gt; も合わせて購入しました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://amzn.asia/4doAZ53"&gt;Crucial MX300 525GB CT525MX300SSD4/JP&lt;/a&gt; 18080円&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.asia/9nSJNCb"&gt;M.2のコネクタをMacBook AirのSSDのコネクタに変換するアダプタ&lt;/a&gt; 1080円&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.asia/0jF8ZJu"&gt;MacBook AirのSSDをSATAへ変換するためのアダプタ&lt;/a&gt; 1450円&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="/static/images/2017/07/DSC_1410.JPG"&gt;&lt;img alt="image" src="/static/images/2017/07/DSC_1410_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;これ以外に今回の場合SATAをUSBに変換するアダプタが必要でしたが、これは手持ちのものが使えました。
+あとネジが特殊なので裏蓋用とSSD用の2種類のドライバーが必要だと思います。同僚が持っていたので借りることができました。
+少し省かれたものもありますが、だいたい2万円程度で512GBへ換装することができることになります。
+個人的に4万かかることに少し抵抗があったので、2万ちょっとで済むとなるとやってもいいかなという気持ちになりました。
+換装後に残るMacBook AirのSSDはSATAに変換するアダプタも残るので、サーバマシンにでも内蔵しようかと思います。&lt;/p&gt;
+&lt;h3&gt;使い方と手順&lt;/h3&gt;
+&lt;p&gt;これらを組み合わせて換装の作業ではこのように使いました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MX300(M.2のSSD)をUSB経由で接続するときは&lt;br /&gt;
+  [MX300] -&amp;gt; [M.2 -&amp;gt; MBA変換] -&amp;gt; [MBA -&amp;gt; SATA変換] -&amp;gt; [SATA -&amp;gt; USB変換] -&amp;gt; [MBAのUSB]&lt;/li&gt;
+&lt;li&gt;MX300をMacBook Airに内蔵するときは&lt;br /&gt;
+  [MX300] -&amp;gt; [M.2 -&amp;gt; MBA変換] -&amp;gt; [MBA内のコネクタ]&lt;/li&gt;
+&lt;li&gt;MacBook AirのSSDをUSB経由で接続するときは&lt;br /&gt;
+  [MBAのSSD] -&amp;gt; [MBA -&amp;gt; SATA変換] -&amp;gt; [SATA -&amp;gt; USB変換] -&amp;gt; [MBAのUSB]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;実際の換装の手順は以下のようになります。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MX300をUSB経由でMacBook Airへ接続&lt;/li&gt;
+&lt;li&gt;MacBook Airをリカバリーモードで起動&lt;/li&gt;
+&lt;li&gt;MX300を初期化 (パーティションの作成&amp;amp;フォーマット)&lt;/li&gt;
+&lt;li&gt;MacBook AirのSSDからMX300へディスクユーティリティの復元機能を使ってデータを移行&lt;/li&gt;
+&lt;li&gt;MacBook Airの裏蓋を開けて実際に換装&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;1-3はリカバリーモードへの入り方 ( &lt;a href="https://support.apple.com/ja-jp/HT201255"&gt;command + Rを押しながら起動&lt;/a&gt; ) 以外は特に引っかかるところはありませんでした。
+4の復元のやり方と、5での換装時に外しておくべき電源ケーブルの位置がよくわからなかったので以下にまとめておきます。&lt;/p&gt;
+&lt;h3&gt;4. MacBook AirのSSDからMX300へディスクユーティリティの復元機能を使ってデータを移行&lt;/h3&gt;
+&lt;p&gt;復元をする際に復元元と復元先、それぞれの対象を指定する必要がありますが、
+元々Macユーザーではないせいか使い方がよくわかりませんでした。
+結論としてはまず &lt;code&gt;復元先&lt;/code&gt; の &lt;code&gt;パーティション&lt;/code&gt; を選択してメニューの復元を実行します。
+&lt;code&gt;復元元&lt;/code&gt; を選ぶダイアログが表示されるので、ここで復元元の &lt;code&gt;パーティション&lt;/code&gt; を選択して実行すればOKです。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2017/07/DSC_1419.JPG"&gt;&lt;img alt="image" src="/static/images/2017/07/DSC_1419_s.JPG" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2017/07/DSC_1421.JPG"&gt;&lt;img alt="image" src="/static/images/2017/07/DSC_1421_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;5. MacBook Airの裏蓋を開けて実際に換装&lt;/h3&gt;
+&lt;p&gt;ネジを外して裏蓋を開けるとバッテリーとSSD等にアクセスできます。
+まず電源コネクタを上へ持ち上げるようにして外します。 (横方向へスライドさせるのではないので注意)
+次にSSDのネジを外してSSDを横方向にスライドさせて取り外します。
+取り付けは逆の手順で行います。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2017/07/DSC_1427.JPG"&gt;&lt;img alt="image" src="/static/images/2017/07/DSC_1427_s.JPG" /&gt;&lt;/a&gt;
+&lt;a href="/static/images/2017/07/DSC_1428.JPG"&gt;&lt;img alt="image" src="/static/images/2017/07/DSC_1428_s.JPG" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;おわり&lt;/h3&gt;
+&lt;p&gt;無事新しいSSDで起動できたら作業は終わりです。
+念の為旧SSDをUSB経由で接続して復元機能を使ってイメージでバックアップを取っておきました。&lt;/p&gt;
+&lt;p&gt;純正でないSSDではTrimが無効になるみたい &lt;a href="http://www.softantenna.com/wp/mac/trimforce-on-os-x-el-capitan-2/"&gt;*&lt;/a&gt; なので、
+trimforceコマンドを使って手動で有効にしました。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo trimforce &lt;span class="nb"&gt;enable&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;現在の状態は &lt;code&gt;システム情報&lt;/code&gt; から確認できます。&lt;/p&gt;
+&lt;p&gt;&lt;a href="/static/images/2017/07/trim.png"&gt;&lt;img alt="image" src="/static/images/2017/07/trim.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;速度は計測していませんが、特別不満も感じないのでそこそこ出ているのでしょう (多分)
+比較的安くストレージを増強することができました。&lt;/p&gt;</summary><category term="Mac"></category><category term="SSD"></category></entry><entry><title>スキャンしたjpegからKindle用のmobiを作る</title><link href="/posts/2017/07/kindle-mobi.html" rel="alternate"></link><updated>2017-07-08T23:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-07-08:posts/2017/07/kindle-mobi.html</id><summary type="html">&lt;h3&gt;はじめに&lt;/h3&gt;
 &lt;p&gt;随分前に &lt;a href="/posts/2014/10/dc-210n.html"&gt;裁断機を買いました&lt;/a&gt; 。
 この時にスキャンしたものはjpegをzipで固めてSambaの共有ディレクトリに配置、Nexus9で &lt;a href="https://play.google.com/store/apps/details?id=jp.dip.muracoro.comitton&amp;amp;hl=ja"&gt;ComittoN&lt;/a&gt; を使って閲覧できるようにしていました。
 この形はデバイス本体にファイルを置かないため、ストレージの空きを気にしなくてよいのがメリットな一方、当たり前ながらSambaにアクセスできる環境でしかファイルを閲覧できません。
