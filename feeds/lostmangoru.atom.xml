@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2017-07-15T23:10:00+09:00</updated><entry><title>MacBook Air (11-inch, Mid 2012) のSSDをM.2接続のSSDに換装した</title><link href="/posts/2017/07/mac-ssd.html" rel="alternate"></link><updated>2017-07-15T23:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-07-15:posts/2017/07/mac-ssd.html</id><summary type="html">&lt;h3&gt;JetDrive高すぎ問題&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2017-09-09T00:51:00+09:00</updated><entry><title>Kodiのフォントを雑に変更する</title><link href="/posts/2017/09/kodi-font.html" rel="alternate"></link><updated>2017-09-09T00:51:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-09-09:posts/2017/09/kodi-font.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.sony.jp/bravia/products/KJ-X8500D/"&gt;BRAVIA KJ-55X8500D&lt;/a&gt; に &lt;a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi"&gt;Kodi&lt;/a&gt;
+をインストールしているのですが、中華フォントが使われるので簡単にフォントを追加変更する方法がないか調べてみました。&lt;/p&gt;
+&lt;p&gt;現状では変更するUIはあるけれど、 &lt;code&gt;スキンのデフォルト&lt;/code&gt; を使うか、 &lt;code&gt;Arialベース&lt;/code&gt; の2択のみで、
+パスを指定してフォントを追加したりといったことはできませんでした。
+正攻法 (&lt;a href="http://kodi.wiki/view/HOW-TO:Add_a_new_true_type_font_to_the_skin"&gt;HOW-TO:Add_a_new_true_type_font_to_the_skin&lt;/a&gt;) では
+スキンを編集して使用可能なフォントを定義した上で、スキンのディレクトリにフォントを配置することになるみたいです。
+しかしデフォルトのスキンはAndroidでは書き込み権限がある場所にないため、コピーするなりして新規に作る必要がありそうです。
+それは面倒くさい。&lt;/p&gt;
+&lt;p&gt;KodiのWikiのフォントについてのページ (&lt;a href="http://kodi.wiki/view/Fonts"&gt;Fonts&lt;/a&gt;) を確認したら、
+フォントの読み込みは以下のようになっているらしく、スキンのディレクトリ以下にフォントがない場合は、
+次に &lt;code&gt;XBMC/media/fonts&lt;/code&gt; を見に行くようです。
+(おそらく最終的にKodiのインストールされているディレクトリのフォントを見に行く。)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;There&amp;#39;s one special file called font.xml. This file contains a list of all fonts the skin uses.
+XBMC will load all the fonts mentioned in this file from the /myskin/fonts directory first,
+and if that fails, will attempt to load them from XBMC/media/fonts.
+In the event that Kodi is unable to locate the specified font, it will default to &amp;quot;font13&amp;quot;.
+You can modify this file as you like and add/delete/change fonts.
+The user friendly font name is referenced by the other xml files mentioned below.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;XBMC/media/fonts&lt;/code&gt; とはどこかというと字幕のページ (&lt;a href="http://kodi.wiki/view/subtitles#Adding_fonts"&gt;subtitles#Adding_fonts&lt;/a&gt;)
+にちょっとだけ出てきていました。
+Userdataフォルダの1つ上が &lt;code&gt;Kodi(XMBC) folder&lt;/code&gt; ということらしいです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Additional fonts can be stored in the Kodi folder (one level below userdata) at Kodi/media/Fonts/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;で、Userdataフォルダがどこかというと、これについては専用のページ (&lt;a href="http://kodi.wiki/view/Userdata#Android_location"&gt;Userdata#Android_location&lt;/a&gt;)
+があって、Androidであれば &lt;code&gt;/sdcard/Android/data/org.xbmc.kodi/files/.kodi/userdata/&lt;/code&gt; になるみたいです。
+ということは、&lt;code&gt;/sdcard/Android/data/org.xbmc.kodi/files/.kodi/media/Fonts/&lt;/code&gt; です。
+ここなら書き込み権限があるので、任意のフォントを配置することができます。&lt;/p&gt;
+&lt;p&gt;AndroidではバージョンやデバイスによってSDカードのディレクトリが微妙に違うことがあります。
+KJ-55X8500Dでの正確なパスは &lt;code&gt;/storage/sdcard0/Android/data/org.xbmc.kodi/files/.kodi/media/Fonts/&lt;/code&gt; でした。&lt;/p&gt;
+&lt;p&gt;設定で &lt;code&gt;Arialベース&lt;/code&gt; を選択するとKodiは &lt;code&gt;arial.ttf&lt;/code&gt; を決められたフォルダを順に探すので、
+上で調べたディレクトリにこのファイル名で配置しておけばOK。&lt;/p&gt;
+&lt;p&gt;AndroidTVはUSB経由でADBにつなぐことができないので、デバッグを有効にしたらWiFi経由で接続&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb connect &amp;lt;IP Address&amp;gt;:5555
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;fonts&lt;/code&gt; フォルダがないので作成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb shell mkdir /storage/sdcard0/Android/data/org.xbmc.kodi/files/.kodi/media/fonts
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;任意のフォントを &lt;code&gt;arial.ttf&lt;/code&gt; として保存&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb push &lt;span class="s2"&gt;&amp;quot;/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc&amp;quot;&lt;/span&gt; /storage/sdcard0/Android/data/org.xbmc.kodi/files/.kodi/media/fonts/arial.ttf
+/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc: &lt;span class="m"&gt;1&lt;/span&gt; file pushed. 1.3 MB/s &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;7260984&lt;/span&gt; bytes in 5.419s&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;切断&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;adb disconnect &amp;lt;IP Address&amp;gt;:5555
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;作業が終わったらデバッグを無効にしておく。
+Kodiを再起動すると新しいフォントが使われるようになっているはず。
+離れた場所から見るのに適したフォントがあるのかもしれないけれど、そのあたりの試行錯誤は後日。&lt;/p&gt;</summary><category term="Android"></category><category term="Kodi"></category></entry><entry><title>MacBook Air (11-inch, Mid 2012) のSSDをM.2接続のSSDに換装した</title><link href="/posts/2017/07/mac-ssd.html" rel="alternate"></link><updated>2017-07-15T23:10:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-07-15:posts/2017/07/mac-ssd.html</id><summary type="html">&lt;h3&gt;JetDrive高すぎ問題&lt;/h3&gt;
 &lt;p&gt;MacBook Air (11-inch, Mid 2012) のメモリを8GBにカスタマイズしたものを使っています。
 このマシンは主に仕事で使っていて、XcodeやらIntelliJやらを入れているので標準の128GBではカツカツの状態でした。
 ちょっと思うところがあってWindowsの仮想マシンを用意したいなと考えたのですが、この状態ではどうにもならないので思い切って換装することにしました。&lt;/p&gt;

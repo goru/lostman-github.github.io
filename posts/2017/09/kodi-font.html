@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Macのホスト名を固定する - blog.gorugle.org</title>
+    <title>Kodiのフォントを雑に変更する - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
 
 
 
-<link rel="canonical" href="/posts/2014/11/mac-hostname.html">
+<link rel="canonical" href="/posts/2017/09/kodi-font.html">
 
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Mac" />
-        <meta name="description" content="自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ $ scutil --get HostName HostName: not set この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい オフィスの環境だとならないけれど、自宅の環境だと System Preferences -&gt; Sharing で 元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう ここの Edit を押すと Use dynamic global hostname といういかにもそれっぽい設定があるけれどこれは特に効果はなし そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる # scutil --set HostName YourHostName ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない そのためここで元々の設定とは全く別の値を指定することができるが 混乱の元なのでそういったことが起きないように気をつける必要がある" />
+        <meta name="keywords" content="Android,Kodi" />
+        <meta name="description" content="BRAVIA KJ-55X8500D に Kodi をインストールしているのですが、中華フォントが使われるので簡単にフォントを追加変更する方法がないか調べてみました。 現状では変更するUIはあるけれど、 スキンのデフォルト を使うか、 Arialベース の2択のみで、 パスを指定してフォントを追加したりといったことはできませんでした。 正攻法 (HOW-TO:Add_a_new_true_type_font_to_the_skin) では スキンを編集して使用可能なフォントを定義した上で、スキンのディレクトリにフォントを配置することになるみたいです。 しかしデフォルトのスキンはAndroidでは書き込み権限がある場所にないため、コピーするなりして新規に作る必要がありそうです。 それは面倒くさい。 KodiのWikiのフォントについてのページ (Fonts) を確認したら、 フォントの読み込みは以下のようになっているらしく、スキンのディレクトリ以下にフォントがない場合は、 次に XBMC/media/fonts を見に行くようです。 (おそらく最終的にKodiのインストールされているディレクトリのフォントを見に行く。) There&#39;s one special file called font.xml. This file contains a list of all fonts the skin ..." />
 
 
 
@@ -80,10 +80,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2014/11/mac-hostname.html"
+                    <a href="/posts/2017/09/kodi-font.html"
                        rel="bookmark"
-                       title="Permalink to Macのホスト名を固定する">
-                        Macのホスト名を固定する
+                       title="Permalink to Kodiのフォントを雑に変更する">
+                        Kodiのフォントを雑に変更する
                     </a>
                 </h1>
             </header>
@@ -93,7 +93,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2014-11-10T09:51:00+09:00"> 2014/11/10 Mon</time>
+        <time datetime="2017-09-09T00:51:00+09:00"> 2017/09/09 Sat</time>
     </span>
 
 
@@ -101,28 +101,72 @@ blog.gorugle.org            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/mac.html">Mac</a>
+	<a href="/tag/android.html">Android</a>
+        /
+	<a href="/tag/kodi.html">Kodi</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ</p>
-<div class="highlight"><pre><span class="nv">$ </span>scutil --get HostName
-HostName: not <span class="nb">set</span>
+                <p><a href="http://www.sony.jp/bravia/products/KJ-X8500D/">BRAVIA KJ-55X8500D</a> に <a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi">Kodi</a>
+をインストールしているのですが、中華フォントが使われるので簡単にフォントを追加変更する方法がないか調べてみました。</p>
+<p>現状では変更するUIはあるけれど、 <code>スキンのデフォルト</code> を使うか、 <code>Arialベース</code> の2択のみで、
+パスを指定してフォントを追加したりといったことはできませんでした。
+正攻法 (<a href="http://kodi.wiki/view/HOW-TO:Add_a_new_true_type_font_to_the_skin">HOW-TO:Add_a_new_true_type_font_to_the_skin</a>) では
+スキンを編集して使用可能なフォントを定義した上で、スキンのディレクトリにフォントを配置することになるみたいです。
+しかしデフォルトのスキンはAndroidでは書き込み権限がある場所にないため、コピーするなりして新規に作る必要がありそうです。
+それは面倒くさい。</p>
+<p>KodiのWikiのフォントについてのページ (<a href="http://kodi.wiki/view/Fonts">Fonts</a>) を確認したら、
+フォントの読み込みは以下のようになっているらしく、スキンのディレクトリ以下にフォントがない場合は、
+次に <code>XBMC/media/fonts</code> を見に行くようです。
+(おそらく最終的にKodiのインストールされているディレクトリのフォントを見に行く。)</p>
+<div class="highlight"><pre>There&#39;s one special file called font.xml. This file contains a list of all fonts the skin uses.
+XBMC will load all the fonts mentioned in this file from the /myskin/fonts directory first,
+and if that fails, will attempt to load them from XBMC/media/fonts.
+In the event that Kodi is unable to locate the specified font, it will default to &quot;font13&quot;.
+You can modify this file as you like and add/delete/change fonts.
+The user friendly font name is referenced by the other xml files mentioned below.
 </pre></div>
 
 
-<p>この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい<br />
-オフィスの環境だとならないけれど、自宅の環境だと <code>System Preferences -&gt; Sharing</code> で<br />
-元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう<br />
-ここの <code>Edit</code> を押すと <code>Use dynamic global hostname</code> といういかにもそれっぽい設定があるけれどこれは特に効果はなし<br />
-そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる</p>
-<div class="highlight"><pre><span class="c"># scutil --set HostName YourHostName</span>
+<p><code>XBMC/media/fonts</code> とはどこかというと字幕のページ (<a href="http://kodi.wiki/view/subtitles#Adding_fonts">subtitles#Adding_fonts</a>)
+にちょっとだけ出てきていました。
+Userdataフォルダの1つ上が <code>Kodi(XMBC) folder</code> ということらしいです。</p>
+<div class="highlight"><pre>Additional fonts can be stored in the Kodi folder (one level below userdata) at Kodi/media/Fonts/
 </pre></div>
 
 
-<p>ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない<br />
-そのためここで元々の設定とは全く別の値を指定することができるが<br />
-混乱の元なのでそういったことが起きないように気をつける必要がある</p>
+<p>で、Userdataフォルダがどこかというと、これについては専用のページ (<a href="http://kodi.wiki/view/Userdata#Android_location">Userdata#Android_location</a>)
+があって、Androidであれば <code>/sdcard/Android/data/org.xbmc.kodi/files/.kodi/userdata/</code> になるみたいです。
+ということは、<code>/sdcard/Android/data/org.xbmc.kodi/files/.kodi/media/Fonts/</code> です。
+ここなら書き込み権限があるので、任意のフォントを配置することができます。</p>
+<p>AndroidではバージョンやデバイスによってSDカードのディレクトリが微妙に違うことがあります。
+KJ-55X8500Dでの正確なパスは <code>/storage/sdcard0/Android/data/org.xbmc.kodi/files/.kodi/media/Fonts/</code> でした。</p>
+<p>設定で <code>Arialベース</code> を選択するとKodiは <code>arial.ttf</code> を決められたフォルダを順に探すので、
+上で調べたディレクトリにこのファイル名で配置しておけばOK。</p>
+<p>AndroidTVはUSB経由でADBにつなぐことができないので、デバッグを有効にしたらWiFi経由で接続</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb connect &lt;IP Address&gt;:5555
+</pre></div>
+
+
+<p><code>fonts</code> フォルダがないので作成</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb shell mkdir /storage/sdcard0/Android/data/org.xbmc.kodi/files/.kodi/media/fonts
+</pre></div>
+
+
+<p>任意のフォントを <code>arial.ttf</code> として保存</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb push <span class="s2">&quot;/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc&quot;</span> /storage/sdcard0/Android/data/org.xbmc.kodi/files/.kodi/media/fonts/arial.ttf
+/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc: <span class="m">1</span> file pushed. 1.3 MB/s <span class="o">(</span><span class="m">7260984</span> bytes in 5.419s<span class="o">)</span>
+</pre></div>
+
+
+<p>切断</p>
+<div class="highlight"><pre><span class="nv">$ </span>adb disconnect &lt;IP Address&gt;:5555
+</pre></div>
+
+
+<p>作業が終わったらデバッグを無効にしておく。
+Kodiを再起動すると新しいフォントが使われるようになっているはず。
+離れた場所から見るのに適したフォントがあるのかもしれないけれど、そのあたりの試行錯誤は後日。</p>
             </div>
             <!-- /.entry-content -->
         </article>

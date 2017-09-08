@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Macのホスト名を固定する - blog.gorugle.org</title>
+    <title>Kodi - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,11 +9,9 @@
 
 
 
-<link rel="canonical" href="/posts/2014/11/mac-hostname.html">
 
-        <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Mac" />
-        <meta name="description" content="自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ $ scutil --get HostName HostName: not set この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい オフィスの環境だとならないけれど、自宅の環境だと System Preferences -&gt; Sharing で 元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう ここの Edit を押すと Use dynamic global hostname といういかにもそれっぽい設定があるけれどこれは特に効果はなし そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる # scutil --set HostName YourHostName ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない そのためここで元々の設定とは全く別の値を指定することができるが 混乱の元なのでそういったことが起きないように気をつける必要がある" />
+    <meta name="author" content="lostman/ごる" />
+    <meta name="keywords" content="Kodi" />
 
 
 
@@ -45,7 +43,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -76,57 +74,25 @@ blog.gorugle.org            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="/posts/2014/11/mac-hostname.html"
-                       rel="bookmark"
-                       title="Permalink to Macのホスト名を固定する">
-                        Macのホスト名を固定する
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <time datetime="2014-11-10T09:51:00+09:00"> 2014/11/10 Mon</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/mac.html">Mac</a>
-    
-</footer><!-- /.post-info -->                    </div>
+            <article>
+                <h2><a href="/posts/2017/09/kodi-font.html">Kodiのフォントを雑に変更する</a></h2>
+                <div class="summary"><p><a href="http://www.sony.jp/bravia/products/KJ-X8500D/">BRAVIA KJ-55X8500D</a> に <a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi">Kodi</a>
+をインストールしているのですが、中華フォントが使われるので簡単にフォントを追加変更する方法がないか調べてみました。</p>
+<p>現状では変更するUIはあるけれど、 <code>スキンのデフォルト</code> を使うか、 <code>Arialベース</code> の2択のみで、
+パスを指定してフォントを追加したりといったことはできませんでした。
+正攻法 (<a href="http://kodi.wiki/view/HOW-TO:Add_a_new_true_type_font_to_the_skin">HOW-TO:Add_a_new_true_type_font_to_the_skin</a>) では
+スキンを編集して使用可能なフォントを定義した上で、スキンのディレクトリにフォントを配置することになるみたいです。
+しかしデフォルトのスキンはAndroidでは書き込み権限がある場所にないため、コピーするなりして新規に作る必要がありそうです。
+それは面倒くさい。</p>
+<p>KodiのWikiのフォントについてのページ (<a href="http://kodi.wiki/view/Fonts">Fonts</a>) を確認したら、
+フォントの読み込みは以下のようになっているらしく、スキンのディレクトリ以下にフォントがない場合は、
+次に <code>XBMC/media/fonts</code> を見に行くようです。
+(おそらく最終的にKodiのインストールされているディレクトリのフォントを見に行く。)</p>
+<div class="highlight"><pre>There&#39;s one special file called font.xml. This file contains a list of all fonts the skin ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2017/09/kodi-font.html">more ...</a>
                 </div>
-                <p>自宅のMacでは設定済みだったんだけれど、オフィスのMacでは未設定だったのでメモ</p>
-<div class="highlight"><pre><span class="nv">$ </span>scutil --get HostName
-HostName: not <span class="nb">set</span>
-</pre></div>
-
-
-<p>この結果になる場合ターミナルで表示されるホスト名がDNSから逆引きしたものになることがあるみたい<br />
-オフィスの環境だとならないけれど、自宅の環境だと <code>System Preferences -&gt; Sharing</code> で<br />
-元々設定してある大文字小文字混じりのホスト名が全て小文字に変わってしまう<br />
-ここの <code>Edit</code> を押すと <code>Use dynamic global hostname</code> といういかにもそれっぽい設定があるけれどこれは特に効果はなし<br />
-そのような場合は冒頭で確認するために使ったコマンドを使って固定することができる</p>
-<div class="highlight"><pre><span class="c"># scutil --set HostName YourHostName</span>
-</pre></div>
-
-
-<p>ただこの設定はSystem Preferencesの設定とは別にあるようで同期しない<br />
-そのためここで元々の設定とは全く別の値を指定することができるが<br />
-混乱の元なのでそういったことが起きないように気をつける必要がある</p>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3" id="sidebar">
