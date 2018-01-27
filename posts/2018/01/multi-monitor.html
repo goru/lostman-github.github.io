@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>SketchUpをLinuxにインストール - blog.gorugle.org</title>
+    <title>Linuxで複数モニタを使うときのメモ - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
 
 
 
-<link rel="canonical" href="/posts/2015/06/sketchup-wine.html">
+<link rel="canonical" href="/posts/2018/01/multi-monitor.html">
 
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Linux" />
-        <meta name="description" content="SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした 大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった WineHQ にも SketchUpのWikiページ があり情報がまとめられています ただ多少ハマった部分があったのでやったことを残しておく まず 公式サイト からインストーラを入手する 自分がダウンロードしたのは SketchUpMake-ja-x64.exe だった インストール後にバージョンを確認したら 15.3.331 64ビット となっていた デフォルトの Windows XP だとバージョンチェックで起動できないので winecfg を起動して Windows 7 へ変更する インストールするディレクトリを変えたい場合は WINEPREFIX 環境変数を使ってwine関係のコマンドを実行する (デフォルトでは ~/.wine ..." />
+        <meta name="keywords" content="Gentoo,Linux" />
+        <meta name="description" content="以前買った IGZO液晶 はたまにRaspberryPiを接続したり、 臨時のモニタとして活躍していました。ただ、最近活躍の機会もあまりないのと、 小画面で常時表示しておきたいような用途を思いついたのでデスクトップPCのサブモニタとしてしばらく使ってみることにしました。 デスクトップPCのマザーボードは H77M-ITX を使っていて、 既存のモニタはDVI経由で接続しています。 このマザーボードはDVIとHDMI両方を使ってのマルチモニタに対応しているので、素直にHDMIに接続すれば物理的な準備は終わり。 ただ縦長の解像度が問題なのか、一般的なモニタを接続した場合も同じなのかはわからないけれど、 両方のモニタを接続しているとBIOSの画面が表示されなくなりました。 (キーを押すと入れはするけれど画面の表示がされない状態) その為BIOSに入る必要がある時はIGZO液晶側の電源を切るかケーブルを抜いておく必要がありました。 次にLinux側の対応で、やりたいことは以下の3つ ミラーリングになっていたのでそれぞれ別に使えるようにする。 今まで使っていたモニタを今まで通りメインのモニタとして使う。 IGZO液晶はポートレート表示がデフォルトなので回転させてランドスケープで使う。 IGZO液晶はメインモニタの左側に配置する。 調べてみたら設定を変更するにはxrandrを使って動的に変更するかxorg.confに静的に書くかの2通りがありました。 その他にディスプレイマネージャにSLiMを使っていたのですが、 もう 開発が止まっているらしい のとマルチモニタに対応していないみたいなので、 LigntDM に置き換えました。 ウインドウマネージャは Awesome でこちらは対応していて特に設定の必要なく使えました。 xrandrを使うにしろ、xorg.confに書くにしろ、まずLinux側にどのように認識されているか調べる必要があります。 単純にxrandrコマンドを実行すれば現在の状況が確認できました。 $ xrandr Screen 0: minimum 8 x 8, current 3840 x ..." />
 
 
 
@@ -80,10 +80,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2015/06/sketchup-wine.html"
+                    <a href="/posts/2018/01/multi-monitor.html"
                        rel="bookmark"
-                       title="Permalink to SketchUpをLinuxにインストール">
-                        SketchUpをLinuxにインストール
+                       title="Permalink to Linuxで複数モニタを使うときのメモ">
+                        Linuxで複数モニタを使うときのメモ
                     </a>
                 </h1>
             </header>
@@ -93,7 +93,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2015-06-06T01:51:00+09:00"> 2015/06/06 Sat</time>
+        <time datetime="2018-01-25T01:14:00+09:00"> 2018/01/25 Thu</time>
     </span>
 
 
@@ -101,77 +101,101 @@ blog.gorugle.org            </a>
 
 
 <span class="label label-default">Tags</span>
+	<a href="/tag/gentoo.html">Gentoo</a>
+        /
 	<a href="/tag/linux.html">Linux</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
-大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
-SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
-<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
-ただ多少ハマった部分があったのでやったことを残しておく</p>
-<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
-自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
-インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
-<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
-インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
-(デフォルトでは <code>~/.wine</code> が使われる)</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup winecfg
+                <p>以前買った <a href="/posts/2015/12/akizuki-igzo.html">IGZO液晶</a> はたまにRaspberryPiを接続したり、
+臨時のモニタとして活躍していました。ただ、最近活躍の機会もあまりないのと、
+小画面で常時表示しておきたいような用途を思いついたのでデスクトップPCのサブモニタとしてしばらく使ってみることにしました。</p>
+<p>デスクトップPCのマザーボードは <a href="https://www.asrock.com/mb/Intel/H77M-ITX/index.jp.asp">H77M-ITX</a> を使っていて、
+既存のモニタはDVI経由で接続しています。
+このマザーボードはDVIとHDMI両方を使ってのマルチモニタに対応しているので、素直にHDMIに接続すれば物理的な準備は終わり。</p>
+<p>ただ縦長の解像度が問題なのか、一般的なモニタを接続した場合も同じなのかはわからないけれど、
+両方のモニタを接続しているとBIOSの画面が表示されなくなりました。
+(キーを押すと入れはするけれど画面の表示がされない状態)
+その為BIOSに入る必要がある時はIGZO液晶側の電源を切るかケーブルを抜いておく必要がありました。</p>
+<p>次にLinux側の対応で、やりたいことは以下の3つ</p>
+<ul>
+<li>ミラーリングになっていたのでそれぞれ別に使えるようにする。</li>
+<li>今まで使っていたモニタを今まで通りメインのモニタとして使う。</li>
+<li>IGZO液晶はポートレート表示がデフォルトなので回転させてランドスケープで使う。</li>
+<li>IGZO液晶はメインモニタの左側に配置する。</li>
+</ul>
+<p>調べてみたら設定を変更するにはxrandrを使って動的に変更するかxorg.confに静的に書くかの2通りがありました。</p>
+<p>その他にディスプレイマネージャにSLiMを使っていたのですが、
+もう <a href="https://wiki.archlinux.org/index.php/SLiM">開発が止まっているらしい</a> のとマルチモニタに対応していないみたいなので、
+<a href="https://www.freedesktop.org/wiki/Software/LightDM/">LigntDM</a> に置き換えました。
+ウインドウマネージャは <a href="https://awesomewm.org/">Awesome</a> でこちらは対応していて特に設定の必要なく使えました。</p>
+<p>xrandrを使うにしろ、xorg.confに書くにしろ、まずLinux側にどのように認識されているか調べる必要があります。
+単純にxrandrコマンドを実行すれば現在の状況が確認できました。</p>
+<div class="highlight"><pre><span class="nv">$ </span>xrandr
+Screen 0: minimum <span class="m">8</span> x 8, current <span class="m">3840</span> x 1200, maximum <span class="m">32767</span> x 32767
+DP1 disconnected primary <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span>
+DP2 disconnected <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span>
+DP3 disconnected <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span>
+HDMI1 connected 1920x1200+1920+0 <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span> 550mm x 350mm
+   1920x1200     59.95*+
+   1920x1080     60.00
+   1600x1200     60.00
+   1680x1050     59.88
+   1280x1024     75.02    60.02
+   1440x900      59.90
+   1280x960      60.00
+   1152x864      75.00
+   1024x768      75.08    70.07    60.00
+   832x624       74.55
+   800x600       72.19    75.00    60.32    56.25
+   640x480       75.00    72.81    66.67    60.00
+   720x400       70.08
+HDMI2 disconnected <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span>
+HDMI3 connected 1920x1200+0+0 left <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span> 90mm x 150mm
+   1200x1920     60.00*+
+VGA1 disconnected <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span>
+VIRTUAL1 disconnected <span class="o">(</span>normal left inverted right x axis y axis<span class="o">)</span>
 </pre></div>
 
 
-<p>次にインストーラを起動してインストールする<br />
-Wine の USE フラグに <code>X abi_x86_64 fontconfig jpeg mono opengl png ssl truetype xcomposite</code> を追加しておいた<br />
-インストーラの起動も winecfg と同様に WINEPREFIX を使って起動する</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 SketchUpMake-ja-x64.exe
+<p>手元の環境ではHDMI1にDVIのメインで使っているモニタ、HDMI3にIGZO液晶が接続されていると認識されていました。
+xrandrのオプションやxorg.confでモニタを指定する時にこのHDMI1やHDMI3を使います。</p>
+<p>まずxrandrで動作確認をしてからxorg.confに同じ設定を書き込むのがよさそうなのでそうしました。
+manを見てみるとオプションを色々つけることで一度のコマンド実行で目的の設定に変更することができそうです。
+ひとまずミラーリングになっていてメインの方も少しおかしな感じになっていたのでモニタをオフにするために以下を実行。</p>
+<div class="highlight"><pre>xrandr --output HDMI3 --off
 </pre></div>
 
 
-<p>これでインストーラが起動するはずだけれど手元の環境ではフォントのサイズが極端に大きくなっていて<br />
-画面のレイアウトが操作できないレベルで崩れていた<br />
-タブを4回、スペースを1回押すことでインストールを続行できた</p>
-<p>インストールができて起動してみると <code>mfc100u.dll</code> が必要であるというエラーがでて起動できない<br />
-mfc100u.dll は Visual C++ の再頒布可能パッケージに含まれているのでそれを入手する必要がある<br />
-mfc100u.dll は <a href="http://www.wdic.org/w/TECH/Visual%20C%2B%2B%20%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA">このサイト</a> によると <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=14632">Visual C++ 2010</a> または <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=30679">Visual Studio 2012</a> に含まれている<br />
-今回は 2010 の方を使用した</p>
-<p>Microsoft のサイトへ行くと <code>vcredist_x64.exe</code> を入手することができる<br />
-このファイルを実行して展開する必要があるのだけれど、どうしても Wine を使ってはうまくできなかったので<br />
-仕方なく Windows のマシンを使用して展開した<br />
-Windows のコマンドプロンプトで <code>/x:c:\target\dir</code> のようにオプションを指定しすると<br />
-指定したディレクトリへ中身を展開することができた</p>
-<div class="highlight"><pre>&gt; vcredist_x64.exe /x:c:\target\dir
+<p>モニタの配置はHDMI1が正面、HDMI3が左側になっているのでこのようなコマンドを実行しました。
+( <code>--noprimary</code> は指定しているけれど、どのように動作が変わるのかはよくわからない)</p>
+<div class="highlight"><pre>xrandr --output HDMI3 --auto --left-of HDMI1 --rotate left --noprimary
 </pre></div>
 
 
-<p>展開したファイルの中に <code>vc_red.cab</code> というファイルがあるので<br />
-それを更に展開すると <code>F_CENTRAL_mfc100u_x64</code> をいうファイルを入手することができる<br />
-Linux で展開する場合は <code>cabextract</code> コマンドが利用できる<br />
-<code>F_CENTRAL_mfc100u_x64</code> を Linux の環境へコピーしたら <code>system32</code> へ mfc100u.dll というファイル名でコピーする</p>
-<div class="highlight"><pre><span class="nv">$ </span>cp F_CENTRAL_mfc100u_x64 drive_c/windows/system32/mfc100u.dll
+<p>これで期待通りの表示になることが確認できました。
+毎回動的に変更したいのであれば単純にxrandrコマンドを.xinit等に書き込めばよさそうです。
+自分はその必要はないのでxorg.confにこのように書き込みました。
+再起動するかXを起動しなおして問題なければこれで終わりです。</p>
+<div class="highlight"><pre><span class="nv">$ </span>cat /etc/X11/xorg.conf.d/90xrandr.conf
+Section <span class="s2">&quot;Monitor&quot;</span>
+    Identifier <span class="s2">&quot;HDMI1&quot;</span>
+    Option     <span class="s2">&quot;Primary&quot;</span> <span class="s2">&quot;true&quot;</span>
+EndSection
+
+Section <span class="s2">&quot;Monitor&quot;</span>
+    Identifier <span class="s2">&quot;HDMI3&quot;</span>
+    Option     <span class="s2">&quot;LeftOf&quot;</span> <span class="s2">&quot;HDMI1&quot;</span>
+    Option     <span class="s2">&quot;Rotate&quot;</span> <span class="s2">&quot;left&quot;</span>
+EndSection
 </pre></div>
 
 
-<p>以上で基本的な作業は終了</p>
-<p>これ以外の細かい設定は、 SketchUp を起動するには実行するユーザが <code>video</code> グループに所属していることと<br />
-実行時のオプションに <code>/DisableRubyAPI</code> が必要だった</p>
-<div class="highlight"><pre>libGL error: failed to open drm device: Permission denied
-</pre></div>
-
-
-<p>が起きる場合、実行するユーザがvideoグループに所属していない</p>
-<div class="highlight"><pre>libGL error: unable to load driver: i965_dri.so
-</pre></div>
-
-
-<p>が起きる場合、 <code>media-libs/mesa</code> で <code>classic</code> USE フラグが有効になっていないので<br />
-<code>/usr/lib/dri/i965_dri.so</code> が存在しない</p>
-<div class="highlight"><pre><span class="n">err</span><span class="o">:</span><span class="n">ntdll</span><span class="o">:</span><span class="n">RtlpWaitForCriticalSection</span> <span class="n">section</span> <span class="mh">0x2c8b8</span> <span class="s2">&quot;?&quot;</span> <span class="n">wait</span> <span class="n">timed</span> <span class="n">out</span> <span class="k">in</span> <span class="n">thread</span> <span class="mi">0009</span><span class="o">,</span> <span class="n">blocked</span> <span class="n">by</span> <span class="mi">0000</span><span class="o">,</span> <span class="n">retrying</span> <span class="o">(</span><span class="mi">60</span> <span class="n">sec</span><span class="o">)</span>
-</pre></div>
-
-
-<p>が起きる場合、コマンドラインオプションに /DisableRubyAPI をつけていない</p>
-<p>最終的に以下のコマンドで正常に SketchUp を起動することができた</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/winedir/sketchup/drive_c/Program Files (x86)/SketchUp/SketchUp 2015/SketchUp.exe&quot;</span> /DisableRubyAPI
+<p>更にメモ、放置すると一定時間でモニタがオフになるがそれを無効化する方法</p>
+<div class="highlight"><pre># 無効化
+xset s off -dpms
+# 有効化
+xset s default +dpms
 </pre></div>
             </div>
             <!-- /.entry-content -->

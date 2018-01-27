@@ -75,6 +75,38 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2018/01/multi-monitor.html">Linuxで複数モニタを使うときのメモ</a></h2>
+                <div class="summary"><p>以前買った <a href="/posts/2015/12/akizuki-igzo.html">IGZO液晶</a> はたまにRaspberryPiを接続したり、
+臨時のモニタとして活躍していました。ただ、最近活躍の機会もあまりないのと、
+小画面で常時表示しておきたいような用途を思いついたのでデスクトップPCのサブモニタとしてしばらく使ってみることにしました。</p>
+<p>デスクトップPCのマザーボードは <a href="https://www.asrock.com/mb/Intel/H77M-ITX/index.jp.asp">H77M-ITX</a> を使っていて、
+既存のモニタはDVI経由で接続しています。
+このマザーボードはDVIとHDMI両方を使ってのマルチモニタに対応しているので、素直にHDMIに接続すれば物理的な準備は終わり。</p>
+<p>ただ縦長の解像度が問題なのか、一般的なモニタを接続した場合も同じなのかはわからないけれど、
+両方のモニタを接続しているとBIOSの画面が表示されなくなりました。
+(キーを押すと入れはするけれど画面の表示がされない状態)
+その為BIOSに入る必要がある時はIGZO液晶側の電源を切るかケーブルを抜いておく必要がありました。</p>
+<p>次にLinux側の対応で、やりたいことは以下の3つ</p>
+<ul>
+<li>ミラーリングになっていたのでそれぞれ別に使えるようにする。</li>
+<li>今まで使っていたモニタを今まで通りメインのモニタとして使う。</li>
+<li>IGZO液晶はポートレート表示がデフォルトなので回転させてランドスケープで使う。</li>
+<li>IGZO液晶はメインモニタの左側に配置する。</li>
+</ul>
+<p>調べてみたら設定を変更するにはxrandrを使って動的に変更するかxorg.confに静的に書くかの2通りがありました。</p>
+<p>その他にディスプレイマネージャにSLiMを使っていたのですが、
+もう <a href="https://wiki.archlinux.org/index.php/SLiM">開発が止まっているらしい</a> のとマルチモニタに対応していないみたいなので、
+<a href="https://www.freedesktop.org/wiki/Software/LightDM/">LigntDM</a> に置き換えました。
+ウインドウマネージャは <a href="https://awesomewm.org/">Awesome</a> でこちらは対応していて特に設定の必要なく使えました。</p>
+<p>xrandrを使うにしろ、xorg.confに書くにしろ、まずLinux側にどのように認識されているか調べる必要があります。
+単純にxrandrコマンドを実行すれば現在の状況が確認できました。</p>
+<div class="highlight"><pre><span class="nv">$ </span>xrandr
+Screen 0: minimum <span class="m">8</span> x 8, current <span class="m">3840</span> x ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2018/01/multi-monitor.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2017/09/kodi-font.html">Kodiのフォントを雑に変更する</a></h2>
                 <div class="summary"><p><a href="http://www.sony.jp/bravia/products/KJ-X8500D/">BRAVIA KJ-55X8500D</a> に <a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi">Kodi</a>
 をインストールしているのですが、中華フォントが使われるので簡単にフォントを追加変更する方法がないか調べてみました。</p>
@@ -305,23 +337,6 @@ net-libs/libvncserver threads ...</pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/06/sketchup-wine.html">SketchUpをLinuxにインストール</a></h2>
-                <div class="summary"><p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
-大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
-SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
-<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
-ただ多少ハマった部分があったのでやったことを残しておく</p>
-<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
-自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
-インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
-<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
-インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
-(デフォルトでは <code>~/.wine ...</code></p>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/06/sketchup-wine.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -351,23 +366,18 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/android.html">
                             Android
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -381,28 +391,18 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
                         <a href="/tag/windows.html">
                             Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/e-book.html">
-                            e-book
+                        <a href="/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -411,13 +411,8 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/aquestalk-pico-lsi.html">
-                            AquesTalk pico LSI
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -426,43 +421,38 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/igzo.html">
                             IGZO
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ssd.html">
-                            SSD
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                        <a href="/tag/kodi.html">
+                            Kodi
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -471,8 +461,13 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -491,8 +486,18 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -501,28 +506,8 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/todo.html">
+                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -531,8 +516,43 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/atmega328.html">
                             ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -541,13 +561,8 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                 </ul>
@@ -571,7 +586,7 @@ SketchUp は Linux 版が提供されていないので Wine を使用するこ�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 lostman/ごる
+         <div class="col-xs-10">&copy; 2018 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

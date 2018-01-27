@@ -1,5 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2017-09-09T00:51:00+09:00</updated><entry><title>Kodiのフォントを雑に変更する</title><link href="/posts/2017/09/kodi-font.html" rel="alternate"></link><updated>2017-09-09T00:51:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-09-09:posts/2017/09/kodi-font.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.sony.jp/bravia/products/KJ-X8500D/"&gt;BRAVIA KJ-55X8500D&lt;/a&gt; に &lt;a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi"&gt;Kodi&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2018-01-25T01:14:00+09:00</updated><entry><title>Linuxで複数モニタを使うときのメモ</title><link href="/posts/2018/01/multi-monitor.html" rel="alternate"></link><updated>2018-01-25T01:14:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2018-01-25:posts/2018/01/multi-monitor.html</id><summary type="html">&lt;p&gt;以前買った &lt;a href="/posts/2015/12/akizuki-igzo.html"&gt;IGZO液晶&lt;/a&gt; はたまにRaspberryPiを接続したり、
+臨時のモニタとして活躍していました。ただ、最近活躍の機会もあまりないのと、
+小画面で常時表示しておきたいような用途を思いついたのでデスクトップPCのサブモニタとしてしばらく使ってみることにしました。&lt;/p&gt;
+&lt;p&gt;デスクトップPCのマザーボードは &lt;a href="https://www.asrock.com/mb/Intel/H77M-ITX/index.jp.asp"&gt;H77M-ITX&lt;/a&gt; を使っていて、
+既存のモニタはDVI経由で接続しています。
+このマザーボードはDVIとHDMI両方を使ってのマルチモニタに対応しているので、素直にHDMIに接続すれば物理的な準備は終わり。&lt;/p&gt;
+&lt;p&gt;ただ縦長の解像度が問題なのか、一般的なモニタを接続した場合も同じなのかはわからないけれど、
+両方のモニタを接続しているとBIOSの画面が表示されなくなりました。
+(キーを押すと入れはするけれど画面の表示がされない状態)
+その為BIOSに入る必要がある時はIGZO液晶側の電源を切るかケーブルを抜いておく必要がありました。&lt;/p&gt;
+&lt;p&gt;次にLinux側の対応で、やりたいことは以下の3つ&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ミラーリングになっていたのでそれぞれ別に使えるようにする。&lt;/li&gt;
+&lt;li&gt;今まで使っていたモニタを今まで通りメインのモニタとして使う。&lt;/li&gt;
+&lt;li&gt;IGZO液晶はポートレート表示がデフォルトなので回転させてランドスケープで使う。&lt;/li&gt;
+&lt;li&gt;IGZO液晶はメインモニタの左側に配置する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;調べてみたら設定を変更するにはxrandrを使って動的に変更するかxorg.confに静的に書くかの2通りがありました。&lt;/p&gt;
+&lt;p&gt;その他にディスプレイマネージャにSLiMを使っていたのですが、
+もう &lt;a href="https://wiki.archlinux.org/index.php/SLiM"&gt;開発が止まっているらしい&lt;/a&gt; のとマルチモニタに対応していないみたいなので、
+&lt;a href="https://www.freedesktop.org/wiki/Software/LightDM/"&gt;LigntDM&lt;/a&gt; に置き換えました。
+ウインドウマネージャは &lt;a href="https://awesomewm.org/"&gt;Awesome&lt;/a&gt; でこちらは対応していて特に設定の必要なく使えました。&lt;/p&gt;
+&lt;p&gt;xrandrを使うにしろ、xorg.confに書くにしろ、まずLinux側にどのように認識されているか調べる必要があります。
+単純にxrandrコマンドを実行すれば現在の状況が確認できました。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;xrandr
+Screen 0: minimum &lt;span class="m"&gt;8&lt;/span&gt; x 8, current &lt;span class="m"&gt;3840&lt;/span&gt; x 1200, maximum &lt;span class="m"&gt;32767&lt;/span&gt; x 32767
+DP1 disconnected primary &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt;
+DP2 disconnected &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt;
+DP3 disconnected &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt;
+HDMI1 connected 1920x1200+1920+0 &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt; 550mm x 350mm
+   1920x1200     59.95*+
+   1920x1080     60.00
+   1600x1200     60.00
+   1680x1050     59.88
+   1280x1024     75.02    60.02
+   1440x900      59.90
+   1280x960      60.00
+   1152x864      75.00
+   1024x768      75.08    70.07    60.00
+   832x624       74.55
+   800x600       72.19    75.00    60.32    56.25
+   640x480       75.00    72.81    66.67    60.00
+   720x400       70.08
+HDMI2 disconnected &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt;
+HDMI3 connected 1920x1200+0+0 left &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt; 90mm x 150mm
+   1200x1920     60.00*+
+VGA1 disconnected &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt;
+VIRTUAL1 disconnected &lt;span class="o"&gt;(&lt;/span&gt;normal left inverted right x axis y axis&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;手元の環境ではHDMI1にDVIのメインで使っているモニタ、HDMI3にIGZO液晶が接続されていると認識されていました。
+xrandrのオプションやxorg.confでモニタを指定する時にこのHDMI1やHDMI3を使います。&lt;/p&gt;
+&lt;p&gt;まずxrandrで動作確認をしてからxorg.confに同じ設定を書き込むのがよさそうなのでそうしました。
+manを見てみるとオプションを色々つけることで一度のコマンド実行で目的の設定に変更することができそうです。
+ひとまずミラーリングになっていてメインの方も少しおかしな感じになっていたのでモニタをオフにするために以下を実行。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;xrandr --output HDMI3 --off
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;モニタの配置はHDMI1が正面、HDMI3が左側になっているのでこのようなコマンドを実行しました。
+( &lt;code&gt;--noprimary&lt;/code&gt; は指定しているけれど、どのように動作が変わるのかはよくわからない)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;xrandr --output HDMI3 --auto --left-of HDMI1 --rotate left --noprimary
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これで期待通りの表示になることが確認できました。
+毎回動的に変更したいのであれば単純にxrandrコマンドを.xinit等に書き込めばよさそうです。
+自分はその必要はないのでxorg.confにこのように書き込みました。
+再起動するかXを起動しなおして問題なければこれで終わりです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat /etc/X11/xorg.conf.d/90xrandr.conf
+Section &lt;span class="s2"&gt;&amp;quot;Monitor&amp;quot;&lt;/span&gt;
+    Identifier &lt;span class="s2"&gt;&amp;quot;HDMI1&amp;quot;&lt;/span&gt;
+    Option     &lt;span class="s2"&gt;&amp;quot;Primary&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+EndSection
+
+Section &lt;span class="s2"&gt;&amp;quot;Monitor&amp;quot;&lt;/span&gt;
+    Identifier &lt;span class="s2"&gt;&amp;quot;HDMI3&amp;quot;&lt;/span&gt;
+    Option     &lt;span class="s2"&gt;&amp;quot;LeftOf&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;HDMI1&amp;quot;&lt;/span&gt;
+    Option     &lt;span class="s2"&gt;&amp;quot;Rotate&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;left&amp;quot;&lt;/span&gt;
+EndSection
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;更にメモ、放置すると一定時間でモニタがオフになるがそれを無効化する方法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# 無効化
+xset s off -dpms
+# 有効化
+xset s default +dpms
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Gentoo"></category><category term="Linux"></category></entry><entry><title>Kodiのフォントを雑に変更する</title><link href="/posts/2017/09/kodi-font.html" rel="alternate"></link><updated>2017-09-09T00:51:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2017-09-09:posts/2017/09/kodi-font.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.sony.jp/bravia/products/KJ-X8500D/"&gt;BRAVIA KJ-55X8500D&lt;/a&gt; に &lt;a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi"&gt;Kodi&lt;/a&gt;
 をインストールしているのですが、中華フォントが使われるので簡単にフォントを追加変更する方法がないか調べてみました。&lt;/p&gt;
 &lt;p&gt;現状では変更するUIはあるけれど、 &lt;code&gt;スキンのデフォルト&lt;/code&gt; を使うか、 &lt;code&gt;Arialベース&lt;/code&gt; の2択のみで、
 パスを指定してフォントを追加したりといったことはできませんでした。

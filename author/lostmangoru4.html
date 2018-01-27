@@ -74,6 +74,36 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2014/10/extundelete.html">操作ミスでファイルを消してしまった時の復活方法</a></h2>
+                <div class="summary"><p>ファイルサーバのデータを整理中に <code>rm *hoge*</code> と入力しようとして <code>rm *</code> まで入力した状態で<br />
+hogeをコピペで貼り付けようとしました<br />
+この時hogeの先頭に改行が含まれていたため、 <code>rm *</code> が実行されてしまい<br />
+カレントディレクトリ内のファイルを全て削除してしまいました、事故です<br />
+このような場合、 <a href="http://extundelete.sourceforge.net/">extundelete</a> というソフトを使うと復活できるみたいなので、試してみました</p>
+<p>まず削除してしまったファイルがあるボリュームをroでマウントしなおします<br />
+この作業はできるだけ早く行う必要があります<br />
+自分の場合、別のプロセスがこのボリュームに書き込みをしていたので<br />
+削除したファイルのinodeが再利用されてしまいかなりのファイルを失いました</p>
+<div class="highlight"><pre><span class="c"># mount -o remount,ro /mnt/lvm</span>
+</pre></div>
+
+
+<p>次にdateコマンドで操作ミスが発生した時刻の確認をします</p>
+<div class="highlight"><pre><span class="nv">$ </span>date +%s
+1413993600
+</pre></div>
+
+
+<p>extundeleteで復活させます<br />
+復活できなかったファイルが以下のようにログに出力されて<br />
+復活できたファイルはカレントディレクトリの <code>RECOVERED_FILES</code> 以下に出力されます</p>
+<div class="highlight"><pre><span class="c"># extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0</span>
+Only show and process deleted entries <span class="k">if ...</span></pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/10/extundelete.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/10/windows10.html">Windows10を試してみた</a></h2>
                 <div class="summary"><p><a href="http://windows.microsoft.com/ja-jp/windows/preview">Windows10 Technical Preview</a>がでたのでKVMにインストールしてみた<br />
 このサイトにLinuxからアクセスすると「お使いのオペレーティング システムにはプレビュー版をインストールできません。」と<br />
@@ -367,15 +397,6 @@ inputタグのボタンをクリックするには以下のようします</p>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/pelican.html">Pelicanはじめました</a></h2>
-                <div class="summary"><p>Bloggerでブログを書いていましたが順次こちらへ移行する予定<br />
-このページは<a href="https://pages.github.com/">Github Pages</a>に<a href="http://blog.getpelican.com/">Pelican</a>で生成したコンテンツを置いています<br />
-pipでpelicanとMarkdownをインストールするだけなので準備は簡単ですね</p>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/pelican.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="/author/lostmangoru3.html">&laquo;</a>
@@ -388,7 +409,10 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                             href="/author/lostmangoru3.html">3</a></li>
                     <li class="active"><a
                             href="/author/lostmangoru4.html">4</a></li>
-                <li class="next disabled"><a href="#">&raquo;</a></li>
+                    <li class=""><a
+                            href="/author/lostmangoru5.html">5</a></li>
+                <li class="next"><a
+                        href="/author/lostmangoru5.html">&raquo;</a></li>
         </ul>
         </div>
         <div class="col-sm-3" id="sidebar">
@@ -407,23 +431,18 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/android.html">
                             Android
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -437,28 +456,18 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
                         <a href="/tag/windows.html">
                             Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/e-book.html">
-                            e-book
+                        <a href="/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -467,13 +476,8 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/aquestalk-pico-lsi.html">
-                            AquesTalk pico LSI
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -482,43 +486,38 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/igzo.html">
                             IGZO
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ssd.html">
-                            SSD
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                        <a href="/tag/kodi.html">
+                            Kodi
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -527,8 +526,13 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -547,8 +551,18 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -557,28 +571,8 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/todo.html">
+                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -587,8 +581,43 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/atmega328.html">
                             ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -597,13 +626,8 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                 </ul>
@@ -627,7 +651,7 @@ pipでpelicanとMarkdownをインストールするだけなので準備は簡�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 lostman/ごる
+         <div class="col-xs-10">&copy; 2018 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

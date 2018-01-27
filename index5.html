@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>SketchUpをLinuxにインストール - blog.gorugle.org</title>
+    <title>blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,11 +9,8 @@
 
 
 
-<link rel="canonical" href="/posts/2015/06/sketchup-wine.html">
-
+<link rel="canonical" href="">
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Linux" />
-        <meta name="description" content="SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした 大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった WineHQ にも SketchUpのWikiページ があり情報がまとめられています ただ多少ハマった部分があったのでやったことを残しておく まず 公式サイト からインストーラを入手する 自分がダウンロードしたのは SketchUpMake-ja-x64.exe だった インストール後にバージョンを確認したら 15.3.331 64ビット となっていた デフォルトの Windows XP だとバージョンチェックで起動できないので winecfg を起動して Windows 7 へ変更する インストールするディレクトリを変えたい場合は WINEPREFIX 環境変数を使ってwine関係のコマンドを実行する (デフォルトでは ~/.wine ..." />
 
 
 
@@ -45,7 +42,7 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li >
                             <a href="/category/computer.html">Computer</a>
                         </li>
                         <li >
@@ -76,108 +73,31 @@ blog.gorugle.org            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="/posts/2015/06/sketchup-wine.html"
-                       rel="bookmark"
-                       title="Permalink to SketchUpをLinuxにインストール">
-                        SketchUpをLinuxにインストール
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <time datetime="2015-06-06T01:51:00+09:00"> 2015/06/06 Sat</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/linux.html">Linux</a>
-    
-</footer><!-- /.post-info -->                    </div>
+            <article>
+                <h2><a href="/posts/2014/07/pelican.html">Pelicanはじめました</a></h2>
+                <div class="summary"><p>Bloggerでブログを書いていましたが順次こちらへ移行する予定<br />
+このページは<a href="https://pages.github.com/">Github Pages</a>に<a href="http://blog.getpelican.com/">Pelican</a>で生成したコンテンツを置いています<br />
+pipでpelicanとMarkdownをインストールするだけなので準備は簡単ですね</p>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/07/pelican.html">more ...</a>
                 </div>
-                <p>SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした<br />
-大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました<br />
-SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった<br />
-<a href="https://www.winehq.org/">WineHQ</a> にも <a href="http://wiki.winehq.org/Sketchup">SketchUpのWikiページ</a> があり情報がまとめられています<br />
-ただ多少ハマった部分があったのでやったことを残しておく</p>
-<p>まず <a href="http://www.sketchup.com/ja/download">公式サイト</a> からインストーラを入手する<br />
-自分がダウンロードしたのは <code>SketchUpMake-ja-x64.exe</code> だった<br />
-インストール後にバージョンを確認したら <code>15.3.331 64ビット</code> となっていた</p>
-<p>デフォルトの <code>Windows XP</code> だとバージョンチェックで起動できないので <code>winecfg</code> を起動して <code>Windows 7</code> へ変更する<br />
-インストールするディレクトリを変えたい場合は <code>WINEPREFIX</code> 環境変数を使ってwine関係のコマンドを実行する<br />
-(デフォルトでは <code>~/.wine</code> が使われる)</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup winecfg
-</pre></div>
+            </article>
+            <hr/>
 
-
-<p>次にインストーラを起動してインストールする<br />
-Wine の USE フラグに <code>X abi_x86_64 fontconfig jpeg mono opengl png ssl truetype xcomposite</code> を追加しておいた<br />
-インストーラの起動も winecfg と同様に WINEPREFIX を使って起動する</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 SketchUpMake-ja-x64.exe
-</pre></div>
-
-
-<p>これでインストーラが起動するはずだけれど手元の環境ではフォントのサイズが極端に大きくなっていて<br />
-画面のレイアウトが操作できないレベルで崩れていた<br />
-タブを4回、スペースを1回押すことでインストールを続行できた</p>
-<p>インストールができて起動してみると <code>mfc100u.dll</code> が必要であるというエラーがでて起動できない<br />
-mfc100u.dll は Visual C++ の再頒布可能パッケージに含まれているのでそれを入手する必要がある<br />
-mfc100u.dll は <a href="http://www.wdic.org/w/TECH/Visual%20C%2B%2B%20%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA">このサイト</a> によると <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=14632">Visual C++ 2010</a> または <a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=30679">Visual Studio 2012</a> に含まれている<br />
-今回は 2010 の方を使用した</p>
-<p>Microsoft のサイトへ行くと <code>vcredist_x64.exe</code> を入手することができる<br />
-このファイルを実行して展開する必要があるのだけれど、どうしても Wine を使ってはうまくできなかったので<br />
-仕方なく Windows のマシンを使用して展開した<br />
-Windows のコマンドプロンプトで <code>/x:c:\target\dir</code> のようにオプションを指定しすると<br />
-指定したディレクトリへ中身を展開することができた</p>
-<div class="highlight"><pre>&gt; vcredist_x64.exe /x:c:\target\dir
-</pre></div>
-
-
-<p>展開したファイルの中に <code>vc_red.cab</code> というファイルがあるので<br />
-それを更に展開すると <code>F_CENTRAL_mfc100u_x64</code> をいうファイルを入手することができる<br />
-Linux で展開する場合は <code>cabextract</code> コマンドが利用できる<br />
-<code>F_CENTRAL_mfc100u_x64</code> を Linux の環境へコピーしたら <code>system32</code> へ mfc100u.dll というファイル名でコピーする</p>
-<div class="highlight"><pre><span class="nv">$ </span>cp F_CENTRAL_mfc100u_x64 drive_c/windows/system32/mfc100u.dll
-</pre></div>
-
-
-<p>以上で基本的な作業は終了</p>
-<p>これ以外の細かい設定は、 SketchUp を起動するには実行するユーザが <code>video</code> グループに所属していることと<br />
-実行時のオプションに <code>/DisableRubyAPI</code> が必要だった</p>
-<div class="highlight"><pre>libGL error: failed to open drm device: Permission denied
-</pre></div>
-
-
-<p>が起きる場合、実行するユーザがvideoグループに所属していない</p>
-<div class="highlight"><pre>libGL error: unable to load driver: i965_dri.so
-</pre></div>
-
-
-<p>が起きる場合、 <code>media-libs/mesa</code> で <code>classic</code> USE フラグが有効になっていないので<br />
-<code>/usr/lib/dri/i965_dri.so</code> が存在しない</p>
-<div class="highlight"><pre><span class="n">err</span><span class="o">:</span><span class="n">ntdll</span><span class="o">:</span><span class="n">RtlpWaitForCriticalSection</span> <span class="n">section</span> <span class="mh">0x2c8b8</span> <span class="s2">&quot;?&quot;</span> <span class="n">wait</span> <span class="n">timed</span> <span class="n">out</span> <span class="k">in</span> <span class="n">thread</span> <span class="mi">0009</span><span class="o">,</span> <span class="n">blocked</span> <span class="n">by</span> <span class="mi">0000</span><span class="o">,</span> <span class="n">retrying</span> <span class="o">(</span><span class="mi">60</span> <span class="n">sec</span><span class="o">)</span>
-</pre></div>
-
-
-<p>が起きる場合、コマンドラインオプションに /DisableRubyAPI をつけていない</p>
-<p>最終的に以下のコマンドで正常に SketchUp を起動することができた</p>
-<div class="highlight"><pre><span class="nv">$ WINEPREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/winedir/sketchup wine64 <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/winedir/sketchup/drive_c/Program Files (x86)/SketchUp/SketchUp 2015/SketchUp.exe&quot;</span> /DisableRubyAPI
-</pre></div>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
-
+        <ul class="pagination">
+                <li class="prev"><a href="/index4.html">&laquo;</a>
+                </li>
+                    <li class=""><a
+                            href="/index.html">1</a></li>
+                    <li class=""><a
+                            href="/index2.html">2</a></li>
+                    <li class=""><a
+                            href="/index3.html">3</a></li>
+                    <li class=""><a
+                            href="/index4.html">4</a></li>
+                    <li class="active"><a
+                            href="/index5.html">5</a></li>
+                <li class="next disabled"><a href="#">&raquo;</a></li>
+        </ul>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>

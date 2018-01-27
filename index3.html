@@ -74,6 +74,33 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2015/03/so-02g_settings.html">SO-02Gの設定色々</a></h2>
+                <div class="summary"><p>SO-02Gを使い始めてから変更した設定まとめ</p>
+<ul>
+<li>0001docomoに勝手に接続してしまう (<a href="http://mikkagashi.cocolog-nifty.com/kasukadari/2013/12/iphonewi-fioff-.html">ドコモのiPhoneが公衆Wi-Fi APに自動接続しててドッキリ</a>)<br />
+このSSIDはドコモのWiFiなんですね、地下鉄の駅でふと携帯を見たらつながっていたのでびっくりしました<br />
+接続された状態でWiFiの設定を開いて0001docomoを長押しして切断すれば次回からは自動で接続されなくなるみたいです<br />
+しかし気持ち悪いですね</li>
+<li>ドコモアプリのアップデート通知を切る (<a href="http://xperiaz.kurosuke.biz/archives/625">ドコモアプリのアップデート通知をオフにする方法</a>)<br />
+設定→ドコモのサービス/クラウド→ドコモアプリ管理→定期アップデート確認</li>
+<li>OSの自動更新の無効化 (夜中に自動で実行されるみたいです)<br />
+設定→端末情報→ソフトウェア更新→ソフトウェア更新設定の変更</li>
+<li>Sonyアプリの自動更新の無効化<br />
+設定→端末情報→アプリケーション更新→右上のメニュー→設定</li>
+<li>ひつじの停止<br />
+ホーム画面のひつじを長押し→キャラ表示 と 吹き出し表示 を 表示しない へ変更</li>
+<li>プリインアプリの無効化<br />
+(<a href="http://xperia-freaks.org/2014/12/14/so02g-disable/">【Z3 Compact】非rootで無効化して問題ないアプリ・サービス一覧(SO-02G版)</a>)<br />
+(<a href="http://usedoor.jp/howto/digital/android-smartphone/preinstall-mukouka-ichiran/">【Androidスマホ】プリインストールアプリの無効化・停止・アンインストール対応一覧表</a>)<br />
+サイトを参考に適当に、今のところ無効化しているのは以下<ul>
+<li>ウィキペディアプラグイン</li>
+<li>エリアメール</li>
+<li>エリア連動Wi-Fi ...</li></ul></li></ul>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/03/so-02g_settings.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/03/redmine.html">Redmineをインストールしてみた</a></h2>
                 <div class="summary"><p>Googleカレンダーに予定を入れるようにしていたんだけれど、カレンダーなので日付を入れなくてはいけなくて<br />
 日にちが決まってないけれどやろうと思っていることを入れておくことができないのでちょっと不便でした<br />
@@ -365,36 +392,6 @@ P.S. The /proc/mdstat ...</pre></div>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/10/extundelete.html">操作ミスでファイルを消してしまった時の復活方法</a></h2>
-                <div class="summary"><p>ファイルサーバのデータを整理中に <code>rm *hoge*</code> と入力しようとして <code>rm *</code> まで入力した状態で<br />
-hogeをコピペで貼り付けようとしました<br />
-この時hogeの先頭に改行が含まれていたため、 <code>rm *</code> が実行されてしまい<br />
-カレントディレクトリ内のファイルを全て削除してしまいました、事故です<br />
-このような場合、 <a href="http://extundelete.sourceforge.net/">extundelete</a> というソフトを使うと復活できるみたいなので、試してみました</p>
-<p>まず削除してしまったファイルがあるボリュームをroでマウントしなおします<br />
-この作業はできるだけ早く行う必要があります<br />
-自分の場合、別のプロセスがこのボリュームに書き込みをしていたので<br />
-削除したファイルのinodeが再利用されてしまいかなりのファイルを失いました</p>
-<div class="highlight"><pre><span class="c"># mount -o remount,ro /mnt/lvm</span>
-</pre></div>
-
-
-<p>次にdateコマンドで操作ミスが発生した時刻の確認をします</p>
-<div class="highlight"><pre><span class="nv">$ </span>date +%s
-1413993600
-</pre></div>
-
-
-<p>extundeleteで復活させます<br />
-復活できなかったファイルが以下のようにログに出力されて<br />
-復活できたファイルはカレントディレクトリの <code>RECOVERED_FILES</code> 以下に出力されます</p>
-<div class="highlight"><pre><span class="c"># extundelete --restore-all --after 1413993600 /dev/mapper/vg0-lv0</span>
-Only show and process deleted entries <span class="k">if ...</span></pre></div>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/10/extundelete.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="/index2.html">&laquo;</a>
@@ -407,6 +404,8 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                             href="/index3.html">3</a></li>
                     <li class=""><a
                             href="/index4.html">4</a></li>
+                    <li class=""><a
+                            href="/index5.html">5</a></li>
                 <li class="next"><a
                         href="/index4.html">&raquo;</a></li>
         </ul>
@@ -427,23 +426,18 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/android.html">
                             Android
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/linux.html">
+                            Linux
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/nginx.html">
-                            Nginx
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -457,28 +451,18 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
                         <a href="/tag/windows.html">
                             Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/e-book.html">
-                            e-book
+                        <a href="/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -487,13 +471,8 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/aquestalk-pico-lsi.html">
-                            AquesTalk pico LSI
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -502,43 +481,38 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/igzo.html">
                             IGZO
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ssd.html">
-                            SSD
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                        <a href="/tag/kodi.html">
+                            Kodi
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -547,8 +521,13 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -567,8 +546,18 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -577,28 +566,8 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
+                        <a href="/tag/todo.html">
+                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -607,8 +576,43 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/atmega328.html">
                             ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -617,13 +621,8 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
+                        <a href="/tag/htl21.html">
+                            HTL21
                         </a>
                     </li>
                 </ul>
@@ -647,7 +646,7 @@ Only show and process deleted entries <span class="k">if ...</span></pre></div>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 lostman/ごる
+         <div class="col-xs-10">&copy; 2018 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
