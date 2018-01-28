@@ -74,6 +74,23 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2015/12/esp-wroom-02-arduino.html">ESP-WROOM-02をArduinoとして使ってみた</a></h2>
+                <div class="summary"><p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
+今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
+外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。</p>
+<p>まずBoards ManagerをサポートしているArduino IDEが必要なので <a href="https://www.arduino.cc/en/Main/Software">公式サイト</a> から最新の1.6.6をダウンロードしてインストールしておきます。
+手元の環境は古いままで1.0.6がインストールされていました。</p>
+<p>Arduino IDEを起動したらBoards ManagerにESP8266のサイトを登録します。
+ソースはgithubの <a href="https://github.com/esp8266/Arduino">esp8266/Arduino</a> で管理されていて手順が記載されていました。</p>
+<ol>
+<li><code>Arduino -&gt; Preferences -&gt; Additional Board Manager URLs</code> を開いて <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code> を追加します。</li>
+<li>Arduino IDEを一度再起動して、 <code>Tools -&gt; Board -&gt; Boards Manager</code> を開きます。
+自動で一覧が読み込まれ、 <code>esp8266 by ESP8266 Community</code> が表示されているはずなので選択してインストールします。 (現時点では2 ...</li></ol>
+                    <a class="btn btn-default btn-xs" href="/posts/2015/12/esp-wroom-02-arduino.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2015/12/letsencrypt.html">GentooとNginxでLet's Encryptを使う</a></h2>
                 <div class="summary"><p><a href="https://letsencrypt.org/">Let's Encrypt</a> がPublic Betaになったので使ってみました。
 Gentooに関してはまだ実験的なサポートで、Nginxはこれからプラグインが取り込まれる予定みたいです。 (なので他の組み合わせて使うより多少不便なのかもしれない)
@@ -299,22 +316,6 @@ Arduino に搭載されている ATmega328 は 16MHz / 5V で動作している�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/04/uin-mozc.html">ibusからuim-mozcへ移行</a></h2>
-                <div class="summary"><p>一時期 ibus が色々話題になりましたね <a href="http://cpplover.blogspot.jp/2013/10/ibus-15.html">*1</a> <a href="http://www.kaoriya.net/blog/2013/10/18/">*2</a><br />
-僕の環境では ibus-mozc を使っていたのですが、 1.5 系へは移行せず 1.4 系にとどまっていました<br />
-このまま放置していてもよかったんだけれど、 Gentoo のリポジトリから 1.4 が<br />
-なくなっていることに気がついたので別のインプットメソッドへ移行することにしました</p>
-<p>Linux でのインプットメソッドで代表的なものは ibus 、 uim 、 fcitx といくつかあるけれど<br />
-Mac で MacUIM を使っているので Linux のマシンでも uim を使うことにしました<br />
-ただ Gentoo の公式リポジトリのパッケージでは mozc を uim と組み合わせることができないみたいだったので<br />
-自分で ebuild を書くか、他の人が書いたものを使わせてもらうかのどちらかがあるみたいです<br />
-今回は <a href="https://bitbucket.org/wjn/wjn-overlay">wjn-overlay</a> を使わせてもらうことにしました</p>
-<p>ここ ...</p>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/04/uin-mozc.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="/index.html">&laquo;</a>
@@ -349,8 +350,8 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/android.html">
-                            Android
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -359,8 +360,8 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/android.html">
+                            Android
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -369,18 +370,13 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/mac.html">
-                            Mac
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/hardware.html">
                             Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/mac.html">
+                            Mac
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -388,19 +384,9 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                             Nginx
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -409,8 +395,18 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/e-book.html">
                             e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -419,38 +415,18 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/igzo.html">
                             IGZO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ssd.html">
-                            SSD
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -459,43 +435,28 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
+                        <a href="/tag/ssd.html">
+                            SSD
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                        <a href="/tag/raspberrypi.html">
+                            RaspberryPi
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/github.html">
-                            GitHub
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -504,28 +465,13 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/ruby.html">
                             Ruby
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
+                        <a href="/tag/macuim.html">
+                            MacUIM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -539,13 +485,73 @@ Mac で MacUIM を使っているので Linux のマシンでも uim を使う�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kodi.html">
+                            Kodi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="/tag/htl21.html">
                             HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                 </ul>

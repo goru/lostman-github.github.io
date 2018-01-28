@@ -74,6 +74,32 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2018/01/zero-org.html">RaspberryPi ZeroをOTGモードで使う</a></h2>
+                <div class="summary"><p>RaspberryPi Zeroに <a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector">USB Stem</a> を
+取り付けてみました。</p>
+<p>取り付けとRaspbianの準備に関しては <a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector">PIMORONI</a> と
+そこからリンクされている <a href="https://zerostem.io/installation/">公式</a> と
+<a href="https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a">Gist</a> を参考にすれば簡単にできました。</p>
+<p>Macで使う場合は、ドライバも必要ないしBonjourも動作しているのでなんの準備も必要なくSSHでつなぐことができました。
+インターネット共有の設定をすればインターネットへ接続するのもOK。</p>
+<p>ただ自分のLinuxの環境はGentooなのでドライバも無効になっていたし、Avahiも入っていなかったので少しハマりました。
+まずカーネルの設定で <code>CONFIG_USB_NET_CDCETHER</code> を有効にするとRaspberryPiを認識できるようになります。</p>
+<div class="highlight"><pre>Device Drivers  ---&gt;
+  Network device support  ---&gt;
+    USB Network Adapters  ---&gt;
+      Multi-purpose USB Networking Framework
+        CDC Ethernet support (smart devices such as cable modems)
+</pre></div>
+
+
+<p>有効にした上で接続するとdmesgとifconfigにこのように出力されます。(なんかエラーでてるけど…)</p>
+<div class="highlight"><pre><span class="nv">$ </span>dmesg
+<span class="o">[</span> 1450.001875<span class="o">]</span> usb 3-1 ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2018/01/zero-org.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2018/01/multi-monitor.html">Linuxで複数モニタを使うときのメモ</a></h2>
                 <div class="summary"><p>以前買った <a href="/posts/2015/12/akizuki-igzo.html">IGZO液晶</a> はたまにRaspberryPiを接続したり、
 臨時のモニタとして活躍していました。ただ、最近活躍の機会もあまりないのと、
@@ -306,23 +332,6 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2015/12/esp-wroom-02-arduino.html">ESP-WROOM-02をArduinoとして使ってみた</a></h2>
-                <div class="summary"><p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
-今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
-外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。</p>
-<p>まずBoards ManagerをサポートしているArduino IDEが必要なので <a href="https://www.arduino.cc/en/Main/Software">公式サイト</a> から最新の1.6.6をダウンロードしてインストールしておきます。
-手元の環境は古いままで1.0.6がインストールされていました。</p>
-<p>Arduino IDEを起動したらBoards ManagerにESP8266のサイトを登録します。
-ソースはgithubの <a href="https://github.com/esp8266/Arduino">esp8266/Arduino</a> で管理されていて手順が記載されていました。</p>
-<ol>
-<li><code>Arduino -&gt; Preferences -&gt; Additional Board Manager URLs</code> を開いて <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code> を追加します。</li>
-<li>Arduino IDEを一度再起動して、 <code>Tools -&gt; Board -&gt; Boards Manager</code> を開きます。
-自動で一覧が読み込まれ、 <code>esp8266 by ESP8266 Community</code> が表示されているはずなので選択してインストールします。 (現時点では2 ...</li></ol>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/12/esp-wroom-02-arduino.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -356,8 +365,8 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/android.html">
-                            Android
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -366,8 +375,8 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/android.html">
+                            Android
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -376,18 +385,13 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/mac.html">
-                            Mac
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/hardware.html">
                             Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/mac.html">
+                            Mac
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -395,19 +399,9 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                             Nginx
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/mvno.html">
-                            MVNO
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/esp-wroom-02.html">
-                            ESP-WROOM-02
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -416,8 +410,18 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/e-book.html">
                             e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -426,38 +430,18 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/igzo.html">
                             IGZO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ssd.html">
-                            SSD
+                        <a href="/tag/mvno.html">
+                            MVNO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -466,43 +450,28 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
+                        <a href="/tag/atmega328.html">
+                            ATmega328
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
+                        <a href="/tag/ssd.html">
+                            SSD
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
+                        <a href="/tag/javascript.html">
+                            JavaScript
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
+                        <a href="/tag/raspberrypi.html">
+                            RaspberryPi
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/github.html">
-                            GitHub
+                        <a href="/tag/pelican.html">
+                            Pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -511,28 +480,13 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/ruby.html">
                             Ruby
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
+                        <a href="/tag/macuim.html">
+                            MacUIM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -546,13 +500,73 @@ Twitterでも報告している人がいましたが接続する機器によっ�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kodi.html">
+                            Kodi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="/tag/htl21.html">
                             HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                 </ul>

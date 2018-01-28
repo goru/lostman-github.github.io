@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2018-01-25T01:14:00+09:00</updated><entry><title>Linuxで複数モニタを使うときのメモ</title><link href="/posts/2018/01/multi-monitor.html" rel="alternate"></link><updated>2018-01-25T01:14:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2018-01-25:posts/2018/01/multi-monitor.html</id><summary type="html">&lt;p&gt;以前買った &lt;a href="/posts/2015/12/akizuki-igzo.html"&gt;IGZO液晶&lt;/a&gt; はたまにRaspberryPiを接続したり、
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.gorugle.org</title><link href="/" rel="alternate"></link><link href="/feeds/lostmangoru.atom.xml" rel="self"></link><id>/</id><updated>2018-01-28T22:43:00+09:00</updated><entry><title>RaspberryPi ZeroをOTGモードで使う</title><link href="/posts/2018/01/zero-org.html" rel="alternate"></link><updated>2018-01-28T22:43:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2018-01-28:posts/2018/01/zero-org.html</id><summary type="html">&lt;p&gt;RaspberryPi Zeroに &lt;a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector"&gt;USB Stem&lt;/a&gt; を
+取り付けてみました。&lt;/p&gt;
+&lt;p&gt;取り付けとRaspbianの準備に関しては &lt;a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector"&gt;PIMORONI&lt;/a&gt; と
+そこからリンクされている &lt;a href="https://zerostem.io/installation/"&gt;公式&lt;/a&gt; と
+&lt;a href="https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a"&gt;Gist&lt;/a&gt; を参考にすれば簡単にできました。&lt;/p&gt;
+&lt;p&gt;Macで使う場合は、ドライバも必要ないしBonjourも動作しているのでなんの準備も必要なくSSHでつなぐことができました。
+インターネット共有の設定をすればインターネットへ接続するのもOK。&lt;/p&gt;
+&lt;p&gt;ただ自分のLinuxの環境はGentooなのでドライバも無効になっていたし、Avahiも入っていなかったので少しハマりました。
+まずカーネルの設定で &lt;code&gt;CONFIG_USB_NET_CDCETHER&lt;/code&gt; を有効にするとRaspberryPiを認識できるようになります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Device Drivers  ---&amp;gt;
+  Network device support  ---&amp;gt;
+    USB Network Adapters  ---&amp;gt;
+      Multi-purpose USB Networking Framework
+        CDC Ethernet support (smart devices such as cable modems)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;有効にした上で接続するとdmesgとifconfigにこのように出力されます。(なんかエラーでてるけど…)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;dmesg
+&lt;span class="o"&gt;[&lt;/span&gt; 1450.001875&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: new high-speed USB device number &lt;span class="m"&gt;6&lt;/span&gt; using xhci_hcd
+&lt;span class="o"&gt;[&lt;/span&gt; 1450.341883&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: device descriptor &lt;span class="nb"&gt;read&lt;/span&gt;/64, error -71
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.137854&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: device descriptor &lt;span class="nb"&gt;read&lt;/span&gt;/64, error -71
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.311832&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: new high-speed USB device number &lt;span class="m"&gt;7&lt;/span&gt; using xhci_hcd
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.402720&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: New USB device found, &lt;span class="nv"&gt;idVendor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0525, &lt;span class="nv"&gt;idProduct&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;a4a2
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.402725&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: New USB device strings: &lt;span class="nv"&gt;Mfr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1, &lt;span class="nv"&gt;Product&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2, &lt;span class="nv"&gt;SerialNumber&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.402728&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: Product: RNDIS/Ethernet Gadget
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.402730&lt;span class="o"&gt;]&lt;/span&gt; usb 3-1.2: Manufacturer: Linux 4.9.59+ with 20980000.usb
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.412841&lt;span class="o"&gt;]&lt;/span&gt; cdc_ether 3-1.2:1.0 usb0: register &lt;span class="s1"&gt;&amp;#39;cdc_ether&amp;#39;&lt;/span&gt; at usb-0000:00:14.0-1.2, CDC Ethernet Device, a2:a1:76:81:c5:63
+&lt;span class="o"&gt;[&lt;/span&gt; 1451.416086&lt;span class="o"&gt;]&lt;/span&gt; cdc_ether 3-1.2:1.0 enp0s20u1u2: renamed from usb0
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;ifconfig enp0s20u1u2
+enp0s20u1u2: &lt;span class="nv"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4098&amp;lt;BROADCAST,MULTICAST&amp;gt;  mtu 1500
+        ether a2:a1:76:81:c5:63  txqueuelen &lt;span class="m"&gt;1000&lt;/span&gt;  &lt;span class="o"&gt;(&lt;/span&gt;Ethernet&lt;span class="o"&gt;)&lt;/span&gt;
+        RX packets &lt;span class="m"&gt;0&lt;/span&gt;  bytes &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;0.0 B&lt;span class="o"&gt;)&lt;/span&gt;
+        RX errors &lt;span class="m"&gt;0&lt;/span&gt;  dropped &lt;span class="m"&gt;0&lt;/span&gt;  overruns &lt;span class="m"&gt;0&lt;/span&gt;  frame 0
+        TX packets &lt;span class="m"&gt;0&lt;/span&gt;  bytes &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;0.0 B&lt;span class="o"&gt;)&lt;/span&gt;
+        TX errors &lt;span class="m"&gt;0&lt;/span&gt;  dropped &lt;span class="m"&gt;0&lt;/span&gt; overruns &lt;span class="m"&gt;0&lt;/span&gt;  carrier &lt;span class="m"&gt;0&lt;/span&gt;  collisions 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;で、Avahiを入れようと思ったのだけれど、いまいちよくわかっていないのと、
+このためだけに入れるのもどうなのかなと思っていたら
+&lt;a href="http://hateda.hatenadiary.jp/entry/mdns-and-vagrant"&gt;digで問い合わせることができる&lt;/a&gt;
+という情報を見つけたのでこの方法を試してみることにしました。&lt;/p&gt;
+&lt;p&gt;参考にしたサイトでは省略されているけれど、今回はNICが複数あるので
+(元からあるNICとRaspberryPIがNICとして認識されているため)
+digコマンドを実行する時に &lt;code&gt;-b&lt;/code&gt; オプションでbindするIPアドレスを渡して
+マルチキャストのパケットを送出する元のNICを指定する必要がありました。
+(そうでなければデフォルトゲートウェイのNIC?)&lt;/p&gt;
+&lt;p&gt;インターフェイス名ではなくIPアドレスなので、mDNSで使われる適当な
+&lt;a href="https://en.wikipedia.org/wiki/Link-local_address"&gt;リンクローカルアドレス&lt;/a&gt; を与えてNICを有効にしました。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# ifconfig enp0s20u1u2 169.254.0.1 up
+
+$ ifconfig enp0s20u1u2
+enp0s20u1u2: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+        inet 169.254.0.1  netmask 255.255.0.0  broadcast 169.254.255.255
+        inet6 fe80::f0a3:d4ff:fe8b:fb1c  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
+        ether f2:a3:d4:8b:fb:1c  txqueuelen 1000  (Ethernet)
+        RX packets 911  bytes 34763 (33.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 29  bytes 2318 (2.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;次にbindするIPアドレスを指定して &lt;code&gt;raspberrypi.local&lt;/code&gt; を問い合わせると
+RaspberryPIのIPアドレスを得ることができました。SSHの接続もOK。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;dig&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="n"&gt;raspberrypi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="mf"&gt;@224.0.0.251&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;5353&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="mf"&gt;169.254.0.1&lt;/span&gt;
+&lt;span class="mf"&gt;169.254.39.21&lt;/span&gt;
+
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="mf"&gt;@169.254.39.21&lt;/span&gt;
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;authenticity&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;169.254.39.21&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;169.254.39.21&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;established&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;ECDSA&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;fingerprint&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="nl"&gt;SHA256&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;eKyA7UiU1i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;l0eAh&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;YT7MrjTadCdewpTuwcjSdw3aUg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Are&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="k"&gt;continue&lt;/span&gt; &lt;span class="n"&gt;connecting&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="nl"&gt;Warning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Permanently&lt;/span&gt; &lt;span class="n"&gt;added&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;169.254.39.21&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ECDSA&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;known&lt;/span&gt; &lt;span class="n"&gt;hosts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="mf"&gt;@169.254.39.21&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="nl"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raspberrypi&lt;/span&gt; &lt;span class="mf"&gt;4.9.59&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;1047&lt;/span&gt; &lt;span class="n"&gt;Sun&lt;/span&gt; &lt;span class="n"&gt;Oct&lt;/span&gt; &lt;span class="mi"&gt;29&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;47&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;GMT&lt;/span&gt; &lt;span class="mi"&gt;2017&lt;/span&gt; &lt;span class="n"&gt;armv6l&lt;/span&gt;
+
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;programs&lt;/span&gt; &lt;span class="n"&gt;included&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Debian&lt;/span&gt; &lt;span class="n"&gt;GNU&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;exact&lt;/span&gt; &lt;span class="n"&gt;distribution&lt;/span&gt; &lt;span class="n"&gt;terms&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;described&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt;
+&lt;span class="n"&gt;individual&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;*/&lt;/span&gt;&lt;span class="n"&gt;copyright&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Debian&lt;/span&gt; &lt;span class="n"&gt;GNU&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;comes&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;ABSOLUTELY&lt;/span&gt; &lt;span class="nb"&gt;NO&lt;/span&gt; &lt;span class="n"&gt;WARRANTY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;extent&lt;/span&gt;
+&lt;span class="n"&gt;permitted&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;applicable&lt;/span&gt; &lt;span class="n"&gt;law&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Last&lt;/span&gt; &lt;span class="nl"&gt;login&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Thu&lt;/span&gt; &lt;span class="n"&gt;Jan&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="mi"&gt;09&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;34&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="mi"&gt;2018&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mf"&gt;169.254.10.10&lt;/span&gt;
+
+&lt;span class="n"&gt;SSH&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;enabled&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;changed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;security&lt;/span&gt; &lt;span class="n"&gt;risk&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;please&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;インターネット共有に関しては試してないけれど恐らくブリッジを使えばうまく行くんじゃないかな(適当&lt;/p&gt;</summary><category term="Gentoo"></category><category term="Linux"></category><category term="RaspberryPi"></category></entry><entry><title>Linuxで複数モニタを使うときのメモ</title><link href="/posts/2018/01/multi-monitor.html" rel="alternate"></link><updated>2018-01-25T01:14:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2018-01-25:posts/2018/01/multi-monitor.html</id><summary type="html">&lt;p&gt;以前買った &lt;a href="/posts/2015/12/akizuki-igzo.html"&gt;IGZO液晶&lt;/a&gt; はたまにRaspberryPiを接続したり、
 臨時のモニタとして活躍していました。ただ、最近活躍の機会もあまりないのと、
 小画面で常時表示しておきたいような用途を思いついたのでデスクトップPCのサブモニタとしてしばらく使ってみることにしました。&lt;/p&gt;
 &lt;p&gt;デスクトップPCのマザーボードは &lt;a href="https://www.asrock.com/mb/Intel/H77M-ITX/index.jp.asp"&gt;H77M-ITX&lt;/a&gt; を使っていて、

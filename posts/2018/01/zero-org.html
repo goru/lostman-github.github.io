@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>秋月電子で買えるIGZO液晶を試してみた - blog.gorugle.org</title>
+    <title>RaspberryPi ZeroをOTGモードで使う - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
 
 
 
-<link rel="canonical" href="/posts/2015/12/akizuki-igzo.html">
+<link rel="canonical" href="/posts/2018/01/zero-org.html">
 
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Hardware,SHARP,IGZO,Gentoo,Linux" />
-        <meta name="description" content="秋月電子で SHARPの7インチIGZO液晶モジュール を購入したらあっという間に届いたので動作確認してみました。 動作確認自体は土曜に終わっていて、本当はアクリルのケースを作成してから記事を書くつもりでした。 が、月曜の夜に見積もり依頼を出して既に木曜の深夜です… メールには2営業日と書いてあったのに何が起きているんだろうなぁと少しイラッときたので先に記事だけ書いてしまうことにしました。 (ちなみに今日くらいから シリコンハウスでも購入できる みたいですね。) 組み立てと接続に関しては付属の説明書を参考にすれば特に問題なく済ませることができると思います。 注意すべきことがあるとすれば、細い方のフレキシブルケーブルのコネクタは、開く方向が太い方とは逆になっていた点くらいです。 あとは単純に壊さないように作業するだけです。(すごく壊れやすそうなので何度も作業したくない感じでした。) 映像の出力機器に関して、とりあえず普段使用している MiniDP-HDMI変換ケーブル を使ってMBAと接続してみたのですが無反応でした。 次にGentooがインストールされているデスクトップと DVI-HDMI変換ケーブル を使って接続してみたら、こちらはうまく表示されました。 MBAが悪いのか、変換ケーブルが悪いのかは切り分けることができていませんが多少相性はあるようです。 Twitterでも報告している人がいましたが接続する機器によっては映らないということがわりと当たり前に起こりそうです。こわいですね。 下の画像はデスクトップに接続して画面を左に90度回転した状態で撮影したものです。 この液晶の仕様でデフォルトでは縦画面の1200ｘ1920で認識されるようです。 なので、横向きで使用したい場合はOS側で画面を回転させてやる必要があります。 (この仕様のせいでおそらくPC以外の機器との接続が難しくなっているのだと思われます。) Gentoo(Linux)のXでは xrandr というコマンドがあり、これを利用すると画面を回転させることができます。 今回はこのように xrandr -o left 実行しました。 アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために SketchUp を使っていて ..." />
+        <meta name="keywords" content="Gentoo,Linux,RaspberryPi" />
+        <meta name="description" content="RaspberryPi Zeroに USB Stem を 取り付けてみました。 取り付けとRaspbianの準備に関しては PIMORONI と そこからリンクされている 公式 と Gist を参考にすれば簡単にできました。 Macで使う場合は、ドライバも必要ないしBonjourも動作しているのでなんの準備も必要なくSSHでつなぐことができました。 インターネット共有の設定をすればインターネットへ接続するのもOK。 ただ自分のLinuxの環境はGentooなのでドライバも無効になっていたし、Avahiも入っていなかったので少しハマりました。 まずカーネルの設定で CONFIG_USB_NET_CDCETHER を有効にするとRaspberryPiを認識できるようになります。 Device Drivers ---&gt; Network device support ---&gt; USB Network Adapters ---&gt; Multi-purpose USB Networking Framework CDC Ethernet support (smart devices such as cable modems) 有効にした上で接続するとdmesgとifconfigにこのように出力されます。(なんかエラーでてるけど…) $ dmesg [ 1450.001875] usb 3-1 ..." />
 
 
 
@@ -80,10 +80,10 @@ blog.gorugle.org            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/posts/2015/12/akizuki-igzo.html"
+                    <a href="/posts/2018/01/zero-org.html"
                        rel="bookmark"
-                       title="Permalink to 秋月電子で買えるIGZO液晶を試してみた">
-                        秋月電子で買えるIGZO液晶を試してみた
+                       title="Permalink to RaspberryPi ZeroをOTGモードで使う">
+                        RaspberryPi ZeroをOTGモードで使う
                     </a>
                 </h1>
             </header>
@@ -93,7 +93,7 @@ blog.gorugle.org            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <time datetime="2015-12-18T02:04:00+09:00"> 2015/12/18 Fri</time>
+        <time datetime="2018-01-28T22:43:00+09:00"> 2018/01/28 Sun</time>
     </span>
 
 
@@ -101,61 +101,106 @@ blog.gorugle.org            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/hardware.html">Hardware</a>
-        /
-	<a href="/tag/sharp.html">SHARP</a>
-        /
-	<a href="/tag/igzo.html">IGZO</a>
-        /
 	<a href="/tag/gentoo.html">Gentoo</a>
         /
 	<a href="/tag/linux.html">Linux</a>
+        /
+	<a href="/tag/raspberrypi.html">RaspberryPi</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>秋月電子で <a href="http://akizukidenshi.com/catalog/g/gM-10016/">SHARPの7インチIGZO液晶モジュール</a> を購入したらあっという間に届いたので動作確認してみました。
-動作確認自体は土曜に終わっていて、本当はアクリルのケースを作成してから記事を書くつもりでした。
-が、月曜の夜に見積もり依頼を出して既に木曜の深夜です…
-メールには2営業日と書いてあったのに何が起きているんだろうなぁと少しイラッときたので先に記事だけ書いてしまうことにしました。
-(ちなみに今日くらいから <a href="http://blog.siliconhouse.jp/archives/52092332.html">シリコンハウスでも購入できる</a> みたいですね。)</p>
-<p>組み立てと接続に関しては付属の説明書を参考にすれば特に問題なく済ませることができると思います。
-注意すべきことがあるとすれば、細い方のフレキシブルケーブルのコネクタは、開く方向が太い方とは逆になっていた点くらいです。
-あとは単純に壊さないように作業するだけです。(すごく壊れやすそうなので何度も作業したくない感じでした。)</p>
-<p>映像の出力機器に関して、とりあえず普段使用している <a href="http://www.amazon.co.jp/dp/B00E3AHJDO">MiniDP-HDMI変換ケーブル</a> を使ってMBAと接続してみたのですが無反応でした。
-次にGentooがインストールされているデスクトップと <a href="http://www.amazon.co.jp/dp/B000T738TE">DVI-HDMI変換ケーブル</a> を使って接続してみたら、こちらはうまく表示されました。
-MBAが悪いのか、変換ケーブルが悪いのかは切り分けることができていませんが多少相性はあるようです。
-Twitterでも報告している人がいましたが接続する機器によっては映らないということがわりと当たり前に起こりそうです。こわいですね。</p>
-<p>下の画像はデスクトップに接続して画面を左に90度回転した状態で撮影したものです。
-この液晶の仕様でデフォルトでは縦画面の1200ｘ1920で認識されるようです。
-なので、横向きで使用したい場合はOS側で画面を回転させてやる必要があります。
-(この仕様のせいでおそらくPC以外の機器との接続が難しくなっているのだと思われます。)</p>
-<p>Gentoo(Linux)のXでは <code>xrandr</code> というコマンドがあり、これを利用すると画面を回転させることができます。
-今回はこのように <code>xrandr -o left</code> 実行しました。</p>
-<p><a href="/static/images/2015/12/DSC_0595.JPG"><img alt="image" src="/static/images/2015/12/DSC_0595_s.JPG" /></a></p>
-<p><del>アクリルケースに関しては、本当はCADやIllustratorを使用して書くのかもしれませんが、木材を使った家具のイメージ作りのために <a href="https://www.sketchup.com/ja">SketchUp</a> を使っていて、これでも書けそうだったので使ってみました。
-<strong>僕はまだ実物を手に入れていない</strong> のでこれでうまく収まるのかはよくわかりませんが、作った図面を貼り付けておこうと思います。
-元データが欲しい方は こちら からダウンロードできるようにしておきました。
-(もし誰か僕より先にこの実物を手に入れた人がいたら、フィードバックを貰えるとありがたいです…)</del></p>
-<p>新しい図面を作成してレーザーカッターを使って実際にケースを作成してみたので <a href="akizuki-igzo-case.html">こちら</a> を参照してください。</p>
-<p><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_1_s.png" />
-<img alt="image" src="/static/images/2015/12/Akizuki-IGZO_2_s.png" /></p>
-<p><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_3_s.png" />
-<img alt="image" src="/static/images/2015/12/Akizuki-IGZO_4_s.png" /></p>
-<p><img alt="image" src="/static/images/2015/12/Akizuki-IGZO_5_s.png" /></p>
-<p>表面、裏面共にネジを使用する部分はサラザグリにしてフラットになるようにしました。
-依頼を予定している業者が厚みが3mm以下のアクリル板に対してサラザグリの加工を受け付けていないようだったので、この加工をする必要がある板は3mm厚になっています。
-もし必要なければ普通の穴に変更してアクリルの厚さも薄くできるはずです。
-他にRaspberryPi Zeroの <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/mechanical/rpi-zero-v1_2_dimensions.pdf">公式の仕様</a> を参考にマウントできるネジ穴を設けました。
-M2.5のタップ穴も受け付けていないようだったのでM2になっています。
-近い将来RaspberryPi Zeroが普通に入手できるようになったらここにマウントできるはずです。
-液晶の変換基板、RaspberryPi共に2mmか3mmのスペーサーを挟んで3枚目の板に固定します。
-一部のネジは5枚目の板と共にネジで固定するようになっています。こちらにもスペーサーが必要です。
-あと板の四隅のうち右下のネジ穴は4枚目の厚みの分、ここにも10mmのスペーサーが必要です。
-これら以外には特に特筆すべき点はありません、ただコネクタ周りのクリアランスに問題がないかはわかっていません。
-おそらくL型のケーブルで接続する必要があると思われます。</p>
-<p>さて、いつ見積もりの結果が来るかなぁ…
-<a href="http://fabcafe.com/tokyo/fab_details">FabCafe Tokyo</a> ではデータと素材を持ち込むとレーザーカッターで加工をしてくれるみたいなので、もしかしたら図面を作りなおしてそちらにトライするかもしれません。
-正直手間とかを考えたら多少高くても業者にお願いした方が楽だろうと思っていたのですが、想像以上にレスポンスが悪いので迷っているところです。</p>
+                <p>RaspberryPi Zeroに <a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector">USB Stem</a> を
+取り付けてみました。</p>
+<p>取り付けとRaspbianの準備に関しては <a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector">PIMORONI</a> と
+そこからリンクされている <a href="https://zerostem.io/installation/">公式</a> と
+<a href="https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a">Gist</a> を参考にすれば簡単にできました。</p>
+<p>Macで使う場合は、ドライバも必要ないしBonjourも動作しているのでなんの準備も必要なくSSHでつなぐことができました。
+インターネット共有の設定をすればインターネットへ接続するのもOK。</p>
+<p>ただ自分のLinuxの環境はGentooなのでドライバも無効になっていたし、Avahiも入っていなかったので少しハマりました。
+まずカーネルの設定で <code>CONFIG_USB_NET_CDCETHER</code> を有効にするとRaspberryPiを認識できるようになります。</p>
+<div class="highlight"><pre>Device Drivers  ---&gt;
+  Network device support  ---&gt;
+    USB Network Adapters  ---&gt;
+      Multi-purpose USB Networking Framework
+        CDC Ethernet support (smart devices such as cable modems)
+</pre></div>
+
+
+<p>有効にした上で接続するとdmesgとifconfigにこのように出力されます。(なんかエラーでてるけど…)</p>
+<div class="highlight"><pre><span class="nv">$ </span>dmesg
+<span class="o">[</span> 1450.001875<span class="o">]</span> usb 3-1.2: new high-speed USB device number <span class="m">6</span> using xhci_hcd
+<span class="o">[</span> 1450.341883<span class="o">]</span> usb 3-1.2: device descriptor <span class="nb">read</span>/64, error -71
+<span class="o">[</span> 1451.137854<span class="o">]</span> usb 3-1.2: device descriptor <span class="nb">read</span>/64, error -71
+<span class="o">[</span> 1451.311832<span class="o">]</span> usb 3-1.2: new high-speed USB device number <span class="m">7</span> using xhci_hcd
+<span class="o">[</span> 1451.402720<span class="o">]</span> usb 3-1.2: New USB device found, <span class="nv">idVendor</span><span class="o">=</span>0525, <span class="nv">idProduct</span><span class="o">=</span>a4a2
+<span class="o">[</span> 1451.402725<span class="o">]</span> usb 3-1.2: New USB device strings: <span class="nv">Mfr</span><span class="o">=</span>1, <span class="nv">Product</span><span class="o">=</span>2, <span class="nv">SerialNumber</span><span class="o">=</span>0
+<span class="o">[</span> 1451.402728<span class="o">]</span> usb 3-1.2: Product: RNDIS/Ethernet Gadget
+<span class="o">[</span> 1451.402730<span class="o">]</span> usb 3-1.2: Manufacturer: Linux 4.9.59+ with 20980000.usb
+<span class="o">[</span> 1451.412841<span class="o">]</span> cdc_ether 3-1.2:1.0 usb0: register <span class="s1">&#39;cdc_ether&#39;</span> at usb-0000:00:14.0-1.2, CDC Ethernet Device, a2:a1:76:81:c5:63
+<span class="o">[</span> 1451.416086<span class="o">]</span> cdc_ether 3-1.2:1.0 enp0s20u1u2: renamed from usb0
+
+<span class="nv">$ </span>ifconfig enp0s20u1u2
+enp0s20u1u2: <span class="nv">flags</span><span class="o">=</span>4098&lt;BROADCAST,MULTICAST&gt;  mtu 1500
+        ether a2:a1:76:81:c5:63  txqueuelen <span class="m">1000</span>  <span class="o">(</span>Ethernet<span class="o">)</span>
+        RX packets <span class="m">0</span>  bytes <span class="m">0</span> <span class="o">(</span>0.0 B<span class="o">)</span>
+        RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame 0
+        TX packets <span class="m">0</span>  bytes <span class="m">0</span> <span class="o">(</span>0.0 B<span class="o">)</span>
+        TX errors <span class="m">0</span>  dropped <span class="m">0</span> overruns <span class="m">0</span>  carrier <span class="m">0</span>  collisions 0
+</pre></div>
+
+
+<p>で、Avahiを入れようと思ったのだけれど、いまいちよくわかっていないのと、
+このためだけに入れるのもどうなのかなと思っていたら
+<a href="http://hateda.hatenadiary.jp/entry/mdns-and-vagrant">digで問い合わせることができる</a>
+という情報を見つけたのでこの方法を試してみることにしました。</p>
+<p>参考にしたサイトでは省略されているけれど、今回はNICが複数あるので
+(元からあるNICとRaspberryPIがNICとして認識されているため)
+digコマンドを実行する時に <code>-b</code> オプションでbindするIPアドレスを渡して
+マルチキャストのパケットを送出する元のNICを指定する必要がありました。
+(そうでなければデフォルトゲートウェイのNIC?)</p>
+<p>インターフェイス名ではなくIPアドレスなので、mDNSで使われる適当な
+<a href="https://en.wikipedia.org/wiki/Link-local_address">リンクローカルアドレス</a> を与えてNICを有効にしました。</p>
+<div class="highlight"><pre># ifconfig enp0s20u1u2 169.254.0.1 up
+
+$ ifconfig enp0s20u1u2
+enp0s20u1u2: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 169.254.0.1  netmask 255.255.0.0  broadcast 169.254.255.255
+        inet6 fe80::f0a3:d4ff:fe8b:fb1c  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether f2:a3:d4:8b:fb:1c  txqueuelen 1000  (Ethernet)
+        RX packets 911  bytes 34763 (33.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 29  bytes 2318 (2.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</pre></div>
+
+
+<p>次にbindするIPアドレスを指定して <code>raspberrypi.local</code> を問い合わせると
+RaspberryPIのIPアドレスを得ることができました。SSHの接続もOK。</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">dig</span> <span class="o">+</span><span class="kt">short</span> <span class="n">raspberrypi</span><span class="p">.</span><span class="n">local</span><span class="p">.</span> <span class="mf">@224.0.0.251</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5353</span> <span class="o">-</span><span class="n">b</span> <span class="mf">169.254.0.1</span>
+<span class="mf">169.254.39.21</span>
+
+<span class="err">$</span> <span class="n">ssh</span> <span class="n">pi</span><span class="mf">@169.254.39.21</span>
+<span class="n">The</span> <span class="n">authenticity</span> <span class="n">of</span> <span class="n">host</span> <span class="err">&#39;</span><span class="mf">169.254.39.21</span> <span class="p">(</span><span class="mf">169.254.39.21</span><span class="p">)</span><span class="err">&#39;</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">be</span> <span class="n">established</span><span class="p">.</span>
+<span class="n">ECDSA</span> <span class="n">key</span> <span class="n">fingerprint</span> <span class="n">is</span> <span class="nl">SHA256</span><span class="p">:</span><span class="n">eKyA7UiU1i</span><span class="o">+</span><span class="n">l0eAh</span><span class="o">+</span><span class="n">YT7MrjTadCdewpTuwcjSdw3aUg</span><span class="p">.</span>
+<span class="n">Are</span> <span class="n">you</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="k">continue</span> <span class="n">connecting</span> <span class="p">(</span><span class="n">yes</span><span class="o">/</span><span class="n">no</span><span class="p">)</span><span class="o">?</span> <span class="n">yes</span>
+<span class="nl">Warning</span><span class="p">:</span> <span class="n">Permanently</span> <span class="n">added</span> <span class="err">&#39;</span><span class="mf">169.254.39.21</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">ECDSA</span><span class="p">)</span> <span class="n">to</span> <span class="n">the</span> <span class="n">list</span> <span class="n">of</span> <span class="n">known</span> <span class="n">hosts</span><span class="p">.</span>
+<span class="n">pi</span><span class="mf">@169.254.39.21</span><span class="err">&#39;</span><span class="n">s</span> <span class="nl">password</span><span class="p">:</span>
+<span class="n">Linux</span> <span class="n">raspberrypi</span> <span class="mf">4.9.59</span><span class="o">+</span> <span class="err">#</span><span class="mi">1047</span> <span class="n">Sun</span> <span class="n">Oct</span> <span class="mi">29</span> <span class="mi">11</span><span class="o">:</span><span class="mi">47</span><span class="o">:</span><span class="mi">10</span> <span class="n">GMT</span> <span class="mi">2017</span> <span class="n">armv6l</span>
+
+<span class="n">The</span> <span class="n">programs</span> <span class="n">included</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Debian</span> <span class="n">GNU</span><span class="o">/</span><span class="n">Linux</span> <span class="n">system</span> <span class="n">are</span> <span class="n">free</span> <span class="n">software</span><span class="p">;</span>
+<span class="n">the</span> <span class="n">exact</span> <span class="n">distribution</span> <span class="n">terms</span> <span class="k">for</span> <span class="n">each</span> <span class="n">program</span> <span class="n">are</span> <span class="n">described</span> <span class="k">in</span> <span class="n">the</span>
+<span class="n">individual</span> <span class="n">files</span> <span class="k">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="err">*/</span><span class="n">copyright</span><span class="p">.</span>
+
+<span class="n">Debian</span> <span class="n">GNU</span><span class="o">/</span><span class="n">Linux</span> <span class="n">comes</span> <span class="n">with</span> <span class="n">ABSOLUTELY</span> <span class="nb">NO</span> <span class="n">WARRANTY</span><span class="p">,</span> <span class="n">to</span> <span class="n">the</span> <span class="n">extent</span>
+<span class="n">permitted</span> <span class="n">by</span> <span class="n">applicable</span> <span class="n">law</span><span class="p">.</span>
+<span class="n">Last</span> <span class="nl">login</span><span class="p">:</span> <span class="n">Thu</span> <span class="n">Jan</span> <span class="mi">25</span> <span class="mi">09</span><span class="o">:</span><span class="mi">34</span><span class="o">:</span><span class="mi">23</span> <span class="mi">2018</span> <span class="n">from</span> <span class="mf">169.254.10.10</span>
+
+<span class="n">SSH</span> <span class="n">is</span> <span class="n">enabled</span> <span class="n">and</span> <span class="n">the</span> <span class="k">default</span> <span class="n">password</span> <span class="k">for</span> <span class="n">the</span> <span class="err">&#39;</span><span class="n">pi</span><span class="err">&#39;</span> <span class="n">user</span> <span class="n">has</span> <span class="n">not</span> <span class="n">been</span> <span class="n">changed</span><span class="p">.</span>
+<span class="n">This</span> <span class="n">is</span> <span class="n">a</span> <span class="n">security</span> <span class="n">risk</span> <span class="o">-</span> <span class="n">please</span> <span class="n">login</span> <span class="n">as</span> <span class="n">the</span> <span class="err">&#39;</span><span class="n">pi</span><span class="err">&#39;</span> <span class="n">user</span> <span class="n">and</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">passwd</span><span class="err">&#39;</span> <span class="n">to</span> <span class="n">set</span> <span class="n">a</span> <span class="n">new</span> <span class="n">password</span><span class="p">.</span>
+</pre></div>
+
+
+<p>インターネット共有に関しては試してないけれど恐らくブリッジを使えばうまく行くんじゃないかな(適当</p>
             </div>
             <!-- /.entry-content -->
         </article>
