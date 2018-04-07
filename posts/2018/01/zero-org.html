@@ -154,7 +154,7 @@ enp0s20u1u2: <span class="nv">flags</span><span class="o">=</span>4098&lt;BROADC
 <a href="http://hateda.hatenadiary.jp/entry/mdns-and-vagrant">digで問い合わせることができる</a>
 という情報を見つけたのでこの方法を試してみることにしました。</p>
 <p>参考にしたサイトでは省略されているけれど、今回はNICが複数あるので
-(元からあるNICとRaspberryPIがNICとして認識されているため)
+(元からあるNICとRaspberryPiがNICとして認識されているため)
 digコマンドを実行する時に <code>-b</code> オプションでbindするIPアドレスを渡して
 マルチキャストのパケットを送出する元のNICを指定する必要がありました。
 (そうでなければデフォルトゲートウェイのNIC?)</p>
@@ -175,7 +175,7 @@ enp0s20u1u2: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
 
 
 <p>次にbindするIPアドレスを指定して <code>raspberrypi.local</code> を問い合わせると
-RaspberryPIのIPアドレスを得ることができました。SSHの接続もOK。</p>
+RaspberryPiのIPアドレスを得ることができました。SSHの接続もOK。</p>
 <div class="highlight"><pre><span class="err">$</span> <span class="n">dig</span> <span class="o">+</span><span class="kt">short</span> <span class="n">raspberrypi</span><span class="p">.</span><span class="n">local</span><span class="p">.</span> <span class="mf">@224.0.0.251</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5353</span> <span class="o">-</span><span class="n">b</span> <span class="mf">169.254.0.1</span>
 <span class="mf">169.254.39.21</span>
 
@@ -218,18 +218,13 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/linux.html">
                             Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -238,18 +233,18 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/hardware.html">
                             Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/mac.html">
-                            Mac
+                        <a href="/tag/arduino.html">
+                            Arduino
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -258,23 +253,28 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/mac.html">
+                            Mac
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
+                        <a href="/tag/igzo.html">
+                            IGZO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
                         <a href="/tag/e-book.html">
                             e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/raspberrypi.html">
+                            RaspberryPi
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -288,13 +288,18 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/esp-wroom-02.html">
                             ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/igzo.html">
-                            IGZO
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -303,13 +308,73 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/walkman.html">
                             Walkman
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kodi.html">
+                            Kodi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -323,98 +388,8 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/raspberrypi.html">
-                            RaspberryPi
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/github.html">
                             GitHub
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -423,8 +398,33 @@ RaspberryPIのIPアドレスを得ることができました。SSHの接続もO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
                         </a>
                     </li>
                 </ul>

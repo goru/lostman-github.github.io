@@ -74,6 +74,24 @@ blog.gorugle.org            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="/posts/2014/11/smart.html">使えなくなったHDDのS.M.A.R.T.の結果</a></h2>
+                <div class="summary"><p>ずいぶん前の出来事だけれど、 <a href="http://www.hgst.com/tech/techlib.nsf/techdocs/C2AF1DCDF0FBD887882578FE0082527B/$file/DS7K1000.D_ds.pdf">Hitachi Deskstar 7K1000.D</a> がエラーを吐いて使えなくなったので<br />
+その時のS.M.A.R.T.の結果を記録しておく</p>
+<p>こんなメールでRAIDのアレイから外したことを通知されました</p>
+<div class="highlight"><pre>This is an automatically generated mail message from mdadm
+
+A Fail event had been detected on md device /dev/md1.
+
+It could be related to component device /dev/sdc.
+
+Faithfully yours, etc.
+
+P.S. The /proc/mdstat ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/posts/2014/11/smart.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/posts/2014/10/dc-210n.html">裁断機(DC-210N)を購入してみた</a></h2>
                 <div class="summary"><p>もうずっと読んでいない参考書とか、学生時代の教科書とかを整理したいので裁断機を購入してみました<br />
 色々検討したんですが大型の裁断機ではなく、それより簡易的な <a href="http://www.carl.co.jp/item/DC-210N.html">DC-210N</a> を選択<br />
@@ -349,36 +367,6 @@ I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> に�
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
-                <div class="summary"><p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
-I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
-といっても個別にパーツを揃えたわけでなく</p>
-<ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
-<li>100均で売っているスピーカ</li>
-</ul>
-<p>これらを接続しただけです<br />
-今回試した手順を以下にまとめておきます<br />
-後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
-<ol>
-<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
-<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
-<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
-<li>アンプの <code>SPK ...</code></li></ol>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="/index3.html">&laquo;</a>
@@ -408,18 +396,13 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="/tag/arduino.html">
-                            Arduino
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="/tag/linux.html">
                             Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -428,18 +411,18 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/so-02g.html">
-                            SO-02G
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
                         <a href="/tag/hardware.html">
                             Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/mac.html">
-                            Mac
+                        <a href="/tag/arduino.html">
+                            Arduino
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -448,23 +431,28 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/windows.html">
-                            Windows
+                        <a href="/tag/mac.html">
+                            Mac
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/so-02g.html">
+                            SO-02G
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
+                        <a href="/tag/igzo.html">
+                            IGZO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
                         <a href="/tag/e-book.html">
                             e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/raspberrypi.html">
+                            RaspberryPi
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -478,13 +466,18 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/esp-wroom-02.html">
                             ESP-WROOM-02
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/igzo.html">
-                            IGZO
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -493,13 +486,73 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/walkman.html">
                             Walkman
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kodi.html">
+                            Kodi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -513,98 +566,8 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/raspberrypi.html">
-                            RaspberryPi
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/macuim.html">
-                            MacUIM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kodi.html">
-                            Kodi
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/inkscape.html">
-                            Inkscape
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/redmine.html">
-                            Redmine
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/github.html">
                             GitHub
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -613,8 +576,33 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
                         </a>
                     </li>
                 </ul>

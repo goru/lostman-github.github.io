@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RaspberryPiでffmpegをビルドしてハードウェアデコーダ/エンコーダを試す - blog.gorugle.org</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/posts/2018/04/raspberrypi-ffmpeg.html">
+
+        <meta name="author" content="lostman/ごる" />
+        <meta name="keywords" content="Linux,RaspberryPi" />
+        <meta name="description" content="RaspberryPiでffmpegのMPEG2のハードウェアデコーダ(mpeg2_mmal)と、H.264のハードウェアエンコーダ(h264_omx)を使ってみたかったので試してみました。 が、aptでインストールできる3.2.10でmpeg2_mmalを使ってデコードすると解像度が320x240に固定されてしまうというバグを 見事に踏み抜いてしまったので結局自分でビルドすることになりました。 3.2.10で ERBラボのサンプルストリーム パケットサイズ188バイト版 をエンコードしたログ $ time ffmpeg -fflags +discardcorrupt -c:v mpeg2_mmal -i isdbt188.ts -t 00:00:10 -c:a copy -bsf:a aac_adtstoasc -c:v h264_omx -b:v 4096k isdbt188.mp4 ffmpeg version 3.2 ..." />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+blog.gorugle.org            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/computer.html">Computer</a>
+                        </li>
+                        <li >
+                            <a href="/category/embedded.html">Embedded</a>
+                        </li>
+                        <li >
+                            <a href="/category/gadget.html">Gadget</a>
+                        </li>
+                        <li >
+                            <a href="/category/internet.html">Internet</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2018/04/raspberrypi-ffmpeg.html"
+                       rel="bookmark"
+                       title="Permalink to RaspberryPiでffmpegをビルドしてハードウェアデコーダ/エンコーダを試す">
+                        RaspberryPiでffmpegをビルドしてハードウェアデコーダ/エンコーダを試す
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2018-04-08T01:22:00+09:00"> 2018/04/08 Sun</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/linux.html">Linux</a>
+        /
+	<a href="/tag/raspberrypi.html">RaspberryPi</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>RaspberryPiでffmpegのMPEG2のハードウェアデコーダ(mpeg2_mmal)と、H.264のハードウェアエンコーダ(h264_omx)を使ってみたかったので試してみました。
+が、aptでインストールできる3.2.10でmpeg2_mmalを使ってデコードすると解像度が320x240に固定されてしまうというバグを
+見事に踏み抜いてしまったので結局自分でビルドすることになりました。</p>
+<p>3.2.10で <a href="https://www.erb.jp/labo/samplestream.html">ERBラボのサンプルストリーム パケットサイズ188バイト版</a> をエンコードしたログ</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">time </span>ffmpeg -fflags +discardcorrupt -c:v mpeg2_mmal -i isdbt188.ts -t 00:00:10 -c:a copy -bsf:a aac_adtstoasc -c:v h264_omx -b:v 4096k isdbt188.mp4
+ffmpeg version 3.2.10-1~deb9u1+rpt1 Copyright <span class="o">(</span>c<span class="o">)</span> 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 <span class="o">(</span>Raspbian 6.3.0-18+rpi1<span class="o">)</span> 20170516
+  configuration: --prefix<span class="o">=</span>/usr --extra-version<span class="o">=</span><span class="s1">&#39;1~deb9u1+rpt1&#39;</span> --toolchain<span class="o">=</span>hardened --libdir<span class="o">=</span>/usr/lib/arm-linux-gnueabihf --incdir<span class="o">=</span>/usr/include/arm-linux-gnueabihf --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libebur128 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx-rpi --enable-mmal --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
+  libavutil      55. 34.101 / 55. 34.101
+  libavcodec     57. 64.101 / 57. 64.101
+  libavformat    57. 56.101 / 57. 56.101
+  libavdevice    57.  1.100 / 57.  1.100
+  libavfilter     6. 65.100 /  6. 65.100
+  libavresample   3.  1.  <span class="m">0</span> /  3.  1.  0
+  libswscale      4.  2.100 /  4.  2.100
+  libswresample   2.  3.100 /  2.  3.100
+  libpostproc    54.  1.100 / 54.  1.100
+<span class="o">[</span>mpegts @ 0x2450660<span class="o">]</span> PES packet size mismatch
+<span class="o">[</span>mpegts @ 0x2450660<span class="o">]</span> Dropped corrupted packet <span class="o">(</span><span class="nv">stream</span> <span class="o">=</span> 1<span class="o">)</span>
+Input <span class="c">#0, mpegts, from &#39;isdbt188.ts&#39;:</span>
+  Duration: 00:01:00.87, start: 109.851700, bitrate: <span class="m">17304</span> kb/s
+  Program 23664
+    Metadata:
+      service_name    : ?ERB?<span class="p">|</span>
+      service_provider:
+    Stream <span class="c">#0:0[0x200]: Video: mpeg2video ([2][0][0][0] / 0x0002), yuv420p(top first), 320x240, 16712 kb/s, 29.97 fps, 29.97 tbr, 90k tbn, 59.94 tbc</span>
+    Stream <span class="c">#0:1[0x201]: Audio: aac (LC) ([15][0][0][0] / 0x000F), 48000 Hz, stereo, fltp, 186 kb/s</span>
+<span class="o">[</span>h264_omx @ 0x2456f00<span class="o">]</span> Using OMX.broadcom.video_encode
+Output <span class="c">#0, mp4, to &#39;isdbt188.mp4&#39;:</span>
+  Metadata:
+    encoder         : Lavf57.56.101
+    Stream <span class="c">#0:0: Video: h264 (h264_omx) ([33][0][0][0] / 0x0021), yuv420p, 320x240, q=2-31, 4096 kb/s, 29.97 fps, 30k tbn, 29.97 tbc</span>
+    Metadata:
+      encoder         : Lavc57.64.101 h264_omx
+    Stream <span class="c">#0:1: Audio: aac (LC) ([64][0][0][0] / 0x0040), 48000 Hz, stereo, 186 kb/s</span>
+Stream mapping:
+  Stream <span class="c">#0:0 -&gt; #0:0 (mpeg2video (mpeg2_mmal) -&gt; h264 (h264_omx))</span>
+  Stream <span class="c">#0:1 -&gt; #0:1 (copy)</span>
+Press <span class="o">[</span>q<span class="o">]</span> to stop, <span class="o">[</span>?<span class="o">]</span> <span class="k">for</span> <span class="nb">help</span>
+<span class="o">[</span>mpeg2_mmal @ 0x2455fe0<span class="o">]</span> Changing output format.
+Input stream <span class="c">#0:0 frame changed from size:320x240 fmt:yuv420p to size:1440x1080 fmt:yuv420p</span>
+<span class="nv">frame</span><span class="o">=</span>  <span class="m">300</span> <span class="nv">fps</span><span class="o">=</span> <span class="m">33</span> <span class="nv">q</span><span class="o">=</span>-0.0 <span class="nv">Lsize</span><span class="o">=</span>    3553kB <span class="nb">time</span><span class="o">=</span>00:00:09.98 <span class="nv">bitrate</span><span class="o">=</span>2915.2kbits/s <span class="nv">dup</span><span class="o">=</span><span class="m">11</span> <span class="nv">drop</span><span class="o">=</span><span class="m">0</span> <span class="nv">speed</span><span class="o">=</span>1.09x
+video:3321kB audio:222kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.274571%
+
+real    0m9.823s
+user    0m9.022s
+sys     0m0.769s
+</pre></div>
+
+
+<p>n3.4.2でのログ</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">time </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/home/pi/usr/local/lib/ ~/usr/local/bin/ffmpeg -fflags +discardcorrupt -c:v mpeg2_mmal -i isdbt188.ts -t 00:00:10 -c:a copy -bsf:a aac_adtstoasc -c:v h264_omx -b:v 4096k isdbt188.mp4
+ffmpeg version n3.4.2-1~deb9u1+rpt1 Copyright <span class="o">(</span>c<span class="o">)</span> 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 <span class="o">(</span>Raspbian 6.3.0-18+rpi1+deb9u1<span class="o">)</span> 20170516
+  configuration: --prefix<span class="o">=</span>/home/pi/usr/local --extra-version<span class="o">=</span><span class="s1">&#39;1~deb9u1+rpt1&#39;</span> --toolchain<span class="o">=</span>hardened --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx-rpi --enable-mmal --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
+  libavutil      55. 78.100 / 55. 78.100
+  libavcodec     57.107.100 / 57.107.100
+  libavformat    57. 83.100 / 57. 83.100
+  libavdevice    57. 10.100 / 57. 10.100
+  libavfilter     6.107.100 /  6.107.100
+  libavresample   3.  7.  <span class="m">0</span> /  3.  7.  0
+  libswscale      4.  8.100 /  4.  8.100
+  libswresample   2.  9.100 /  2.  9.100
+  libpostproc    54.  7.100 / 54.  7.100
+<span class="o">[</span>mpegts @ 0x17bee10<span class="o">]</span> PES packet size mismatch
+<span class="o">[</span>mpegts @ 0x17bee10<span class="o">]</span> Dropped corrupted packet <span class="o">(</span><span class="nv">stream</span> <span class="o">=</span> 1<span class="o">)</span>
+Input <span class="c">#0, mpegts, from &#39;isdbt188.ts&#39;:</span>
+  Duration: 00:01:00.87, start: 109.851700, bitrate: <span class="m">17304</span> kb/s
+  Program 23664
+    Metadata:
+      service_name    : ?ERB?<span class="p">|</span>
+      service_provider:
+    Stream <span class="c">#0:0[0x200]: Video: mpeg2video ([2][0][0][0] / 0x0002), yuv420p(top first), 320x240, 16712 kb/s, 29.97 fps, 29.97 tbr, 90k tbn, 59.94 tbc</span>
+    Stream <span class="c">#0:1[0x201]: Audio: aac (LC) ([15][0][0][0] / 0x000F), 48000 Hz, stereo, fltp, 186 kb/s</span>
+Stream mapping:
+  Stream <span class="c">#0:0 -&gt; #0:0 (mpeg2video (mpeg2_mmal) -&gt; h264 (h264_omx))</span>
+  Stream <span class="c">#0:1 -&gt; #0:1 (copy)</span>
+Press <span class="o">[</span>q<span class="o">]</span> to stop, <span class="o">[</span>?<span class="o">]</span> <span class="k">for</span> <span class="nb">help</span>
+<span class="o">[</span>mpeg2_mmal @ 0x17c47e0<span class="o">]</span> Changing output format.
+<span class="o">[</span>h264_omx @ 0x1945960<span class="o">]</span> Using OMX.broadcom.video_encode
+Output <span class="c">#0, mp4, to &#39;isdbt188.mp4&#39;:</span>
+  Metadata:
+    encoder         : Lavf57.83.100
+    Stream <span class="c">#0:0: Video: h264 (h264_omx) (avc1 / 0x31637661), yuv420p, 1440x1080 [SAR 4:3 DAR 16:9], q=2-31, 4096 kb/s, 29.97 fps, 30k tbn, 29.97 tbc</span>
+    Metadata:
+      encoder         : Lavc57.107.100 h264_omx
+    Stream <span class="c">#0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 186 kb/s</span>
+<span class="nv">frame</span><span class="o">=</span>  <span class="m">300</span> <span class="nv">fps</span><span class="o">=</span> <span class="m">30</span> <span class="nv">q</span><span class="o">=</span>-0.0 <span class="nv">Lsize</span><span class="o">=</span>    5404kB <span class="nb">time</span><span class="o">=</span>00:00:09.98 <span class="nv">bitrate</span><span class="o">=</span>4433.7kbits/s <span class="nv">dup</span><span class="o">=</span><span class="m">11</span> <span class="nv">drop</span><span class="o">=</span><span class="m">0</span> <span class="nv">speed</span><span class="o">=</span>0.989x
+video:5171kB audio:222kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.181688%
+
+real    0m10.665s
+user    0m2.694s
+sys     0m3.117s
+</pre></div>
+
+
+<p>どちらも縮小はしていないのですが、 <code>Output</code> の <code>Stream #0:0</code> を見ると3.2.10では <code>320x240</code> になっているのに対し、n3.4.2では正しく <code>1440x1080</code> になっています。
+実際に出力されたファイルを再生してみてもその通りの解像度になっていました。
+よくよくログを見るとほぼ同じながら <code>[mpeg2_mmal @ 0x2455fe0] Changing output format.</code> の位置が前後していて、3.2.10では出力のフォーマットを決定したあとに出力されています。
+細かい原因は探っていませんが、3.2.10ではそのあたりに問題がありn3.4.2では解消されているようです。</p>
+<p>ビルドとは直接関係ありませんが、mpeg2_mmalを使うにはライセンスが必要なので、 <a href="http://www.raspberrypi.com/mpeg-2-license-key/">公式</a> で購入して設定します。
+<code>/boot/config.txt</code> を編集するのと、 <code>raspi-config</code> で <code>5 Interfacing Options</code> -&gt; <code>P1 Camera</code> を選択してカメラ機能を有効にする必要がありました。
+再起動して <code>vcgencmd codec_enabled MPG2</code> を実行して <code>MPG2=enabled</code> と出力されれば有効になっています。
+(ちなみにaptでインストールされるffmpegでもmpeg2_mmalとh264_omxがサポートされた状態でビルドされています。
+h264_omxに関しては問題なかったので、MPEG2のデコーダを必要としないなら自分でビルドする必要はありません。)</p>
+<p>ビルドの手順に関しては <a href="https://www.kaoriya.net/blog/2017/10/07/">KaoriYaさんの記事</a> にそって進めるのが楽でした。
+<code>/etc/apt/sources.list</code> を編集して <code>sudo apt install ffmpeg</code> と <code>sudo apt build-dep ffmpeg</code> を実行するまでは同じでOKです。</p>
+<p>今回任意のバージョンを色々試したかったのでgitでソースを取得しました。</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt install git
+<span class="nv">$ </span>git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
+<span class="nv">$ </span><span class="nb">cd </span>ffmpeg
+<span class="nv">$ </span>git checkout n3.4.2
+</pre></div>
+
+
+<p><code>./configure</code> も基本3.2.10のコピペで問題ありませんでした。
+ただし <code>--enable-libebur128</code> が使えなくなっているので削除したのと、インストール先を変更するために <code>--prefix=/usr</code> を修正、
+<code>--libdir=/usr/lib/arm-linux-gnueabihf</code> と <code>--incdir=/usr/include/arm-linux-gnueabihf</code> を削除して以下のようにしてビルドしました。</p>
+<div class="highlight"><pre><span class="nv">$ </span>./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>/usr/local --extra-version<span class="o">=</span><span class="s1">&#39;1~deb9u1+rpt1&#39;</span> --toolchain<span class="o">=</span>hardened --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx-rpi --enable-mmal --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
+<span class="nv">$ </span>make -j4
+<span class="nv">$ </span>make install
+</pre></div>
+
+
+<p><code>~/usr/local/bin/ffmpeg</code> としてインストールされるのでこのようにすれば実行できます。
+(もちろん上書きしていないので単純にffmpegと実行すればaptでインストールしたものも実行できます。)</p>
+<div class="highlight"><pre><span class="nv">$ LD_LIBRARY_PATH</span><span class="o">=</span>~/usr/local/lib/ ~/usr/local/bin/ffmpeg -version
+ffmpeg version n3.4.2-1~deb9u1+rpt1 Copyright <span class="o">(</span>c<span class="o">)</span> 2000-2018 the FFmpeg developers
+built with gcc 6.3.0 <span class="o">(</span>Raspbian 6.3.0-18+rpi1+deb9u1<span class="o">)</span> 20170516
+configuration: --prefix<span class="o">=</span>/home/pi/usr/local --extra-version<span class="o">=</span><span class="s1">&#39;1~deb9u1+rpt1&#39;</span> --toolchain<span class="o">=</span>hardened --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx-rpi --enable-mmal --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
+libavutil      55. 78.100 / 55. 78.100
+libavcodec     57.107.100 / 57.107.100
+libavformat    57. 83.100 / 57. 83.100
+libavdevice    57. 10.100 / 57. 10.100
+libavfilter     6.107.100 /  6.107.100
+libavresample   3.  7.  <span class="m">0</span> /  3.  7.  0
+libswscale      4.  8.100 /  4.  8.100
+libswresample   2.  9.100 /  2.  9.100
+libpostproc    54.  7.100 / 54.  7.100
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/android.html">
+                            Android
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/arduino.html">
+                            Arduino
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/mac.html">
+                            Mac
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/so-02g.html">
+                            SO-02G
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/igzo.html">
+                            IGZO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/e-book.html">
+                            e-book
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/raspberrypi.html">
+                            RaspberryPi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/aquestalk-pico-lsi.html">
+                            AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/esp-wroom-02.html">
+                            ESP-WROOM-02
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/mvno.html">
+                            MVNO
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kindle.html">
+                            Kindle
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/macuim.html">
+                            MacUIM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/inkscape.html">
+                            Inkscape
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kodi.html">
+                            Kodi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/redmine.html">
+                            Redmine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/github.html">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/lostman-github">@lostman-github</a> on GitHub
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2018 lostman/ごる
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = '/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'lostman-github',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+</body>
+</html>
