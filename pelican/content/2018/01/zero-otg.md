@@ -53,7 +53,7 @@ Macで使う場合は、ドライバも必要ないしBonjourも動作してい�
 という情報を見つけたのでこの方法を試してみることにしました。
 
 参考にしたサイトでは省略されているけれど、今回はNICが複数あるので
-(元からあるNICとRaspberryPIがNICとして認識されているため)
+(元からあるNICとRaspberryPiがNICとして認識されているため)
 digコマンドを実行する時に `-b` オプションでbindするIPアドレスを渡して
 マルチキャストのパケットを送出する元のNICを指定する必要がありました。
 (そうでなければデフォルトゲートウェイのNIC?)
@@ -75,7 +75,7 @@ digコマンドを実行する時に `-b` オプションでbindするIPアド�
             TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 次にbindするIPアドレスを指定して `raspberrypi.local` を問い合わせると
-RaspberryPIのIPアドレスを得ることができました。SSHの接続もOK。
+RaspberryPiのIPアドレスを得ることができました。SSHの接続もOK。
 
     :::
     $ dig +short raspberrypi.local. @224.0.0.251 -p 5353 -b 169.254.0.1
