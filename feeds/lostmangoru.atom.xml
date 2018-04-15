@@ -138,6 +138,13 @@ libavresample   3.  7.  &lt;span class="m"&gt;0&lt;/span&gt; /  3.  7.  0
 libswscale      4.  8.100 /  4.  8.100
 libswresample   2.  9.100 /  2.  9.100
 libpostproc    54.  7.100 / 54.  7.100
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以下のようなエラーが出る場合はGPUのメモリ不足らしいので &lt;code&gt;/boot/config.txt&lt;/code&gt; の
+&lt;code&gt;gpu_mem=128&lt;/code&gt; の行を編集して256にしたら解消した。 ( &lt;a href="https://www.raspberrypi.org/forums/viewtopic.php?p=1186435#p1186435"&gt;capacity of h.264 hardware encoder&lt;/a&gt; )&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[h264_omx @ 0xa0ce10] err 80001000 (-2147479552) on line 561
+Error initializing output stream 0:0 -- Error while opening encoder for output stream #0:0 - maybe incorrect parameters such as bit_rate, rate, width or height
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="RaspberryPi"></category></entry><entry><title>RaspberryPi ZeroをOTGモードで使う</title><link href="/posts/2018/01/zero-org.html" rel="alternate"></link><updated>2018-01-28T22:43:00+09:00</updated><author><name>lostman/ごる</name></author><id>tag:,2018-01-28:posts/2018/01/zero-org.html</id><summary type="html">&lt;p&gt;RaspberryPi Zeroに &lt;a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector"&gt;USB Stem&lt;/a&gt; を
 取り付けてみました。&lt;/p&gt;
 &lt;p&gt;取り付けとRaspbianの準備に関しては &lt;a href="https://shop.pimoroni.com/products/zero-stem-usb-otg-connector"&gt;PIMORONI&lt;/a&gt; と
