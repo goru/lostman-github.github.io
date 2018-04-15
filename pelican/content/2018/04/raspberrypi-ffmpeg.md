@@ -150,3 +150,9 @@ h264_omxに関しては問題なかったので、MPEG2のデコーダを必要�
     libswresample   2.  9.100 /  2.  9.100
     libpostproc    54.  7.100 / 54.  7.100
 
+以下のようなエラーが出る場合はGPUのメモリ不足らしいので `/boot/config.txt` の
+`gpu_mem=128` の行を編集して256にしたら解消した。 ( [capacity of h.264 hardware encoder](https://www.raspberrypi.org/forums/viewtopic.php?p=1186435#p1186435) )
+
+    :::
+    [h264_omx @ 0xa0ce10] err 80001000 (-2147479552) on line 561
+    Error initializing output stream 0:0 -- Error while opening encoder for output stream #0:0 - maybe incorrect parameters such as bit_rate, rate, width or height
