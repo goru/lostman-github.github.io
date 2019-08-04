@@ -1,7 +1,7 @@
-Title: SketchUpをLinuxにインストール
+Title: SketchUpをWineで使う
 Date: 2015-06-06 01:51
 Category: Computer
-Tags: Linux
+Tags: Linux, Wine
 Slug: sketchup-wine
 
 SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした  
