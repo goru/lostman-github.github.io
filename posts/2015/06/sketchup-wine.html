@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>SketchUpをLinuxにインストール - blog.gorugle.org</title>
+    <title>SketchUpをWineで使う - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <link rel="canonical" href="/posts/2015/06/sketchup-wine.html">
 
         <meta name="author" content="lostman/ごる" />
-        <meta name="keywords" content="Linux" />
+        <meta name="keywords" content="Linux,Wine" />
         <meta name="description" content="SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした 大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった WineHQ にも SketchUpのWikiページ があり情報がまとめられています ただ多少ハマった部分があったのでやったことを残しておく まず 公式サイト からインストーラを入手する 自分がダウンロードしたのは SketchUpMake-ja-x64.exe だった インストール後にバージョンを確認したら 15.3.331 64ビット となっていた デフォルトの Windows XP だとバージョンチェックで起動できないので winecfg を起動して Windows 7 へ変更する インストールするディレクトリを変えたい場合は WINEPREFIX 環境変数を使ってwine関係のコマンドを実行する (デフォルトでは ~/.wine ..." />
 
 
@@ -82,8 +82,8 @@ blog.gorugle.org            </a>
                 <h1>
                     <a href="/posts/2015/06/sketchup-wine.html"
                        rel="bookmark"
-                       title="Permalink to SketchUpをLinuxにインストール">
-                        SketchUpをLinuxにインストール
+                       title="Permalink to SketchUpをWineで使う">
+                        SketchUpをWineで使う
                     </a>
                 </h1>
             </header>
@@ -102,6 +102,8 @@ blog.gorugle.org            </a>
 
 <span class="label label-default">Tags</span>
 	<a href="/tag/linux.html">Linux</a>
+        /
+	<a href="/tag/wine.html">Wine</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -190,8 +192,8 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
             <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="/tag/android.html">
-                            Android
+                        <a href="/tag/gentoo.html">
+                            Gentoo
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -200,13 +202,8 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="/tag/arduino.html">
-                            Arduino
+                        <a href="/tag/android.html">
+                            Android
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -215,8 +212,8 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="/tag/hardware.html">
-                            Hardware
+                        <a href="/tag/arduino.html">
+                            Arduino
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -234,19 +231,9 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                             Mac
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/sharp.html">
-                            SHARP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/f5321.html">
-                            F5321
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-3">
-                        <a href="/tag/igzo.html">
-                            IGZO
+                    <li class="list-group-item tag-2">
+                        <a href="/tag/hardware.html">
+                            Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -255,8 +242,8 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
-                        <a href="/tag/mozc.html">
-                            Mozc
+                        <a href="/tag/igzo.html">
+                            IGZO
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -265,8 +252,18 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/kindle.html">
+                            Kindle
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/aquestalk-pico-lsi.html">
                             AquesTalk pico LSI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/f5321.html">
+                            F5321
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -275,88 +272,18 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
+                        <a href="/tag/mozc.html">
+                            Mozc
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
                         <a href="/tag/esp-wroom-02.html">
                             ESP-WROOM-02
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/mysql.html">
-                            MySQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/walkman.html">
-                            Walkman
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/htl21.html">
-                            HTL21
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ssd.html">
-                            SSD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/diary.html">
-                            Diary
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kindle.html">
-                            Kindle
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/kvm.html">
-                            KVM
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/atmega328.html">
-                            ATmega328
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/phantomjs.html">
-                            PhantomJS
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/fabcafe.html">
-                            FabCafe
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ruby.html">
-                            Ruby
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ir.html">
-                            IR
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/todo.html">
-                            ToDo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/ws-50.html">
-                            WS-50
+                    <li class="list-group-item tag-3">
+                        <a href="/tag/sharp.html">
+                            SHARP
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -365,18 +292,33 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/hdd.html">
-                            HDD
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="/tag/uim.html">
-                            uim
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/github.html">
                             GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/kvm.html">
+                            KVM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/samba.html">
+                            Samba
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/htl21.html">
+                            HTL21
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ssd.html">
+                            SSD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/walkman.html">
+                            Walkman
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -390,13 +332,78 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="/tag/fabcafe.html">
+                            FabCafe
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/phantomjs.html">
+                            PhantomJS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/mysql.html">
+                            MySQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/atmega328.html">
+                            ATmega328
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/uim.html">
+                            uim
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/wine.html">
+                            Wine
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/hdd.html">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="/tag/macuim.html">
                             MacUIM
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/samba.html">
-                            Samba
+                        <a href="/tag/ruby.html">
+                            Ruby
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ws-50.html">
+                            WS-50
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/todo.html">
+                            ToDo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/diary.html">
+                            Diary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ir.html">
+                            IR
                         </a>
                     </li>
                 </ul>
@@ -420,7 +427,7 @@ Linux で展開する場合は <code>cabextract</code> コマンドが利用で�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 lostman/ごる
+         <div class="col-xs-10">&copy; 2019 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

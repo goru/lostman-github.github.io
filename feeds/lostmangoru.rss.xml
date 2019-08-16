@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 08 Apr 2018 01:22:00 +0900</lastBuildDate><item><title>RaspberryPiでffmpegをビルドしてハードウェアデコーダ/エンコーダを試す</title><link>/posts/2018/04/raspberrypi-ffmpeg.html</link><description>&lt;p&gt;RaspberryPiでffmpegのMPEG2のハードウェアデコーダ(mpeg2_mmal)と、H.264のハードウェアエンコーダ(h264_omx)を使ってみたかったので試してみました。
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog.gorugle.org</title><link>/</link><description></description><atom:link href="/feeds/lostmangoru.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 17 Aug 2019 02:22:00 +0900</lastBuildDate><item><title>USBデバイスを接続したまま取り外した状態にしたい</title><link>/posts/2019/08/usb-unbind.html</link><description>&lt;p&gt;KindleをPCに接続すると自動的に &lt;code&gt;USBドライブモード&lt;/code&gt; に切り替わってしまい、充電しながらの操作ができなくなる。
+Windowsでは &lt;code&gt;ハードウェアの取り外し&lt;/code&gt; 的な操作をすればいいのだけれど、それってLinux(CLI)でどうやるの?というお話。&lt;/p&gt;
+&lt;p&gt;まず接続した状態でdmesgを確認する。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;dmesg
+&lt;span class="o"&gt;[&lt;/span&gt;1483324.916878&lt;span class="o"&gt;]&lt;/span&gt; usb 3-2.1: new high-speed USB device number &lt;span class="m"&gt;79&lt;/span&gt; using xhci_hcd
+&lt;span class="o"&gt;[&lt;/span&gt;1483325.003399&lt;span class="o"&gt;]&lt;/span&gt; usb 3-2.1: New USB device found, &lt;span class="nv"&gt;idVendor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1949, &lt;span class="nv"&gt;idProduct&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0324
+&lt;span class="o"&gt;[&lt;/span&gt;1483325.003405&lt;span class="o"&gt;]&lt;/span&gt; usb 3-2.1: New USB device strings: &lt;span class="nv"&gt;Mfr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0, &lt;span class="nv"&gt;Product&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4, &lt;span class="nv"&gt;SerialNumber&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;5
+&lt;span class="o"&gt;[&lt;/span&gt;1483325.003409&lt;span class="o"&gt;]&lt;/span&gt; usb 3-2.1: Product: Internal Storage
+&lt;span class="o"&gt;[&lt;/span&gt;1483325.003412&lt;span class="o"&gt;]&lt;/span&gt; usb 3-2.1: SerialNumber: XXXXXXXXXXXXXXXX
+&lt;span class="o"&gt;[&lt;/span&gt;1483325.004173&lt;span class="o"&gt;]&lt;/span&gt; usb-storage 3-2.1:1.0: USB Mass Storage device detected
+&lt;span class="o"&gt;[&lt;/span&gt;1483325.004664&lt;span class="o"&gt;]&lt;/span&gt; scsi host14: usb-storage 3-2.1:1.0
+&lt;span class="o"&gt;[&lt;/span&gt;1483326.005526&lt;span class="o"&gt;]&lt;/span&gt; scsi 14:0:0:0: Direct-Access     Kindle   Internal Storage &lt;span class="m"&gt;0401&lt;/span&gt; PQ: &lt;span class="m"&gt;0&lt;/span&gt; ANSI: 2
+&lt;span class="o"&gt;[&lt;/span&gt;1483326.005886&lt;span class="o"&gt;]&lt;/span&gt; sd 14:0:0:0: Attached scsi generic sg2 &lt;span class="nb"&gt;type &lt;/span&gt;0
+&lt;span class="o"&gt;[&lt;/span&gt;1483326.008649&lt;span class="o"&gt;]&lt;/span&gt; sd 14:0:0:0: &lt;span class="o"&gt;[&lt;/span&gt;sdc&lt;span class="o"&gt;]&lt;/span&gt; Attached SCSI removable disk
+&lt;span class="o"&gt;[&lt;/span&gt;1483328.145867&lt;span class="o"&gt;]&lt;/span&gt; sd 14:0:0:0: &lt;span class="o"&gt;[&lt;/span&gt;sdc&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="m"&gt;57319341&lt;/span&gt; 512-byte logical blocks: &lt;span class="o"&gt;(&lt;/span&gt;29.3 GB/27.3 GiB&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;1483328.365616&lt;span class="o"&gt;]&lt;/span&gt; sd 14:0:0:0: &lt;span class="o"&gt;[&lt;/span&gt;sdc&lt;span class="o"&gt;]&lt;/span&gt; Write cache: enabled, &lt;span class="nb"&gt;read &lt;/span&gt;cache: enabled, doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support DPO or FUA
+&lt;span class="o"&gt;[&lt;/span&gt;1483328.586605&lt;span class="o"&gt;]&lt;/span&gt;  sdc:
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ついでにlsusbも確認すると&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;lsusb -t
+/:  Bus 04.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xhci_hcd/4p, 5000M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 2: Dev 2, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/4p, 5000M
+/:  Bus 03.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xhci_hcd/4p, 480M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 75, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/3p, 480M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 76, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 3: Dev 77, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 3: Dev 77, If 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 3: Dev 77, If 2, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 2: Dev 3, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/4p, 480M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 79, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Mass Storage, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usb-storage, 480M
+/:  Bus 02.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ehci-pci/2p, 480M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 2, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/8p, 480M
+/:  Bus 01.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ehci-pci/2p, 480M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 2, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/6p, 480M
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;こんな感じの出力が得られて、お目当てのデバイスは &lt;code&gt;3-2.1&lt;/code&gt; というバス&amp;amp;ポートに接続されていることがわかる。
+この識別子を &lt;code&gt;/sys/bus/usb/drivers/usb/unbind&lt;/code&gt; へ書き込むと切断することができる。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo sh -c &lt;span class="s2"&gt;&amp;quot;echo -n 3-2.1 &amp;gt;/sys/bus/usb/drivers/usb/unbind&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;dmesgにはあまりログはでないが&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;dmesg
+&lt;span class="o"&gt;[&lt;/span&gt;1483346.910295&lt;span class="o"&gt;]&lt;/span&gt; sd 14:0:0:0: &lt;span class="o"&gt;[&lt;/span&gt;sdc&lt;span class="o"&gt;]&lt;/span&gt; Synchronizing SCSI cache
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;lsusbからは消えていることが確認できる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;lsusb -t
+/:  Bus 04.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xhci_hcd/4p, 5000M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 2: Dev 2, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/4p, 5000M
+/:  Bus 03.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xhci_hcd/4p, 480M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 75, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/3p, 480M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 76, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 3: Dev 77, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 3: Dev 77, If 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+        &lt;span class="p"&gt;|&lt;/span&gt;__ Port 3: Dev 77, If 2, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Human Interface Device, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;usbhid, 12M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 2: Dev 3, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/4p, 480M
+/:  Bus 02.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ehci-pci/2p, 480M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 2, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/8p, 480M
+/:  Bus 01.Port 1: Dev 1, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root_hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ehci-pci/2p, 480M
+    &lt;span class="p"&gt;|&lt;/span&gt;__ Port 1: Dev 2, If 0, &lt;span class="nv"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Hub, &lt;span class="nv"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hub/6p, 480M
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;同じように &lt;code&gt;/sys/bus/usb/drivers/usb/bind&lt;/code&gt; へ書き込むと再認識させることもできる。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo sh -c &lt;span class="s2"&gt;&amp;quot;echo -n 3-2.1 &amp;gt;/sys/bus/usb/drivers/usb/bind&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 17 Aug 2019 02:22:00 +0900</pubDate><guid>tag:,2019-08-17:posts/2019/08/usb-unbind.html</guid><category>Linux</category><category>Kindle</category></item><item><title>RaspberryPiでffmpegをビルドしてハードウェアデコーダ/エンコーダを試す</title><link>/posts/2018/04/raspberrypi-ffmpeg.html</link><description>&lt;p&gt;RaspberryPiでffmpegのMPEG2のハードウェアデコーダ(mpeg2_mmal)と、H.264のハードウェアエンコーダ(h264_omx)を使ってみたかったので試してみました。
 が、aptでインストールできる3.2.10でmpeg2_mmalを使ってデコードすると解像度が320x240に固定されてしまうというバグを
 見事に踏み抜いてしまったので結局自分でビルドすることになりました。&lt;/p&gt;
 &lt;p&gt;3.2.10で &lt;a href="https://www.erb.jp/labo/samplestream.html"&gt;ERBラボのサンプルストリーム パケットサイズ188バイト版&lt;/a&gt; をエンコードしたログ&lt;/p&gt;
@@ -1330,7 +1401,7 @@ x11vnc サーバが終了したら Chrome のウインドウも閉じる、と�
 この際ローカルの 5900 をサーバの 5900 へフォワードするように設定しておく&lt;br /&gt;
 そして &lt;a href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&amp;amp;hl=ja"&gt;VNC Viewer&lt;/a&gt; でローカルの 5900 に接続する&lt;br /&gt;
 この VNC クライアントは自動で画面を端末のサイズに合わせて拡大するので&lt;br /&gt;
--scale オプションを使用して 1/2 に縮小していても端末の画面いっぱいに描画してくれる (ただし画質は落ちる&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 14 Jun 2015 00:35:00 +0900</pubDate><guid>tag:,2015-06-14:posts/2015/06/xvfb.html</guid><category>Linux</category><category>Gentoo</category></item><item><title>SketchUpをLinuxにインストール</title><link>/posts/2015/06/sketchup-wine.html</link><description>&lt;p&gt;SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした&lt;br /&gt;
+-scale オプションを使用して 1/2 に縮小していても端末の画面いっぱいに描画してくれる (ただし画質は落ちる&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sun, 14 Jun 2015 00:35:00 +0900</pubDate><guid>tag:,2015-06-14:posts/2015/06/xvfb.html</guid><category>Linux</category><category>Gentoo</category></item><item><title>SketchUpをWineで使う</title><link>/posts/2015/06/sketchup-wine.html</link><description>&lt;p&gt;SketchUp を Mac にインストールして使用していたのですが、 Mac のタッチパッドだといまいち操作性が良くありませんでした&lt;br /&gt;
 大画面でマウスを使って操作したかったのでデスクトップの Linux マシンにインストールしてみました&lt;br /&gt;
 SketchUp は Linux 版が提供されていないので Wine を使用することになります (公式の FAQ にもしれっと記述があった&lt;br /&gt;
 &lt;a href="https://www.winehq.org/"&gt;WineHQ&lt;/a&gt; にも &lt;a href="http://wiki.winehq.org/Sketchup"&gt;SketchUpのWikiページ&lt;/a&gt; があり情報がまとめられています&lt;br /&gt;
@@ -1397,7 +1468,7 @@ Linux で展開する場合は &lt;code&gt;cabextract&lt;/code&gt; コマンド�
 &lt;p&gt;が起きる場合、コマンドラインオプションに /DisableRubyAPI をつけていない&lt;/p&gt;
 &lt;p&gt;最終的に以下のコマンドで正常に SketchUp を起動することができた&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ WINEPREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/winedir/sketchup wine64 &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/winedir/sketchup/drive_c/Program Files (x86)/SketchUp/SketchUp 2015/SketchUp.exe&amp;quot;&lt;/span&gt; /DisableRubyAPI
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 06 Jun 2015 01:51:00 +0900</pubDate><guid>tag:,2015-06-06:posts/2015/06/sketchup-wine.html</guid><category>Linux</category></item><item><title>ATmega328を取り外して動作させる</title><link>/posts/2015/04/atmega328.html</link><description>&lt;p&gt;Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに&lt;br /&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">lostman/ごる</dc:creator><pubDate>Sat, 06 Jun 2015 01:51:00 +0900</pubDate><guid>tag:,2015-06-06:posts/2015/06/sketchup-wine.html</guid><category>Linux</category><category>Wine</category></item><item><title>ATmega328を取り外して動作させる</title><link>/posts/2015/04/atmega328.html</link><description>&lt;p&gt;Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに&lt;br /&gt;
 Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので&lt;br /&gt;
 Arduino に使われている &lt;a href="http://akizukidenshi.com/catalog/g/gI-03142/"&gt;ATmega328&lt;/a&gt; を取り外して単体で使えることを確認してみた  &lt;/p&gt;
 &lt;p&gt;まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので&lt;br /&gt;

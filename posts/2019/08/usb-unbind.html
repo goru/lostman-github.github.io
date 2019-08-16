@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Embedded - blog.gorugle.org</title>
+    <title>USBデバイスを接続したまま取り外した状態にしたい - blog.gorugle.org</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,9 +9,11 @@
 
 
 
+<link rel="canonical" href="/posts/2019/08/usb-unbind.html">
 
-    <meta name="author" content="lostman/ごる" />
-    <meta name="keywords" content="Embedded" />
+        <meta name="author" content="lostman/ごる" />
+        <meta name="keywords" content="Linux,Kindle" />
+        <meta name="description" content="KindleをPCに接続すると自動的に USBドライブモード に切り替わってしまい、充電しながらの操作ができなくなる。 Windowsでは ハードウェアの取り外し 的な操作をすればいいのだけれど、それってLinux(CLI)でどうやるの?というお話。 まず接続した状態でdmesgを確認する。 $ dmesg [1483324.916878] usb 3-2.1: new high-speed USB device number 79 using xhci_hcd [1483325.003399] usb 3-2.1: New USB device found, idVendor=1949, idProduct=0324 [1483325.003405] usb 3-2.1: New USB device strings: Mfr=0 ..." />
 
 
 
@@ -43,10 +45,10 @@ blog.gorugle.org            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="/category/computer.html">Computer</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/embedded.html">Embedded</a>
                         </li>
                         <li >
@@ -74,243 +76,113 @@ blog.gorugle.org            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>
-                <h2><a href="/posts/2015/12/esp-wroom-02-arduino.html">ESP-WROOM-02をArduinoとして使ってみた</a></h2>
-                <div class="summary"><p>前回はPCからATコマンドをESP-WROOM-02へ送信してサーバからデータを取得してみました。
-今回はESP-WROOM-02をArduinoとして動作させてみたいと思います。
-外部機器を必要とせずArduinoとして自立して動作するので、センサーのデータを継続的に送信するデバイスの作成等が容易にできるようになるはずです。</p>
-<p>まずBoards ManagerをサポートしているArduino IDEが必要なので <a href="https://www.arduino.cc/en/Main/Software">公式サイト</a> から最新の1.6.6をダウンロードしてインストールしておきます。
-手元の環境は古いままで1.0.6がインストールされていました。</p>
-<p>Arduino IDEを起動したらBoards ManagerにESP8266のサイトを登録します。
-ソースはgithubの <a href="https://github.com/esp8266/Arduino">esp8266/Arduino</a> で管理されていて手順が記載されていました。</p>
-<ol>
-<li><code>Arduino -&gt; Preferences -&gt; Additional Board Manager URLs</code> を開いて <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code> を追加します。</li>
-<li>Arduino IDEを一度再起動して、 <code>Tools -&gt; Board -&gt; Boards Manager</code> を開きます。
-自動で一覧が読み込まれ、 <code>esp8266 by ESP8266 Community</code> が表示されているはずなので選択してインストールします。 (現時点では2 ...</li></ol>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/12/esp-wroom-02-arduino.html">more ...</a>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/posts/2019/08/usb-unbind.html"
+                       rel="bookmark"
+                       title="Permalink to USBデバイスを接続したまま取り外した状態にしたい">
+                        USBデバイスを接続したまま取り外した状態にしたい
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <time datetime="2019-08-17T02:22:00+09:00"> 2019/08/17 Sat</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/linux.html">Linux</a>
+        /
+	<a href="/tag/kindle.html">Kindle</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2015/11/esp-wroom-02.html">ESP-WROOM-02を試してみた</a></h2>
-                <div class="summary"><p>ESP-WROOM-02を試してみました。
-ESP-WROOM-02はデフォルトではATコマンドで操作を受け付けるファームウェアが書き込まれています。
-それ以外にArduinoやNodeMCUとして使えるファームウェアも使用することができるみたいです。</p>
-<p>今回試したのはATコマンドでの動作です。
-これはPCとUSBシリアルで接続してシリアルコンソールからATコマンドを送ることで操作します。
-今回使ったものは以下。</p>
-<ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-06894/">FT231X USBシリアル変換モジュール AE-FT231X</a> 750円</li>
-<li><a href="http://akizukidenshi.com/catalog/g/gI-00432/">低損失CMOS三端子レギュレータ 3.3V 500mA NJU7223F33</a> 50円</li>
-<li><a href="https://www.switch-science.com/catalog/2347/">ESP-WROOM-02ピッチ変換済みモジュール《フル版》</a> 1100円</li>
-<li>その他抵抗等</li>
-</ul>
-<p>USBシリアルは今後もよく使うと思うのでこのような変換基板を作ってみました。
-今回は使わないけれど、リセットボタンと5V/3Vの切り替えスイッチ付き。</p>
-<p><a href="/static/images/2015/11/usb-serial.png"><img alt="image" src="/static/images/2015/11/usb-serial_s.png" /></a></p>
-<p>上記のUSBシリアル変換基板とESP-WROOM-02を次のように接続するだけで動作確認できます。
-ESP-WROOM-02への電源は消費電力の問題から、USBシリアルの3.3Vは使用せず、5Vを三端子レギュレータを介して入力するようにします。
-(<a href="http://nemuisan.blog.bai.ne.jp/?eid=216185">ESP-WROOM-02を使ってみる3 -そんな電源で大丈夫か-</a>)</p>
-<p><a href="/static/images/2015/11/esp-wroom-02.png"><img alt="image" src="/static/images/2015/11/esp-wroom-02_s.png" /></a>
-<a href="/static/images/2015/11/DSC_0565.JPG"><img alt="image" src="/static/images/2015/11/DSC_0565_s.JPG" /></a></p>
-<p>次にPCとの接続にはUSBシリアルのドライバをインストールしなければいけないので、FTDIのページからVCP Driverをダウンロードしてインストールしておきます。</p>
-<ul>
-<li><a href="http://www.ftdichip.com/Drivers/VCP.htm">Virtual COM Port Drivers</a></li>
-</ul>
-<p>PCと接続したらArduino IDEを起動して <code>Tools -&gt; Serial Port</code> から認識されているデバイスを選択します。
-選択したら <code>Tools -&gt; Serial Monitor</code> をクリックしてシリアルモニタを起動します。</p>
-<p><a href="/static/images/2015/11/Screenshot_2015-11-01-15-12-00.png"><img alt="image" src="/static/images/2015/11/Screenshot_2015-11-01-15-12-00_s.png" /></a></p>
-<p>シリアルモニタが起動したら ...</p>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/11/esp-wroom-02.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2015/04/atmega328.html">ATmega328を取り外して動作させる</a></h2>
-                <div class="summary"><p>Arduino Uno を使って動作確認をした回路をなにかのケースに組み込んで使いたいときに<br />
-Arduino をそのまま組み込むのは大きすぎるし、高いしあまり現実的ではないので<br />
-Arduino に使われている <a href="http://akizukidenshi.com/catalog/g/gI-03142/">ATmega328</a> を取り外して単体で使えることを確認してみた  </p>
-<p>まず購入直後の ATmega328 には Arduino として動作させるためのブートローダが書き込まれていないので<br />
-Arduino Uno を使ってブートローダの書き込みをしなければいけない<br />
-Arduino に搭載されている ATmega328 は 16MHz / 5V で動作しているが、これには外部クロックが必要<br />
-それ以外に ATmega328 の内部に搭載されている 8MHz のクロックを使う方法がある<br />
-これを使う場合、部品点数が少なくなるし、 5V もしくは 3.3V で動作させることができる<br />
-今回は速度は必要ではないしそれで十分なので簡単な 8MHz / 5V を選択<br />
-その場合ブレッドボード等は既に持っているので追加で必要なものは ATmega328 と 10μF のコンデンサだけ</p>
-<p>参考にすべきページは</p>
-<ul>
-<li><a href="http://www.arduino.cc/en/Tutorial/ArduinoISP">ArduinoISP</a> の ...</li></ul>
-                    <a class="btn btn-default btn-xs" href="/posts/2015/04/atmega328.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/11/ir.html">Arduinoをリモコンにしてみる</a></h2>
-                <div class="summary"><p>秋月電子で赤外線の受信モジュールとLEDを購入して学習リモコン的なものを作ってみた<br />
-今回使用したのは以下の部品</p>
-<ul>
-<li>Arduino Uno</li>
-<li>赤外線リモコン受信モジュール <a href="http://akizukidenshi.com/catalog/g/gI-06487/">GP1UXC41QS</a> x1 1個50円</li>
-<li>5mm赤外線LED <a href="http://akizukidenshi.com/catalog/g/gI-04311/">OSI5LA5113A</a> x3 10個100円</li>
-<li>タクトスイッチ <a href="http://akizukidenshi.com/catalog/g/gP-03647/">DTS-6</a> x1 1個10円</li>
-<li>プルダウン用の抵抗1KΩ x1</li>
-</ul>
-<p>それぞれを以下のように接続した</p>
-<table>
-<thead>
-<tr>
-<th>Arduino</th>
-<th>部品</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>GP1UXC41QSのVout</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>GP1UXC41QSのGND</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>GP1UXC41QSのVcc</td>
-</tr>
-<tr>
-<td>5V</td>
-<td>タクトスイッチの2番</td>
-</tr>
-<tr>
-<td>3</td>
-<td>タクトスイッチの4番 (プルダウン抵抗をつける)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>OSI5LA5113A x3 の+</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>OSI5LA5113A x3 の-</td>
-</tr>
-</tbody>
-</table>
-<p>GP1UXC41QSのデータシートの <code>6. 製品の実装について</code> の項に <code>CRフィルターを実装してください</code> とあるけれど<br />
-お試しなので今回は省略して回路を組んだ<br />
-手元の環境では特に問題は起きていないけれど誤動作する可能性があるので注意</p>
-<p>実際に接続するとこのようになる</p>
-<p><a href="/static/images/2014/11/IMAG1268.jpg"><img alt="image" src="/static/images/2014/11/IMAG1268_s.jpg" /></a></p>
-<p>ソースコードは ...</p>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/11/ir.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk-i2c.html">AquesTalk pico LSIをI2Cで接続する</a></h2>
-                <div class="summary"><p>ArduinoとAquesTalkをI2Cで接続してみました<br />
-配線は以下の通り  </p>
-<table>
-<thead>
-<tr>
-<th>Pin</th>
-<th>AquesTalk</th>
-<th>-&gt;</th>
-<th>Arduino</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>/RESET</td>
-<td></td>
-<td>RESET</td>
-</tr>
-<tr>
-<td>4</td>
-<td>SMOD0</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SMOD1</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>7</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>8</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>20</td>
-<td>VCC</td>
-<td></td>
-<td>5V</td>
-</tr>
-<tr>
-<td>22</td>
-<td>GND</td>
-<td></td>
-<td>GND</td>
-</tr>
-<tr>
-<td>27</td>
-<td>SDA</td>
-<td></td>
-<td>A4</td>
-</tr>
-<tr>
-<td>28</td>
-<td>SCL</td>
-<td></td>
-<td>A5</td>
-</tr>
-</tbody>
-</table>
-<p><code>SMOD0</code> と <code>SMOD1</code> については技術資料の <code>表9.1 通信モード</code> を参照<br />
-I2Cで接続するには <code>SMOD0 = 0</code> 、 <code>SMOD1 = 1</code> にする必要があります<br />
-あとは12番の <code>AOUT</code> をアンプの <code>IN ...</code></p>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk-i2c.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/posts/2014/07/aquestalk.html">AquesTalk pico LSIの動作確認</a></h2>
-                <div class="summary"><p>以前購入していた<a href="http://www.a-quest.com/products/aquestalkpicolsi.html">ATP3011F1-PU</a>(<a href="http://akizukidenshi.com/catalog/g/gI-06220/">秋月</a>で850円)の動作確認をしてみました<br />
-紹介動画にもありますがArduino UNOに挿してアンプ付きのスピーカと接続、<br />
-PCからシリアルモニタで文字を送信するだけで音声を出すことができます<br />
-(技術資料 <code>13.4. Arduinoボードを利用した簡易動作</code> を参照)<br />
-通常Arduinoから使う場合はI2C接続で使うことになると思いますが、<br />
-I2C接続は後日試すとして今回はこの方法で動作確認をしてみました</p>
-<p>まずうちにはアンプ付きのスピーカなんて無いのでそれを用意するところから<br />
-せっかくなのでこれも秋月で買ってきて組み立ててみました<br />
-といっても個別にパーツを揃えたわけでなく</p>
-<ul>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-08217/">ＰＡＭ８０１２使用２ワットＤ級アンプモジュール</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gK-05363/">３．５ｍｍステレオミニジャックＤＩＰ化キット</a></li>
-<li><a href="http://akizukidenshi.com/catalog/g/gP-02679/">電池ボックス　単３×２本（リード線・耳付）</a></li>
-<li>100均で売っているスピーカ</li>
-</ul>
-<p>これらを接続しただけです<br />
-今回試した手順を以下にまとめておきます<br />
-後半は技術資料に書いてあるものそのままで、どちらかと言うと前半が僕には必要でした</p>
-<ol>
-<li>ArduinoのLSIを取り外し、AquesTalkを取り付け</li>
-<li>Arduinoの <code>デジタル6番</code> をアンプの <code>IN+</code> に接続</li>
-<li>Arduinoの <code>GND</code> をアンプの <code>IN-</code> に接続</li>
-<li>アンプの <code>+V</code> と <code>GND</code> をそれぞれ電池に接続</li>
-<li>アンプの <code>SPK ...</code></li></ol>
-                    <a class="btn btn-default btn-xs" href="/posts/2014/07/aquestalk.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+                <p>KindleをPCに接続すると自動的に <code>USBドライブモード</code> に切り替わってしまい、充電しながらの操作ができなくなる。
+Windowsでは <code>ハードウェアの取り外し</code> 的な操作をすればいいのだけれど、それってLinux(CLI)でどうやるの?というお話。</p>
+<p>まず接続した状態でdmesgを確認する。</p>
+<div class="highlight"><pre><span class="nv">$ </span>dmesg
+<span class="o">[</span>1483324.916878<span class="o">]</span> usb 3-2.1: new high-speed USB device number <span class="m">79</span> using xhci_hcd
+<span class="o">[</span>1483325.003399<span class="o">]</span> usb 3-2.1: New USB device found, <span class="nv">idVendor</span><span class="o">=</span>1949, <span class="nv">idProduct</span><span class="o">=</span>0324
+<span class="o">[</span>1483325.003405<span class="o">]</span> usb 3-2.1: New USB device strings: <span class="nv">Mfr</span><span class="o">=</span>0, <span class="nv">Product</span><span class="o">=</span>4, <span class="nv">SerialNumber</span><span class="o">=</span>5
+<span class="o">[</span>1483325.003409<span class="o">]</span> usb 3-2.1: Product: Internal Storage
+<span class="o">[</span>1483325.003412<span class="o">]</span> usb 3-2.1: SerialNumber: XXXXXXXXXXXXXXXX
+<span class="o">[</span>1483325.004173<span class="o">]</span> usb-storage 3-2.1:1.0: USB Mass Storage device detected
+<span class="o">[</span>1483325.004664<span class="o">]</span> scsi host14: usb-storage 3-2.1:1.0
+<span class="o">[</span>1483326.005526<span class="o">]</span> scsi 14:0:0:0: Direct-Access     Kindle   Internal Storage <span class="m">0401</span> PQ: <span class="m">0</span> ANSI: 2
+<span class="o">[</span>1483326.005886<span class="o">]</span> sd 14:0:0:0: Attached scsi generic sg2 <span class="nb">type </span>0
+<span class="o">[</span>1483326.008649<span class="o">]</span> sd 14:0:0:0: <span class="o">[</span>sdc<span class="o">]</span> Attached SCSI removable disk
+<span class="o">[</span>1483328.145867<span class="o">]</span> sd 14:0:0:0: <span class="o">[</span>sdc<span class="o">]</span> <span class="m">57319341</span> 512-byte logical blocks: <span class="o">(</span>29.3 GB/27.3 GiB<span class="o">)</span>
+<span class="o">[</span>1483328.365616<span class="o">]</span> sd 14:0:0:0: <span class="o">[</span>sdc<span class="o">]</span> Write cache: enabled, <span class="nb">read </span>cache: enabled, doesn<span class="err">&#39;</span>t support DPO or FUA
+<span class="o">[</span>1483328.586605<span class="o">]</span>  sdc:
+</pre></div>
+
+
+<p>ついでにlsusbも確認すると</p>
+<div class="highlight"><pre><span class="nv">$ </span>lsusb -t
+/:  Bus 04.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>xhci_hcd/4p, 5000M
+    <span class="p">|</span>__ Port 2: Dev 2, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/4p, 5000M
+/:  Bus 03.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>xhci_hcd/4p, 480M
+    <span class="p">|</span>__ Port 1: Dev 75, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/3p, 480M
+        <span class="p">|</span>__ Port 1: Dev 76, If 0, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+        <span class="p">|</span>__ Port 3: Dev 77, If 0, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+        <span class="p">|</span>__ Port 3: Dev 77, If 1, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+        <span class="p">|</span>__ Port 3: Dev 77, If 2, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+    <span class="p">|</span>__ Port 2: Dev 3, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/4p, 480M
+        <span class="p">|</span>__ Port 1: Dev 79, If 0, <span class="nv">Class</span><span class="o">=</span>Mass Storage, <span class="nv">Driver</span><span class="o">=</span>usb-storage, 480M
+/:  Bus 02.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>ehci-pci/2p, 480M
+    <span class="p">|</span>__ Port 1: Dev 2, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/8p, 480M
+/:  Bus 01.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>ehci-pci/2p, 480M
+    <span class="p">|</span>__ Port 1: Dev 2, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/6p, 480M
+</pre></div>
+
+
+<p>こんな感じの出力が得られて、お目当てのデバイスは <code>3-2.1</code> というバス&amp;ポートに接続されていることがわかる。
+この識別子を <code>/sys/bus/usb/drivers/usb/unbind</code> へ書き込むと切断することができる。</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo sh -c <span class="s2">&quot;echo -n 3-2.1 &gt;/sys/bus/usb/drivers/usb/unbind&quot;</span>
+</pre></div>
+
+
+<p>dmesgにはあまりログはでないが</p>
+<div class="highlight"><pre><span class="nv">$ </span>dmesg
+<span class="o">[</span>1483346.910295<span class="o">]</span> sd 14:0:0:0: <span class="o">[</span>sdc<span class="o">]</span> Synchronizing SCSI cache
+</pre></div>
+
+
+<p>lsusbからは消えていることが確認できる</p>
+<div class="highlight"><pre><span class="nv">$ </span>lsusb -t
+/:  Bus 04.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>xhci_hcd/4p, 5000M
+    <span class="p">|</span>__ Port 2: Dev 2, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/4p, 5000M
+/:  Bus 03.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>xhci_hcd/4p, 480M
+    <span class="p">|</span>__ Port 1: Dev 75, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/3p, 480M
+        <span class="p">|</span>__ Port 1: Dev 76, If 0, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+        <span class="p">|</span>__ Port 3: Dev 77, If 0, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+        <span class="p">|</span>__ Port 3: Dev 77, If 1, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+        <span class="p">|</span>__ Port 3: Dev 77, If 2, <span class="nv">Class</span><span class="o">=</span>Human Interface Device, <span class="nv">Driver</span><span class="o">=</span>usbhid, 12M
+    <span class="p">|</span>__ Port 2: Dev 3, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/4p, 480M
+/:  Bus 02.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>ehci-pci/2p, 480M
+    <span class="p">|</span>__ Port 1: Dev 2, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/8p, 480M
+/:  Bus 01.Port 1: Dev 1, <span class="nv">Class</span><span class="o">=</span>root_hub, <span class="nv">Driver</span><span class="o">=</span>ehci-pci/2p, 480M
+    <span class="p">|</span>__ Port 1: Dev 2, If 0, <span class="nv">Class</span><span class="o">=</span>Hub, <span class="nv">Driver</span><span class="o">=</span>hub/6p, 480M
+</pre></div>
+
+
+<p>同じように <code>/sys/bus/usb/drivers/usb/bind</code> へ書き込むと再認識させることもできる。</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo sh -c <span class="s2">&quot;echo -n 3-2.1 &gt;/sys/bus/usb/drivers/usb/bind&quot;</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">
@@ -559,7 +431,7 @@ I2C接続は後日試すとして今回はこの方法で動作確認をして�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 lostman/ごる
+         <div class="col-xs-10">&copy; 2019 lostman/ごる
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
